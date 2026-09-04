@@ -2,3 +2,27 @@
 
 .brand-mark{display:inline-grid;place-items:center;width:34px;height:34px;flex:0 0 34px;background:var(--blue);color:var(--white);font-size:20px;line-height:1;letter-spacing:0}
 footer .brand-mark{background:var(--blue);color:var(--white)}
+
+
+/* Compact portfolio */
+.work-page main{background:var(--paper)}
+.work-intro{padding:72px max(28px,calc((100vw - var(--max))/2)) 42px;background:var(--ink);color:var(--white)}
+.work-intro .eyebrow{margin-bottom:12px}
+.work-intro h1{font-size:clamp(2.4rem,5vw,4.5rem);line-height:1;letter-spacing:-.055em;margin:0}
+.work-grid{max-width:var(--max);margin:0 auto;padding:56px 28px 64px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.work-item{background:var(--white);border:1px solid var(--dark-line);display:grid;grid-template-columns:42% 1fr;min-height:270px}
+.work-swatch{padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:32px}
+.work-swatch span{font:600 12px/1 "IBM Plex Mono",monospace;letter-spacing:.12em}
+.work-swatch strong{font-size:clamp(1.35rem,2.3vw,2rem);line-height:1.02;letter-spacing:-.045em}
+.work-swatch.alien{background:#1b1d19;color:#dde776}
+.work-swatch.wards{background:#dceefb;color:#0d2c4f}
+.work-swatch.artist{background:#f1ede6;color:#302a25}
+.work-swatch.savannah{background:#e1edfa;color:#071827}
+.work-copy{padding:24px;display:flex;flex-direction:column;align-items:flex-start}
+.work-copy .meta{font:600 11px/1.45 "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.08em;color:#65768b;margin-bottom:18px}
+.work-copy>p:not(.meta){font-size:15px;line-height:1.55;color:#52657a;margin-bottom:22px}
+.work-copy .text-link{font-size:14px;margin-top:auto}
+.work-contact{max-width:var(--max);margin:0 auto;padding:0 28px 72px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-top:1px solid var(--dark-line);padding-top:28px}
+.work-contact p{margin:0;font-size:18px;font-weight:600}
+@media(max-width:900px){.work-grid{grid-template-columns:1fr}.work-item{min-height:240px}}
+@media(max-width:560px){.work-intro{padding-top:54px;padding-bottom:34px}.work-grid{padding-top:36px;padding-bottom:48px}.work-item{grid-template-columns:1fr;min-height:0}.work-swatch{min-height:150px}.work-copy{min-height:205px}.work-contact{align-items:flex-start;flex-direction:column;padding-bottom:54px}}
