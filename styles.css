@@ -41,3 +41,5 @@ footer .brand-mark{background:var(--blue);color:var(--white)}
 .artist-project{border-top:5px solid #9b8876}
 .savannah-project{border-top:5px solid #0d2b45}
 @media(max-width:700px){.portfolio-main{padding-top:24px}.portfolio-list{grid-template-columns:1fr}.portfolio-project{min-height:210px;padding:24px}.portfolio-project h1,.portfolio-project h2{font-size:1.65rem}}
+
+.private-portfolio{min-height:62vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:24px;padding:72px max(20px,calc((100vw - 1040px)/2))}.private-portfolio h1{max-width:760px;font-size:clamp(3rem,8vw,7rem);line-height:.92;letter-spacing:-.07em;margin:0}.private-portfolio .text-link{font-size:15px}
