@@ -26,3 +26,18 @@ footer .brand-mark{background:var(--blue);color:var(--white)}
 .work-contact p{margin:0;font-size:18px;font-weight:600}
 @media(max-width:900px){.work-grid{grid-template-columns:1fr}.work-item{min-height:240px}}
 @media(max-width:560px){.work-intro{padding-top:54px;padding-bottom:34px}.work-grid{padding-top:36px;padding-bottom:48px}.work-item{grid-template-columns:1fr;min-height:0}.work-swatch{min-height:150px}.work-copy{min-height:205px}.work-contact{align-items:flex-start;flex-direction:column;padding-bottom:54px}}
+
+
+/* Quiet, compact portfolio */
+.portfolio-main{background:var(--paper);padding:48px max(20px,calc((100vw - 1040px)/2)) 64px}
+.portfolio-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.portfolio-project{min-height:230px;padding:26px 28px;border:1px solid var(--dark-line);background:var(--white);display:flex;flex-direction:column;align-items:flex-start}
+.portfolio-project .meta{font:600 11px/1.45 "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.08em;color:#65768b;margin-bottom:18px}
+.portfolio-project h1,.portfolio-project h2{font-size:clamp(1.55rem,2.5vw,2.15rem);line-height:1.05;letter-spacing:-.045em;margin-bottom:16px}
+.portfolio-project>p:not(.meta){font-size:15px;line-height:1.5;color:#52657a;max-width:42ch;margin-bottom:22px}
+.portfolio-project .text-link{font-size:14px;margin-top:auto}
+.alien-project{border-top:5px solid #a9ba25}
+.wards-project{border-top:5px solid #3a86ff}
+.artist-project{border-top:5px solid #9b8876}
+.savannah-project{border-top:5px solid #0d2b45}
+@media(max-width:700px){.portfolio-main{padding-top:24px}.portfolio-list{grid-template-columns:1fr}.portfolio-project{min-height:210px;padding:24px}.portfolio-project h1,.portfolio-project h2{font-size:1.65rem}}
