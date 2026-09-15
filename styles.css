@@ -74,7 +74,7 @@ h1,h2,h3,.brand{font-family:"IBM Plex Sans",sans-serif}
 .closing-cta .button{margin-top:25px}
 footer{padding:55px max(28px,calc((100vw - var(--max))/2));background:var(--ink);color:var(--muted);display:grid;grid-template-columns:2fr 2fr 1fr;gap:30px;align-items:start;font-size:14px}
 footer .brand{color:var(--white)}
-footer .brand-copy small{margin-top:0}
+footer .brand-copy small{margin-top:2px}
 footer > div{display:grid;gap:7px}
 footer > small{grid-column:1/-1;border-top:1px solid var(--line);padding-top:25px}
 .page-intro{background:var(--ink);color:var(--white);padding-top:90px;padding-bottom:100px}
