@@ -44,6 +44,12 @@ if (!reducedMotion && 'IntersectionObserver' in window) {
   revealItems.forEach((item) => item.classList.add('revealed'));
 }
 
+document.querySelectorAll('.more-studies').forEach((details) => {
+  details.addEventListener('toggle', () => {
+    if (details.open && reducedMotion) details.querySelectorAll('[data-reveal]').forEach((item) => item.classList.add('revealed'));
+  });
+});
+
 const depthElement = document.querySelector('[data-depth]');
 if (depthElement && !reducedMotion && window.matchMedia('(pointer: fine)').matches) {
   window.addEventListener('pointermove', (event) => {
@@ -69,6 +75,7 @@ if (canvas) {
       y: Math.random() * height * 0.92,
       radius: 0.35 + Math.random() * 1.15,
       speed: 0.026 + Math.random() * 0.066,
+      drift: (Math.random() - 0.5) * (0.008 + (index % 3) * 0.012),
       alpha: 0.18 + Math.random() * 0.58,
       layer: index % 3
     }));
@@ -87,7 +94,10 @@ if (canvas) {
   const draw = () => {
     context.clearRect(0, 0, width, height);
     particles.forEach((particle) => {
-      particle.y -= particle.speed * (particle.layer + 1);
+      particle.y -= particle.speed * (particle.layer + 0.8);
+      particle.x += particle.drift * (particle.layer + 1);
+      if (particle.x < -4) particle.x = width + 4;
+      if (particle.x > width + 4) particle.x = -4;
       if (particle.y < -4) { particle.y = height * 0.92; particle.x = Math.random() * width; }
       const fade = Math.min(1, Math.max(0, (height - particle.y) / (height * 0.34)));
       context.beginPath();
