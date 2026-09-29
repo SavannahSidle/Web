@@ -601,6 +601,107 @@ footer .brand-copy small{margin-top:5px}
   .hero-navigation{transform:none!important}
 }
 
+/* MICA campaign-level art direction: a confident headline and a real glimpse of range. */
+.home .hero{padding-top:clamp(60px,6vw,92px);padding-bottom:34px}
+.hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(340px,.92fr);gap:clamp(28px,4.2vw,68px);min-height:clamp(530px,59vw,680px)}
+.home .hero h1{max-width:770px;font:400 clamp(3.7rem,6vw,5.9rem)/.91 "DM Serif Display",Georgia,serif;letter-spacing:-.045em}
+.home .hero h1 span{display:block;color:#f4f5f7}
+.home .hero h1 .hero-accent{color:#a7caff;-webkit-text-stroke:0;transform:none;font-style:italic;letter-spacing:-.055em;padding:0}
+.home .hero-copy{max-width:520px;margin-top:28px;font-size:clamp(1.06rem,1.45vw,1.25rem)}
+.home .hero .eyebrow{margin-bottom:25px}
+.hero-interfaces{--depth-x:0px;--depth-y:0px;position:relative;justify-self:end;width:min(100%,530px);aspect-ratio:1.04;transform:translate3d(var(--depth-x),var(--depth-y),0);transition:transform .7s cubic-bezier(.2,.8,.2,1);isolation:isolate}
+.hero-interfaces::before{content:"";position:absolute;z-index:-2;inset:8%;border:1px solid rgba(180,211,245,.15);border-radius:50%;transform:rotate(-19deg) scaleY(.62);box-shadow:0 0 0 46px rgba(145,189,236,.018),0 0 0 95px rgba(145,189,236,.012)}
+.hero-interfaces::after{content:"";position:absolute;z-index:-1;inset:20%;border:1px solid rgba(159,197,238,.12);border-radius:50%;transform:rotate(34deg) scaleY(.58)}
+.hero-orbit{position:absolute;z-index:-1;width:6px;height:6px;border-radius:50%;background:#b7d8ff;box-shadow:0 0 18px 5px rgba(115,174,241,.55)}
+.hero-orbit-one{left:18%;top:26%}.hero-orbit-two{right:8%;bottom:25%;width:4px;height:4px;opacity:.72}
+.hero-frame{position:absolute;overflow:hidden;border:1px solid rgba(210,228,250,.42);box-shadow:0 24px 65px rgba(0,0,0,.34);will-change:transform}
+.hero-frame-bar{position:absolute;z-index:3;left:0;right:0;top:0;height:13%;display:flex;align-items:center;gap:5px;padding:0 5%;background:rgba(8,21,32,.94);color:#e9f2ff;font:500 8px/1 "IBM Plex Mono",monospace;letter-spacing:.1em}
+.hero-frame-bar span{margin-right:auto}.hero-frame-bar i{width:4px;height:4px;border-radius:50%;background:#8ea6bd}
+.hero-frame-editorial{top:7%;right:4%;width:75%;height:55%;background:#e8e0d2;color:#222520;transform:rotate(1.2deg);animation:heroDriftA 9s ease-in-out infinite alternate}
+.hero-editorial-image{position:absolute;right:6%;top:21%;width:52%;height:68%;overflow:hidden;background:#897b6d}
+.hero-editorial-image img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.78)}
+.hero-editorial-copy{position:absolute;left:8%;top:25%;display:grid;gap:18px;max-width:42%}
+.hero-editorial-copy small{font:500 7px/1.4 "IBM Plex Mono",monospace;letter-spacing:.08em;color:#5c625c}
+.hero-editorial-copy strong{font:400 clamp(1.6rem,3.1vw,2.9rem)/.85 "DM Serif Display",Georgia,serif;letter-spacing:-.04em}
+.hero-frame-system{left:1%;bottom:9%;width:67%;height:50%;background:#081824;color:#eff6ff;transform:rotate(-1.4deg);animation:heroDriftB 10s ease-in-out infinite alternate}
+.hero-frame-system .hero-frame-bar{background:#0b202e;border-bottom:1px solid rgba(189,216,245,.14)}
+.hero-system-lines{position:absolute;inset:13% 0 0;width:100%;height:87%;z-index:0}
+.hero-system-lines path{fill:none;stroke:rgba(144,189,233,.55);stroke-width:.55;vector-effect:non-scaling-stroke}
+.hero-system-core,.hero-system-node{position:absolute;z-index:1;display:grid;place-items:center;border:1px solid rgba(158,200,243,.58);background:#0a1c29;font:500 clamp(7px,.62vw,9px)/1 "IBM Plex Mono",monospace;letter-spacing:.08em;color:#dcecff}
+.hero-system-core{left:42%;top:40%;width:18%;height:24%;border-color:#93c1fb;background:#10283c;color:#fff}
+.hero-system-node{width:22%;height:17%;font-size:clamp(6px,.52vw,8px);color:#adc5dc}
+.hero-system-node.node-top{left:41%;top:19%}.hero-system-node.node-left{left:13%;top:46%}.hero-system-node.node-right{right:12%;top:46%}.hero-system-node.node-bottom{left:41%;bottom:12%}
+.hero-frame-service{right:0;bottom:0;width:43%;height:34%;padding:8% 7% 6%;background:#c7ed66;color:#192621;transform:rotate(1.8deg);animation:heroDriftA 8s ease-in-out infinite alternate-reverse}
+.hero-frame-service small{display:block;font:600 7px/1 "IBM Plex Mono",monospace;letter-spacing:.11em}
+.hero-frame-service strong{display:block;margin-top:15%;font:700 clamp(1rem,2.1vw,1.8rem)/.88 "IBM Plex Sans",sans-serif;letter-spacing:-.065em}
+.hero-frame-service>span{position:absolute;left:7%;bottom:8%;font:600 6px/1 "IBM Plex Mono",monospace;letter-spacing:.08em;border-bottom:1px solid currentColor;padding-bottom:3px}
+@keyframes heroDriftA{to{translate:0 -5px}}
+@keyframes heroDriftB{to{translate:0 6px}}
+
+/* Make the public Work link a curated study gallery, while retaining honest project labels. */
+.design-studies{position:relative;isolation:isolate;overflow:hidden;background:#061521;color:#f3f6fb}
+.design-studies::before{content:"";position:absolute;z-index:-1;width:clamp(480px,58vw,860px);aspect-ratio:1;right:-23%;top:15%;border:1px solid rgba(152,194,240,.09);border-radius:50%;box-shadow:0 0 0 70px rgba(152,194,240,.018),0 0 0 145px rgba(152,194,240,.012);pointer-events:none}
+.studies-heading h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;letter-spacing:-.04em}
+.studies-heading>p{color:#bdcbd9}
+.design-studies .studies-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.1vw,30px)}
+.design-studies .study:nth-child(n){grid-column:auto}
+.design-studies .study-screen{aspect-ratio:16/10;box-shadow:0 18px 48px rgba(0,0,0,.23)}
+.design-studies .study:hover .study-screen{box-shadow:0 24px 58px rgba(0,0,0,.32)}
+.design-studies .study>p{color:#c2d1df;font-size:clamp(.78rem,.9vw,.88rem);letter-spacing:.015em}
+.more-studies{position:relative;z-index:1;border:0}
+.more-studies .studies-grid{margin-top:clamp(24px,3vw,42px)}
+.hero-frame,.study-screen{backface-visibility:hidden}
+
+/* Carry the editorial typography and atmospheric depth through the inner pages. */
+.services-hero-copy h1,.page-intro h1,.studio-cta h2,.closing-cta h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;letter-spacing:-.04em}
+.services-hero{background-color:#04111e;background-image:linear-gradient(115deg,rgba(4,17,30,.08),rgba(4,17,30,.35)),radial-gradient(ellipse at 77% 43%,rgba(79,145,219,.16),transparent 31%)}
+.services-hero::before{content:"";position:absolute;z-index:-1;width:clamp(360px,45vw,680px);aspect-ratio:1;right:-8%;top:-34%;border:1px solid rgba(162,200,242,.1);border-radius:50%;box-shadow:0 0 0 50px rgba(162,200,242,.018),0 0 0 112px rgba(162,200,242,.012)}
+.services-hero-copy h1{max-width:720px;line-height:.96}
+.studio-cta h2,.home .closing-cta h2{max-width:970px}
+.home .closing-cta{background-image:radial-gradient(ellipse at 78% 68%,rgba(50,105,165,.15),transparent 42%)}
+.about-intro h1,.contact-intro h1{font-family:"DM Serif Display",Georgia,serif;font-weight:400;letter-spacing:-.04em}
+.site-header nav a[aria-current="page"]:not(.nav-cta){color:#fff}
+footer>div a{width:max-content;max-width:100%;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
+
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:minmax(0,1.04fr) minmax(300px,.96fr);gap:26px}
+  .home .hero h1{font-size:clamp(3.65rem,7.3vw,5.6rem)}
+  .hero-interfaces{width:min(100%,470px)}
+}
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:24px;padding-top:28px}
+  .home .hero{padding-top:64px}
+  .home .hero h1{font-size:clamp(3.7rem,10vw,6rem)}
+  .hero-copy-block{max-width:720px}
+  .hero-interfaces{justify-self:center;width:min(100%,480px);margin:0 auto}
+  .hero-frame-editorial{right:3%}
+  .design-studies .studies-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .services-hero{grid-template-columns:minmax(0,1.2fr) minmax(220px,.8fr)}
+}
+@media(max-width:620px){
+  .hero-grid{padding-top:8px;gap:22px}
+  .home .hero h1{font-size:clamp(3rem,12vw,4.4rem);line-height:.91}
+  .home .hero-copy{max-width:34ch}
+  .hero-interfaces{width:min(112%,440px);margin-inline:-6%;}
+  .hero-frame-editorial{width:76%;height:56%}
+  .hero-frame-system{width:69%;height:49%}
+  .hero-frame-service{width:45%;height:34%}
+  .hero-editorial-copy strong{font-size:clamp(1.35rem,6.3vw,2rem)}
+  .hero-frame-service strong{font-size:clamp(.9rem,4.2vw,1.3rem)}
+  .design-studies .studies-grid{grid-template-columns:1fr;gap:20px}
+  .design-studies .study-screen{aspect-ratio:16/10}
+  .studies-heading{grid-template-columns:1fr;gap:20px}
+  .studies-heading h2{font-size:clamp(2.8rem,12vw,4rem)}
+  .services-hero{display:block;min-height:650px;padding:76px 22px 64px}
+  .services-hero-copy h1{max-width:11ch;font-size:clamp(3.3rem,12vw,4.7rem)}
+  .service-map{position:absolute;right:-16%;bottom:-5%;width:78%;opacity:.58}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-frame-editorial,.hero-frame-system,.hero-frame-service{animation:none!important}
+  .hero-interfaces{transform:none!important}
+}
+
 /* Interface-study additions: warmer care, more varied type, and three new image-led directions. */
 .more-studies{margin-top:0;border:0;background:transparent}
 .more-studies .studies-grid{padding:0;margin-top:clamp(18px,2.3vw,30px)}
