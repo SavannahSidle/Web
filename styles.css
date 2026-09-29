@@ -701,3 +701,7 @@ footer .brand-copy small{margin-top:5px}
 .study-crafts .crafts-title{font-family:"Trebuchet MS",sans-serif}
 .study-pub .pub-screen h3{font-family:Georgia,serif}
 @media(prefers-reduced-motion:reduce){.study-bakery .bakery-screen>img{transition:none}}
+.design-studies .studies-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.food-screen>small{display:none}
+@media(max-width:900px){.design-studies .studies-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.design-studies .studies-grid{grid-template-columns:1fr}}
