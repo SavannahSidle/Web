@@ -68,7 +68,7 @@ if (canvas) {
       x: Math.random() * width,
       y: Math.random() * height * 0.92,
       radius: 0.35 + Math.random() * 1.15,
-      speed: 0.018 + Math.random() * 0.052,
+      speed: 0.026 + Math.random() * 0.066,
       alpha: 0.18 + Math.random() * 0.58,
       layer: index % 3
     }));

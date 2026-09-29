@@ -8,16 +8,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260929">
+  <script src="script.js?v=20260929" defer></script>
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">✴</span><span class="brand-copy"><strong>MICA Digital</strong><small>Made in Canada Digital</small></span></a>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-site-header>
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">M</span><span class="brand-copy"><strong>MICA <em>Digital</em></strong><small>Made in Canada Digital</small></span></a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav"><a href="services.html">Services</a><a href="about.html">About</a><a class="nav-cta" href="contact.html">Start a project</a></nav>
   </header>
-  <main>
+  <main id="main">
     <section class="page-intro"><p class="eyebrow">Start a project</p><h1>Tell us what your business needs.</h1><p>You do not need a technical brief. Tell us about your business, the problem, and what you want the website to accomplish.</p></section>
     <section class="content-section">
       <div class="contact-grid">
@@ -33,15 +34,14 @@
         <form class="contact-form" data-contact-form>
           <label>Your name<input name="name" autocomplete="name" required></label>
           <label>Business name<input name="business" autocomplete="organization" required></label>
-          <label>What do you need?<select name="project"><option>New business website</option><option>Website refresh</option><option>Landing page</option><option>Ongoing maintenance</option><option>I am not sure yet</option></select></label>
+          <label>What do you need?<select name="project"><option>Websites</option><option>Digital Experiences</option><option>UX &amp; HCI</option><option>Custom Development</option><option>I am not sure yet</option></select></label>
           <label>Tell us about it<textarea name="message" required placeholder="What does the business do? What should the new website help people do?"></textarea></label>
           <button class="button primary" type="submit">Prepare email <span>↗</span></button>
-          <p class="form-note">This prepares your project details in your email app.</p>
           <p class="notice" role="status">Your email app should open now.</p>
         </form>
       </div>
     </section>
   </main>
-  <footer><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">✴</span><span class="brand-copy"><strong>MICA Digital</strong><small>Made in Canada Digital</small></span></a><p>Website development for Canadian businesses.<br>Based in Ontario, working across Canada.<br><a href="mailto:info@madeincanadadigital.ca">info@madeincanadadigital.ca</a></p><div><a href="services.html">Services</a><a href="contact.html">Contact</a></div><small>© <span data-year></span> Made in Canada Digital</small></footer>
+  <footer><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">M</span><span class="brand-copy"><strong>MICA <em>Digital</em></strong><small>Made in Canada Digital</small></span></a><p>Website development for Canadian businesses.<br>Based in Ontario, working across Canada.<br><a href="mailto:info@madeincanadadigital.ca">info@madeincanadadigital.ca</a></p><div><a href="services.html">Services</a><a href="contact.html">Contact</a></div><small>© <span data-year></span> Made in Canada Digital</small></footer>
 </body>
 </html>
