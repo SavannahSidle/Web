@@ -661,6 +661,9 @@ footer .brand-copy small{margin-top:5px}
 .home .closing-cta{background-image:radial-gradient(ellipse at 78% 68%,rgba(50,105,165,.15),transparent 42%)}
 .about-intro h1,.contact-intro h1{font-family:"DM Serif Display",Georgia,serif;font-weight:400;letter-spacing:-.04em}
 .site-header nav a[aria-current="page"]:not(.nav-cta){color:#fff}
+.home .signal-item summary{color:#102438}
+.home .signal-item summary::before{color:#246fc2}
+.home .signal-item p{color:#304961}
 footer>div a{width:max-content;max-width:100%;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
 footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 
