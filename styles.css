@@ -480,6 +480,77 @@ footer .brand-copy small{margin-top:5px}
 .study-screen :is(span,small,li),.study-screen :is(.system-node,.system-head,.system-foot,.editorial-rail,.editorial-index,.food-menu>span,.local-nav,.local-screen aside span,.architecture-screen>header,.architecture-caption p,.learning-count,.learning-help,.professional-side,.professional-main p,.professional-links span,.culture-menu,.culture-event strong,.culture-index,.information-screen header,.info-filter,.info-results span,.information-screen>small){font-size:max(9px,.7vw)}
 .nav-cta span,.button span,.studies-link b{font-size:.86em}
 
+/* Restored expandable statements beneath the home hero. */
+.home .signal-row{position:relative;z-index:2;margin-top:36px;padding:0 20px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid rgba(183,213,246,.25);border-top-color:rgba(202,222,244,.18);background:rgba(3,17,30,.82);box-shadow:0 22px 70px rgba(0,0,0,.16);backdrop-filter:blur(12px)}
+.signal-item{min-width:0;padding:20px 18px 4px 0;border-right:1px solid rgba(183,213,246,.2)}
+.signal-item+.signal-item{padding-left:18px}.signal-item:last-child{border-right:0}
+.signal-item summary{display:flex;align-items:flex-start;gap:9px;list-style:none;cursor:pointer;color:#f4f8fc;font-size:14px;font-weight:600}
+.signal-item summary::-webkit-details-marker{display:none}
+.signal-item summary::before{content:"+";flex:0 0 auto;color:#82b8ff;font:500 16px/1.3 "IBM Plex Mono",monospace;transition:transform .2s}
+.signal-item[open] summary::before{transform:rotate(45deg)}
+.signal-item p{margin:11px 0 16px;padding-left:22px;color:#c5d4e4;font-size:14px;line-height:1.5}
+
+/* Contact intro: quiet orbital linework behind the existing copy. */
+.contact-intro{position:relative;isolation:isolate;overflow:hidden;background:var(--ink)}
+.contact-intro::before{content:"";position:absolute;z-index:-1;width:clamp(380px,52vw,740px);aspect-ratio:1;right:-9%;top:-77%;border:1px solid rgba(154,192,233,.12);border-radius:50%;box-shadow:0 0 0 44px rgba(154,192,233,.025),0 0 0 92px rgba(154,192,233,.018),0 0 0 142px rgba(154,192,233,.012);animation:contactOrbit 78s ease-in-out infinite alternate}
+.contact-intro::after{content:"";position:absolute;z-index:-1;right:19%;top:28%;width:1px;height:clamp(110px,18vw,230px);background:linear-gradient(transparent,rgba(154,192,233,.13),transparent);transform:rotate(34deg)}
+@keyframes contactOrbit{to{transform:translate(-12px,10px) rotate(1.5deg)}}
+
+/* Targeted layout fixes for the five affected interface studies. */
+.care-screen{display:grid;grid-template-rows:auto auto 1fr auto;gap:clamp(8px,1.3vw,14px);padding:8%!important}
+.care-top,.care-screen h3,.care-options,.care-screen>small{position:static}
+.care-screen h3{max-width:18ch;font-size:clamp(1.2rem,2.2vw,1.75rem);line-height:1.04}
+.care-options{align-self:stretch;gap:0}
+.care-options b,.care-options b:first-child{padding:clamp(5px,.8vw,9px) 0;border-top:1px solid #bcc8bf;font-size:clamp(9px,.82vw,12px);line-height:1.25}
+.care-options b:last-child{border-bottom:1px solid #bcc8bf}
+.care-screen>small{align-self:end;line-height:1.3}
+
+.system-screen{isolation:isolate}
+.system-connections{position:absolute;z-index:0;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.system-connections path{fill:none;stroke:#91b1a3;stroke-width:.35;stroke-linecap:round;stroke-linejoin:round;opacity:.7;vector-effect:non-scaling-stroke}
+.system-core,.system-node{z-index:1}
+.system-foot{z-index:1}
+.system-wire{display:none}
+
+.calm-screen h3{top:25%;font-size:clamp(1.1rem,2vw,1.65rem);line-height:1.08;max-width:12ch}
+.calm-screen>p{top:48%;line-height:1.35}
+
+.local-service{width:54%;top:26%}
+.local-service b{max-width:100%;padding:7px 8px;font-size:clamp(8px,.68vw,10px);white-space:nowrap}
+.local-screen aside{width:25%;right:7%}
+
+.information-screen{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto 1fr auto;align-content:stretch;gap:clamp(7px,1vw,11px);padding:8%!important}
+.information-screen header{position:static;grid-column:1/-1;min-width:0}
+.information-screen h3{position:static;grid-column:1;grid-row:2;align-self:center;width:auto;max-width:12ch;font-size:clamp(1rem,1.9vw,1.5rem);line-height:1.02}
+.info-filter{position:static;grid-column:2;grid-row:2;align-self:center;max-width:34%;font-size:9px}
+.info-filter b{white-space:nowrap}
+.info-results{position:static;grid-column:1/-1;min-width:0;align-self:stretch}
+.info-results div{gap:2px;padding:clamp(5px,.7vw,8px) 18px clamp(5px,.7vw,8px) 0;line-height:1.2}
+.info-results i{top:50%;transform:translateY(-50%)}
+.information-screen>small{position:static;grid-column:1/-1;align-self:end;line-height:1.2}
+
+@media(max-width:800px){
+  .home .signal-row{grid-template-columns:repeat(2,minmax(0,1fr));padding-inline:16px}
+  .signal-item{padding:16px 12px 2px 0}
+  .signal-item+.signal-item{padding-left:12px}
+  .signal-item:nth-child(2){border-right:0}
+  .signal-item:nth-child(3),.signal-item:nth-child(4){border-top:1px solid rgba(183,213,246,.2)}
+  .signal-item:nth-child(3){padding-left:0}
+  .system-core{font-size:12px}
+}
+@media(max-width:520px){
+  .care-screen h3{font-size:clamp(1.12rem,5.2vw,1.4rem)}
+  .local-service{width:53%}
+  .local-service h3{font-size:clamp(1.05rem,5vw,1.45rem)}
+  .local-service p{font-size:9px;line-height:1.2}
+  .local-service b{font-size:8px}
+  .local-screen aside strong{font-size:10px}
+  .information-screen h3{font-size:clamp(1rem,4.2vw,1.25rem)}
+  .information-screen .info-results b{font-size:9px}
+  .information-screen .info-results span{font-size:9px;line-height:1.2}
+}
+@media(prefers-reduced-motion:reduce){.contact-intro::before{animation:none}}
+
 .about-intro{position:relative;isolation:isolate;overflow:hidden;background:var(--night);}
 .about-intro::before{content:"";position:absolute;z-index:-1;width:clamp(340px,54vw,740px);aspect-ratio:1;right:-12%;top:-68%;border:1px solid rgba(155,193,235,.13);border-radius:50%;box-shadow:0 0 0 56px rgba(155,193,235,.025),0 0 0 112px rgba(155,193,235,.018),0 0 0 168px rgba(155,193,235,.012);animation:aboutDrift 70s linear infinite alternate}
 .about-intro::after{content:"";position:absolute;z-index:-1;right:13%;top:8%;width:5px;height:5px;border-radius:50%;background:#8dbdff;box-shadow:0 0 15px 4px rgba(91,151,222,.27)}
