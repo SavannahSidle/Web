@@ -809,3 +809,35 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .food-screen>small{display:none}
 @media(max-width:900px){.design-studies .studies-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.design-studies .studies-grid{grid-template-columns:1fr}}
+
+/* Focused homepage art direction: a spatial field led by type, not screenshot mockups. */
+.home .hero{min-height:calc(100svh - 84px);padding-top:clamp(72px,9vh,118px);padding-bottom:clamp(104px,13vh,160px)}
+.hero-grid{position:relative;z-index:2;display:flex;align-items:center;min-height:clamp(510px,66vh,720px)}
+.hero-copy-block{width:min(100%,1120px);padding-block:clamp(18px,4vh,48px)}
+.home .hero h1{max-width:12ch;margin:0;font:400 clamp(4rem,9.5vw,9rem)/.84 "DM Serif Display",Georgia,serif;letter-spacing:-.055em;text-wrap:balance}
+.home .hero h1 span{display:block;color:#f3f6fb}
+.home .hero h1 .hero-accent{color:#a9ccf7;font-style:italic;letter-spacing:-.065em}
+.home .hero-copy{max-width:38rem;margin-top:clamp(28px,4vh,42px);color:#d0dce9;font-size:clamp(1.05rem,1.5vw,1.3rem);line-height:1.55}
+.home .hero-actions{margin:clamp(28px,4vh,42px) 0 0;gap:clamp(22px,3vw,38px)}
+.hero-geometry{--depth-x:0px;--depth-y:0px;position:absolute;z-index:0;inset:-4% -5% 1% 3%;pointer-events:none;opacity:.88;transform:translate3d(var(--depth-x),var(--depth-y),0);transition:transform .8s cubic-bezier(.2,.8,.2,1);mask-image:linear-gradient(90deg,transparent 4%,#000 34%,#000 92%,transparent)}
+.hero-geometry-svg{position:absolute;width:100%;height:100%;inset:0;overflow:visible}
+.geometry-orbit,.geometry-ring,.geometry-path,.geometry-cross{fill:none;vector-effect:non-scaling-stroke}
+.geometry-orbit{stroke:rgba(153,195,242,.13);stroke-width:1;transform-origin:965px 345px;animation:orbit-drift 54s linear infinite}
+.orbit-tight{stroke:rgba(164,202,245,.18);stroke-dasharray:2 11;animation-duration:38s;animation-direction:reverse}
+.geometry-path{stroke:rgba(130,178,232,.2);stroke-width:1.2;stroke-dasharray:2 8;animation:path-flow 32s linear infinite}
+.geometry-cross{stroke:rgba(178,211,248,.15);stroke-width:1}
+.geometry-ring{stroke:rgba(176,211,252,.38);stroke-width:1.2;stroke-dasharray:86 24 18 32;transform-origin:966px 344px;animation:orbit-drift 28s linear infinite}
+.ring-small{stroke:rgba(190,221,255,.65);stroke-dasharray:none;stroke-width:.8;animation:core-pulse 6s ease-in-out infinite}
+.geometry-core{animation:core-glow 7s ease-in-out infinite}
+.geometry-point{fill:#b8d9ff;filter:drop-shadow(0 0 7px rgba(135,192,255,.8));transform-box:fill-box;transform-origin:center;animation:point-pulse 4s ease-in-out infinite alternate}
+.point-two{animation-delay:-2s}.point-three{animation-delay:-1s}
+.geometry-coordinate{position:absolute;color:rgba(185,211,240,.62);font:500 10px/1 "IBM Plex Mono",monospace;letter-spacing:.12em}
+.coordinate-one{left:34%;top:76%}.coordinate-two{right:9%;top:23%}
+@keyframes orbit-drift{to{rotate:360deg}}
+@keyframes path-flow{to{stroke-dashoffset:-160}}
+@keyframes core-pulse{50%{scale:1.08;opacity:.64}}
+@keyframes core-glow{50%{opacity:.62;scale:1.08}}
+@keyframes point-pulse{to{opacity:.48;scale:.72}}
+@media(max-width:860px){.hero-grid{min-height:clamp(480px,65vh,640px)}.home .hero h1{font-size:clamp(4rem,11vw,7.5rem)}.hero-geometry{inset:2% -20% 0 10%;opacity:.7}.coordinate-one{left:18%;top:78%}}
+@media(max-width:620px){.home .hero{min-height:calc(100svh - 72px);padding-top:48px;padding-bottom:112px}.hero-grid{min-height:clamp(470px,68svh,620px)}.home .hero h1{font-size:clamp(3.55rem,15.4vw,5.8rem);line-height:.88;max-width:10ch}.home .hero-copy{max-width:31ch}.hero-geometry{inset:0 -55% 4% -12%;opacity:.56;mask-image:linear-gradient(90deg,transparent 0%,#000 30%,#000 88%,transparent)}.geometry-coordinate{font-size:8px}.coordinate-one{left:9%;top:82%}.coordinate-two{right:14%;top:18%}.home .hero-actions{align-items:flex-start;flex-direction:column;gap:20px}}
+@media(prefers-reduced-motion:reduce){.hero-geometry,.geometry-orbit,.geometry-path,.geometry-ring,.ring-small,.geometry-core,.geometry-point{animation:none!important;transition:none!important}.hero-geometry{transform:none!important}}
