@@ -44,12 +44,6 @@ if (!reducedMotion && 'IntersectionObserver' in window) {
   revealItems.forEach((item) => item.classList.add('revealed'));
 }
 
-document.querySelectorAll('.more-studies').forEach((details) => {
-  details.addEventListener('toggle', () => {
-    if (details.open && reducedMotion) details.querySelectorAll('[data-reveal]').forEach((item) => item.classList.add('revealed'));
-  });
-});
-
 const depthElement = document.querySelector('[data-depth]');
 if (depthElement && !reducedMotion && window.matchMedia('(pointer: fine)').matches) {
   window.addEventListener('pointermove', (event) => {
