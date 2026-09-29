@@ -46,11 +46,17 @@ if (!reducedMotion && 'IntersectionObserver' in window) {
 
 const depthElement = document.querySelector('[data-depth]');
 if (depthElement && !reducedMotion && window.matchMedia('(pointer: fine)').matches) {
-  window.addEventListener('pointermove', (event) => {
-    const x = (event.clientX / window.innerWidth - 0.5) * 10;
-    const y = (event.clientY / window.innerHeight - 0.5) * 8;
+  const hero = document.querySelector('.home .hero');
+  hero?.addEventListener('pointermove', (event) => {
+    const bounds = hero.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 12;
+    const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 9;
     depthElement.style.setProperty('--depth-x', `${x}px`);
     depthElement.style.setProperty('--depth-y', `${y}px`);
+  }, { passive: true });
+  hero?.addEventListener('pointerleave', () => {
+    depthElement.style.setProperty('--depth-x', '0px');
+    depthElement.style.setProperty('--depth-y', '0px');
   }, { passive: true });
 }
 
@@ -61,6 +67,15 @@ if (canvas) {
   let height = 0;
   let particles = [];
   let animationFrame;
+  let pointer = { x: -1000, y: -1000 };
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  if (finePointer && !reducedMotion) {
+    canvas.addEventListener('pointermove', (event) => {
+      const rect = canvas.getBoundingClientRect();
+      pointer = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    }, { passive: true });
+    canvas.addEventListener('pointerleave', () => { pointer = { x: -1000, y: -1000 }; }, { passive: true });
+  }
 
   const createParticles = () => {
     const count = window.innerWidth < 700 ? 48 : Math.min(120, Math.round(width * height / 11000));
@@ -94,9 +109,11 @@ if (canvas) {
       if (particle.x > width + 4) particle.x = -4;
       if (particle.y < -4) { particle.y = height * 0.92; particle.x = Math.random() * width; }
       const fade = Math.min(1, Math.max(0, (height - particle.y) / (height * 0.34)));
+      const distanceToPointer = Math.hypot(pointer.x - particle.x, pointer.y - particle.y);
+      const pointerLift = distanceToPointer < 145 ? (1 - distanceToPointer / 145) * 0.24 : 0;
       context.beginPath();
-      context.fillStyle = `rgba(203, 225, 255, ${particle.alpha * fade})`;
-      context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+      context.fillStyle = `rgba(203, 225, 255, ${Math.min(0.95, particle.alpha * fade + pointerLift)})`;
+      context.arc(particle.x, particle.y, particle.radius + pointerLift * 1.4, 0, Math.PI * 2);
       context.fill();
     });
 
