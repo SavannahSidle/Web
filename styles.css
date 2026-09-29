@@ -513,7 +513,7 @@ footer .brand-copy small{margin-top:5px}
 .system-wire{display:none}
 
 .calm-screen h3{top:25%;font-size:clamp(1.1rem,2vw,1.65rem);line-height:1.08;max-width:12ch}
-.calm-screen>p{top:48%;line-height:1.35}
+.calm-screen>p{top:52%;line-height:1.3}
 
 .local-service{width:54%;top:26%}
 .local-service b{max-width:100%;padding:7px 8px;font-size:clamp(8px,.68vw,10px);white-space:nowrap}
@@ -522,7 +522,7 @@ footer .brand-copy small{margin-top:5px}
 .information-screen{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto 1fr auto;align-content:stretch;gap:clamp(7px,1vw,11px);padding:8%!important}
 .information-screen header{position:static;grid-column:1/-1;min-width:0}
 .information-screen h3{position:static;grid-column:1;grid-row:2;align-self:center;width:auto;max-width:12ch;font-size:clamp(1rem,1.9vw,1.5rem);line-height:1.02}
-.info-filter{position:static;grid-column:2;grid-row:2;align-self:center;max-width:34%;font-size:9px}
+.info-filter{position:static;grid-column:2;grid-row:2;align-self:center;width:max-content;max-width:none;font-size:9px}
 .info-filter b{white-space:nowrap}
 .info-results{position:static;grid-column:1/-1;min-width:0;align-self:stretch}
 .info-results div{gap:2px;padding:clamp(5px,.7vw,8px) 18px clamp(5px,.7vw,8px) 0;line-height:1.2}
