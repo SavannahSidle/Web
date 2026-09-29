@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260929mica2">
-  <script src="script.js?v=20260929mica1" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260929mica3">
+  <script src="script.js?v=20260929mica2" defer></script>
 </head>
 <body class="home">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -25,30 +25,27 @@
     <section class="hero cosmic-field" aria-labelledby="hero-title">
       <canvas class="cosmic-canvas" data-cosmic-canvas aria-hidden="true"></canvas>
       <div class="cosmic-haze" aria-hidden="true"></div>
+      <div class="hero-geometry" data-depth aria-hidden="true">
+        <svg class="hero-geometry-svg" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice">
+          <defs><radialGradient id="coreGlow"><stop stop-color="#9bcaff" stop-opacity=".34"/><stop offset="1" stop-color="#9bcaff" stop-opacity="0"/></radialGradient></defs>
+          <ellipse class="geometry-orbit orbit-wide" cx="965" cy="345" rx="490" ry="228" transform="rotate(-22 965 345)"/>
+          <ellipse class="geometry-orbit orbit-tight" cx="965" cy="345" rx="335" ry="155" transform="rotate(27 965 345)"/>
+          <path class="geometry-path" d="M510 568C690 498 708 286 908 261s270 75 443-12M670 132c76 116 185 162 302 142s160-104 238-156"/>
+          <circle class="geometry-core" cx="966" cy="344" r="112" fill="url(#coreGlow)"/>
+          <circle class="geometry-ring" cx="966" cy="344" r="72"/><circle class="geometry-ring ring-small" cx="966" cy="344" r="28"/>
+          <path class="geometry-cross" d="M966 225v238M847 344h238"/>
+          <circle class="geometry-point point-one" cx="485" cy="575" r="3"/><circle class="geometry-point point-two" cx="1328" cy="248" r="4"/><circle class="geometry-point point-three" cx="782" cy="126" r="2.5"/>
+        </svg>
+        <span class="geometry-coordinate coordinate-one">45°25′N&nbsp; 75°42′W</span><span class="geometry-coordinate coordinate-two">FIELD / 01</span>
+      </div>
       <div class="hero-grid">
         <div class="hero-copy-block" data-reveal>
           <p class="eyebrow">Canadian digital studio</p>
-          <h1 id="hero-title"><span>Your business</span><span class="hero-accent">deserves more</span><span>than a template.</span></h1>
-          <p class="hero-copy">Custom websites and digital experiences built around your business.</p>
+          <h1 id="hero-title"><span>Digital work</span><span class="hero-accent">with a point</span><span>of view.</span></h1>
+          <p class="hero-copy">Custom websites and digital experiences shaped around the people and work behind your business.</p>
           <div class="hero-actions">
             <a class="button primary" href="contact.html">Start a project <span aria-hidden="true">↗</span></a>
             <a class="text-link" href="services.html">Explore services <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-        <div class="hero-interfaces" data-depth aria-hidden="true">
-          <span class="hero-orbit hero-orbit-one"></span><span class="hero-orbit hero-orbit-two"></span>
-          <div class="hero-frame hero-frame-editorial">
-            <div class="hero-frame-bar"><span>ROOM / FORM</span><i></i><i></i><i></i></div>
-            <div class="hero-editorial-image"><img src="assets/study-bedding.webp" alt=""></div>
-            <div class="hero-editorial-copy"><small>TEXTILE / OBJECT / REST</small><strong>Room<br>to live.</strong></div>
-          </div>
-          <div class="hero-frame hero-frame-system">
-            <div class="hero-frame-bar"><span>PRODUCT / SYSTEMS</span><i></i><i></i><i></i></div>
-            <svg class="hero-system-lines" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M50 50V27M50 50H25M50 50H75M50 50V76"/></svg>
-            <span class="hero-system-core">CORE</span><span class="hero-system-node node-top">INPUT</span><span class="hero-system-node node-left">RULES</span><span class="hero-system-node node-right">OUTPUT</span><span class="hero-system-node node-bottom">TOOLS</span>
-          </div>
-          <div class="hero-frame hero-frame-service">
-            <small>LOCAL SERVICE</small><strong>Good work.<br>Close to home.</strong><span>REQUEST A VISIT</span>
           </div>
         </div>
       </div>
@@ -73,14 +70,14 @@
         <article class="service-row" data-reveal><h3>Websites</h3><p>Complete, polished websites that explain the business clearly and make action easy.</p><span>Strategy / Design / Build</span></article>
         <article class="service-row service-row-shift" data-reveal><h3>Digital Experiences</h3><p>Focused interfaces and interactive concepts designed for a specific audience and purpose.</p><span>Interaction / Accessibility</span></article>
         <article class="service-row" data-reveal><h3>UX &amp; HCI</h3><p>Human-centred decisions grounded in how people understand, navigate, and trust technology.</p><span>Research / Structure / Testing</span></article>
-        <article class="service-row service-row-shift" data-reveal><h3>Custom Development</h3><p>Purpose-built front-end work when an ordinary template cannot do the job properly.</p><span>Responsive / Maintainable</span></article>
+        <article class="service-row service-row-shift" data-reveal><h3>Custom Development</h3><p>Custom interactions and focused functionality for digital products with specific needs.</p><span>Responsive / Maintainable</span></article>
       </div>
     </section>
 
     <section class="design-studies" id="design-studies" aria-labelledby="studies-title">
       <header class="studies-heading" data-reveal>
         <div><p class="eyebrow">Design studies</p><h2 id="studies-title">One studio.<br>Different directions.</h2></div>
-        <p>These interface studies sample MICA’s design range. Most are conceptual explorations, not completed client projects; Whisked Away is a live MICA-built bakery website.</p>
+        <p>Original interface studies exploring possible design directions. They demonstrate MICA’s visual range and are not presented as completed client projects.</p>
       </header>
       <div class="studies-grid">
         <article class="study study-care" data-reveal><div class="study-screen care-screen"><div class="care-top"><span>SUPPORT, ON YOUR TERMS</span><span>Private by default</span></div><h3>What do you need<br>right now?</h3><small>You can start with one small step.</small><div class="care-options"><b>Talk to someone</b><b>Find support today</b><b>Explore ongoing care</b></div></div><p>Mental health / Immediate support</p></article>
@@ -105,7 +102,7 @@
           <article class="study study-playful" data-reveal><div class="study-screen"><span class="study-shape shape-a"></span><span class="study-shape shape-b"></span><strong>Make<br>something<br>strange.</strong></div><p>Creative expression / Playful, high-contrast composition</p></article>
           <article class="study study-product" data-reveal><div class="study-screen"><span class="study-nav">SYSTEM / ACTIVE</span><div class="study-metric"><b>87%</b><i></i></div><div class="study-chart"><span></span><span></span><span></span><span></span></div></div><p>Product interface / Technical system overview</p></article>
           <article class="study study-accessible" data-reveal><div class="study-screen"><span class="study-nav">TODAY</span><strong>What would you<br>like to do?</strong><div class="study-actions"><b>View schedule</b><b>Ask for help</b></div></div><p>Accessible information / Clear, scannable hierarchy</p></article>
-          <article class="study study-bakery" data-reveal><a class="study-screen bakery-screen" href="https://savannahsidle.github.io/WhiskedAway/" target="_blank" rel="noopener" aria-label="Open Whisked Away, a MICA-built home bakery website"><img src="https://raw.githubusercontent.com/SavannahSidle/WhiskedAway/main/assets/bakery-counter.webp" alt="Whisked Away cakes, cupcakes, and cookies arranged on a sunlit bakery counter"><div class="bakery-overlay"><span>HOME BAKERY / SOUTH OTTAWA</span><h3>Whisked<br>Away</h3><b>See this week’s bakes</b></div></a><p>Whisked Away / Bakery website · Live</p></article>
+          <article class="study study-bakery" data-reveal><div class="study-screen bakery-screen"><img src="https://raw.githubusercontent.com/SavannahSidle/WhiskedAway/main/assets/bakery-counter.webp" alt="A sunlit counter of artisan cakes, pastries, and fresh bread"><div class="bakery-overlay"><span>HOME BAKERY / CONCEPT</span><h3>Whisked<br>Away</h3><b>Seasonal baking, made close to home</b></div></div><p>Whisked Away / Conceptual bakery interface</p></article>
           <article class="study study-future" data-reveal><div class="study-screen future-screen"><div class="future-top">NEXUS / FIELD SYSTEMS <span>NODE 08:21</span></div><div class="future-core"><i></i><b>FIELD<br>ENGINE</b></div><div class="future-orbit orbit-a"></div><div class="future-orbit orbit-b"></div><span class="future-readout readout-a">01 / SENSE</span><span class="future-readout readout-b">02 / MODEL</span><span class="future-readout readout-c">03 / ACT</span><small>ADAPTIVE SYSTEMS / CONCEPT</small></div><p>Technology / Speculative systems interface</p></article>
           <article class="study study-build" data-reveal><div class="study-screen build-screen"><div class="build-top">NORTH / BUILD CO. <span>OTTAWA REGION</span></div><div class="build-title">Built for<br>what’s next.</div><div class="build-mark" aria-hidden="true"><i></i><i></i><i></i></div><div class="build-projects"><b>01&nbsp; Site work</b><b>02&nbsp; Additions</b><b>03&nbsp; Renovations</b></div><small>LOCAL CONSTRUCTION / PROJECTS &amp; QUOTES</small></div><p>Construction / Local project planning</p></article>
           <article class="study study-diagonal" data-reveal><div class="study-screen diagonal-screen"><div class="diagonal-cut"></div><div class="diagonal-nav">ARC / MATERIALS <span>COLLECTION 04</span></div><h3>Objects<br>in motion.</h3><div class="diagonal-copy">A considered catalogue for things made to be used.</div><div class="diagonal-index">STUDIO GOODS<br>01—06</div></div><p>Product company / Diagonal editorial system</p></article>
