@@ -516,6 +516,7 @@ footer .brand-copy small{margin-top:5px}
 .calm-screen>p{top:52%;line-height:1.3}
 
 .local-service{width:54%;top:26%}
+.local-service h3{font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.02}
 .local-service b{max-width:100%;padding:7px 8px;font-size:clamp(8px,.68vw,10px);white-space:nowrap}
 .local-screen aside{width:25%;right:7%}
 
