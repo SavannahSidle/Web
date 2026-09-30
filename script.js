@@ -44,6 +44,83 @@ if (!reducedMotion && 'IntersectionObserver' in window) {
   revealItems.forEach((item) => item.classList.add('revealed'));
 }
 
+// The Work section keeps the same study content in both presentation modes.
+const studiesSection = document.querySelector('.design-studies');
+if (studiesSection) {
+  const studyTrack = studiesSection.querySelector('[data-study-track]');
+  const studyCards = Array.from(studiesSection.querySelectorAll('.study'));
+  const modeButtons = Array.from(studiesSection.querySelectorAll('[data-view-mode]'));
+  const slideButtons = Array.from(studiesSection.querySelectorAll('[data-slide]'));
+  const slideStatus = studiesSection.querySelector('[data-slide-status]');
+  const reducedMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (studyTrack && studyCards.length) {
+    studyTrack.replaceChildren(...studyCards);
+    studiesSection.querySelector('.more-studies')?.remove();
+    studiesSection.dataset.mode = 'showcase';
+    studyTrack.setAttribute('role', 'group');
+    studyTrack.setAttribute('aria-label', 'Interface studies. Use the left and right arrow keys to browse.');
+    studyTrack.tabIndex = 0;
+
+    let activeIndex = 0;
+    let framePending = false;
+    const updateActive = () => {
+      framePending = false;
+      const viewport = studyTrack.getBoundingClientRect();
+      const center = viewport.left + viewport.width / 2;
+      let closestDistance = Infinity;
+      let nextIndex = activeIndex;
+      studyCards.forEach((card, index) => {
+        const bounds = card.getBoundingClientRect();
+        const distance = Math.abs(bounds.left + bounds.width / 2 - center);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          nextIndex = index;
+        }
+      });
+      if (nextIndex === activeIndex && studyCards[activeIndex].hasAttribute('data-active')) return;
+      activeIndex = nextIndex;
+      studyCards.forEach((card, index) => card.toggleAttribute('data-active', index === activeIndex));
+      if (slideStatus) slideStatus.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(studyCards.length).padStart(2, '0')}`;
+    };
+    const queueActiveUpdate = () => {
+      if (!framePending) {
+        framePending = true;
+        window.requestAnimationFrame(updateActive);
+      }
+    };
+    const showStudy = (index) => {
+      activeIndex = (index + studyCards.length) % studyCards.length;
+      studyCards[activeIndex].scrollIntoView({
+        behavior: reducedMotionPreference.matches ? 'auto' : 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+      queueActiveUpdate();
+    };
+
+    studyTrack.addEventListener('scroll', queueActiveUpdate, { passive: true });
+    window.addEventListener('resize', queueActiveUpdate, { passive: true });
+    slideButtons.forEach((button) => button.addEventListener('click', () => {
+      showStudy(activeIndex + (button.dataset.slide === 'next' ? 1 : -1));
+    }));
+    studyTrack.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      event.preventDefault();
+      showStudy(activeIndex + (event.key === 'ArrowRight' ? 1 : -1));
+    });
+    modeButtons.forEach((button) => button.addEventListener('click', () => {
+      const mode = button.dataset.viewMode;
+      studiesSection.dataset.mode = mode;
+      modeButtons.forEach((control) => control.setAttribute('aria-pressed', String(control === button)));
+      slideButtons.forEach((control) => { control.closest('.studies-controls').hidden = mode !== 'showcase'; });
+      if (mode === 'showcase') showStudy(activeIndex);
+    }));
+
+    queueActiveUpdate();
+  }
+}
+
 const depthElement = document.querySelector('[data-depth]');
 if (depthElement && !reducedMotion && window.matchMedia('(pointer: fine)').matches) {
   const hero = document.querySelector('.home .hero');
