@@ -141,7 +141,6 @@ body{background:#edf2f6;color:#0b1b28}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .hero-interfaces,.hero-frame,.hero-geometry,.geometry-orbit,.geometry-path,.geometry-ring,.ring-small,.geometry-core,.geometry-point,.design-studies[data-mode="showcase"] .study{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .design-studies[data-mode="showcase"] .study{transform:none!important}
 }
 
 /* Spatial interface field: a small constellation of panels stays in view together. */
