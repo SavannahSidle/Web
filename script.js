@@ -62,7 +62,7 @@ if (studiesSection) {
     studyTrack.setAttribute('aria-label', 'Floating interface studies. Swipe, drag, or use the left and right arrow keys to browse.');
     studyTrack.tabIndex = 0;
 
-    let activeIndex = 0;
+    let activeIndex = 1;
     const paintShowcase = () => {
       studyCards.forEach((card, index) => {
         let offset = index - activeIndex;
