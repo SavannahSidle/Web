@@ -19,6 +19,7 @@ body{background:#edf2f6;color:#0b1b28}
 .home .hero{position:relative;min-height:calc(100svh - 78px);padding:clamp(38px,6vh,74px) max(28px,calc((100vw - var(--max))/2)) clamp(100px,12vh,142px);isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 75% 49%,rgba(57,111,175,.2),transparent 35%),linear-gradient(123deg,#06121c 0%,#081a28 53%,#07131f 100%)}
 .home .hero::before{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.22;background:linear-gradient(rgba(132,177,224,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(132,177,224,.06) 1px,transparent 1px);background-size:88px 88px;mask-image:linear-gradient(90deg,transparent 0%,#000 54%,#000 100%)}
 .home .hero::after{content:"";position:absolute;z-index:-1;right:-12%;top:10%;width:min(70vw,920px);aspect-ratio:1;border:1px solid rgba(169,203,242,.08);border-radius:50%;box-shadow:0 0 0 90px rgba(169,203,242,.018),0 0 0 190px rgba(169,203,242,.012);pointer-events:none}
+.home .hero-geometry,.home .cosmic-haze{display:none}
 .home .hero-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(390px,1.08fr);gap:clamp(16px,4vw,64px);align-items:center;min-height:clamp(490px,67vh,690px)}
 .home .hero-copy-block{position:relative;z-index:2;width:100%;max-width:650px;padding-block:12px}
 .home .hero .eyebrow{color:#9fc5f4;font-size:11px;letter-spacing:.2em;margin-bottom:26px}
