@@ -154,6 +154,7 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies[data-mode="showcase"] .study[data-position="1"]{left:62.5%;top:57%;--float-rotate:-6deg;--float-scale:.86;opacity:.86;visibility:visible;z-index:4}
 .design-studies[data-mode="showcase"] .study[data-position="-2"]{opacity:0;visibility:hidden;pointer-events:none;z-index:1}
 .design-studies[data-mode="showcase"] .study[data-position="2"]{left:87.5%;top:43%;--float-rotate:-9deg;--float-scale:.74;opacity:.82;visibility:visible;z-index:2}
+.design-studies[data-mode="showcase"] .study[data-position="0"][data-active]{transform:translate(-50%,-50%) perspective(1100px) rotateY(0deg) scale(var(--float-scale))}
 .design-studies[data-mode="showcase"] .study-screen{aspect-ratio:16/10;border-color:rgba(190,220,247,.3);box-shadow:0 38px 100px rgba(0,0,0,.54),0 0 32px rgba(108,171,229,.12),0 1px 0 rgba(255,255,255,.16) inset;animation:interface-hover 7s ease-in-out infinite}
 .design-studies[data-mode="showcase"] .study:nth-child(3n) .study-screen{animation-delay:-2.1s}
 .design-studies[data-mode="showcase"] .study:nth-child(3n + 1) .study-screen{animation-delay:-4.2s}
