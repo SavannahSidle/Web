@@ -370,7 +370,8 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-professional .professional-links span{min-width:0;padding:5px 2px 0;font-size:clamp(7px,.62vw,9px);line-height:1.2;overflow-wrap:anywhere}
 .design-studies .study-professional .professional-main>b{justify-self:start;align-self:end;padding:6px 8px;font-size:8px;line-height:1.15}
 
-.design-studies .study-culture .culture-type{left:19%;top:19%;font-size:clamp(1rem,1.9vw,1.5rem);line-height:.9;letter-spacing:-.055em;writing-mode:vertical-rl;transform:rotate(180deg)}
+.design-studies .study-culture .culture-type{left:19%;top:4%;font-size:clamp(2.5rem,4.75vw,3.75rem);line-height:.9;letter-spacing:-.055em;writing-mode:vertical-rl;transform:rotate(180deg)}
+.design-studies[data-mode="grid"] .study-culture .study-screen{aspect-ratio:1 / 1}
 .design-studies .study-culture .culture-event{left:62%;right:7%;top:25%;gap:clamp(6px,.9vw,10px);min-width:0}
 .design-studies .study-culture .culture-event strong,.design-studies .study-culture .culture-event span{min-width:0;line-height:1.25;overflow-wrap:anywhere}
 .design-studies .study-culture .culture-index{writing-mode:vertical-rl;right:7%;bottom:8%}
@@ -394,7 +395,7 @@ body{background:#edf2f6;color:#0b1b28}
  .design-studies .study-professional .professional-links{gap:3px}
  .design-studies .study-professional .professional-links span{font-size:6.5px;line-height:1.15}
  .design-studies .study-professional .professional-main>b{font-size:7px;padding:5px 6px}
- .design-studies .study-culture .culture-type{left:7%;top:24%;font-size:clamp(.82rem,3.5vw,1rem);line-height:.9}
+ .design-studies .study-culture .culture-type{left:19%;top:4%;font-size:clamp(2.05rem,8.75vw,2.5rem);line-height:.9}
  .design-studies .study-culture .culture-event{left:54%;top:31%;right:6%;gap:5px}
  .design-studies .study-culture .culture-event strong{font-size:7px}
  .design-studies .study-culture .culture-event span{font-size:8px}
