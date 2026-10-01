@@ -83,7 +83,6 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies[data-mode="showcase"] .studies-grid{display:flex;align-items:center;gap:4vw;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;padding:24px max(10vw,calc((100% - 810px)/2)) 48px;perspective:1400px;mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%)}
 .design-studies[data-mode="showcase"] .studies-grid::-webkit-scrollbar{display:none}
 .design-studies[data-mode="showcase"] .study{flex:0 0 min(72vw,810px);min-width:0;scroll-snap-align:center;opacity:.6;transform:scale(.84) rotateY(5deg);transform-origin:center;transition:opacity .45s ease,transform .65s cubic-bezier(.2,.8,.2,1)}
-.design-studies[data-mode="showcase"] .study:nth-child(even){transform:scale(.84) rotateY(-5deg)}
 .design-studies[data-mode="showcase"] .study[data-active]{opacity:1;transform:scale(1) rotateY(0);z-index:2}
 .design-studies[data-mode="showcase"] .study-screen{aspect-ratio:16/9;border-color:rgba(218,235,251,.28);box-shadow:0 35px 100px rgba(0,0,0,.47),0 1px 0 rgba(255,255,255,.13) inset}
 .design-studies[data-mode="showcase"] .study>p{font-size:.88rem;color:#d0deeb;margin-top:14px}
