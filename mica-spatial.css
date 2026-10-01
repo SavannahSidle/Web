@@ -436,6 +436,7 @@ body{background:#edf2f6;color:#0b1b28}
   transition:transform .48s cubic-bezier(.2,.8,.2,1),opacity .35s ease,filter .35s ease;
   filter:saturate(.86);
 }
+.design-studies[data-mode="showcase"] .study:not([data-position="-4"]):not([data-position="-3"]):not([data-position="-2"]):not([data-position="-1"]):not([data-position="0"]):not([data-position="1"]):not([data-position="2"]):not([data-position="3"]):not([data-position="4"]){visibility:hidden;opacity:0;pointer-events:none}
 .design-studies[data-mode="showcase"] .study[data-position="-4"]{left:17%;top:17%;--orbit-scale:.92;transform:translate(-50%,-50%) scale(.92)}
 .design-studies[data-mode="showcase"] .study[data-position="-3"]{left:50%;top:17%;--orbit-scale:.92;transform:translate(-50%,-50%) scale(.92)}
 .design-studies[data-mode="showcase"] .study[data-position="-2"]{left:83%;top:17%;--orbit-scale:.92;transform:translate(-50%,-50%) scale(.92)}
