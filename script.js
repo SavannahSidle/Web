@@ -73,7 +73,7 @@ if (studiesSection) {
         card.dataset.position = String(offset);
         card.toggleAttribute('data-active', offset === 0);
         const inShowcase = studiesSection.dataset.mode === 'showcase';
-        const visible = Math.abs(offset) <= 2;
+        const visible = Math.abs(offset) <= 1;
         if (inShowcase) {
           card.setAttribute('role', 'button');
           card.setAttribute('aria-label', `${card.querySelector(':scope > p')?.textContent.trim() || 'Interface study'}, ${index + 1} of ${studyCards.length}. Select to view.`);
