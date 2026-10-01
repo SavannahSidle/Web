@@ -841,3 +841,29 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 @media(max-width:860px){.hero-grid{min-height:clamp(480px,65vh,640px)}.home .hero h1{font-size:clamp(4rem,11vw,7.5rem)}.hero-geometry{inset:2% -20% 0 10%;opacity:.7}.coordinate-one{left:18%;top:78%}}
 @media(max-width:620px){.home .hero{min-height:calc(100svh - 72px);padding-top:48px;padding-bottom:112px}.hero-grid{min-height:clamp(470px,68svh,620px)}.home .hero h1{font-size:clamp(3.55rem,15.4vw,5.8rem);line-height:.88;max-width:10ch}.home .hero-copy{max-width:31ch}.hero-geometry{inset:0 -55% 4% -12%;opacity:.56;mask-image:linear-gradient(90deg,transparent 0%,#000 30%,#000 88%,transparent)}.geometry-coordinate{font-size:8px}.coordinate-one{left:9%;top:82%}.coordinate-two{right:14%;top:18%}.home .hero-actions{align-items:flex-start;flex-direction:column;gap:20px}}
 @media(prefers-reduced-motion:reduce){.hero-geometry,.geometry-orbit,.geometry-path,.geometry-ring,.ring-small,.geometry-core,.geometry-point{animation:none!important;transition:none!important}.hero-geometry{transform:none!important}}
+
+/* Search-focused service pages reuse the existing MICA visual system. */
+.lead-copy{font-size:clamp(1.15rem,1.8vw,1.35rem);line-height:1.55}
+.seo-service-page .service-page-intro{position:relative;isolation:isolate;overflow:hidden;background:#04111e}
+.seo-service-page .service-page-intro::after{content:"";position:absolute;z-index:-1;right:-12%;top:-54%;width:min(58vw,720px);aspect-ratio:1;border:1px solid rgba(154,192,233,.12);border-radius:50%;box-shadow:0 0 0 54px rgba(154,192,233,.025),0 0 0 116px rgba(154,192,233,.016)}
+.seo-service-page .detail-list article{grid-template-columns:1fr}
+.seo-service-page .detail-list h3{font-size:clamp(1.35rem,2vw,1.75rem)}
+.related-links{display:grid;border-top:1px solid var(--dark-line)}
+.related-links a{display:grid;gap:4px;padding:22px 0;border-bottom:1px solid var(--dark-line);transition:padding .2s,color .2s}
+.related-links a:hover{padding-left:10px;color:#174f86}
+.related-links strong{font-size:1.12rem}
+.related-links span{color:#52657a}
+.service-faq{background:#e9f0f6}
+.faq-list{border-top:1px solid #b6c5d4}
+.faq-list details{border-bottom:1px solid #b6c5d4}
+.faq-list summary{cursor:pointer;list-style:none;padding:22px 42px 22px 0;position:relative;font-weight:600;font-size:1.05rem}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"+";position:absolute;right:4px;top:18px;color:#246fc2;font:500 20px/1.4 "IBM Plex Mono",monospace;transition:transform .2s}
+.faq-list details[open] summary::after{transform:rotate(45deg)}
+.faq-list p{max-width:720px;margin:0;padding:0 42px 24px 0;color:#425a70}
+.discipline-title a,.service-row h3 a{color:inherit}
+.discipline-title a:hover,.service-row h3 a:hover{color:#246fc2}
+@media(max-width:800px){
+  .seo-service-page .service-page-intro::after{right:-46%;top:-18%;width:120vw;opacity:.6}
+  .related-links span{font-size:.95rem}
+}
