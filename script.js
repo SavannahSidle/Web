@@ -68,6 +68,7 @@ if (studiesSection) {
         let offset = index - activeIndex;
         if (offset > studyCards.length / 2) offset -= studyCards.length;
         if (offset < -studyCards.length / 2) offset += studyCards.length;
+        if (offset === -studyCards.length / 2) offset = studyCards.length / 2;
         card.dataset.position = String(offset);
         card.toggleAttribute('data-active', offset === 0);
         card.setAttribute('aria-hidden', String(Math.abs(offset) > 2));
