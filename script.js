@@ -71,7 +71,7 @@ if (studiesSection) {
         if (offset === -studyCards.length / 2) offset = studyCards.length / 2;
         card.dataset.position = String(offset);
         card.toggleAttribute('data-active', offset === 0);
-        card.setAttribute('aria-hidden', String(Math.abs(offset) > 2));
+        card.setAttribute('aria-hidden', String(Math.abs(offset) > 4));
       });
       if (slideStatus) slideStatus.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(studyCards.length).padStart(2, '0')}`;
     };
