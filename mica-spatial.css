@@ -180,3 +180,105 @@ body{background:#edf2f6;color:#0b1b28}
 @media(prefers-reduced-motion:reduce){
  .design-studies[data-mode="showcase"] .study,.design-studies[data-mode="showcase"] .study-screen{transition:none!important;animation:none!important}
 }
+
+/* Distinct visual systems for the requested interface studies and hero panel. */
+.home .hero-interfaces>.hero-frame-service{isolation:isolate;overflow:hidden;border:1px solid rgba(255,255,255,.76);border-radius:5px;background:radial-gradient(ellipse at 78% 18%,rgba(255,255,255,.88),transparent 19%),radial-gradient(ellipse at 79% 20%,#ffc86c 0 15%,transparent 38%),linear-gradient(137deg,#7569ef 0%,#b76ce5 38%,#f177a6 68%,#ff9868 100%);color:#221d43;box-shadow:0 34px 86px rgba(3,8,20,.5),0 0 64px rgba(190,121,244,.22)}
+.home .hero-interfaces>.hero-frame-service::before{content:"";position:absolute;right:-12%;top:8%;width:54%;aspect-ratio:1;border:1px solid rgba(255,255,255,.7);border-radius:50%;box-shadow:0 0 0 14px rgba(255,255,255,.13),0 0 0 32px rgba(37,29,81,.13),inset 0 0 28px rgba(255,255,255,.27);z-index:0}
+.home .hero-interfaces>.hero-frame-service::after{content:"";position:absolute;left:9%;right:9%;top:47%;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.75),rgba(255,255,255,.08));transform:rotate(-13deg);transform-origin:left;z-index:0}
+.home .hero-interfaces>.hero-frame-service>*{position:relative;z-index:1}
+.home .hero-interfaces>.hero-frame-service strong{max-width:8ch;margin-top:13%;font:400 clamp(1.45rem,2.7vw,2.35rem)/.9 "DM Serif Display",Georgia,serif;letter-spacing:-.025em}
+.home .hero-interfaces>.hero-frame-service small{color:#302754}
+.home .hero-interfaces>.hero-frame-service>span{color:#342751;border-color:rgba(52,39,81,.58)}
+
+.design-studies .study-care .care-screen{position:relative;isolation:isolate;overflow:hidden;grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);grid-template-rows:auto 1fr auto;gap:clamp(9px,1.4vw,16px);padding:8%!important;border:0;border-left:4px solid #a96f56;background-color:#e8d4bf;background-image:radial-gradient(ellipse at 82% 25%,rgba(255,249,235,.9),transparent 30%),linear-gradient(118deg,#f2e6d6 0 54%,#dfc7af 54% 100%);color:#46352e}
+.design-studies .study-care .care-screen::before{content:"";position:absolute;z-index:0;right:10%;top:13%;width:25%;height:31%;border:7px solid rgba(250,241,225,.88);background:linear-gradient(145deg,#d5e2d5 0 43%,#f4d5a1 44% 69%,#b1c2a7 70%);box-shadow:0 10px 25px rgba(83,58,44,.12)}
+.design-studies .study-care .care-screen::after{content:"";position:absolute;z-index:0;right:9%;bottom:13%;width:42%;height:20%;border-radius:24px 24px 8px 8px;background:linear-gradient(180deg,#bb816c 0 19%,#9d6859 20% 100%);box-shadow:inset 0 -7px rgba(85,54,48,.13),0 8px 15px rgba(83,58,44,.12)}
+.design-studies .study-care .care-screen>*{position:relative;z-index:1}
+.design-studies .study-care .care-top{color:#765c4d}
+.design-studies .study-care .care-screen h3{font:400 clamp(1.18rem,2.25vw,1.85rem)/1.02 "DM Serif Display",Georgia,serif;letter-spacing:-.015em;color:#493a34}
+.design-studies .study-care .care-screen>small{color:#735b4c}
+.design-studies .study-care .care-options b,.design-studies .study-care .care-options b:first-child{border-color:rgba(112,82,64,.3);color:#4a3c34}
+.design-studies .study-care .care-options b{padding-inline:10px;border-radius:7px;background:rgba(255,249,239,.62)}
+
+.design-studies .study-system .system-screen{position:relative;isolation:isolate;background-color:#091724;background-image:radial-gradient(ellipse at 50% 53%,rgba(20,126,163,.25),transparent 42%),linear-gradient(rgba(105,197,226,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(105,197,226,.075) 1px,transparent 1px),linear-gradient(140deg,#10283a,#07131f 70%);background-size:auto,22px 22px,22px 22px,auto;color:#dff8ff}
+.design-studies .study-system .system-screen::before{content:"";position:absolute;inset:13% 7% 13%;z-index:0;border:1px solid rgba(97,218,245,.18);clip-path:polygon(0 0,90% 0,100% 18%,100% 100%,10% 100%,0 82%);pointer-events:none}
+.design-studies .study-system .system-head{color:#9fc9d9}
+.design-studies .study-system .system-head b{color:#7ef2ff}
+.design-studies .study-system .system-connections path{stroke:#75e8fa;stroke-width:.55;opacity:.9;filter:drop-shadow(0 0 2px rgba(85,220,255,.8))}
+.design-studies .study-system .system-core{border-color:#7ef2ff;background:radial-gradient(circle,rgba(49,176,208,.28),rgba(9,30,44,.95) 72%);box-shadow:0 0 25px rgba(31,189,228,.18),inset 0 0 20px rgba(31,189,228,.12);color:#f1fdff}
+.design-studies .study-system .system-core small{color:#93d9e8}
+.design-studies .study-system .system-node{border-color:#5bbad0;background:rgba(13,39,55,.96);box-shadow:0 0 16px rgba(36,171,206,.12);color:#d9f7ff}
+.design-studies .study-system .system-foot{color:#8db6c5}
+
+.design-studies .study-professional .professional-screen{position:relative;display:block;isolation:isolate;overflow:hidden;background:#171b2a;color:#f5f0e8}
+.design-studies .study-professional .professional-screen::before{content:"";position:absolute;inset:0 auto 0 0;width:35%;z-index:0;background:linear-gradient(156deg,#f0a16d,#d96c57 62%,#994855);clip-path:polygon(0 0,100% 0,73% 100%,0 100%)}
+.design-studies .study-professional .professional-screen::after{content:"";position:absolute;right:-15%;top:-40%;width:54%;height:130%;z-index:0;border:1px solid rgba(233,188,151,.24);border-radius:50%;box-shadow:0 0 0 26px rgba(233,188,151,.035),0 0 0 55px rgba(233,188,151,.025)}
+.design-studies .study-professional .professional-side{position:absolute;z-index:1;left:8%;top:10%;width:24%;height:80%;padding:0;background:transparent;color:#292b35;font:500 9px/1.2 "IBM Plex Mono",monospace}
+.design-studies .study-professional .professional-side strong{font-size:clamp(10px,1vw,13px);letter-spacing:.08em;text-transform:uppercase}
+.design-studies .study-professional .professional-side span{font-size:8px;line-height:2;color:#493a3c}
+.design-studies .study-professional .professional-main{position:static;padding:0}
+.design-studies .study-professional .professional-main h3{position:absolute;z-index:1;right:8%;top:17%;width:53%;font:400 clamp(1.12rem,2vw,1.62rem)/1.02 "DM Serif Display",Georgia,serif;letter-spacing:-.015em;color:#fbf4e8}
+.design-studies .study-professional .professional-main p{position:absolute;z-index:1;right:8%;top:47%;width:50%;margin:0;color:#d2c8c3;font-size:clamp(9px,.8vw,11px);line-height:1.35}
+.design-studies .study-professional .professional-links{position:absolute;z-index:1;left:8%;right:8%;bottom:11%;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.design-studies .study-professional .professional-links span{padding:7px 5px 0;border-color:rgba(240,205,175,.34);font-size:clamp(7px,.65vw,9px);line-height:1.2;color:#f3d7c3}
+.design-studies .study-professional .professional-main>b{position:absolute;z-index:1;right:8%;top:70%;margin:0;background:#f2a270;color:#211e27;padding:7px 10px;font-size:8px}
+
+.design-studies .study-local .local-screen{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 84% 15%,rgba(107,198,192,.22),transparent 31%),linear-gradient(128deg,#102a36,#0a1923 68%);color:#f1f4e9}
+.design-studies .study-local .local-screen::before{content:"";position:absolute;z-index:0;inset:-30% 36% -25% 47%;border:1px solid rgba(168,225,195,.32);transform:skewX(-23deg);box-shadow:20px 0 rgba(168,225,195,.055),40px 0 rgba(168,225,195,.04),60px 0 rgba(168,225,195,.025)}
+.design-studies .study-local .local-screen>*{z-index:1}
+.design-studies .study-local .local-nav{color:#b2cdc9}
+.design-studies .study-local .local-nav span{color:#c6f38d;border-color:rgba(198,243,141,.56)}
+.design-studies .study-local .local-service h3{font:400 clamp(1.2rem,2.4vw,1.85rem)/.94 "DM Serif Display",Georgia,serif;color:#fff7e9}
+.design-studies .study-local .local-service p{color:#afc4c1;line-height:1.35}
+.design-studies .study-local .local-service b{background:#c6f38d;color:#13252a}
+.design-studies .study-local .local-screen aside{border-color:rgba(209,231,220,.32)}
+.design-studies .study-local .local-screen aside strong{color:#d9f4bf}
+.design-studies .study-local .local-screen aside span{color:#acc2bd}
+.design-studies .study-local .local-screen aside hr{border-color:rgba(209,231,220,.32)}
+
+.design-studies .study-architecture .architecture-screen{background-color:#102a34;background-image:linear-gradient(rgba(106,200,211,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(106,200,211,.12) 1px,transparent 1px),radial-gradient(ellipse at 76% 35%,rgba(63,159,168,.2),transparent 45%);background-size:18px 18px,18px 18px,auto;color:#e4f3ed}
+.design-studies .study-architecture .architecture-screen>header{color:#add7d5}
+.design-studies .study-architecture .architecture-plan{border-color:#71bbc0;background:repeating-linear-gradient(0deg,transparent 0 18px,rgba(106,200,211,.16) 18px 19px),repeating-linear-gradient(90deg,transparent 0 18px,rgba(106,200,211,.16) 18px 19px)}
+.design-studies .study-architecture .architecture-plan::before,.design-studies .study-architecture .architecture-plan::after,.design-studies .study-architecture .architecture-plan i,.design-studies .study-architecture .architecture-plan b{border-color:#74bec0;background-color:transparent}
+.design-studies .study-architecture .architecture-caption p{color:#b8d0cc}
+
+.design-studies .study-information .information-screen{position:relative;isolation:isolate;overflow:hidden;background:#dce8e1;color:#173b3b}
+.design-studies .study-information .information-screen::before{content:"";position:absolute;z-index:0;left:0;top:0;bottom:0;width:29%;background:linear-gradient(160deg,#e7c3a5,#d8ad8d 72%,#c48c73);clip-path:polygon(0 0,100% 0,82% 100%,0 100%)}
+.design-studies .study-information .information-screen>*{z-index:1}
+.design-studies .study-information .information-screen header{color:#42615b}
+.design-studies .study-information .information-screen h3{font:400 clamp(1.05rem,2vw,1.55rem)/.95 "DM Serif Display",Georgia,serif;color:#243c38}
+.design-studies .study-information .info-filter{width:100%;font-size:8px;color:#526962}
+.design-studies .study-information .info-filter b{display:block;padding:6px 8px;border:1px solid rgba(49,91,80,.32);border-radius:4px;background:rgba(249,248,239,.72);color:#23423b}
+.design-studies .study-information .info-results{display:grid;align-content:center;gap:6px}
+.design-studies .study-information .info-results div{padding:7px 24px 7px 9px;border:1px solid rgba(42,87,74,.15);border-radius:5px;background:rgba(250,249,241,.83);box-shadow:0 4px 11px rgba(34,72,61,.06)}
+.design-studies .study-information .info-results b{font-size:clamp(8px,.78vw,10px);color:#26483f}
+.design-studies .study-information .info-results span{font-size:clamp(7px,.66vw,9px);line-height:1.2;color:#61756d}
+.design-studies .study-information .info-results i{right:8px;color:#b66b4c}
+.design-studies .study-information .information-screen>small{color:#6d6f59}
+
+.design-studies .study-wayfinding .wayfinding-screen{position:relative;isolation:isolate;overflow:hidden;background:#e8e5d9;color:#14292c}
+.wayfinding-top{position:absolute;z-index:3;left:7%;right:7%;top:8%;display:flex;justify-content:space-between;font:8px "IBM Plex Mono",monospace;letter-spacing:.08em}
+.wayfinding-map{position:absolute;inset:0 0 0 35%;overflow:hidden;background:linear-gradient(153deg,transparent 0 28%,#d17853 28.2% 28.8%,transparent 29%),linear-gradient(29deg,transparent 0 46%,rgba(25,76,80,.86) 46.2% 47%,transparent 47.2%),linear-gradient(145deg,transparent 0 62%,rgba(25,76,80,.86) 62.2% 63%,transparent 63.2%),repeating-linear-gradient(0deg,transparent 0 29px,rgba(21,57,57,.11) 29px 30px),repeating-linear-gradient(90deg,transparent 0 29px,rgba(21,57,57,.11) 29px 30px),#d7dfd5;clip-path:polygon(22% 0,100% 0,100% 100%,0 100%)}
+.wayfinding-map::before,.wayfinding-map::after{content:"";position:absolute;inset:-25% 25%;border:1px solid rgba(24,66,65,.28);transform:rotate(32deg) skewX(-12deg)}
+.wayfinding-map::after{inset:-20% 48%;transform:rotate(-28deg) skewX(10deg);border-color:rgba(24,66,65,.19)}
+.wayfinding-map i{position:absolute;width:7px;height:7px;border:1px solid #fff;border-radius:50%;background:#b95037;box-shadow:0 0 0 5px rgba(185,80,55,.17)}
+.wayfinding-map i:nth-child(1){left:31%;top:27%}.wayfinding-map i:nth-child(2){right:22%;top:49%;background:#174e55}.wayfinding-map i:nth-child(3){left:48%;bottom:17%;background:#174e55}
+.wayfinding-map b{position:absolute;left:32%;top:29%;width:39%;height:34%;border-top:2px solid #b95037;border-right:2px solid #b95037;transform:skew(-28deg) rotate(14deg)}
+.wayfinding-map span{position:absolute;right:13%;bottom:13%;width:23%;height:22%;background:rgba(243,240,220,.65);border:1px solid rgba(24,66,65,.2);transform:skewY(-27deg)}
+.wayfinding-title{position:absolute;z-index:3;left:8%;top:34%;width:40%}
+.wayfinding-title small{font:8px "IBM Plex Mono",monospace;color:#a75239}
+.wayfinding-title h3{margin:8px 0 0;font:400 clamp(1.55rem,3vw,2.6rem)/.9 "DM Serif Display",Georgia,serif;letter-spacing:-.03em}
+.wayfinding-options{position:absolute;z-index:3;left:8%;bottom:9%;display:flex;gap:6px}
+.wayfinding-options span{padding:5px 8px;border:1px solid rgba(20,59,58,.28);background:rgba(249,247,235,.85);font:8px "IBM Plex Mono",monospace}
+
+@media(max-width:760px){
+ .design-studies .study-professional .professional-main h3{font-size:clamp(1rem,4.2vw,1.35rem)}
+ .design-studies .study-professional .professional-main p{top:45%;font-size:9px}
+ .design-studies .study-professional .professional-links{gap:5px}
+ .design-studies .study-professional .professional-links span{font-size:7px}
+ .design-studies .study-information .information-screen{grid-template-columns:minmax(0,1fr) minmax(76px,.6fr);gap:6px;padding:7%!important}
+ .design-studies .study-information .information-screen::before{width:31%}
+ .design-studies .study-information .info-results div{padding:5px 20px 5px 7px}
+ .wayfinding-title h3{font-size:clamp(1.35rem,5vw,1.8rem)}
+ .wayfinding-map{left:30%}
+}
