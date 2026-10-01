@@ -400,3 +400,9 @@ body{background:#edf2f6;color:#0b1b28}
  .design-studies .study-culture .culture-event span{font-size:8px}
  .design-studies .study-culture .culture-index{font-size:7px}
 }
+.design-studies[data-mode="showcase"]{padding-top:42px;padding-bottom:60px}
+.design-studies[data-mode="showcase"] .studies-grid{height:clamp(370px,32vw,440px)}
+@media(max-width:760px){
+ .design-studies[data-mode="showcase"]{padding-top:44px;padding-bottom:72px}
+ .design-studies[data-mode="showcase"] .studies-grid{height:clamp(450px,125vw,520px)}
+}
