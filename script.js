@@ -52,6 +52,7 @@ if (studiesSection) {
   const modeButtons = Array.from(studiesSection.querySelectorAll('[data-view-mode]'));
   const slideButtons = Array.from(studiesSection.querySelectorAll('[data-slide]'));
   const slideStatus = studiesSection.querySelector('[data-slide-status]');
+  const slideProgress = studiesSection.querySelector('[data-slide-progress]');
   const reducedMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   if (studyTrack && studyCards.length) {
@@ -71,9 +72,22 @@ if (studiesSection) {
         if (offset === -studyCards.length / 2) offset = studyCards.length / 2;
         card.dataset.position = String(offset);
         card.toggleAttribute('data-active', offset === 0);
-        card.setAttribute('aria-hidden', String(Math.abs(offset) > 4));
+        const inShowcase = studiesSection.dataset.mode === 'showcase';
+        const visible = Math.abs(offset) <= 2;
+        if (inShowcase) {
+          card.setAttribute('role', 'button');
+          card.setAttribute('aria-label', `${card.querySelector(':scope > p')?.textContent.trim() || 'Interface study'}, ${index + 1} of ${studyCards.length}. Select to view.`);
+          card.setAttribute('aria-hidden', String(!visible));
+          card.tabIndex = visible ? 0 : -1;
+        } else {
+          card.removeAttribute('role');
+          card.removeAttribute('aria-label');
+          card.removeAttribute('aria-hidden');
+          card.removeAttribute('tabindex');
+        }
       });
       if (slideStatus) slideStatus.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(studyCards.length).padStart(2, '0')}`;
+      if (slideProgress) slideProgress.style.width = `${((activeIndex + 1) / studyCards.length) * 100}%`;
     };
     const showStudy = (index) => {
       activeIndex = (index + studyCards.length) % studyCards.length;
@@ -81,6 +95,7 @@ if (studiesSection) {
     };
 
     let pointerStart = null;
+    let suppressCardClicksUntil = 0;
     studyTrack.addEventListener('pointerdown', (event) => {
       if (event.pointerType === 'mouse' && event.button !== 0) return;
       pointerStart = { x: event.clientX, y: event.clientY };
@@ -90,9 +105,22 @@ if (studiesSection) {
       const dx = event.clientX - pointerStart.x;
       const dy = event.clientY - pointerStart.y;
       pointerStart = null;
-      if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy) * 1.15) showStudy(activeIndex + (dx < 0 ? 1 : -1));
+      if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy) * 1.15) {
+        suppressCardClicksUntil = Date.now() + 500;
+        showStudy(activeIndex + (dx < 0 ? 1 : -1));
+      }
     });
     studyTrack.addEventListener('pointercancel', () => { pointerStart = null; });
+    studyCards.forEach((card, index) => {
+      card.addEventListener('click', () => {
+        if (studiesSection.dataset.mode === 'showcase' && Date.now() >= suppressCardClicksUntil) showStudy(index);
+      });
+      card.addEventListener('keydown', (event) => {
+        if (studiesSection.dataset.mode !== 'showcase' || (event.key !== 'Enter' && event.key !== ' ')) return;
+        event.preventDefault();
+        showStudy(index);
+      });
+    });
     slideButtons.forEach((button) => button.addEventListener('click', () => {
       showStudy(activeIndex + (button.dataset.slide === 'next' ? 1 : -1));
     }));
@@ -106,7 +134,7 @@ if (studiesSection) {
       studiesSection.dataset.mode = mode;
       modeButtons.forEach((control) => control.setAttribute('aria-pressed', String(control === button)));
       slideButtons.forEach((control) => { control.closest('.studies-controls').hidden = mode !== 'showcase'; });
-      if (mode === 'showcase') paintShowcase();
+      paintShowcase();
     }));
 
     paintShowcase();
