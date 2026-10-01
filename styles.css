@@ -881,7 +881,7 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .poster-scroll{position:absolute;z-index:2;right:max(28px,calc((100vw - var(--max))/2));bottom:clamp(37px,4.6vw,63px);display:flex;gap:12px;align-items:center;color:#bdccdc}
 .poster-scroll span{font-size:16px;transition:transform .2s}
 .poster-scroll:hover span{transform:translateY(3px)}
-.poster-signals{position:relative;left:auto;right:auto;bottom:auto;z-index:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:none;margin:0;padding:26px max(28px,calc((100vw - var(--max))/2)) 22px;border:0;background:#edf2f6;backdrop-filter:none}
+.home .poster-signals{position:relative;left:auto;right:auto;bottom:auto;z-index:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:none;margin:0;padding:26px max(28px,calc((100vw - var(--max))/2)) 22px;border:0;background:#edf2f6;backdrop-filter:none}
 .home .poster-signals .signal-item summary{color:#102438}
 .home .poster-signals .signal-item p{color:#304961}
 
@@ -892,7 +892,7 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
   .poster-hero-image{object-fit:contain;object-position:center 34%}
   .poster-hero-actions{left:22px;right:22px;bottom:65px;justify-content:center;gap:18px}
   .poster-scroll{right:22px;bottom:24px;font-size:10px}
-  .poster-signals{grid-template-columns:repeat(2,minmax(0,1fr));padding:22px}
+  .home .poster-signals{grid-template-columns:repeat(2,minmax(0,1fr));padding:22px}
 }
 @media(max-width:430px){
   .poster-hero-actions{align-items:center;flex-direction:row}
