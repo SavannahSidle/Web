@@ -867,3 +867,35 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
   .seo-service-page .service-page-intro::after{right:-46%;top:-18%;width:120vw;opacity:.6}
   .related-links span{font-size:.95rem}
 }
+
+/* Poster-led homepage: the campaign artwork is the opening experience. */
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}
+.poster-hero{position:relative;isolation:isolate;min-height:calc(100svh - 78px);overflow:hidden;background:#020b15;color:#fff}
+.poster-hero::before{content:"";position:absolute;z-index:-2;inset:-5%;background:url("assets/mica-digital-social.jpg") center/cover no-repeat;filter:blur(18px) saturate(.75);opacity:0;transform:scale(1.08)}
+.poster-hero::after{content:"";position:absolute;z-index:0;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(1,7,14,.05) 58%,rgba(1,7,14,.48) 100%)}
+.poster-hero-image{position:absolute;z-index:-1;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.poster-hero-actions{position:absolute;z-index:2;left:max(28px,calc((100vw - var(--max))/2));bottom:clamp(28px,4vw,54px);display:flex;align-items:center;gap:24px}
+.poster-hero-link,.poster-scroll{color:#e4edf8;font:500 12px/1.2 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+.poster-hero-link{padding:12px 0;border-bottom:1px solid rgba(211,229,249,.48);transition:color .2s,border-color .2s}
+.poster-hero-link:hover{color:#fff;border-color:#fff}
+.poster-scroll{position:absolute;z-index:2;right:max(28px,calc((100vw - var(--max))/2));bottom:clamp(37px,4.6vw,63px);display:flex;gap:12px;align-items:center;color:#bdccdc}
+.poster-scroll span{font-size:16px;transition:transform .2s}
+.poster-scroll:hover span{transform:translateY(3px)}
+.poster-signals{position:relative;left:auto;right:auto;bottom:auto;z-index:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:none;margin:0;padding:26px max(28px,calc((100vw - var(--max))/2)) 22px;border:0;background:#edf2f6;backdrop-filter:none}
+.home .poster-signals .signal-item summary{color:#102438}
+.home .poster-signals .signal-item p{color:#304961}
+
+@media(max-width:720px){
+  .poster-hero{min-height:calc(88svh - 72px)}
+  .poster-hero::before{opacity:.6}
+  .poster-hero::after{background:linear-gradient(180deg,rgba(1,7,14,.04) 42%,rgba(1,7,14,.65) 100%)}
+  .poster-hero-image{object-fit:contain;object-position:center 34%}
+  .poster-hero-actions{left:22px;right:22px;bottom:65px;justify-content:center;gap:18px}
+  .poster-scroll{right:22px;bottom:24px;font-size:10px}
+  .poster-signals{grid-template-columns:repeat(2,minmax(0,1fr));padding:22px}
+}
+@media(max-width:430px){
+  .poster-hero-actions{align-items:center;flex-direction:row}
+  .poster-hero-actions .button{padding:12px 16px;font-size:13px}
+  .poster-hero-link{font-size:10px}
+}
