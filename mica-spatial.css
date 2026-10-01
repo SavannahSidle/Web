@@ -219,7 +219,7 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-professional .professional-main{position:static;padding:0}
 .design-studies .study-professional .professional-main h3{position:absolute;z-index:1;right:8%;top:17%;width:53%;font:400 clamp(1.12rem,2vw,1.62rem)/1.02 "DM Serif Display",Georgia,serif;letter-spacing:-.015em;color:#fbf4e8}
 .design-studies .study-professional .professional-main p{position:absolute;z-index:1;right:8%;top:47%;width:50%;margin:0;color:#d2c8c3;font-size:clamp(9px,.8vw,11px);line-height:1.35}
-.design-studies .study-professional .professional-links{position:absolute;z-index:1;left:8%;right:8%;bottom:11%;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.design-studies .study-professional .professional-links{position:absolute;z-index:1;left:38%;right:8%;bottom:11%;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .design-studies .study-professional .professional-links span{padding:7px 5px 0;border-color:rgba(240,205,175,.34);font-size:clamp(7px,.65vw,9px);line-height:1.2;color:#f3d7c3}
 .design-studies .study-professional .professional-main>b{position:absolute;z-index:1;right:8%;top:70%;margin:0;background:#f2a270;color:#211e27;padding:7px 10px;font-size:8px}
 
