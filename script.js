@@ -153,9 +153,10 @@ document.querySelectorAll('.system-screen').forEach((screen) => {
   let zoom = 1;
   const customNodes = [];
   const positions = [
-    { label: 'CACHE', x: 18, y: 68 },
-    { label: 'QUEUE', x: 78, y: 67 },
-    { label: 'STORE', x: 80, y: 42 }
+    { label: 'QUEUE', x: 19, y: 67 },
+    { label: 'MODEL', x: 80, y: 66 },
+    { label: 'AUDIT', x: 28, y: 39 },
+    { label: 'SYNC', x: 73, y: 39 }
   ];
   screen.querySelectorAll('[data-system-action]').forEach((button) => {
     button.addEventListener('click', (event) => {
@@ -191,7 +192,7 @@ document.querySelectorAll('.system-screen').forEach((screen) => {
         item.node.remove();
         item.connector.remove();
       }
-      if (status) status.textContent = `${4 + customNodes.length} / 08 NODES  ·  ${3 + customNodes.length} ACTIVE LINKS`;
+      if (status) status.textContent = `${8 + customNodes.length} / 12 NODES  ·  ${15 + customNodes.length} ACTIVE LINKS`;
     });
   });
 });
