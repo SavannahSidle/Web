@@ -75,7 +75,7 @@ if (studiesSection) {
         const inShowcase = studiesSection.dataset.mode === 'showcase';
         const visible = Math.abs(offset) <= 1;
         if (inShowcase) {
-          card.setAttribute('role', 'button');
+          card.setAttribute('role', 'group');
           card.setAttribute('aria-label', `${card.querySelector(':scope > p')?.textContent.trim() || 'Interface study'}, ${index + 1} of ${studyCards.length}. Select to view.`);
           card.setAttribute('aria-hidden', String(!visible));
           card.tabIndex = visible ? 0 : -1;
@@ -112,11 +112,12 @@ if (studiesSection) {
     });
     studyTrack.addEventListener('pointercancel', () => { pointerStart = null; });
     studyCards.forEach((card, index) => {
-      card.addEventListener('click', () => {
+      card.addEventListener('click', (event) => {
+        if (event.target.closest('button,a,input,select,textarea,[role="button"]')) return;
         if (studiesSection.dataset.mode === 'showcase' && Date.now() >= suppressCardClicksUntil) showStudy(index);
       });
       card.addEventListener('keydown', (event) => {
-        if (studiesSection.dataset.mode !== 'showcase' || (event.key !== 'Enter' && event.key !== ' ')) return;
+        if (event.target !== card || studiesSection.dataset.mode !== 'showcase' || (event.key !== 'Enter' && event.key !== ' ')) return;
         event.preventDefault();
         showStudy(index);
       });
@@ -125,6 +126,7 @@ if (studiesSection) {
       showStudy(activeIndex + (button.dataset.slide === 'next' ? 1 : -1));
     }));
     studyTrack.addEventListener('keydown', (event) => {
+      if (event.target.closest('button,input,select,textarea,a,[contenteditable="true"]')) return;
       if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
       event.preventDefault();
       showStudy(activeIndex + (event.key === 'ArrowRight' ? 1 : -1));
@@ -140,6 +142,179 @@ if (studiesSection) {
     paintShowcase();
   }
 }
+
+
+// The systems map controls operate on the diagram preview without moving the carousel.
+document.querySelectorAll('.system-screen').forEach((screen) => {
+  const network = screen.querySelector('[data-system-network]');
+  const status = screen.querySelector('[data-system-status]');
+  const links = screen.querySelector('.system-connections');
+  if (!network || !links) return;
+  let zoom = 1;
+  const customNodes = [];
+  const positions = [
+    { label: 'CACHE', x: 18, y: 68 },
+    { label: 'QUEUE', x: 78, y: 67 },
+    { label: 'STORE', x: 80, y: 42 }
+  ];
+  screen.querySelectorAll('[data-system-action]').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const action = button.dataset.systemAction;
+      if (action === 'zoom-in') zoom = Math.min(1.38, zoom + 0.12);
+      if (action === 'zoom-out') zoom = Math.max(.78, zoom - 0.12);
+      network.style.setProperty('--system-zoom', String(zoom));
+      if (action === 'expand') {
+        const expanded = screen.dataset.expanded !== 'true';
+        screen.dataset.expanded = String(expanded);
+        button.setAttribute('aria-pressed', String(expanded));
+        button.setAttribute('aria-label', expanded ? 'Collapse system view' : 'Expand system view');
+      }
+      if (action === 'add' && customNodes.length < positions.length) {
+        const spec = positions[customNodes.length];
+        const node = document.createElement('div');
+        node.className = 'system-node system-node-custom';
+        node.textContent = spec.label;
+        node.style.left = `${spec.x}%`;
+        node.style.top = `${spec.y}%`;
+        node.setAttribute('aria-label', `${spec.label} node`);
+        network.append(node);
+        const connector = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        connector.setAttribute('d', `M50 49 L${spec.x + 5} ${spec.y + 3}`);
+        connector.classList.add('system-added-link');
+        links.append(connector);
+        customNodes.push({ node, connector });
+      }
+      if (action === 'delete' && customNodes.length) {
+        const item = customNodes.pop();
+        item.node.remove();
+        item.connector.remove();
+      }
+      if (status) status.textContent = `${4 + customNodes.length} / 08 NODES  ·  ${3 + customNodes.length} ACTIVE LINKS`;
+    });
+  });
+});
+
+// Draw a compact, faceted 3D Velociraptor that can be rotated by drag or keyboard.
+document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
+  const canvas = stage.querySelector('.raptor-canvas');
+  const ctx = canvas?.getContext('2d');
+  if (!canvas || !ctx) return;
+  const vertices = [];
+  const faces = [];
+  const addTriangle = (a, b, c, color) => faces.push({ a, b, c, color });
+  const addEllipsoid = (cx, cy, cz, rx, ry, rz, color, rings = 8, sides = 12) => {
+    const start = vertices.length;
+    for (let r = 0; r <= rings; r++) {
+      const lat = -Math.PI / 2 + Math.PI * r / rings;
+      for (let s = 0; s < sides; s++) {
+        const lon = Math.PI * 2 * s / sides;
+        vertices.push([cx + rx * Math.cos(lat) * Math.cos(lon), cy + ry * Math.sin(lat), cz + rz * Math.cos(lat) * Math.sin(lon)]);
+      }
+    }
+    for (let r = 0; r < rings; r++) for (let s = 0; s < sides; s++) {
+      const a = start + r * sides + s, b = start + r * sides + (s + 1) % sides;
+      const c = start + (r + 1) * sides + s, d = start + (r + 1) * sides + (s + 1) % sides;
+      addTriangle(a, c, b, color); addTriangle(b, c, d, color);
+    }
+  };
+  const addTube = (from, to, r0, r1, color, sides = 8) => {
+    const axis = [to[0] - from[0], to[1] - from[1], to[2] - from[2]];
+    const length = Math.hypot(...axis) || 1;
+    const w = axis.map(v => v / length);
+    let u = [-w[1], w[0], 0];
+    if (Math.hypot(...u) < .001) u = [1, 0, 0];
+    const ul = Math.hypot(...u); u = u.map(v => v / ul);
+    const v = [w[1] * u[2] - w[2] * u[1], w[2] * u[0] - w[0] * u[2], w[0] * u[1] - w[1] * u[0]];
+    const start = vertices.length;
+    [from, to].forEach((point, ring) => {
+      for (let i = 0; i < sides; i++) {
+        const angle = Math.PI * 2 * i / sides, radius = ring ? r1 : r0;
+        vertices.push([point[0] + (u[0] * Math.cos(angle) + v[0] * Math.sin(angle)) * radius, point[1] + (u[1] * Math.cos(angle) + v[1] * Math.sin(angle)) * radius, point[2] + (u[2] * Math.cos(angle) + v[2] * Math.sin(angle)) * radius]);
+      }
+    });
+    for (let i = 0; i < sides; i++) {
+      const a = start + i, b = start + (i + 1) % sides, c = start + sides + i, d = start + sides + (i + 1) % sides;
+      addTriangle(a, b, c, color); addTriangle(b, d, c, color);
+    }
+  };
+  const body = '#8b9b71', flank = '#a7a37a', dark = '#5c705b', feather = '#c4b98e', bone = '#d8c9a6';
+  addEllipsoid(-.15, -.01, 0, .8, .39, .37, body, 10, 14);
+  addEllipsoid(-.69, -.04, 0, .42, .37, .39, flank, 8, 12);
+  addEllipsoid(.34, .02, 0, .4, .31, .34, flank, 8, 12);
+  addTube([-.93, -.02, 0], [-2.33, -.23, 0], .28, .035, dark, 10);
+  addTube([-.93, .04, 0], [-2.28, -.18, 0], .19, .018, feather, 9);
+  addTube([.44, .16, 0], [.72, .56, 0], .22, .15, body, 9);
+  addEllipsoid(.77, .57, 0, .3, .2, .2, flank, 8, 12);
+  addTube([.86, .58, 0], [1.38, .52, 0], .16, .08, body, 9);
+  addTube([.86, .42, 0], [1.25, .36, 0], .09, .045, dark, 8);
+  // Two feathered forelimbs with hooked claws.
+  [-.24, .24].forEach((z, i) => {
+    addEllipsoid(.46, .08, z, .16, .18, .14, i ? body : dark, 6, 9);
+    addTube([.49, .02, z], [.57, -.25, z * 1.2], .09, .065, body, 7);
+    addTube([.57, -.25, z * 1.2], [.82, -.34, z * 1.35], .065, .035, flank, 7);
+    addTube([.82, -.34, z * 1.35], [.9, -.42, z * 1.35], .035, .006, bone, 6);
+    for (let f = 0; f < 3; f++) addTube([.53 + f * .055, -.02, z * 1.13], [.64 + f * .06, -.12, z * 1.34], .035, .008, feather, 5);
+  });
+  // Strong hind legs, long lower limbs, three toes, and the raised sickle claw.
+  [-.3, .3].forEach((z, i) => {
+    const shade = i ? flank : dark, dz = z * 1.45;
+    addEllipsoid(-.59, -.26, dz, .24, .32, .19, shade, 7, 10);
+    addTube([-.54, -.3, dz], [-.18, -.65, dz], .2, .13, body, 8);
+    addEllipsoid(-.18, -.65, dz, .14, .14, .13, flank, 6, 9);
+    addTube([-.18, -.65, dz], [.03, -1.04, dz], .12, .075, shade, 8);
+    addEllipsoid(.07, -1.06, dz, .12, .075, .12, flank, 6, 8);
+    [-1, 0, 1].forEach((toe) => {
+      const toeZ = dz + toe * .12;
+      addTube([.08, -1.07, dz], [.34, -1.1, toeZ], .07, .04, body, 6);
+      addTube([.34, -1.1, toeZ], [.47, -1.13, toeZ], .04, .005, bone, 6);
+    });
+    addTube([.12, -1.02, dz + .02], [.04, -.84, dz + .1], .055, .034, bone, 7);
+    addTube([.04, -.84, dz + .1], [.15, -.77, dz + .1], .034, .004, bone, 7);
+    // small feather vanes along the thigh
+    for (let f = 0; f < 4; f++) addTube([-.64 + f * .1, -.05 - f * .03, dz + .12], [-.78 + f * .1, -.2 - f * .035, dz + .18], .045, .004, feather, 5);
+  });
+  addEllipsoid(.98, .63, .17, .035, .035, .025, '#e3c36d', 5, 8);
+  addEllipsoid(.98, .63, -.17, .035, .035, .025, '#e3c36d', 5, 8);
+  let yaw = -.3, pitch = .08, zoom = 1, drag = null, width = 0, height = 0;
+  const resize = () => {
+    const rect = stage.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = Math.max(1, rect.width); height = Math.max(1, rect.height);
+    canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); draw();
+  };
+  const draw = () => {
+    if (!width || !height) return;
+    ctx.clearRect(0, 0, width, height);
+    ctx.save();
+    ctx.fillStyle = 'rgba(2, 8, 11, .3)'; ctx.beginPath(); ctx.ellipse(width * .52, height * .83, width * .3, height * .055, 0, 0, Math.PI * 2); ctx.fill();
+    const camera = 6, scale = Math.min(width / 4.75, height / 2.25) * zoom;
+    const projected = vertices.map(([x, y, z]) => {
+      const rx = x * Math.cos(yaw) + z * Math.sin(yaw), rz = -x * Math.sin(yaw) + z * Math.cos(yaw);
+      const ry = y * Math.cos(pitch) - rz * Math.sin(pitch), rz2 = y * Math.sin(pitch) + rz * Math.cos(pitch);
+      const perspective = camera / (camera + rz2);
+      return { x: width * .53 + (rx + .4) * scale * perspective, y: height * .57 - ry * scale * perspective, z: rz2 };
+    });
+    const rendered = faces.map(face => {
+      const a = projected[face.a], b = projected[face.b], c = projected[face.c];
+      const ab = [b.x-a.x,b.y-a.y,b.z-a.z], ac = [c.x-a.x,c.y-a.y,c.z-a.z];
+      const normal = [ab[1]*ac[2]-ab[2]*ac[1],ab[2]*ac[0]-ab[0]*ac[2],ab[0]*ac[1]-ab[1]*ac[0]];
+      const norm = Math.hypot(...normal)||1, lit = Math.abs((normal[0]*-.35+normal[1]*.82+normal[2]*.46)/norm);
+      const shade = .5 + lit*.5, value = parseInt(face.color.slice(1),16), r = (value>>16)&255, g=(value>>8)&255, bl=value&255;
+      return {a,b,c,z:(a.z+b.z+c.z)/3,color:`rgb(${Math.round(r*shade)},${Math.round(g*shade)},${Math.round(bl*shade)})`};
+    }).sort((a,b)=>a.z-b.z);
+    rendered.forEach(face => {ctx.beginPath();ctx.moveTo(face.a.x,face.a.y);ctx.lineTo(face.b.x,face.b.y);ctx.lineTo(face.c.x,face.c.y);ctx.closePath();ctx.fillStyle=face.color;ctx.fill();ctx.strokeStyle='rgba(17,29,26,.12)';ctx.lineWidth=.45;ctx.stroke();});
+    ctx.restore();
+  };
+  const observer = new ResizeObserver(resize); observer.observe(stage); resize();
+  stage.addEventListener('pointerdown', event => {event.stopPropagation();if(event.target.closest('button'))return;drag={x:event.clientX,y:event.clientY};stage.setPointerCapture?.(event.pointerId);});
+  stage.addEventListener('pointermove', event => {if(!drag)return;const dx=event.clientX-drag.x,dy=event.clientY-drag.y;drag={x:event.clientX,y:event.clientY};yaw+=dx*.012;pitch=Math.max(-.55,Math.min(.55,pitch+dy*.008));draw();});
+  const stopDrag = event => {if(drag){drag=null;event.stopPropagation();}};
+  stage.addEventListener('pointerup',stopDrag);stage.addEventListener('pointercancel',stopDrag);
+  stage.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();yaw+=(event.key==='ArrowRight'?.18:-.18);draw();}if(event.key==='ArrowUp'||event.key==='ArrowDown'){event.preventDefault();pitch=Math.max(-.55,Math.min(.55,pitch+(event.key==='ArrowUp'?.12:-.12)));draw();}});
+  stage.querySelectorAll('[data-raptor-action]').forEach(button=>button.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();if(button.dataset.raptorAction==='zoom-in')zoom=Math.min(1.5,zoom+.12);if(button.dataset.raptorAction==='zoom-out')zoom=Math.max(.72,zoom-.12);if(button.dataset.raptorAction==='reset'){yaw=-.3;pitch=.08;zoom=1;}draw();}));
+});
 
 const depthElement = document.querySelector('[data-depth]');
 if (depthElement && !reducedMotion && window.matchMedia('(pointer: fine)').matches) {
