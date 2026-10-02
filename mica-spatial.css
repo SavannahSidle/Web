@@ -670,3 +670,9 @@ body{background:#edf2f6;color:#0b1b28}
  .design-studies .study-dinosaur .dinosaur-species{top:70%;font-size:6px}
  .design-studies .study-dinosaur .dinosaur-periods{font-size:6px;gap:4px}
 }
+
+/* Keep the editorial title clear of its abstract image. */
+.design-studies .study-editorial .editorial-screen h3{font-size:clamp(2.1rem,4.15vw,3.45rem);line-height:.78}
+.design-studies .study-editorial .editorial-screen h3 em{margin-top:0;padding:.025em .09em .07em}
+.design-studies .study-editorial .editorial-image{left:15%;bottom:7%;width:46%;height:16%;opacity:.78}
+@media(max-width:760px){.design-studies .study-editorial .editorial-screen h3{font-size:clamp(2rem,7.2vw,2.8rem)}}
