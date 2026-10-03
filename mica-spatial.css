@@ -678,7 +678,6 @@ body{background:#edf2f6;color:#0b1b28}
 @media(max-width:760px){.design-studies .study-editorial .editorial-screen h3{font-size:clamp(2rem,7.2vw,2.8rem)}}
 
 /* Focused follow-up: homepage copy and Interface Studies only. */
-.poster-hero-tagline{position:absolute;z-index:2;left:50%;top:54.8%;display:grid;place-items:center;width:min(74%,900px);min-height:clamp(38px,5.2vw,58px);padding:4px 18px;transform:translate(-50%,-50%);background:radial-gradient(ellipse at center,#04101f 0 52%,rgba(4,16,31,.97) 67%,rgba(4,16,31,.78) 80%,transparent 100%);color:#e6ebf3;text-align:center;font:300 clamp(.62rem,1.75vw,1.22rem)/1.2 "IBM Plex Sans",sans-serif;letter-spacing:.16em;white-space:nowrap;text-shadow:0 0 16px rgba(189,215,246,.14)}
 
 .design-studies .study-care .care-top{letter-spacing:.09em}
 .design-studies .study-care .care-top span:last-child{padding:4px 7px;border:1px solid rgba(112,82,64,.22);border-radius:999px;background:rgba(255,249,239,.55);font-size:7px}
@@ -834,7 +833,6 @@ body{background:#edf2f6;color:#0b1b28}
 
 /* Keep the interface demos usable at mobile widths and under reduced motion. */
 @media(max-width:760px){
- .poster-hero-tagline{top:55%;width:94%;min-height:36px;padding-inline:8px;font-size:clamp(.58rem,2.6vw,.82rem);letter-spacing:.09em}
  .design-studies .study-food .food-menu{left:4%;width:61%}
  .design-studies .study-local .local-route{right:3%;top:20%;width:36%;height:52%}
  .design-studies .study-local .local-service{top:31%;width:51%}
@@ -858,7 +856,7 @@ body{background:#edf2f6;color:#0b1b28}
  .design-studies .study-neural .neural-copy{top:28%;width:43%}
  .design-studies .study-neural .neural-map{right:3%;width:55%;height:58%}
 }
-@media(prefers-reduced-motion:reduce){.design-studies .study-dinosaur .raptor-canvas{animation:none!important}.poster-hero-tagline{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.design-studies .study-dinosaur .raptor-canvas{animation:none!important}}
 
 
 /* Interactive system-map controls and nested planet-scale reset. */
@@ -887,3 +885,21 @@ body{background:#edf2f6;color:#0b1b28}
 
 /* Keep the calm study full-width after its earlier wheel prototype styles. */
 .design-studies .study-calm .calm-screen{width:100%!important;height:auto;aspect-ratio:16/10;border-radius:10px;box-shadow:0 18px 48px rgba(0,0,0,.23)}
+
+
+/* Remove service numbering and rebalance the ledger around its content. */
+.service-ledger{counter-reset:none}
+.service-row{counter-increment:none;grid-template-columns:minmax(210px,.9fr) minmax(250px,1.25fr) minmax(155px,.7fr)}
+.service-row::before{content:none;display:none}
+@media(max-width:760px){
+ .service-row{grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr);gap:12px 22px}
+ .service-row h3{grid-column:1;grid-row:1}
+ .service-row p{grid-column:2;grid-row:1}
+ .service-row>span{grid-column:2;grid-row:2;justify-self:start;text-align:left}
+}
+@media(max-width:560px){
+ .service-row{grid-template-columns:minmax(0,1fr);gap:10px;padding:22px 0}
+ .service-row h3,.service-row p,.service-row>span{grid-column:auto;grid-row:auto}
+ .service-row h3{font-size:clamp(1.75rem,8vw,2.2rem)}
+ .service-row>span{margin-top:2px}
+}

@@ -899,3 +899,14 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
   .poster-hero-actions .button{padding:12px 16px;font-size:13px}
   .poster-hero-link{font-size:10px}
 }
+
+
+/* Preserve the campaign poster's artwork proportions at every viewport. */
+.poster-hero{min-height:0;max-height:calc(100svh - 78px);aspect-ratio:1200/630}
+.poster-hero-image{object-fit:contain;object-position:center}
+@media(max-width:720px){
+  .poster-hero{display:grid;grid-template-columns:minmax(0,1fr);max-height:none;aspect-ratio:auto;padding-bottom:20px}
+  .poster-hero-image{position:relative;z-index:1;inset:auto;width:100%;height:auto;aspect-ratio:1200/630;object-fit:contain;object-position:center}
+  .poster-hero-actions{position:relative;left:auto;right:auto;bottom:auto;grid-row:2;justify-content:flex-start;margin:16px 22px 0}
+  .poster-scroll{position:relative;right:auto;bottom:auto;grid-row:3;justify-self:end;margin:10px 22px 0}
+}
