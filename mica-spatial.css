@@ -964,3 +964,14 @@ body{background:#edf2f6;color:#0b1b28}
 /* Services hero surface: match the white section above. */
 .services-hero{background:#fff}
 .services-hero::after{background:transparent}
+
+
+/* Homepage Services introduction copy. */
+.capabilities-heading .capabilities-intro{
+  max-width:21ch;
+  margin:0;
+  color:#42596d;
+  font:500 clamp(.92rem,1.05vw,1rem)/1.45 "IBM Plex Sans",sans-serif;
+  letter-spacing:0;
+  text-transform:none;
+}
