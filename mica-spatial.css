@@ -1002,3 +1002,229 @@ body{background:#edf2f6;color:#0b1b28}
 
 /* Match Common Ground's preview frame to the other studies in Grid view. */
 .design-studies[data-mode="grid"] .study-culture .study-screen{aspect-ratio:16 / 10}
+
+
+/* Homepage Services section: the pale blue used by Four Connected Disciplines. */
+.home .capabilities{
+  background:#f6f9fc;
+  color:#07131e;
+  border-top:1px solid #d9e3ec;
+  border-bottom:1px solid #d9e3ec;
+}
+.home .capabilities::before{
+  background:radial-gradient(ellipse at 74% 38%,rgba(86,139,189,.08),transparent 58%),linear-gradient(90deg,transparent,rgba(94,151,199,.018));
+}
+.home .capabilities .capability-blueprint{opacity:.12}
+.home .capabilities .capability-blueprint::before,.home .capabilities .capability-blueprint::after{border-color:rgba(53,103,150,.13)}
+.home .capabilities .capability-blueprint span{background:rgba(53,103,150,.14)}
+.home .capabilities .capability-blueprint i{background:#5a91c3;box-shadow:0 0 14px 4px rgba(87,143,192,.18)}
+.home .capabilities-heading .eyebrow{color:#496883}
+.home .capabilities-heading h2{color:#07131e}
+.home .capabilities-heading .text-link{color:#193f60;border-bottom-color:rgba(25,63,96,.45)}
+.home .service-row h3 a{color:#07131e}
+.home .service-row{border-color:#cbd7e2}
+.home .service-row:hover{background:linear-gradient(90deg,rgba(200,220,245,.28),transparent)}
+
+/* Header project action: a restrained raised, technical surface. */
+.home .site-header nav .nav-cta{
+  position:relative;
+  border:1px solid rgba(165,207,248,.78);
+  background:linear-gradient(150deg,rgba(73,126,175,.38),rgba(13,34,52,.96) 68%);
+  color:#f2f7fc;
+  box-shadow:0 3px 0 rgba(2,9,16,.8),0 8px 18px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.24);
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease;
+}
+.home .site-header nav .nav-cta:hover{
+  transform:translateY(-2px);
+  border-color:#d1e7ff;
+  background:linear-gradient(150deg,rgba(91,154,211,.48),rgba(17,44,66,.98) 68%);
+  box-shadow:0 5px 0 rgba(2,9,16,.76),0 12px 22px rgba(0,0,0,.29),inset 0 1px 0 rgba(255,255,255,.3);
+}
+.home .site-header nav .nav-cta:active{
+  transform:translateY(1px);
+  box-shadow:0 1px 0 rgba(2,9,16,.8),0 3px 8px rgba(0,0,0,.2),inset 0 1px 2px rgba(0,0,0,.22);
+}
+
+/* Restore the Services page hero to its original dark-blue treatment. */
+.services-hero{
+  background-color:#04111e;
+  background-image:linear-gradient(115deg,rgba(4,17,30,.08),rgba(4,17,30,.35)),radial-gradient(ellipse at 77% 43%,rgba(79,145,219,.16),transparent 31%);
+  color:#fff;
+}
+.services-hero::after{
+  background:radial-gradient(circle at 79% 45%,rgba(58,134,255,.15),transparent 27%),linear-gradient(125deg,transparent 50%,rgba(100,153,213,.045));
+}
+.services-hero-copy>p:last-child{color:#c3d3e3}
+.services-hero-copy .eyebrow{color:#9fc9ec}
+.service-map{
+  border-color:rgba(160,199,241,.2);
+  background:repeating-radial-gradient(circle,transparent 0 18%,rgba(145,186,231,.07) 18% 18.4%);
+}
+.service-map::before,.service-map::after{border-color:rgba(150,192,240,.13)}
+.service-map b{color:#fff}
+.map-label{color:#90afd0}
+.map-point{background:#8ebeff;box-shadow:0 0 17px 5px rgba(58,134,255,.35)}
+
+/* Grid-only fit: keep the showcase art unchanged while giving each concept room. */
+.design-studies[data-mode="grid"] .study-screen{container-type:inline-size}
+.design-studies[data-mode="grid"] .study-diagonal .diagonal-screen h3{
+  left:10%;
+  top:28%;
+  width:58%;
+  font-size:clamp(1.3rem,6cqw,1.95rem);
+  line-height:.9;
+}
+.design-studies[data-mode="grid"] .study-diagonal .diagonal-copy{
+  left:10%;
+  bottom:12%;
+  width:42%;
+  max-width:28ch;
+  font-size:clamp(8px,2.2cqw,10px);
+  line-height:1.3;
+}
+.design-studies[data-mode="grid"] .study-diagonal .diagonal-index{
+  right:9%;
+  bottom:15%;
+  font-size:clamp(6px,1.8cqw,7px);
+}
+
+.design-studies[data-mode="grid"] .study-wayfinding .wayfinding-title{
+  left:7%;
+  top:36%;
+  width:43%;
+  padding:6px 8px;
+  background:rgba(248,246,238,.94);
+  box-shadow:0 0 0 1px rgba(24,66,65,.08);
+}
+.design-studies[data-mode="grid"] .study-wayfinding .wayfinding-title h3{
+  font-size:clamp(1.25rem,6cqw,1.8rem);
+  line-height:.96;
+}
+.design-studies[data-mode="grid"] .study-wayfinding .wayfinding-options{
+  left:7%;
+  bottom:8%;
+  max-width:88%;
+  flex-wrap:wrap;
+  gap:4px;
+}
+.design-studies[data-mode="grid"] .study-wayfinding .wayfinding-options span{
+  padding:4px 6px;
+  font-size:clamp(6px,1.7cqw,7px);
+}
+
+.design-studies[data-mode="grid"] .study-bedding .bedding-screen::after{
+  background:linear-gradient(90deg,rgba(245,244,235,.18),transparent 64%),linear-gradient(0deg,rgba(247,246,238,.3),transparent 48%);
+}
+.design-studies[data-mode="grid"] .study-bedding .bedding-title{
+  left:auto;
+  right:7%;
+  top:8%;
+  width:54%;
+  height:84%;
+  color:#1b303a;
+  text-align:right;
+}
+.design-studies[data-mode="grid"] .study-bedding .bedding-title span{
+  display:block;
+  white-space:nowrap;
+  color:#344b53;
+  font:400 clamp(9px,2.5cqw,12px)/1.2 "DM Serif Display",Georgia,serif;
+  letter-spacing:.035em;
+}
+.design-studies[data-mode="grid"] .study-bedding .bedding-title h3{
+  position:absolute;
+  right:0;
+  bottom:4%;
+  max-width:100%;
+  margin:0;
+  color:#172b34;
+  font:500 clamp(1.5rem,7.2cqw,2.4rem)/.92 "IBM Plex Sans",sans-serif;
+  letter-spacing:-.065em;
+  text-shadow:0 1px 12px rgba(255,255,255,.78);
+}
+.design-studies[data-mode="grid"] .study-bedding .bedding-footer{
+  left:7%;
+  right:46%;
+  bottom:8%;
+  color:#fff;
+  font-size:clamp(6px,1.65cqw,7px);
+  line-height:1.3;
+  text-shadow:0 1px 7px rgba(14,23,28,.55);
+}
+
+.design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel{
+  left:5%;
+  top:24%;
+  width:29%;
+  height:37%;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus{
+  left:5%;
+  top:65%;
+  width:29%;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus h3{
+  font-size:clamp(1rem,5cqw,1.35rem);
+  line-height:.96;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus span{
+  display:block;
+  overflow-wrap:anywhere;
+  font-size:clamp(5px,1.55cqw,6px);
+  line-height:1.2;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .raptor-viewport{
+  right:4%;
+  top:20%;
+  width:58%;
+  height:61%;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-periods{
+  left:39%;
+  right:4%;
+  bottom:6%;
+  gap:3px;
+  font-size:clamp(4.5px,1.3cqw,5.5px);
+}
+
+.design-studies[data-mode="grid"] .study-neural .neural-copy{
+  left:6%;
+  top:27%;
+  width:38%;
+}
+.design-studies[data-mode="grid"] .study-neural .neural-copy small{
+  font-size:clamp(5px,1.45cqw,6px);
+  line-height:1.2;
+}
+.design-studies[data-mode="grid"] .study-neural .neural-copy h3{
+  margin:6px 0 4px;
+  font-size:clamp(1rem,5.1cqw,1.38rem);
+  line-height:.96;
+}
+.design-studies[data-mode="grid"] .study-neural .neural-copy p{
+  max-width:22ch;
+  font-size:clamp(8px,2cqw,9px);
+  line-height:1.25;
+}
+.design-studies[data-mode="grid"] .study-neural .neural-copy>b{
+  gap:5px;
+  margin-top:8px;
+  padding:5px 6px;
+  font-size:clamp(6px,1.7cqw,7px);
+}
+.design-studies[data-mode="grid"] .study-neural .neural-map{
+  right:3%;
+  top:19%;
+  width:49%;
+  height:53%;
+}
+.design-studies[data-mode="grid"] .study-neural .neural-labels{
+  left:48%;
+  right:4%;
+  bottom:8%;
+  gap:2px;
+  font-size:clamp(4.5px,1.25cqw,5.5px);
+}
+
+/* The Common Ground card already has this gallery ratio; keep it explicit. */
+.design-studies[data-mode="grid"] .study-culture .study-screen{aspect-ratio:16 / 10}
