@@ -959,3 +959,8 @@ body{background:#edf2f6;color:#0b1b28}
   box-shadow:0 0 0 90px rgba(141,189,255,.03),0 0 0 190px rgba(141,189,255,.02),0 0 0 285px rgba(141,189,255,.01);
 }
 .process-strip li{grid-template-columns:minmax(0,1fr)}
+
+
+/* Services hero surface: match the white section above. */
+.services-hero{background:#fff}
+.services-hero::after{background:transparent}
