@@ -966,12 +966,39 @@ body{background:#edf2f6;color:#0b1b28}
 .services-hero::after{background:transparent}
 
 
-/* Homepage Services introduction copy. */
-.capabilities-heading .capabilities-intro{
-  max-width:21ch;
-  margin:0;
-  color:#42596d;
-  font:500 clamp(.92rem,1.05vw,1rem)/1.45 "IBM Plex Sans",sans-serif;
-  letter-spacing:0;
-  text-transform:none;
+
+
+/* Screenshot-requested pale surfaces on the homepage. */
+.home .process-strip{
+  background:#f6f9fc;
+  color:#07131e;
 }
+.home .process-strip .section-number{color:#496883}
+.home .process-strip li{border-color:#cfdae5}
+.home .process-strip li p{color:#40566b}
+
+.home .closing-cta.cosmic-echo{
+  background:#f6f9fc;
+  color:#07131e;
+}
+.home .closing-cta .eyebrow{color:#496883}
+.home .closing-cta .echo-orbit{
+  border-color:rgba(55,101,145,.14);
+  background:radial-gradient(circle at center,rgba(102,157,208,.1),rgba(102,157,208,.025) 36%,transparent 62%);
+  box-shadow:0 0 0 90px rgba(55,101,145,.035),0 0 0 190px rgba(55,101,145,.022),0 0 0 285px rgba(55,101,145,.012);
+}
+.home .closing-cta .button.light{border:1px solid #cbd8e4}
+
+/* Restore the Services intro to its prior pale-blue surface. */
+.services-hero{
+  background:
+    radial-gradient(ellipse at 78% 42%,rgba(132,174,215,.18),transparent 36%),
+    repeating-linear-gradient(145deg,transparent 0 94px,rgba(36,78,119,.035) 95px,transparent 96px),
+    #e9f0f6;
+}
+.services-hero::after{
+  background:linear-gradient(125deg,rgba(255,255,255,.36),transparent 58%,rgba(109,151,193,.055));
+}
+
+/* Match Common Ground's preview frame to the other studies in Grid view. */
+.design-studies[data-mode="grid"] .study-culture .study-screen{aspect-ratio:16 / 10}
