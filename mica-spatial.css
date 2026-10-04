@@ -1230,5 +1230,5 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies[data-mode="grid"] .study-culture .study-screen{aspect-ratio:16 / 10}
 
 /* Keep text legible on the pale homepage Services surface. */
-.home .service-row p{color:#40566b}
-.home .service-row>span{color:#63798d}
+body.home main .capabilities .service-ledger .service-row p{color:#40566b!important;opacity:1}
+body.home main .capabilities .service-ledger .service-row>span{color:#63798d!important;opacity:1}
