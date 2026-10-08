@@ -1232,3 +1232,16 @@ body{background:#edf2f6;color:#0b1b28}
 /* Keep text legible on the pale homepage Services surface. */
 body.home main .capabilities .service-ledger .service-row p{color:#40566b!important;opacity:1}
 body.home main .capabilities .service-ledger .service-row>span{color:#63798d!important;opacity:1}
+
+
+/* Shared study-canvas sizing for Grid and Showcase. */
+.design-studies .study{min-width:0}
+.design-studies[data-mode] .study-screen{
+  box-sizing:border-box;
+  width:100%;
+  aspect-ratio:16 / 10;
+  container-type:inline-size;
+}
+.design-studies[data-mode="showcase"] .study{
+  width:min(86vw,430px);
+}
