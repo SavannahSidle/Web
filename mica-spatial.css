@@ -2418,7 +2418,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   font-size:clamp(1rem,2vw,1.55rem);line-height:.94
 }
 .design-studies[data-mode] .study-information .info-filter{
-  position:absolute!important;left:7%!important;right:auto!important;top:56%!important;bottom:auto!important;
+  position:absolute!important;grid-area:1 / 1 / -1 / -1!important;align-self:start!important;justify-self:stretch!important;
+  left:7%!important;right:auto!important;top:56%!important;bottom:auto!important;
   width:30%!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:4px!important;
   z-index:3;font-size:clamp(7px,1.8cqi,9px);line-height:1.2
 }
@@ -2426,7 +2427,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   min-width:0;white-space:normal;padding:5px 6px;line-height:1.15
 }
 .design-studies[data-mode] .study-information .info-results{
-  position:absolute!important;left:42%!important;right:6%!important;top:15%!important;bottom:11%!important;
+  position:absolute!important;grid-area:1 / 1 / -1 / -1!important;align-self:start!important;justify-self:stretch!important;
+  left:42%!important;right:6%!important;top:15%!important;bottom:11%!important;
   display:flex!important;flex-direction:column;gap:4px;overflow-y:auto!important;
   overscroll-behavior:contain;scrollbar-width:thin
 }
