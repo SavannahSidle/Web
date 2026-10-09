@@ -2104,3 +2104,75 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   white-space:nowrap;
 }
 .design-studies[data-mode] .study-care .care-screen::after{display:none}
+
+
+/* Homepage alignment and the darker closing moment. */
+.home .editorial-intro{align-items:start}
+.home .editorial-intro .section-number{grid-column:1;grid-row:1;margin:0}
+.home .editorial-intro>div[data-reveal]{grid-column:2;grid-row:1;min-width:0}
+.home .editorial-intro div>p{margin:clamp(24px,3vw,40px) 0 0;max-width:62ch}
+@media(max-width:850px){
+ .home .editorial-intro{grid-template-columns:minmax(0,1fr);gap:22px}
+ .home .editorial-intro .section-number,.home .editorial-intro>div[data-reveal]{grid-column:1;grid-row:auto}
+}
+.home .closing-cta.cosmic-echo{
+ background:radial-gradient(ellipse at 78% 62%,rgba(53,116,182,.14),transparent 42%),linear-gradient(120deg,#04111e 0%,#071a2a 58%,#092038 100%);
+ color:#f2f6fa
+}
+.home .closing-cta .eyebrow{color:#a9c8ea}
+.home .closing-cta .echo-orbit{border-color:rgba(155,197,242,.12);box-shadow:0 0 0 90px rgba(141,189,255,.025),0 0 0 190px rgba(141,189,255,.018),0 0 0 285px rgba(141,189,255,.01)}
+.home .closing-cta .button.light{background:#d9eaff;color:#071624;border-color:#a9c8ed}
+
+/* Keep the poster art pixel-identical; animate only the atmospheric layer behind it. */
+.home .poster-hero .hero-starfield{opacity:.7}
+.home .poster-hero .shooting-star{
+ position:absolute;z-index:1;top:18%;left:-14%;width:92px;height:1px;
+ background:linear-gradient(90deg,transparent,rgba(211,232,255,.8),transparent);
+ filter:drop-shadow(0 0 4px rgba(174,211,255,.45));
+ opacity:0;transform:rotate(-17deg);animation:mica-shoot 21s ease-in-out infinite;
+}
+@keyframes mica-shoot{
+ 0%,68%,100%{opacity:0;transform:translate3d(0,0,0) rotate(-17deg)}
+ 70%{opacity:.72}
+ 74%{opacity:0;transform:translate3d(115vw,35vh,0) rotate(-17deg)}
+}
+@media(prefers-reduced-motion:reduce){.home .poster-hero .shooting-star{animation:none!important;display:none}}
+
+/* Consistent landscape preview frames; adapt internal compositions to the frame. */
+.design-studies .study-screen{container-type:inline-size;overflow:hidden}
+.design-studies[data-mode="grid"] .study-culture .study-screen{aspect-ratio:16 / 10!important}
+.design-studies[data-mode] .study-culture .culture-type{
+ writing-mode:horizontal-tb;transform:none;left:7%;top:28%;width:49%;
+ font-size:clamp(1.8rem,10cqi,4.4rem);line-height:.8;letter-spacing:-.08em
+}
+.design-studies[data-mode] .study-culture .culture-event{left:62%;right:7%;top:31%;gap:clamp(5px,2cqi,10px)}
+.design-studies[data-mode] .study-culture .culture-event strong{font-size:clamp(6px,2.3cqi,9px)}
+.design-studies[data-mode] .study-culture .culture-event span{font-size:clamp(7px,3cqi,12px);line-height:1.2}
+.design-studies[data-mode] .study-culture .culture-index{right:7%;bottom:7%;writing-mode:horizontal-tb;transform:none;font-size:clamp(6px,2cqi,8px)}
+.design-studies[data-mode] .study-food .food-menu{left:6%;top:8%;width:60%;max-width:60%}
+.design-studies[data-mode] .study-food .food-menu>span{font-size:clamp(6px,2.25cqi,9px)}
+.design-studies[data-mode] .study-food .food-menu h3{margin:clamp(5px,2.4cqi,11px) 0 clamp(6px,2.4cqi,11px);font-size:clamp(1.25rem,10cqi,2.3rem);line-height:.84}
+.design-studies[data-mode] .study-food .food-menu li{min-height:0;padding:clamp(3px,1.2cqi,6px) 0;gap:4px;font-size:clamp(7px,3cqi,11px);line-height:1.15}
+.design-studies[data-mode] .study-food .food-menu li i{margin-right:clamp(4px,2cqi,12px);transform:none}
+.design-studies[data-mode] .study-local .local-nav{left:6%;right:6%;top:6%;gap:4px}
+.design-studies[data-mode] .study-local .local-nav span{font-size:clamp(6px,2.25cqi,9px);padding:clamp(3px,1.5cqi,6px)}
+.design-studies[data-mode] .study-local .local-route{right:3%;top:20%;width:38%;height:53%}
+.design-studies[data-mode] .study-local .local-service{left:6%;top:31%;width:51%}
+.design-studies[data-mode] .study-local .local-service h3{font-size:clamp(1rem,8cqi,1.8rem);line-height:.94}
+.design-studies[data-mode] .study-local .local-service p{margin:clamp(3px,1.8cqi,8px) 0;font-size:clamp(7px,2.7cqi,10px);line-height:1.15}
+.design-studies[data-mode] .study-local .local-service b{margin-top:3px;padding:clamp(4px,1.6cqi,7px);font-size:clamp(6px,2.2cqi,9px)}
+.design-studies[data-mode] .study-local .local-screen aside{right:4%;top:auto;bottom:5%;width:34%;padding:4px 5px;gap:2px}
+.design-studies[data-mode] .study-local .local-screen aside strong{font-size:clamp(8px,3cqi,12px)}
+.design-studies[data-mode] .study-local .local-screen aside span{font-size:clamp(6px,2cqi,8px);line-height:1.1}
+.design-studies .study-editorial .editorial-screen h3 em{display:inline-flex;gap:.005em;animation:none}
+.design-studies .study-editorial .editorial-screen h3 em span{display:inline-block;animation:idea-letter 2.8s ease-in-out infinite}
+.design-studies .study-editorial .editorial-screen h3 em span:nth-child(2){animation-delay:.08s}
+.design-studies .study-editorial .editorial-screen h3 em span:nth-child(3){animation-delay:.16s}
+.design-studies .study-editorial .editorial-screen h3 em span:nth-child(4){animation-delay:.24s}
+.design-studies .study-editorial .editorial-screen h3 em span:nth-child(5){animation-delay:.32s}
+@keyframes idea-letter{0%,72%,100%{transform:translateY(0)}78%{transform:translateY(-3px)}84%{transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.design-studies .study-editorial .editorial-screen h3 em span{animation:none!important}}
+/* Restore direct manipulation without browser text selection on the model. */
+.design-studies .raptor-viewport{user-select:none;-webkit-user-select:none;touch-action:none;cursor:grab}
+.design-studies .raptor-viewport:active{cursor:grabbing}
+.design-studies .raptor-canvas{pointer-events:none}
