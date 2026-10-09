@@ -2181,3 +2181,233 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-food .food-menu{left:6%;width:48%;max-width:48%}
 .design-studies[data-mode] .study-food .food-menu li{grid-template-columns:minmax(0,1fr) max-content}
 .design-studies[data-mode] .study-food .food-menu li i{justify-self:start;margin:0;padding-left:5px}
+
+
+/* Focused study repairs: more legible motion, stable compositions, and clear interactions. */
+.home .poster-hero .hero-starfield{opacity:.92}
+.home .poster-hero .hero-starfield::before{animation-duration:32s}
+.home .poster-hero .hero-starfield::after{animation-duration:48s;opacity:.68}
+.home .poster-hero .shooting-star{
+  top:43%;left:30%;width:clamp(92px,14vw,156px);height:2px;
+  animation:mica-shoot-center 13s linear infinite;
+  filter:drop-shadow(0 0 6px rgba(174,211,255,.72));
+}
+@keyframes mica-shoot-center{
+  0%,48%,100%{opacity:0;transform:translate3d(0,0,0) rotate(-15deg)}
+  50%{opacity:.95}
+  57%{opacity:0;transform:translate3d(48vw,13vh,0) rotate(-15deg)}
+}
+@media(max-width:720px){
+  .home .poster-hero .hero-starfield{opacity:.62}
+  .home .poster-hero .hero-starfield::before{animation-duration:40s}
+  .home .poster-hero .hero-starfield::after{animation-duration:58s}
+  .home .poster-hero .shooting-star{left:22%;top:47%;width:82px}
+}
+@media(prefers-reduced-motion:reduce){
+  .home .poster-hero .hero-starfield::before,.home .poster-hero .hero-starfield::after,
+  .home .poster-hero .shooting-star{animation:none!important}
+}
+
+/* Three service-map points now travel on separate, precise orbits. */
+.services-page .service-map .map-point{
+  width:6px;height:6px;left:calc(50% + var(--map-orbit-radius) - 3px);top:calc(50% - 3px);
+  right:auto;bottom:auto;transform-origin:calc(3px - var(--map-orbit-radius)) 3px;
+  animation:service-map-orbit var(--map-orbit-speed) linear infinite;
+}
+.services-page .service-map .point-a{--map-orbit-radius:34%;--map-orbit-speed:4.2s;animation-delay:-1.1s}
+.services-page .service-map .point-b{--map-orbit-radius:25%;--map-orbit-speed:5.1s;animation-direction:reverse;animation-delay:-2.4s}
+.services-page .service-map .point-c{--map-orbit-radius:15%;--map-orbit-speed:3.7s;animation-delay:-.6s}
+@keyframes service-map-orbit{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.services-page .service-map .map-point{animation:none!important}}
+
+/* Restore the calm bedding study's original image-led, serif title treatment. */
+.design-studies[data-mode] .study-bedding .bedding-screen{isolation:isolate}
+.design-studies[data-mode] .study-bedding .bedding-menu{
+  position:absolute;z-index:3;top:7%;left:7%;right:7%;display:flex;justify-content:space-between;gap:8px;
+  color:#263b42;font:500 clamp(6px,1.7cqi,8px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.12em
+}
+.design-studies[data-mode] .study-bedding .bedding-title{
+  left:8%;right:auto;top:12%;bottom:auto;width:60%;height:auto;color:#fff;text-align:left;text-shadow:0 2px 14px rgba(17,24,28,.42)
+}
+.design-studies[data-mode] .study-bedding .bedding-title h3{
+  position:static;margin:0;font:400 clamp(2rem,7cqi,3.4rem)/.84 Georgia,serif;letter-spacing:-.06em;color:#fff;
+  text-shadow:0 2px 14px rgba(17,24,28,.42)
+}
+.design-studies[data-mode] .study-bedding .bedding-footer{
+  left:8%;right:auto;bottom:9%;font:500 clamp(5px,1.5cqi,8px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.09em;text-align:left;color:#fff
+}
+
+/* Keep the original vertical Common Ground composition and the D at full type size. */
+.design-studies[data-mode] .study-culture .culture-type{
+  left:13%;top:4%;width:34%;height:91%;writing-mode:vertical-rl;transform:rotate(180deg);
+  font-size:clamp(1.35rem,8.5cqi,2.45rem);line-height:.78;letter-spacing:-.075em
+}
+.design-studies[data-mode] .study-culture .culture-type i{display:inline;font-size:inherit;line-height:inherit}
+.design-studies[data-mode] .study-culture .falling-d{
+  display:inline-block;font-size:inherit!important;line-height:inherit!important;transform-origin:50% 25%;animation:ground-d 7.2s ease-in-out infinite
+}
+.design-studies[data-mode] .study-culture .falling-d::after{display:none}
+.design-studies[data-mode] .study-culture .culture-event{left:58%;right:7%;top:31%;max-width:34%;gap:clamp(5px,1.8cqi,10px)}
+.design-studies[data-mode] .study-culture .culture-index{right:7%;bottom:7%;writing-mode:vertical-rl}
+@keyframes ground-d{
+  0%,53%,100%{opacity:1;transform:translate(0,0) rotate(0)}
+  57%{opacity:1;transform:translate(-2px,-5px) rotate(-4deg)}
+  62%{opacity:1;transform:translate(-3px,-11px) rotate(0)}
+  68%{opacity:1;transform:translate(5px,-7px) rotate(16deg)}
+  75%{opacity:1;transform:translate(13px,18px) rotate(55deg)}
+  82%{opacity:0;transform:translate(24px,48px) rotate(105deg)}
+}
+@media(prefers-reduced-motion:reduce){.design-studies .study-culture .falling-d{animation:none!important}}
+
+/* Give the editorial study enough type scale in both gallery modes. */
+.design-studies[data-mode] .study-editorial .editorial-screen h3{
+  top:5%;right:5%;width:66%;max-width:66%;font-size:clamp(30px,9cqi,66px);line-height:.76
+}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em span{
+  font-size:inherit!important;line-height:inherit;letter-spacing:inherit
+}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em span{animation-duration:1.8s}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em span:nth-child(2){animation-delay:.06s}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em span:nth-child(3){animation-delay:.12s}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em span:nth-child(4){animation-delay:.18s}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em span:nth-child(5){animation-delay:.24s}
+@media(prefers-reduced-motion:reduce){.design-studies .study-editorial .editorial-screen h3 em span{animation:none!important}}
+
+/* Add a real job-site image to the local-service interface without crowding its copy. */
+.design-studies[data-mode] .study-local .local-route{display:none!important}
+.design-studies[data-mode] .study-local .local-workers{
+  position:absolute;z-index:1;right:3%;top:19%;width:38%;height:51%;object-fit:cover;object-position:50% 42%;
+  border:1px solid rgba(240,244,232,.72);border-radius:8px;filter:saturate(.82) contrast(1.03);
+  box-shadow:0 14px 30px rgba(8,25,29,.2)
+}
+.design-studies[data-mode] .study-local .local-service{z-index:2}
+.design-studies[data-mode] .study-local .local-screen aside{z-index:2;bottom:5%;right:4%;width:34%}
+
+/* One-line room study title; the model and controls keep their current behaviour. */
+.design-studies[data-mode] .study-spatial .room-caption{width:82%;bottom:6%}
+.design-studies[data-mode] .study-spatial .room-caption h3{
+  white-space:nowrap;font-size:clamp(14px,3.4cqi,27px);letter-spacing:-.045em
+}
+
+/* Calm Experience: separate the daily prompt from its action row. */
+.design-studies[data-mode] .study-calm .calm-copy{left:8%;top:23%;width:61%}
+.design-studies[data-mode] .study-calm .calm-copy h3{font-size:clamp(19px,6.3cqi,28px);line-height:.94}
+.design-studies[data-mode] .study-calm .calm-copy p{margin-top:clamp(4px,1.3cqi,7px);font-size:clamp(8px,2cqi,10px);line-height:1.2}
+.design-studies[data-mode] .study-calm .calm-task{
+  left:7%;right:7%;bottom:18%;grid-template-columns:minmax(0,1fr) 14px;gap:7px;padding:7px 9px
+}
+.design-studies[data-mode] .study-calm .calm-task b{font-size:clamp(8px,2.4cqi,10px);line-height:1.15}
+
+/* Put the community filter directly under its heading; keep the directory list in its own lane. */
+.design-studies[data-mode] .study-information .info-filter{
+  left:7%;right:auto;top:43%;width:28%;gap:4px;z-index:2;font-size:clamp(7px,1.8cqi,8px)
+}
+.design-studies[data-mode] .study-information .info-filter b{white-space:normal;padding:5px 6px;line-height:1.15}
+.design-studies[data-mode] .study-information .info-results{left:42%;right:6%;top:21%;bottom:10%}
+.design-studies[data-mode="grid"] .study-information .info-results{left:42%;right:6%;top:21%;bottom:10%}
+
+/* Distinct, more composed directions for the two professional studies. */
+.design-studies[data-mode] .study-professional .professional-screen{
+  display:block!important;position:relative;overflow:hidden;padding:0!important;
+  background:linear-gradient(90deg,#1c3540 0 25%,#f1eee5 25% 100%);color:#26363a
+}
+.design-studies[data-mode] .study-professional .professional-screen::before{
+  inset:0 75% 0 0;width:auto;clip-path:none;background:linear-gradient(160deg,#284651,#172a34);box-shadow:inset -1px 0 rgba(255,255,255,.18)
+}
+.design-studies[data-mode] .study-professional .professional-screen::after{display:none}
+.design-studies[data-mode] .study-professional .professional-side{
+  position:absolute;left:6%;top:13%;width:15%;height:74%;padding:0;border:0;color:#eff1e9;
+  display:flex;flex-direction:column;justify-content:space-between;gap:8px
+}
+.design-studies[data-mode] .study-professional .professional-side strong{
+  font:600 clamp(7px,2cqi,9px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:#e7b387
+}
+.design-studies[data-mode] .study-professional .professional-side span{
+  font:500 clamp(6px,1.65cqi,8px)/1.65 "IBM Plex Mono",monospace;color:#d0dcd9
+}
+.design-studies[data-mode] .study-professional .professional-main{position:static;padding:0!important}
+.design-studies[data-mode] .study-professional .professional-main h3{
+  position:absolute;left:34%;right:7%;top:17%;width:54%;margin:0;
+  font:400 clamp(17px,5.1cqi,29px)/.98 "DM Serif Display",Georgia,serif;letter-spacing:-.025em;color:#26363a
+}
+.design-studies[data-mode] .study-professional .professional-main p{
+  position:absolute;left:34%;right:8%;top:45%;width:53%;margin:0;
+  color:#63706c;font-size:clamp(8px,2cqi,10px);line-height:1.28
+}
+.design-studies[data-mode] .study-professional .professional-links{
+  position:absolute;left:34%;right:7%;top:66%;bottom:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px
+}
+.design-studies[data-mode] .study-professional .professional-links span{
+  min-width:0;padding:5px 2px 0;border-color:rgba(39,61,63,.25);color:#465d5b;
+  font:500 clamp(6px,1.65cqi,8px)/1.2 "IBM Plex Mono",monospace;overflow-wrap:anywhere
+}
+.design-studies[data-mode] .study-professional .professional-main>b{
+  position:absolute;left:34%;right:auto;top:auto;bottom:7%;margin:0;padding:6px 9px;
+  background:#b66f50;color:#fffaf0;font-size:clamp(6px,1.7cqi,8px);line-height:1.1
+}
+.design-studies[data-mode] .study-minimal .practice-screen{
+  position:relative;isolation:isolate;overflow:hidden;padding:0!important;
+  background:linear-gradient(90deg,#263e48 0 20%,#eee9df 20%);color:#263e48
+}
+.design-studies[data-mode] .study-minimal .practice-screen::before{
+  content:"";position:absolute;left:20%;top:0;bottom:0;width:1px;background:rgba(33,64,70,.26)
+}
+.design-studies[data-mode] .study-minimal .practice-top{
+  left:27%;right:7%;top:10%;color:#53686a;font:500 clamp(6px,1.7cqi,8px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.1em
+}
+.design-studies[data-mode] .study-minimal .practice-spine{left:27%;right:7%;top:28%;height:1px;background:#b76f53}
+.design-studies[data-mode] .study-minimal .practice-copy{
+  left:34%;right:7%;top:35%;width:auto;color:#213a43
+}
+.design-studies[data-mode] .study-minimal .practice-copy span{color:#8a6555;font:500 clamp(7px,1.9cqi,9px)/1.2 "IBM Plex Mono",monospace}
+.design-studies[data-mode] .study-minimal .practice-copy strong{
+  display:block;margin-top:7px;font:400 clamp(21px,7cqi,39px)/.9 "DM Serif Display",Georgia,serif;letter-spacing:-.045em;color:#213a43
+}
+.design-studies[data-mode] .study-minimal .practice-footer{left:27%;right:7%;bottom:12%;color:#51686a}
+.design-studies[data-mode] .study-minimal .practice-footer i{background:#b76f53}
+.design-studies[data-mode="grid"] .study-minimal .practice-copy{left:32%;right:6%;top:31%}
+.design-studies[data-mode="grid"] .study-minimal .practice-copy strong{font-size:clamp(19px,6.4cqi,32px)}
+
+/* Make the interface-study word board work with mouse, pen, and touch dragging. */
+.design-studies[data-mode] .study-learning .word-slots{
+  left:8%;top:59%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(3px,1.2cqi,6px);width:47%
+}
+.design-studies[data-mode] .study-learning .word-slots button{
+  width:clamp(25px,7cqi,34px);height:clamp(27px,7cqi,36px);touch-action:none;user-select:none;-webkit-user-select:none
+}
+.design-studies[data-mode] .study-learning .letter-bank{
+  left:auto;right:8%;top:53%;display:grid;grid-template-columns:repeat(3,minmax(25px,1fr));gap:clamp(3px,1cqi,5px);
+  width:clamp(84px,26cqi,152px);touch-action:none
+}
+.design-studies[data-mode] .study-learning .letter-bank button{
+  width:clamp(24px,6.2cqi,30px);height:clamp(24px,6.2cqi,30px);min-width:24px;min-height:24px;touch-action:none;user-select:none;-webkit-user-select:none
+}
+.design-studies[data-mode] .study-learning .learning-help{
+  left:8%;right:8%;bottom:6%;max-width:none;font-size:clamp(7px,1.7cqi,9px);line-height:1.2;text-align:left
+}
+.design-studies[data-mode] .study-learning .learning-help[data-success="true"]{
+  color:#173e32;font-weight:700;background:rgba(255,255,255,.68);border-radius:4px;padding:4px 6px
+}
+
+/* Small, specific study corrections requested for both preview modes. */
+.design-studies[data-mode] .study-future .readout-c{left:auto;right:7%;top:auto;bottom:13%;text-align:right}
+.design-studies[data-mode] .study-diagonal .diagonal-screen h3{right:calc(8% + 2px)}
+.design-studies[data-mode] .study-diagonal .shape-three{
+  --shape-fill:rgba(255,224,125,.55);--shape-glow:rgba(255,224,125,.34);
+  animation:object-whip var(--shape-speed,3.1s) cubic-bezier(.35,.04,.55,.98) infinite,object-warm-glint 8s ease-in-out infinite;
+}
+@keyframes object-warm-glint{0%,42%,100%{filter:brightness(1)}50%,60%{filter:brightness(1.34)}}
+.design-studies[data-mode] .study-wayfinding .wayfinding-title{top:31%}
+.design-studies[data-mode] .study-space .space-screen::before,
+.design-studies[data-mode] .study-space .space-screen::after{display:none!important;animation:none!important}
+.design-studies[data-mode] .study-space .space-galaxy-image{
+  position:absolute;z-index:1;left:7%;bottom:24%;width:26%;height:15%;object-fit:cover;object-position:50% 50%;
+  border:1px solid rgba(190,221,243,.55);border-radius:3px;opacity:.88;filter:saturate(.78) brightness(.84)
+}
+.design-studies[data-mode] .study-space .space-focus{top:29%;width:38%}
+.design-studies[data-mode] .study-space .space-rail .planet-scale::before{display:none!important}
+.design-studies[data-mode] .study-space .space-rail .planet-scale b{position:relative;top:0;line-height:1.1}
+@media(prefers-reduced-motion:reduce){
+  .design-studies[data-mode] .study-diagonal .shape-three{animation:none!important}
+  .design-studies[data-mode] .study-space .space-galaxy-image{filter:none}
+}
