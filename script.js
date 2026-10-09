@@ -632,7 +632,7 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     slot.setAttribute('aria-label', `${ordinal} letter, ${letter}`);
     selectedLetter = '';
     tiles.forEach((tile) => tile.dataset.selected = 'false');
-    const word = slots.map((item) => item.textContent.trim()).join('').toLowerCase();
+    const word = slots.map((item) => item.textContent.trim()).filter((letter) => letter !== '_').join('').toLowerCase();
     if (status) status.textContent = ['cat','cap','camp'].includes(word) ? `You made ${word}!` : `Current word: ${word}`;
   };
   tiles.forEach((tile) => {
@@ -668,8 +668,9 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
       if (selectedLetter) place(slot, selectedLetter);
       else if (slot.dataset.filled === 'true') {
         slot.textContent = '_';slot.dataset.filled = 'false';
-        slot.setAttribute('aria-label', 'Last letter, empty');
-        if (status) status.textContent = 'Last letter cleared. Choose t or p.';
+        const ordinal = ['first','second','third','fourth'][slots.indexOf(slot)] || 'next';
+        slot.setAttribute('aria-label', `${ordinal} letter, empty`);
+        if (status) status.textContent = 'Letter cleared. Choose another letter when ready.';
       }
     });
     slot.addEventListener('dragover', (event) => event.preventDefault());
@@ -686,7 +687,7 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     });
     selectedLetter = '';
     tiles.forEach((tile) => tile.dataset.selected = 'false');
-    if (status) status.textContent = 'The final letter was cleared.';
+    if (status) status.textContent = 'Added letters were cleared.';
   });
 });
 
