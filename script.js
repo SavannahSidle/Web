@@ -63,7 +63,7 @@ if (studiesSection) {
     studyTrack.setAttribute('aria-label', 'Floating interface studies. Swipe, drag, or use the left and right arrow keys to browse.');
     studyTrack.tabIndex = 0;
 
-    let activeIndex = 1;
+    let activeIndex = 0;
     const paintShowcase = () => {
       studyCards.forEach((card, index) => {
         let offset = index - activeIndex;
@@ -415,3 +415,28 @@ if (canvas) {
     draw();
   }, { passive: true });
 }
+
+
+// Selectable planets in the solar-system interface study.
+document.querySelectorAll('.space-screen').forEach((screen) => {
+  const buttons = Array.from(screen.querySelectorAll('[data-planet]'));
+  const focus = screen.querySelector('.space-focus');
+  const title = focus?.querySelector('h3');
+  const index = focus?.querySelector('small');
+  const detail = focus?.querySelector('span');
+  if (!buttons.length || !focus || !title || !index || !detail) return;
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      buttons.forEach((planet) => {
+        const selected = planet === button;
+        planet.classList.toggle('active', selected);
+        planet.setAttribute('aria-pressed', String(selected));
+      });
+      screen.dataset.selectedPlanet = button.dataset.planet;
+      title.textContent = button.dataset.planet;
+      index.textContent = `PLANET / ${button.dataset.planetOrder}`;
+      detail.textContent = button.dataset.planetDescription;
+    });
+  });
+});
