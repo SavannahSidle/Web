@@ -251,26 +251,26 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   addEllipsoid(-.15, -.01, 0, .8, .39, .37, body, 10, 14);
   addEllipsoid(-.69, -.04, 0, .42, .37, .39, flank, 8, 12);
   addEllipsoid(.34, .02, 0, .4, .31, .34, flank, 8, 12);
-  addTube([-.93, -.02, 0], [-2.82, -.31, 0], .28, .025, dark, 10);
-  addTube([-.93, .04, 0], [-2.74, -.27, 0], .19, .015, feather, 9);
+  addTube([-.93, -.02, 0], [-3.12, -.31, 0], .28, .025, dark, 10);
+  addTube([-.93, .04, 0], [-3.02, -.27, 0], .19, .015, feather, 9);
   // A lifted, articulated neck gives the silhouette the alert, upright raptor profile.
-  addTube([.28, .13, 0], [.48, .48, 0], .23, .19, body, 10);
-  addTube([.48, .48, 0], [.66, .81, 0], .19, .15, body, 10);
-  addTube([.31, -.02, 0], [.54, .58, 0], .105, .075, flank, 8);
-  addEllipsoid(.76, .93, 0, .3, .19, .23, flank, 9, 14);
+  addTube([.18, .13, 0], [.31, .48, 0], .23, .19, body, 10);
+  addTube([.31, .48, 0], [.46, .81, 0], .19, .15, body, 10);
+  addTube([.21, -.02, 0], [.37, .58, 0], .105, .075, flank, 8);
+  addEllipsoid(.57, .93, 0, .32, .21, .24, flank, 9, 14);
   // Long, tapered muzzle with a distinct lower jaw and restrained teeth.
-  addTube([.89, .98, 0], [1.42, .94, 0], .14, .065, body, 10);
-  addTube([.89, .84, 0], [1.36, .85, 0], .075, .035, dark, 9);
-  addTube([.88, .9, 0], [1.36, .9, 0], .025, .018, dark, 7);
+  addTube([.69, .98, 0], [1.08, .94, 0], .15, .09, body, 10);
+  addTube([.69, .84, 0], [1.03, .85, 0], .075, .045, dark, 9);
+  addTube([.68, .9, 0], [1.04, .9, 0], .025, .018, dark, 7);
   for (let tooth = 0; tooth < 5; tooth++) {
-    const tx = .96 + tooth * .067;
+    const tx = .76 + tooth * .052;
     addTube([tx, .905, .12], [tx + .018, .865, .12], .012, .001, bone, 5);
     addTube([tx, .905, -.12], [tx + .018, .865, -.12], .012, .001, bone, 5);
   }
   [-1, 1].forEach(side => {
-    addTube([.68, 1.065, side * .19], [.91, 1.075, side * .18], .035, .018, dark, 7);
-    addEllipsoid(.83, 1.015, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
-    addEllipsoid(.845, 1.016, side * .228, .018, .02, .011, '#17221f', 5, 7);
+    addTube([.48, 1.065, side * .19], [.71, 1.075, side * .18], .035, .018, dark, 7);
+    addEllipsoid(.63, 1.015, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
+    addEllipsoid(.645, 1.016, side * .228, .018, .02, .011, '#17221f', 5, 7);
   });
   // Two feathered forelimbs with hooked claws.
   [-.24, .24].forEach((z, i) => {
@@ -335,8 +335,8 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       );
     }
   });
-  addEllipsoid(1.61, .99, .045, .018, .01, .012, '#53644e', 5, 6);
-  addEllipsoid(1.61, .99, -.045, .018, .01, .012, '#53644e', 5, 6);
+  addEllipsoid(1.12, .99, .045, .018, .01, .012, '#53644e', 5, 6);
+  addEllipsoid(1.12, .99, -.045, .018, .01, .012, '#53644e', 5, 6);
   let yaw = -.3, pitch = .08, zoom = 1, drag = null, width = 0, height = 0;
   const resize = () => {
     const rect = stage.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
