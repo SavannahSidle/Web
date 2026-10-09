@@ -2176,3 +2176,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies .raptor-viewport{user-select:none;-webkit-user-select:none;touch-action:none;cursor:grab}
 .design-studies .raptor-viewport:active{cursor:grabbing}
 .design-studies .raptor-canvas{pointer-events:none}
+
+/* Keep menu labels and prices inside the dark text column, clear of the dish photo. */
+.design-studies[data-mode] .study-food .food-menu{left:6%;width:48%;max-width:48%}
+.design-studies[data-mode] .study-food .food-menu li{grid-template-columns:minmax(0,1fr) max-content}
+.design-studies[data-mode] .study-food .food-menu li i{justify-self:start;margin:0;padding-left:5px}
