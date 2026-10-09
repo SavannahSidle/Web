@@ -440,3 +440,68 @@ document.querySelectorAll('.space-screen').forEach((screen) => {
     });
   });
 });
+
+
+// Interactive 3D architectural study: mouse/touch drag, keyboard rotation and lighting.
+document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
+  const model = screen.querySelector('[data-spatial-model]');
+  if (!model) return;
+  let yaw = -28;
+  let pitch = 15;
+  const paint = () => {
+    model.style.setProperty('--spatial-yaw', `${yaw}deg`);
+    model.style.setProperty('--spatial-pitch', `${pitch}deg`);
+  };
+  let pointer = null;
+  model.addEventListener('pointerdown', (event) => {
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+    event.stopPropagation();
+    pointer = {x:event.clientX,y:event.clientY,yaw,pitch};
+    model.dataset.dragging = 'true';
+    model.setPointerCapture?.(event.pointerId);
+  });
+  model.addEventListener('pointermove', (event) => {
+    if (!pointer) return;
+    event.stopPropagation();
+    yaw = pointer.yaw + (event.clientX - pointer.x) * .72;
+    pitch = Math.max(-22, Math.min(42, pointer.pitch + (event.clientY - pointer.y) * -.48));
+    paint();
+  });
+  const finish = (event) => {
+    if (event) event.stopPropagation();
+    pointer = null;
+    delete model.dataset.dragging;
+  };
+  model.addEventListener('pointerup', finish);
+  model.addEventListener('pointercancel', finish);
+  model.addEventListener('lostpointercapture', finish);
+  model.addEventListener('keydown', (event) => {
+    const step = event.shiftKey ? 18 : 10;
+    if (event.key === 'ArrowLeft') yaw -= step;
+    else if (event.key === 'ArrowRight') yaw += step;
+    else if (event.key === 'ArrowUp') pitch = Math.max(-22, pitch - 8);
+    else if (event.key === 'ArrowDown') pitch = Math.min(42, pitch + 8);
+    else return;
+    event.preventDefault();
+    event.stopPropagation();
+    paint();
+  });
+  screen.querySelectorAll('[data-spatial-action]').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (button.dataset.spatialAction === 'reset') {
+        yaw = -28;
+        pitch = 15;
+        paint();
+        model.focus({preventScroll:true});
+      } else if (button.dataset.spatialAction === 'light') {
+        const cool = screen.dataset.light !== 'cool';
+        screen.dataset.light = cool ? 'cool' : 'warm';
+        button.setAttribute('aria-pressed', String(cool));
+        button.textContent = cool ? 'COOL LIGHT' : 'WARM LIGHT';
+        button.setAttribute('aria-label', cool ? 'Switch to warm model lighting' : 'Switch to cool model lighting');
+      }
+    });
+  });
+});
