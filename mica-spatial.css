@@ -2413,14 +2413,38 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 
 /* Grid correction: keep the community filter in the left column below its title. */
+.design-studies[data-mode] .study-information .information-screen h3{
+  left:7%!important;top:19%!important;width:35%!important;max-width:10ch!important;
+  font-size:clamp(1rem,2vw,1.55rem);line-height:.94
+}
 .design-studies[data-mode] .study-information .info-filter{
-  position:absolute!important;left:7%!important;right:auto!important;top:73%!important;bottom:auto!important;
-  width:31%!important;display:grid!important;grid-template-columns:1fr!important;gap:3px!important;
-  font-size:clamp(6px,1.7cqi,8px);line-height:1.15
+  position:absolute!important;left:7%!important;right:auto!important;top:56%!important;bottom:auto!important;
+  width:30%!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:4px!important;
+  z-index:3;font-size:clamp(7px,1.8cqi,9px);line-height:1.2
 }
 .design-studies[data-mode] .study-information .info-filter b{
-  min-width:0;white-space:normal;padding:4px 5px;line-height:1.15
+  min-width:0;white-space:normal;padding:5px 6px;line-height:1.15
 }
 .design-studies[data-mode] .study-information .info-results{
-  left:46%!important;right:6%!important;top:17%!important;bottom:10%!important
+  position:absolute!important;left:42%!important;right:6%!important;top:15%!important;bottom:11%!important;
+  display:flex!important;flex-direction:column;gap:4px;overflow-y:auto!important;
+  overscroll-behavior:contain;scrollbar-width:thin
+}
+.design-studies[data-mode] .study-information .info-results div{
+  flex:0 0 auto;min-height:29px;padding:5px 21px 5px 7px;line-height:1.15
+}
+.design-studies[data-mode] .study-information .information-screen>small{
+  left:42%!important;right:6%!important;bottom:3%!important;text-align:right;font-size:6px
+}
+.design-studies[data-mode] .study-editorial .editorial-screen h3{
+  top:5%;right:5%;width:66%;max-width:66%;font-size:clamp(34px,10.2cqi,52px);line-height:.76
+}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em{
+  display:inline-flex;gap:.035em;letter-spacing:-.055em
+}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em span{
+  font-size:inherit!important;line-height:inherit;letter-spacing:inherit;animation-duration:1.8s
+}
+@media(prefers-reduced-motion:reduce){
+  .design-studies .study-editorial .editorial-screen h3 em span{animation:none!important}
 }
