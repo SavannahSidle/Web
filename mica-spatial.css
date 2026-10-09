@@ -1973,9 +1973,9 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies .study-culture .culture-burst-one{right:10%;bottom:10%;animation-delay:1.2s}
 .design-studies .study-culture .culture-burst-two{right:23%;bottom:21%;width:19px;height:19px;animation-delay:5.3s}
 @keyframes culture-burst{0%,78%,100%{opacity:0;transform:scale(.35)}82%{opacity:.58}96%{opacity:0;transform:scale(1.6)}}
-.design-studies .study-culture .falling-d{position:relative;display:inline-block;transform-origin:50% 70%;animation:ground-d 11s ease-in-out infinite}
+.design-studies .study-culture .falling-d{position:relative;display:inline-block;transform-origin:14% 78%;animation:ground-d 11s cubic-bezier(.32,.08,.3,1) infinite}
 .design-studies .study-culture .falling-d::after{content:"";position:absolute;left:33%;top:19%;width:2px;height:2px;border-radius:50%;background:#251a3b;opacity:0;box-shadow:5px 0 #251a3b}
-@keyframes ground-d{0%,77%,100%{transform:translate(0,0) rotate(0)}81%{transform:translate(3px,5px) rotate(34deg)}85%{transform:translate(10px,19px) rotate(105deg)}88%{transform:translate(11px,20px) rotate(180deg)}92%{transform:translate(0,0) rotate(360deg)}}
+@keyframes ground-d{0%,74%,100%{transform:translate(0,0) rotate(0)}77%{transform:translate(-2px,-5px) rotate(-12deg)}80%{transform:translate(1px,-8px) rotate(-24deg)}84%{transform:translate(10px,12px) rotate(58deg)}88%{transform:translate(25px,48px) rotate(172deg)}90%{transform:translate(29px,57px) rotate(255deg)}92%{transform:translate(27px,49px) rotate(285deg)}94%{transform:translate(30px,58px) rotate(270deg)}96%{transform:translate(30px,53px) rotate(270deg)}98%{transform:translate(30px,57px) rotate(270deg)}}
 @keyframes ground-dots{0%,86%,100%{opacity:0}88%,91%{opacity:1}}
 .design-studies .study-culture .falling-d::after{animation:ground-dots 11s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){
@@ -2644,3 +2644,23 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 
 /* Slow orbital/mesh motion through the hero keeps the MICA atmosphere alive. */
+
+/* Final advisory polish: keep the two studies calm, aligned, and readable at card size. */
+.design-studies[data-mode] .study-professional .professional-main{align-items:stretch;gap:clamp(5px,1.15cqw,10px)}
+.design-studies[data-mode] .study-professional .professional-main h3{max-width:13ch;line-height:1.02}
+.design-studies[data-mode] .study-professional .professional-main p{max-width:27ch;line-height:1.35}
+.design-studies[data-mode] .study-professional .professional-links{align-items:stretch;gap:clamp(4px,1cqw,9px);margin-top:clamp(5px,1cqw,9px)}
+.design-studies[data-mode] .study-professional .professional-links span{display:flex;align-items:center;justify-content:space-between;min-height:30px;padding:6px 7px;background:rgba(255,255,255,.34);border:1px solid rgba(35,50,55,.16);border-radius:2px}
+.design-studies[data-mode] .study-professional .professional-main>b{align-self:flex-start;margin-top:auto;padding:7px 10px;letter-spacing:.02em}
+.design-studies[data-mode] .study-minimal .practice-top{display:flex;align-items:center;gap:10px;line-height:1.35}
+.design-studies[data-mode] .study-minimal .practice-top span:last-child{text-align:right;color:#314f55}
+.design-studies[data-mode] .study-minimal .practice-spine{opacity:.72}
+.design-studies[data-mode] .study-minimal .practice-copy{max-width:72%;gap:8px}
+.design-studies[data-mode] .study-minimal .practice-copy strong{max-width:8ch;line-height:.98}
+.design-studies[data-mode] .study-minimal .practice-footer{display:flex;align-items:center;gap:7px}
+.design-studies[data-mode] .study-minimal .practice-footer i{width:clamp(12px,4cqw,22px);opacity:.82}
+@media(max-width:720px){
+ .design-studies[data-mode] .study-professional .professional-screen{grid-template-columns:minmax(0,.66fr) minmax(0,1.34fr);gap:5%}
+ .design-studies[data-mode] .study-professional .professional-links span{padding-inline:5px}
+ .design-studies[data-mode] .study-minimal .practice-copy{max-width:70%}
+}
