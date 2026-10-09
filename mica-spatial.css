@@ -2604,13 +2604,13 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-culture .falling-d{transform-origin:0 52%;animation:ground-d-land 8.6s cubic-bezier(.33,.02,.28,1) infinite}
 @keyframes ground-d-land{
   0%,61%,100%{opacity:1;transform:translate(0,0) rotate(0)}
-  66%{opacity:1;transform:translate(-3px,-8px) rotate(-9deg)}
-  72%{opacity:1;transform:translate(-9px,-3px) rotate(-31deg)}
-  79%{opacity:1;transform:translate(-15px,27px) rotate(-69deg)}
-  84%{opacity:1;transform:translate(-17px,71px) rotate(-89deg)}
-  87%{opacity:1;transform:translate(-17px,83px) rotate(-78deg)}
-  90%,94%{opacity:1;transform:translate(-17px,75px) rotate(-87deg)}
-  97%{opacity:1;transform:translate(-17px,83px) rotate(-89deg)}
+  66%{opacity:1;transform:translate(2px,-8px) rotate(9deg)}
+  72%{opacity:1;transform:translate(7px,-3px) rotate(31deg)}
+  79%{opacity:1;transform:translate(15px,27px) rotate(69deg)}
+  84%{opacity:1;transform:translate(20px,71px) rotate(89deg)}
+  87%{opacity:1;transform:translate(22px,83px) rotate(101deg)}
+  90%,94%{opacity:1;transform:translate(23px,75px) rotate(92deg)}
+  97%{opacity:1;transform:translate(23px,83px) rotate(89deg)}
 }
 @media(prefers-reduced-motion:reduce){.design-studies .study-culture .falling-d{animation:none!important}}
 
