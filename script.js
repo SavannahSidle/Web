@@ -505,3 +505,30 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
     });
   });
 });
+
+
+// Randomly illuminate a few neural nodes at a time, with reduced-motion support.
+document.querySelectorAll('.study-neural').forEach((study) => {
+  const nodes = Array.from(study.querySelectorAll('.neural-nodes circle'));
+  if (nodes.length < 3 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let visible = !('IntersectionObserver' in window);
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      visible = Boolean(entries[0]?.isIntersecting);
+    }, { threshold: 0.08 });
+    observer.observe(study);
+  }
+  const lightRandomNodes = () => {
+    if (document.hidden || !visible) return;
+    nodes.forEach((node) => node.classList.remove('is-lit'));
+    const pool = nodes.slice();
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+    const count = 2 + Math.floor(Math.random() * 2);
+    pool.slice(0, count).forEach((node) => node.classList.add('is-lit'));
+  };
+  lightRandomNodes();
+  window.setInterval(lightRandomNodes, 950);
+});
