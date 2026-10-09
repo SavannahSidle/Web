@@ -2067,3 +2067,40 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .home .poster-hero .hero-starfield,.home .brand-mark,
   .design-studies .study-editorial .editorial-screen h3 em{animation:none!important}
 }
+
+
+/* The mental-health study uses a clear two-column composition at every preview size. */
+.design-studies[data-mode] .study-care .care-screen{
+  display:block!important;
+  position:relative;
+  overflow:hidden;
+}
+.design-studies[data-mode] .study-care .care-top{
+  position:absolute;left:8%;right:8%;top:7%;z-index:2;
+}
+.design-studies[data-mode] .study-care .care-screen h3{
+  position:absolute;left:8%;top:34%;width:43%;max-width:43%;
+  margin:0;font-size:clamp(1.05rem,3.8cqw,1.5rem);line-height:1.02;
+}
+.design-studies[data-mode] .study-care .care-screen>small{
+  position:absolute;left:8%;right:auto;bottom:9%;width:42%;
+  font-size:clamp(7px,1.8cqw,9px);line-height:1.25;
+}
+.design-studies[data-mode] .study-care .care-options{
+  position:absolute;left:auto;right:7%;top:52%;width:43%;
+  display:grid;grid-template-columns:minmax(0,1fr);gap:5px;
+  margin:0;padding:0;transform:none;
+}
+.design-studies[data-mode] .study-care .care-options-label{
+  display:block;width:100%;margin:0 0 2px;text-align:center;
+  font-size:clamp(6px,1.45cqw,8px);line-height:1.15;
+}
+.design-studies[data-mode] .study-care .care-options b,
+.design-studies[data-mode] .study-care .care-options b:first-child{
+  display:block;min-height:0;padding:5px 7px;
+  border:1px solid rgba(112,82,64,.22);border-radius:6px;
+  background:rgba(255,250,241,.78);
+  font-size:clamp(7px,1.8cqw,10px);line-height:1.15;
+  white-space:nowrap;
+}
+.design-studies[data-mode] .study-care .care-screen::after{display:none}
