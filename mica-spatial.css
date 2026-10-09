@@ -2413,13 +2413,20 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 
 /* Grid correction: keep the community filter in the left column below its title. */
+.design-studies[data-mode] .study-information .information-screen{
+  display:block!important;position:relative!important;padding:0!important;
+  grid-template-columns:none!important;grid-template-rows:none!important;gap:0!important
+}
+.design-studies[data-mode] .study-information .information-screen header{
+  position:absolute!important;left:7%!important;right:7%!important;top:7%!important;
+  display:flex!important;justify-content:space-between
+}
 .design-studies[data-mode] .study-information .information-screen h3{
-  left:7%!important;top:19%!important;width:35%!important;max-width:10ch!important;
+  position:absolute!important;left:7%!important;top:19%!important;width:35%!important;max-width:10ch!important;
   font-size:clamp(1rem,2vw,1.55rem);line-height:.94
 }
 .design-studies[data-mode] .study-information .info-filter{
-  position:absolute!important;grid-area:1 / 1 / -1 / -1!important;align-self:start!important;justify-self:stretch!important;
-  left:7%!important;right:auto!important;top:56%!important;bottom:auto!important;
+  position:absolute!important;left:7%!important;right:auto!important;top:64%!important;bottom:auto!important;
   width:30%!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:4px!important;
   z-index:3;font-size:clamp(7px,1.8cqi,9px);line-height:1.2
 }
@@ -2427,8 +2434,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   min-width:0;white-space:normal;padding:5px 6px;line-height:1.15
 }
 .design-studies[data-mode] .study-information .info-results{
-  position:absolute!important;grid-area:1 / 1 / -1 / -1!important;align-self:start!important;justify-self:stretch!important;
-  left:42%!important;right:6%!important;top:15%!important;bottom:11%!important;
+  position:absolute!important;left:42%!important;right:6%!important;top:15%!important;bottom:11%!important;
   display:flex!important;flex-direction:column;gap:4px;overflow-y:auto!important;
   overscroll-behavior:contain;scrollbar-width:thin
 }
@@ -2436,7 +2442,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   flex:0 0 auto;min-height:29px;padding:5px 21px 5px 7px;line-height:1.15
 }
 .design-studies[data-mode] .study-information .information-screen>small{
-  left:42%!important;right:6%!important;bottom:3%!important;text-align:right;font-size:6px
+  position:absolute!important;left:42%!important;right:6%!important;bottom:3%!important;text-align:right;font-size:6px
 }
 .design-studies[data-mode] .study-editorial .editorial-screen h3{
   top:5%;right:5%;width:66%;max-width:66%;font-size:clamp(34px,10.2cqi,52px);line-height:.76
