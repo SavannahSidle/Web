@@ -247,7 +247,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       addTriangle(a, b, c, color); addTriangle(b, d, c, color);
     }
   };
-  const body = '#8b9b71', flank = '#a7a37a', dark = '#5c705b', feather = '#c4b98e', bone = '#d8c9a6';
+  const body = '#9daf7d', flank = '#b8b28a', dark = '#708567', feather = '#c9c49a', bone = '#e1d4b1';
   addEllipsoid(-.15, -.01, 0, .8, .39, .37, body, 10, 14);
   addEllipsoid(-.69, -.04, 0, .42, .37, .39, flank, 8, 12);
   addEllipsoid(.34, .02, 0, .4, .31, .34, flank, 8, 12);
@@ -269,8 +269,8 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   // Fine, muted dorsal scutes add surface detail without changing the silhouette.
   for (let i = 0; i < 8; i++) {
     const x = -.72 + i * .17;
-    const y = .3 + .045 * Math.sin((i / 7) * Math.PI);
-    addEllipsoid(x, y, 0, .065, .038, .12, i % 2 ? '#a0a982' : '#687a5f', 4, 7);
+    const y = -.01 + .39 * Math.sqrt(Math.max(0, 1 - Math.pow((x + .15) / .8, 2))) + .018;
+    addEllipsoid(x, y, 0, .068, .055, .115, i % 2 ? '#b4bd91' : '#788b68', 5, 8);
   }
   addTube([.86, .58, 0], [1.42, .52, 0], .14, .045, body, 9);
   addTube([.86, .42, 0], [1.25, .36, 0], .09, .045, dark, 8);
@@ -336,10 +336,18 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       const facing = [normal[0]/norm, normal[1]/norm, normal[2]/norm];
       const key = Math.max(0, facing[0]*-.28 + facing[1]*-.78 + facing[2]*.38);
       const rim = Math.max(0, facing[2]) * .14;
-      const shade = Math.min(1.18, .48 + key*.66 + rim);
+      const specular = Math.pow(key, 9) * 26;
+      const shade = Math.min(1.24, .64 + key*.54 + rim);
       const value = parseInt(face.color.slice(1),16), r = (value>>16)&255, g=(value>>8)&255, bl=value&255;
-      const warmth = Math.max(0, key-.42);
-      return {a,b,c,z:(a.z+b.z+c.z)/3,color:`rgb(${Math.min(255,Math.round(r*shade+warmth*5))},${Math.min(255,Math.round(g*shade+warmth*8))},${Math.min(255,Math.round(bl*shade))})`};
+      const warmth = Math.max(0, key-.42) * 7;
+      const channels = [r,g,bl];
+      const colorAt = factor => `rgb(${channels.map((channel,index)=>Math.min(255,Math.round(channel*factor + (index===0?specular+warmth:index===1?specular*.96+warmth:specular*.78)))).join(',')})`;
+      const y0 = Math.min(a.y,b.y,c.y), y1 = Math.max(a.y,b.y,c.y);
+      const gradient = ctx.createLinearGradient((a.x+b.x+c.x)/3, y0, (a.x+b.x+c.x)/3, Math.max(y0+1,y1));
+      gradient.addColorStop(0, colorAt(Math.min(1.45, shade+.24)));
+      gradient.addColorStop(.48, colorAt(shade));
+      gradient.addColorStop(1, colorAt(Math.max(.35, shade-.34)));
+      return {a,b,c,z:(a.z+b.z+c.z)/3,color:gradient};
     }).sort((a,b)=>a.z-b.z);
     rendered.forEach(face => {ctx.beginPath();ctx.moveTo(face.a.x,face.a.y);ctx.lineTo(face.b.x,face.b.y);ctx.lineTo(face.c.x,face.c.y);ctx.closePath();ctx.fillStyle=face.color;ctx.fill();ctx.strokeStyle='rgba(17,29,26,.055)';ctx.lineWidth=.45;ctx.stroke();});
     ctx.restore();
