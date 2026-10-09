@@ -253,11 +253,25 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   addEllipsoid(.34, .02, 0, .4, .31, .34, flank, 8, 12);
   addTube([-.93, -.02, 0], [-2.33, -.23, 0], .28, .035, dark, 10);
   addTube([-.93, .04, 0], [-2.28, -.18, 0], .19, .018, feather, 9);
-  addTube([.44, .16, 0], [.67, .91, 0], .2, .13, body, 9);
-  addTube([.44, .03, 0], [.65, .72, 0], .105, .09, flank, 8);
-  addEllipsoid(.76, .91, 0, .29, .19, .2, flank, 8, 12);
-  addTube([.82, .95, 0], [1.62, .89, 0], .13, .035, body, 9);
-  addTube([.82, .80, 0], [1.52, .75, 0], .075, .025, dark, 8);
+  // A lifted, articulated neck gives the silhouette the alert, upright raptor profile.
+  addTube([.34, .14, 0], [.62, .52, 0], .23, .19, body, 10);
+  addTube([.62, .52, 0], [.82, .88, 0], .19, .145, body, 10);
+  addTube([.37, -.02, 0], [.72, .62, 0], .105, .075, flank, 8);
+  addEllipsoid(.91, .99, 0, .3, .18, .22, flank, 9, 14);
+  // Long, tapered muzzle with a distinct lower jaw and restrained teeth.
+  addTube([1.04, 1.04, 0], [1.62, .99, 0], .13, .035, body, 10);
+  addTube([1.04, .88, 0], [1.5, .89, 0], .075, .025, dark, 9);
+  addTube([1.02, .93, 0], [1.49, .93, 0], .025, .012, dark, 7);
+  for (let tooth = 0; tooth < 5; tooth++) {
+    const tx = 1.11 + tooth * .075;
+    addTube([tx, .935, .12], [tx + .018, .895, .12], .012, .001, bone, 5);
+    addTube([tx, .935, -.12], [tx + .018, .895, -.12], .012, .001, bone, 5);
+  }
+  [-1, 1].forEach(side => {
+    addTube([.84, 1.115, side * .19], [1.08, 1.125, side * .18], .035, .018, dark, 7);
+    addEllipsoid(.99, 1.065, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
+    addEllipsoid(1.005, 1.066, side * .228, .018, .02, .011, '#17221f', 5, 7);
+  });
   // Two feathered forelimbs with hooked claws.
   [-.24, .24].forEach((z, i) => {
     addEllipsoid(.46, .08, z, .16, .18, .14, i ? body : dark, 6, 9);
@@ -284,12 +298,8 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     // small feather vanes along the thigh
     for (let f = 0; f < 4; f++) addTube([-.64 + f * .1, -.05 - f * .03, dz + .12], [-.78 + f * .1, -.2 - f * .035, dz + .18], .045, .004, feather, 5);
   });
-  addEllipsoid(.98, 1.0, .17, .035, .035, .025, '#e3c36d', 5, 8);
-  addEllipsoid(.98, 1.0, -.17, .035, .035, .025, '#e3c36d', 5, 8);
-  addEllipsoid(1.005, 1.005, .195, .012, .013, .008, '#17221f', 5, 6);
-  addEllipsoid(1.005, 1.005, -.195, .012, .013, .008, '#17221f', 5, 6);
-  addEllipsoid(1.59, .89, .045, .018, .01, .012, '#53644e', 5, 6);
-  addEllipsoid(1.59, .89, -.045, .018, .01, .012, '#53644e', 5, 6);
+  addEllipsoid(1.61, .99, .045, .018, .01, .012, '#53644e', 5, 6);
+  addEllipsoid(1.61, .99, -.045, .018, .01, .012, '#53644e', 5, 6);
   let yaw = -.3, pitch = .08, zoom = 1, drag = null, width = 0, height = 0;
   const resize = () => {
     const rect = stage.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
