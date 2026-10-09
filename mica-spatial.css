@@ -1999,3 +1999,76 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+6){animation:neural-node-breathe 5.6s ease-in-out infinite 1.4s}
 @keyframes neural-node-breathe{0%,72%,100%{fill:#172c39;filter:none}78%,89%{fill:#9af2db;filter:drop-shadow(0 0 5px rgba(130,243,206,.9))}}
 @media(prefers-reduced-motion:reduce){.design-studies .study-neural .neural-nodes circle{animation:none!important}}
+
+
+/* Focused checklist refinements: visible but quiet depth, clearer study labels, and restrained motion. */
+.home .poster-hero .hero-starfield{opacity:.56}
+.home .poster-hero .hero-starfield::before{animation-duration:74s}
+.home .poster-hero .hero-starfield::after{animation-duration:116s}
+.home .brand-mark{animation:mica-mark-drift 7s ease-in-out infinite}
+@keyframes mica-mark-drift{
+  0%,100%{transform:translateY(0);box-shadow:0 0 25px rgba(105,162,231,.22)}
+  50%{transform:translateY(-2px);box-shadow:0 0 36px rgba(105,162,231,.38)}
+}
+
+/* Give the grid previews enough elevation to read as crafted interfaces. */
+.design-studies[data-mode="grid"] .study-screen{
+  filter:drop-shadow(0 15px 19px rgba(0,4,12,.34)) drop-shadow(0 2px 3px rgba(123,174,215,.1));
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+  .design-studies[data-mode="grid"] .study:hover .study-screen{
+    transform:translateY(-4px);
+    box-shadow:0 22px 54px rgba(0,0,0,.38);
+  }
+}
+
+/* Map label sits on the pale route panel. */
+.design-studies .study-local .local-nav span:last-child{
+  color:#102a32;
+  border-color:rgba(16,42,50,.42);
+}
+
+/* Keep menu prices within the text column, away from the food image. */
+.design-studies .study-food .food-menu li i{
+  justify-self:start;
+  transform:translateX(-8px);
+}
+
+/* A restrained inset keyline distinguishes the local-business study. */
+.design-studies .study-local-mini .study-screen{
+  box-shadow:inset 0 0 0 7px #ffdc4f,inset 0 0 0 8px rgba(20,20,16,.42),0 18px 48px rgba(0,0,0,.23);
+}
+
+/* The mental-health options form one centered group with its label directly above. */
+.design-studies[data-mode] .study-care .care-options{
+  left:auto;
+  right:7%;
+  top:49%;
+  width:39%;
+  transform:none;
+}
+.design-studies[data-mode] .study-care .care-options-label{
+  width:100%;
+  text-align:center;
+}
+.design-studies[data-mode] .study-care .care-screen::after{display:none}
+
+/* A small stagger makes the editorial word feel alive without becoming a bounce effect. */
+.design-studies .study-editorial .ideas-bounce{white-space:nowrap}
+.design-studies .study-editorial .ideas-bounce span{
+  display:inline-block;
+  animation:ideas-float 4.2s ease-in-out infinite;
+}
+.design-studies .study-editorial .ideas-bounce span:nth-child(2){animation-delay:.08s}
+.design-studies .study-editorial .ideas-bounce span:nth-child(3){animation-delay:.16s}
+.design-studies .study-editorial .ideas-bounce span:nth-child(4){animation-delay:.24s}
+.design-studies .study-editorial .ideas-bounce span:nth-child(5){animation-delay:.32s}
+@keyframes ideas-float{
+  0%,78%,100%{transform:translateY(0)}
+  86%{transform:translateY(-2px)}
+  92%{transform:translateY(0)}
+}
+@media(prefers-reduced-motion:reduce){
+  .home .poster-hero .hero-starfield,.home .brand-mark,
+  .design-studies .study-editorial .ideas-bounce span{animation:none!important}
+}
