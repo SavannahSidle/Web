@@ -532,3 +532,104 @@ document.querySelectorAll('.study-neural').forEach((study) => {
   lightRandomNodes();
   window.setInterval(lightRandomNodes, 950);
 });
+
+
+// Room planner controls: add an adjoining room and compact furniture pieces.
+document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
+  const furniture = screen.querySelector('[data-room-furniture]');
+  const roomStatus = screen.querySelector('[data-room-status]');
+  const roomLabel = screen.querySelector('[data-room-label]');
+  if (!furniture) return;
+  screen.querySelectorAll('[data-room-action]').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const action = button.dataset.roomAction;
+      if (action === 'room') {
+        const added = screen.dataset.roomAdded !== 'true';
+        screen.dataset.roomAdded = String(added);
+        button.setAttribute('aria-pressed', String(added));
+        roomLabel.textContent = added ? 'ROOM 01 + 02' : 'ROOM 01';
+        if (roomStatus) roomStatus.textContent = added ? 'A second connected room was added.' : 'Showing one room.';
+        return;
+      }
+      const pieces = Array.from(furniture.querySelectorAll(`.room-${action}`));
+      if (pieces.length >= 3) {
+        if (roomStatus) roomStatus.textContent = `Three ${action}s are already in the room.`;
+        return;
+      }
+      const piece = document.createElement('div');
+      piece.className = `room-${action}`;
+      piece.setAttribute('aria-hidden', 'true');
+      furniture.append(piece);
+      if (roomStatus) roomStatus.textContent = `${action === 'chair' ? 'Chair' : 'Couch'} added to the room.`;
+    });
+  });
+});
+
+// Playable word slots support mouse/touch drag and a keyboard-friendly select/place flow.
+document.querySelectorAll('.learning-screen').forEach((screen) => {
+  const slots = Array.from(screen.querySelectorAll('[data-word-slot]'));
+  const tiles = Array.from(screen.querySelectorAll('[data-letter-tile]'));
+  const status = screen.querySelector('[data-learning-status]');
+  let selectedLetter = '';
+  if (!slots.length || !tiles.length) return;
+  const selectTile = (tile) => {
+    selectedLetter = tile?.dataset.letterTile || '';
+    tiles.forEach((candidate) => candidate.dataset.selected = String(candidate === tile));
+    if (status && selectedLetter) status.textContent = `Letter ${selectedLetter} selected. Choose the last slot.`;
+  };
+  const place = (slot, letter) => {
+    if (!slot || !letter) return;
+    slot.textContent = letter;
+    slot.dataset.filled = 'true';
+    slot.setAttribute('aria-label', `Last letter, ${letter}`);
+    selectedLetter = '';
+    tiles.forEach((tile) => tile.dataset.selected = 'false');
+    const word = slots.map((item) => item.textContent.trim()).join('').toLowerCase();
+    if (status) status.textContent = ['cat','cap'].includes(word) ? `You made ${word}!` : `Current word: ${word}`;
+  };
+  tiles.forEach((tile) => {
+    tile.addEventListener('click', (event) => { event.stopPropagation(); selectTile(tile); });
+    tile.addEventListener('dragstart', (event) => {
+      event.dataTransfer?.setData('text/plain', tile.dataset.letterTile);
+      if (event.dataTransfer) event.dataTransfer.effectAllowed = 'copy';
+      selectTile(tile);
+    });
+  });
+  slots.forEach((slot) => {
+    slot.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (selectedLetter) place(slot, selectedLetter);
+      else if (slot.dataset.filled === 'true') {
+        slot.textContent = '_';slot.dataset.filled = 'false';
+        slot.setAttribute('aria-label', 'Last letter, empty');
+        if (status) status.textContent = 'Last letter cleared. Choose t or p.';
+      }
+    });
+    slot.addEventListener('dragover', (event) => event.preventDefault());
+    slot.addEventListener('drop', (event) => {
+      event.preventDefault();event.stopPropagation();
+      place(slot, event.dataTransfer?.getData('text/plain') || selectedLetter);
+    });
+  });
+  screen.querySelector('[data-learning-reset]')?.addEventListener('click', (event) => {
+    event.preventDefault();event.stopPropagation();
+    slots.slice(2).forEach((slot) => {
+      slot.textContent = '_';slot.dataset.filled = 'false';
+      slot.setAttribute('aria-label', 'Last letter, empty');
+    });
+    selectedLetter = '';
+    tiles.forEach((tile) => tile.dataset.selected = 'false');
+    if (status) status.textContent = 'The final letter was cleared.';
+  });
+});
+
+// Run orbit and star motion only while the solar-system study is on screen.
+const orbitalScreens = document.querySelectorAll('.study-space .space-screen');
+if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window) {
+  const orbitalObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => entry.target.dataset.orbitVisible = String(entry.isIntersecting));
+  }, { threshold: 0.08 });
+  orbitalScreens.forEach((screen) => orbitalObserver.observe(screen));
+}

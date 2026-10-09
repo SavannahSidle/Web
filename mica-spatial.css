@@ -1702,3 +1702,232 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 
 .design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(5n){fill:#172c39;filter:none}
 .design-studies[data-mode] .study-information .info-results:focus-visible{outline:2px solid #286a62;outline-offset:2px}
+
+
+/* Focused interface-study refinements: orbit, room builder, and clean grid layouts. */
+.design-studies[data-mode] .study-space .space-screen{container-type:inline-size}
+.design-studies[data-mode] .study-space .space-screen::before{
+  animation:space-drift-a 72s linear infinite;
+  background-position:0 0,0 0,0 0,0 0,0 0;
+}
+.design-studies[data-mode] .study-space .space-screen::after{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.38;
+  background-image:radial-gradient(circle at 24% 44%,rgba(210,235,255,.92) 0 1px,transparent 1.7px),radial-gradient(circle at 67% 72%,rgba(133,211,238,.8) 0 1px,transparent 1.7px),radial-gradient(circle at 83% 25%,rgba(255,255,255,.8) 0 1px,transparent 1.7px);
+  background-size:149px 123px,187px 161px,221px 177px;
+  animation:space-drift-b 110s linear infinite;
+}
+@keyframes space-drift-a{to{background-position:180px 95px,-140px 165px,230px -120px,0 0,0 0}}
+@keyframes space-drift-b{to{background-position:-170px 130px,220px -105px,-130px 180px}}
+.design-studies[data-mode] .study-space .space-map{border:0}
+.design-studies[data-mode] .study-space .planet-orbit{
+  position:absolute;left:50%;top:50%;width:var(--orbit-width);height:var(--orbit-height);
+  border:1px solid rgba(135,197,236,.28);border-radius:50%;transform:translate(-50%,-50%);
+}
+.design-studies[data-mode] .study-space .orbit-mercury{border-color:rgba(207,190,165,.34)}
+.design-studies[data-mode] .study-space .orbit-earth{border-color:rgba(135,197,236,.45)}
+.design-studies[data-mode] .study-space .orbit-jupiter,.design-studies[data-mode] .study-space .orbit-saturn{border-color:rgba(117,170,225,.26)}
+.design-studies[data-mode] .study-space .planet-path{position:absolute;inset:0;display:block;border:0;border-radius:50%;animation:planet-orbit var(--orbit-time) linear infinite}
+.design-studies[data-mode] .study-space .space-planet{position:absolute;left:50%;top:0;display:block;width:clamp(4px,1.1cqw,8px);height:clamp(4px,1.1cqw,8px);transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 0 10px rgba(128,210,245,.55)}
+.design-studies[data-mode] .study-space .planet-mercury{background:#d6c8ac;width:4px;height:4px}
+.design-studies[data-mode] .study-space .planet-venus{background:#d7a77f;width:5px;height:5px}
+.design-studies[data-mode] .study-space .planet-earth{background:radial-gradient(circle at 35% 30%,#b9f0e4,#428ec1 72%);width:6px;height:6px}
+.design-studies[data-mode] .study-space .planet-mars{background:#d77962;width:5px;height:5px}
+.design-studies[data-mode] .study-space .planet-jupiter{background:linear-gradient(0deg,#d58c61 0 27%,#f0c294 28% 45%,#a96554 46% 70%,#edd0a7 71%);width:10px;height:10px}
+.design-studies[data-mode] .study-space .planet-saturn{background:#d9bd89;width:8px;height:8px}
+.design-studies[data-mode] .study-space .planet-saturn::after{content:"";position:absolute;left:50%;top:50%;width:170%;height:55%;border:1px solid rgba(236,211,161,.9);border-radius:50%;transform:translate(-50%,-50%) rotate(-24deg)}
+.design-studies[data-mode] .study-space .planet-uranus{background:#8ed8d7;width:7px;height:7px}
+.design-studies[data-mode] .study-space .planet-neptune{background:#7199ed;width:7px;height:7px}
+@keyframes planet-orbit{to{transform:rotate(360deg)}}
+.design-studies[data-mode] .study-space .space-focus{z-index:2}
+.design-studies[data-mode] .study-space .space-rail{z-index:2}
+@media(prefers-reduced-motion:reduce){
+ .design-studies .study-space .space-screen::before,.design-studies .study-space .space-screen::after,.design-studies .study-space .planet-path{animation:none!important}
+}
+.design-studies[data-mode] .study-system .system-head b{left:auto;right:7%;top:0}
+.design-studies[data-mode] .study-food .food-menu li i{margin-right:clamp(18px,3.4cqw,30px);transform:translateX(-5px)}
+/* Professional study gets a compact, predictable hierarchy in the grid. */
+.design-studies[data-mode] .study-professional .professional-screen{
+  display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr);grid-template-rows:1fr;
+  gap:clamp(8px,2cqw,18px);padding:8%!important;background:#f1eee5;color:#233237;
+}
+.design-studies[data-mode] .study-professional .professional-screen::before{
+  width:29%;clip-path:none;background:#d9e3da;
+}
+.design-studies[data-mode] .study-professional .professional-screen::after{display:none}
+.design-studies[data-mode] .study-professional .professional-side{
+  position:relative;inset:auto;grid-column:1;grid-row:1;width:auto;height:auto;min-width:0;
+  padding:15% 6% 12% 0;color:#233237;border-right:1px solid rgba(35,50,55,.19);
+  display:flex;flex-direction:column;justify-content:space-between;gap:10px;
+}
+.design-studies[data-mode] .study-professional .professional-side strong{font:600 clamp(8px,1.4cqw,12px)/1.15 "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
+.design-studies[data-mode] .study-professional .professional-side span{font:500 clamp(6px,1.05cqw,8px)/1.5 "IBM Plex Mono",monospace;color:#52615d}
+.design-studies[data-mode] .study-professional .professional-main{
+  position:relative;inset:auto;grid-column:2;grid-row:1;min-width:0;padding:5% 0 2%!important;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:clamp(4px,1cqw,9px);
+}
+.design-studies[data-mode] .study-professional .professional-main h3{
+  position:static;inset:auto;width:auto;margin:0;color:#233237;
+  font:400 clamp(15px,3.1cqw,25px)/.98 "DM Serif Display",Georgia,serif;letter-spacing:-.025em;overflow-wrap:normal;
+}
+.design-studies[data-mode] .study-professional .professional-main p{
+  position:static;inset:auto;width:auto;margin:0;color:#53615f;
+  font-size:clamp(7px,1.25cqw,10px);line-height:1.25;
+}
+.design-studies[data-mode] .study-professional .professional-links{
+  position:static;inset:auto;width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(3px,.8cqw,7px);margin-top:clamp(3px,.7cqw,6px);
+}
+.design-studies[data-mode] .study-professional .professional-links span{
+  min-width:0;padding:5px 2px 0;border-color:rgba(35,50,55,.24);color:#334b48;
+  font-size:clamp(6px,1.05cqw,8px);line-height:1.15;overflow-wrap:anywhere;
+}
+.design-studies[data-mode] .study-professional .professional-main>b{
+  position:static;inset:auto;margin:0;padding:5px 8px;background:#253e42;color:#f8f5ec;
+  font-size:clamp(6px,1cqw,8px);line-height:1.1;
+}
+/* Community filter is given its own lane above the scrollable results. */
+.design-studies[data-mode] .study-information .information-screen h3{left:7%;top:21%;width:37%;max-width:10ch}
+.design-studies[data-mode] .study-information .info-filter{
+  position:absolute;left:55%;right:7%;top:22%;width:auto;display:grid;grid-template-columns:1fr;gap:3px;
+  z-index:2;line-height:1.2;white-space:normal;
+}
+.design-studies[data-mode] .study-information .info-filter b{min-width:0;white-space:nowrap;padding:5px 6px}
+.design-studies[data-mode] .study-information .info-results{left:38%;right:7%;top:43%;bottom:10%}
+.design-studies[data-mode="grid"] .study-information .info-results{left:38%;right:6%;top:43%;bottom:11%}
+/* The yellow local service direction sits apart from the quiet editorial card. */
+.design-studies[data-mode] .study-local-mini .study-screen{box-shadow:inset 0 0 0 1px rgba(44,45,26,.2),0 15px 26px rgba(0,0,0,.14)}
+/* 3D room builder: draggable room plus optional room/furniture additions. */
+.design-studies[data-mode] .study-spatial .spatial-screen{
+  container-type:inline-size;background:radial-gradient(ellipse at 74% 47%,rgba(188,178,141,.14),transparent 44%),linear-gradient(138deg,#111d22,#182a2b 62%,#0b171c);color:#eee9dc;
+}
+.design-studies[data-mode] .study-spatial .spatial-screen::before{
+  opacity:.2;background-image:linear-gradient(rgba(219,228,212,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(219,228,212,.12) 1px,transparent 1px)
+}
+.design-studies[data-mode] .study-spatial .spatial-screen::after{display:none}
+.design-studies[data-mode] .study-spatial .spatial-top{z-index:4}
+.design-studies[data-mode] .study-spatial .room-controls{
+  position:absolute;z-index:4;left:6%;top:21%;width:24%;display:grid;align-content:start;gap:clamp(4px,.7cqw,7px)
+}
+.design-studies[data-mode] .study-spatial .room-controls>span{padding-top:7px;color:#aab7aa;font:600 clamp(5px,1.05cqw,7px)/1 "IBM Plex Mono",monospace;letter-spacing:.1em}
+.design-studies[data-mode] .study-spatial .room-controls button{
+  min-width:0;min-height:clamp(21px,4.6cqw,30px);padding:0 5px;border:1px solid rgba(224,224,202,.34);background:rgba(13,23,26,.82);color:#e7e8dc;
+  text-align:left;font:600 clamp(5px,1.1cqw,8px)/1 "IBM Plex Mono",monospace;letter-spacing:.07em;cursor:pointer
+}
+.design-studies[data-mode] .study-spatial .room-controls button:hover,.design-studies[data-mode] .study-spatial .room-controls button:focus-visible,.design-studies[data-mode] .study-spatial .room-controls button[aria-pressed="true"]{border-color:#c3d2a4;background:#324740;color:#fff}
+.design-studies[data-mode] .study-spatial .room-stage{
+  position:absolute;inset:20% 3% 17% 28%;perspective:820px;perspective-origin:56% 54%;overflow:visible;touch-action:pan-y
+}
+.design-studies[data-mode] .study-spatial .room-model{
+  --spatial-yaw:-29deg;--spatial-pitch:10deg;position:absolute;left:56%;top:51%;width:76%;height:83%;
+  transform:translate(-50%,-50%) rotateX(var(--spatial-pitch)) rotateY(var(--spatial-yaw));
+  transform-style:preserve-3d;transition:transform .25s ease-out;cursor:grab;outline:none;touch-action:none
+}
+.design-studies[data-mode] .study-spatial .room-model:active{cursor:grabbing}
+.design-studies[data-mode] .study-spatial .room-floor{
+  position:absolute;left:50%;top:67%;width:109%;height:76%;transform:translate(-50%,-50%) rotateX(68deg) translateZ(-18px);
+  border:1px solid rgba(229,222,196,.6);background:repeating-linear-gradient(0deg,transparent 0 13px,rgba(225,222,202,.12) 13px 14px),repeating-linear-gradient(90deg,transparent 0 13px,rgba(225,222,202,.12) 13px 14px),linear-gradient(145deg,#a5a28f,#626d66 60%,#3d514d);
+  box-shadow:0 20px 26px rgba(0,0,0,.43),inset 0 1px rgba(255,255,255,.45)
+}
+.design-studies[data-mode] .study-spatial .room-back-wall{
+  position:absolute;left:50%;top:38%;width:80%;height:62%;transform:translate(-50%,-50%) translateZ(-32px);
+  border:1px solid rgba(240,235,215,.6);background:linear-gradient(90deg,#d4c9ab,#b3b39e 55%,#89948a);box-shadow:12px 13px 0 rgba(0,0,0,.23),inset 0 1px rgba(255,255,255,.7)
+}
+.design-studies[data-mode] .study-spatial .room-side-wall{
+  position:absolute;left:88%;top:42%;width:20%;height:63%;transform:translate(-50%,-50%) rotateY(57deg) translateZ(-12px);
+  transform-origin:left center;border:1px solid rgba(240,235,215,.45);background:linear-gradient(90deg,#929c8e,#53645f);box-shadow:8px 9px 0 rgba(0,0,0,.19)
+}
+.design-studies[data-mode] .study-spatial .room-window{
+  position:absolute;z-index:1;left:49%;top:31%;width:29%;height:24%;transform:translate(-50%,-50%) translateZ(4px);
+  border:5px solid #e7ddc8;background:linear-gradient(145deg,#d6e8e6,#97b8b3 60%,#728b86);box-shadow:0 5px 12px rgba(37,49,42,.22)
+}
+.design-studies[data-mode] .study-spatial .room-window::before,.design-studies[data-mode] .study-spatial .room-window::after{content:"";position:absolute;background:rgba(238,234,219,.8)}
+.design-studies[data-mode] .study-spatial .room-window::before{left:50%;top:0;bottom:0;width:2px}.design-studies[data-mode] .study-spatial .room-window::after{top:50%;left:0;right:0;height:2px}
+.design-studies[data-mode] .study-spatial .room-rug{
+  position:absolute;left:53%;top:68%;width:53%;height:35%;transform:translate(-50%,-50%) rotateX(68deg) translateZ(8px);
+  background:repeating-linear-gradient(135deg,#7d897a 0 2px,#9aa08e 2px 4px);border:1px solid rgba(249,241,216,.48);box-shadow:0 8px 12px rgba(0,0,0,.2)
+}
+.design-studies[data-mode] .study-spatial .room-addition{display:none;position:absolute;left:8%;top:51%;width:42%;height:44%;transform:translateY(-50%) translateZ(-10px);transform-style:preserve-3d}
+.design-studies[data-mode] .study-spatial .room-addition i{position:absolute;inset:0;border:1px solid rgba(230,226,202,.55);background:linear-gradient(140deg,#928d7a,#6d796f);transform:rotateY(16deg);transform-origin:right center}
+.design-studies[data-mode] .study-spatial .room-addition b{position:absolute;left:0;right:0;bottom:0;height:20%;background:linear-gradient(#a49c85,#65695c);transform:rotateX(64deg);transform-origin:bottom}
+.design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-addition{display:block}
+.design-studies[data-mode] .study-spatial .room-furniture{position:absolute;inset:0;transform-style:preserve-3d}
+.design-studies[data-mode] .study-spatial .room-chair,.design-studies[data-mode] .study-spatial .room-couch{
+  position:absolute;z-index:3;transform-style:preserve-3d;filter:drop-shadow(5px 7px 5px rgba(0,0,0,.28))
+}
+.design-studies[data-mode] .study-spatial .room-chair{left:42%;top:63%;width:17%;height:17%}
+.design-studies[data-mode] .study-spatial .room-chair::before{content:"";position:absolute;left:12%;top:0;width:76%;height:53%;border:2px solid #e4c89b;background:linear-gradient(135deg,#ae8059,#76563f);transform:translateZ(12px)}
+.design-studies[data-mode] .study-spatial .room-chair::after{content:"";position:absolute;left:10%;top:45%;width:80%;height:34%;background:linear-gradient(#c39a6e,#795b40);transform:translateZ(20px);box-shadow:0 0 0 1px rgba(255,255,255,.22)}
+.design-studies[data-mode] .study-spatial .room-couch{left:61%;top:61%;width:29%;height:24%}
+.design-studies[data-mode] .study-spatial .room-couch::before{content:"";position:absolute;inset:0 0 30%;border:2px solid #ddd2b9;border-radius:4px 4px 0 0;background:linear-gradient(145deg,#d1c5a8,#888978);transform:translateZ(10px)}
+.design-studies[data-mode] .study-spatial .room-couch::after{content:"";position:absolute;left:3%;right:3%;bottom:0;height:35%;border-radius:3px;background:linear-gradient(#aa7657,#74533f);transform:translateZ(20px);box-shadow:0 0 0 1px rgba(255,255,255,.22)}
+.design-studies[data-mode] .study-spatial .room-caption{position:absolute;z-index:3;left:6%;right:auto;bottom:7%;width:35%}
+.design-studies[data-mode] .study-spatial .room-caption small{color:#bdc4aa;font:600 clamp(5px,1cqw,7px)/1 "IBM Plex Mono",monospace;letter-spacing:.13em}
+.design-studies[data-mode] .study-spatial .room-caption h3{margin:4px 0 0;color:#f0ead9;font:400 clamp(16px,3.6cqw,27px)/.92 "DM Serif Display",Georgia,serif;letter-spacing:-.035em}
+.design-studies[data-mode] .study-spatial .spatial-hint{z-index:3;left:auto;right:6%;bottom:7%;font-size:clamp(4px, .9cqw,6px)}
+.design-studies[data-mode] .study-spatial .spatial-model[data-dragging="true"]{transition:none}
+.design-studies[data-mode] .study-spatial .room-model[data-dragging="true"]{transition:none}
+.design-studies[data-mode="grid"] .study-spatial .room-stage{inset:20% 1% 17% 26%}
+.design-studies[data-mode="grid"] .study-spatial .room-model{width:78%}
+@media(max-width:900px){
+ .design-studies[data-mode] .study-spatial .room-controls{width:28%}
+ .design-studies[data-mode] .study-spatial .room-stage{left:25%;right:1%}
+ .design-studies[data-mode] .study-professional .professional-main h3{font-size:clamp(14px,3.1cqw,23px)}
+}
+@media(max-width:560px){
+ .design-studies[data-mode] .study-spatial .room-controls{width:29%;gap:3px}
+ .design-studies[data-mode] .study-spatial .room-stage{left:24%;inset-block:22% 20%}
+ .design-studies[data-mode] .study-spatial .room-model{width:90%;height:80%;left:57%}
+ .design-studies[data-mode] .study-information .info-filter{left:51%;right:6%;top:23%}
+}
+@keyframes room-spin{to{transform:translate(-50%,-50%) rotateX(var(--spatial-pitch)) rotateY(var(--spatial-yaw))}}
+@media(prefers-reduced-motion:reduce){
+ .design-studies[data-mode] .study-spatial .room-model{transition:none}
+}
+
+
+
+/* Study controls remain clear and usable at thumbnail and showcase sizes. */
+.design-studies[data-mode] .study-learning .word-slots button,
+.design-studies[data-mode] .study-learning .letter-bank button{
+  display:grid;place-items:center;flex:0 0 auto;border:0;border-radius:4px;
+  background:#fff8d6;color:#20324f;font:700 clamp(10px,2.1cqw,16px)/1 "IBM Plex Sans",sans-serif;
+  box-shadow:0 3px 0 rgba(40,55,72,.16);cursor:pointer;touch-action:manipulation;
+}
+.design-studies[data-mode] .study-learning .word-slots button{
+  width:clamp(23px,2.1vw,31px);height:clamp(27px,2.35vw,35px);
+}
+.design-studies[data-mode] .study-learning .word-slots button[data-filled="true"]{background:#fff}
+.design-studies[data-mode] .study-learning .letter-bank button{
+  width:clamp(22px,1.9vw,28px);height:clamp(22px,1.9vw,28px);font-size:clamp(9px,1.8cqw,13px);
+}
+.design-studies[data-mode] .study-learning .letter-bank button[data-selected="true"]{
+  transform:translateY(-3px);background:#234f68;color:#fff;box-shadow:0 4px 0 rgba(32,50,79,.24)
+}
+.design-studies[data-mode] .study-learning button:focus-visible{outline:2px solid #163a60;outline-offset:3px}
+.design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-model{width:92%}
+.design-studies[data-mode] .study-spatial .room-addition{transition:opacity .2s ease}
+.design-studies[data-mode] .study-spatial .room-chair:nth-child(2){left:24%;top:67%}
+.design-studies[data-mode] .study-spatial .room-chair:nth-child(3){left:50%;top:55%}
+.design-studies[data-mode] .study-spatial .room-couch:nth-child(2){left:25%;top:55%}
+.design-studies[data-mode] .study-spatial .room-couch:nth-child(3){left:61%;top:68%}
+.design-studies[data-mode] .study-system .system-head b{z-index:2}
+@media(max-width:560px){
+ .design-studies[data-mode] .study-professional .professional-screen{gap:7px;padding:7%!important}
+ .design-studies[data-mode] .study-professional .professional-main{gap:4px}
+ .design-studies[data-mode] .study-information .information-screen h3{max-width:9ch}
+ .design-studies[data-mode] .study-information .info-filter{left:53%;right:5%;font-size:7px}
+ .design-studies[data-mode] .study-information .info-filter b{padding:4px}
+ .design-studies[data-mode] .study-spatial .room-caption{width:33%}
+ .design-studies[data-mode] .study-spatial .room-caption h3{font-size:clamp(14px,3.4cqw,22px)}
+ .design-studies[data-mode] .study-spatial .room-controls button{font-size:clamp(4.5px,.95cqw,7px);padding-inline:3px}
+}
+@media(prefers-reduced-motion:reduce){
+ .design-studies[data-mode] .study-learning .letter-bank button[data-selected="true"]{transform:none}
+ .design-studies[data-mode] .study-spatial .room-addition{transition:none}
+}
+
+.design-studies .study-space .space-screen::before,
+.design-studies .study-space .space-screen::after,
+.design-studies .study-space .planet-path{animation-play-state:paused}
+.design-studies .study-space .space-screen[data-orbit-visible="true"]::before,
+.design-studies .study-space .space-screen[data-orbit-visible="true"]::after,
+.design-studies .study-space .space-screen[data-orbit-visible="true"] .planet-path{animation-play-state:running}
