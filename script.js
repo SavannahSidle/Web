@@ -192,7 +192,14 @@ document.querySelectorAll('.system-screen').forEach((screen) => {
         item.node.remove();
         item.connector.remove();
       }
-      if (status) status.textContent = `${8 + customNodes.length} / 12 NODES  ·  ${15 + customNodes.length} ACTIVE LINKS`;
+      if (status) {
+        const nodeLabel = status.querySelector('[data-node-count]');
+        const linkLabel = status.querySelector('[data-link-count]');
+        const nodeText = `${String(8 + customNodes.length).padStart(2, '0')} / 12 NODES`;
+        const linkText = `${15 + customNodes.length} ACTIVE LINKS`;
+        if (nodeLabel && linkLabel) { nodeLabel.textContent = nodeText; linkLabel.textContent = linkText; }
+        else status.textContent = `${nodeText} · ${linkText}`;
+      }
     });
   });
 });
@@ -248,7 +255,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   addTube([-.93, .04, 0], [-2.28, -.18, 0], .19, .018, feather, 9);
   addTube([.44, .16, 0], [.72, .56, 0], .22, .15, body, 9);
   addEllipsoid(.77, .57, 0, .3, .2, .2, flank, 8, 12);
-  addTube([.86, .58, 0], [1.38, .52, 0], .16, .08, body, 9);
+  addTube([.86, .58, 0], [1.42, .52, 0], .14, .045, body, 9);
   addTube([.86, .42, 0], [1.25, .36, 0], .09, .045, dark, 8);
   // Two feathered forelimbs with hooked claws.
   [-.24, .24].forEach((z, i) => {
@@ -271,13 +278,17 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       addTube([.08, -1.07, dz], [.34, -1.1, toeZ], .07, .04, body, 6);
       addTube([.34, -1.1, toeZ], [.47, -1.13, toeZ], .04, .005, bone, 6);
     });
-    addTube([.12, -1.02, dz + .02], [.04, -.84, dz + .1], .055, .034, bone, 7);
-    addTube([.04, -.84, dz + .1], [.15, -.77, dz + .1], .034, .004, bone, 7);
+    addTube([.12, -1.02, dz + .02], [-.015, -.79, dz + .1], .065, .04, bone, 7);
+    addTube([-.015, -.79, dz + .1], [.17, -.69, dz + .1], .04, .004, bone, 7);
     // small feather vanes along the thigh
     for (let f = 0; f < 4; f++) addTube([-.64 + f * .1, -.05 - f * .03, dz + .12], [-.78 + f * .1, -.2 - f * .035, dz + .18], .045, .004, feather, 5);
   });
   addEllipsoid(.98, .63, .17, .035, .035, .025, '#e3c36d', 5, 8);
   addEllipsoid(.98, .63, -.17, .035, .035, .025, '#e3c36d', 5, 8);
+  addEllipsoid(1.005, .635, .195, .012, .013, .008, '#17221f', 5, 6);
+  addEllipsoid(1.005, .635, -.195, .012, .013, .008, '#17221f', 5, 6);
+  addEllipsoid(1.38, .555, .045, .018, .01, .012, '#53644e', 5, 6);
+  addEllipsoid(1.38, .555, -.045, .018, .01, .012, '#53644e', 5, 6);
   let yaw = -.3, pitch = .08, zoom = 1, drag = null, width = 0, height = 0;
   const resize = () => {
     const rect = stage.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -610,20 +621,41 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
   const selectTile = (tile) => {
     selectedLetter = tile?.dataset.letterTile || '';
     tiles.forEach((candidate) => candidate.dataset.selected = String(candidate === tile));
-    if (status && selectedLetter) status.textContent = `Letter ${selectedLetter} selected. Choose the last slot.`;
+    if (status && selectedLetter) status.textContent = `Letter ${selectedLetter} selected. Choose a blank slot.`;
   };
   const place = (slot, letter) => {
     if (!slot || !letter) return;
     slot.textContent = letter;
     slot.dataset.filled = 'true';
-    slot.setAttribute('aria-label', `Last letter, ${letter}`);
+    const slotNumber = slots.indexOf(slot) + 1;
+    const ordinal = ['first','second','third','fourth'][slotNumber - 1] || `${slotNumber}th`;
+    slot.setAttribute('aria-label', `${ordinal} letter, ${letter}`);
     selectedLetter = '';
     tiles.forEach((tile) => tile.dataset.selected = 'false');
     const word = slots.map((item) => item.textContent.trim()).join('').toLowerCase();
-    if (status) status.textContent = ['cat','cap'].includes(word) ? `You made ${word}!` : `Current word: ${word}`;
+    if (status) status.textContent = ['cat','cap','camp'].includes(word) ? `You made ${word}!` : `Current word: ${word}`;
   };
   tiles.forEach((tile) => {
     tile.addEventListener('click', (event) => { event.stopPropagation(); selectTile(tile); });
+    tile.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse') return;
+      event.preventDefault();event.stopPropagation();
+      selectedLetter = tile.dataset.letterTile || '';
+      tile.dataset.dragging = 'true';
+      try { tile.setPointerCapture(event.pointerId); } catch {}
+      if (status && selectedLetter) status.textContent = `Dragging ${selectedLetter}. Drop it into a blank slot.`;
+    });
+    tile.addEventListener('pointerup', (event) => {
+      if (event.pointerType === 'mouse') return;
+      const letter = tile.dataset.letterTile || '';
+      const target = document.elementFromPoint(event.clientX, event.clientY);
+      const slot = target?.closest?.('[data-word-slot]');
+      tile.dataset.dragging = 'false';
+      if (slot && screen.contains(slot)) place(slot, letter);
+      else selectTile(tile);
+      event.stopPropagation();
+    });
+    tile.addEventListener('pointercancel', () => { tile.dataset.dragging = 'false'; });
     tile.addEventListener('dragstart', (event) => {
       event.dataTransfer?.setData('text/plain', tile.dataset.letterTile);
       if (event.dataTransfer) event.dataTransfer.effectAllowed = 'copy';
@@ -656,6 +688,20 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     tiles.forEach((tile) => tile.dataset.selected = 'false');
     if (status) status.textContent = 'The final letter was cleared.';
   });
+});
+
+
+// Map-layer controls make the wayfinding concept legible and selectable.
+document.querySelectorAll('.wayfinding-screen').forEach((screen) => {
+  const controls = Array.from(screen.querySelectorAll('[data-wayfinding-layer]'));
+  controls.forEach((control) => control.addEventListener('click', (event) => {
+    event.preventDefault();event.stopPropagation();
+    const layer = control.dataset.wayfindingLayer;
+    screen.dataset.layer = layer;
+    const modeLabel = screen.querySelector('.wayfinding-top span:last-child');
+    if (modeLabel) modeLabel.textContent = `${layer.toUpperCase()} MAP`;
+    controls.forEach((item) => item.setAttribute('aria-pressed', String(item === control)));
+  }));
 });
 
 // Run orbit and star motion only while the solar-system study is on screen.

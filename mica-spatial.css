@@ -1948,3 +1948,54 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .home .poster-hero-image,.home .brand-mark{animation:none!important;transform:none!important}
 }
 /* A slow 3D turn lets the existing Velociraptor model reveal its volume. */
+
+/* Shared elevation gives the study previews a little physical depth without changing their layouts. */
+.design-studies .study-screen{filter:drop-shadow(0 8px 14px rgba(0,5,14,.24))}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ .design-studies .study-screen{transition:filter .35s ease}
+ .design-studies .study:hover .study-screen{filter:drop-shadow(0 12px 20px rgba(0,5,14,.34))}
+}
+/* The map layers are controls, not decorative labels. */
+.design-studies .study-wayfinding .wayfinding-options button{appearance:none;font:inherit;cursor:pointer;color:inherit}
+.design-studies .study-wayfinding .wayfinding-options button[aria-pressed="true"]{background:#fff;border-color:#315d5c;box-shadow:0 2px 8px rgba(23,50,50,.12)}
+.design-studies .study-wayfinding .wayfinding-screen[data-layer="places"] .wayfinding-map{filter:saturate(.62)}
+.design-studies .study-wayfinding .wayfinding-screen[data-layer="places"] .wayfinding-map i{opacity:1;transform:scale(1.25)}
+.design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map::before,.design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map::after{opacity:.28}
+.design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map i{opacity:.35}
+.design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map b{transform:scale(1.55)}
+/* A soft landscape sits behind the calm study's existing interface. */
+.design-studies .study-calm .calm-trail-image{position:absolute;z-index:0;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;opacity:.24;filter:saturate(.54) contrast(.92);pointer-events:none}
+.design-studies .study-calm .calm-screen::after{content:"";position:absolute;z-index:0;inset:0;background:linear-gradient(90deg,rgba(243,242,231,.96) 0%,rgba(243,242,231,.89) 42%,rgba(243,242,231,.35) 100%);pointer-events:none}
+.design-studies .study-calm .calm-screen>*:not(.calm-trail-image){z-index:1}
+/* Common Ground: one distant point, two quiet bursts, and a tiny recurring gag. */
+.design-studies .study-culture .culture-focal{position:absolute;z-index:0;right:12%;bottom:12%;width:5px;height:5px;border-radius:50%;background:#ffd79a;box-shadow:0 0 14px 4px rgba(255,193,131,.32)}
+.design-studies .study-culture .culture-burst{position:absolute;z-index:0;width:34px;height:34px;border:1px solid rgba(246,164,124,.54);border-radius:50%;opacity:0;transform:scale(.35);animation:culture-burst 8s ease-out infinite}
+.design-studies .study-culture .culture-burst-one{right:10%;bottom:10%;animation-delay:1.2s}
+.design-studies .study-culture .culture-burst-two{right:23%;bottom:21%;width:19px;height:19px;animation-delay:5.3s}
+@keyframes culture-burst{0%,78%,100%{opacity:0;transform:scale(.35)}82%{opacity:.58}96%{opacity:0;transform:scale(1.6)}}
+.design-studies .study-culture .falling-d{position:relative;display:inline-block;transform-origin:50% 70%;animation:ground-d 11s ease-in-out infinite}
+.design-studies .study-culture .falling-d::after{content:"";position:absolute;left:33%;top:19%;width:2px;height:2px;border-radius:50%;background:#251a3b;opacity:0;box-shadow:5px 0 #251a3b}
+@keyframes ground-d{0%,77%,100%{transform:translate(0,0) rotate(0)}81%{transform:translate(3px,5px) rotate(34deg)}85%{transform:translate(10px,19px) rotate(105deg)}88%{transform:translate(11px,20px) rotate(180deg)}92%{transform:translate(0,0) rotate(360deg)}}
+@keyframes ground-dots{0%,86%,100%{opacity:0}88%,91%{opacity:1}}
+.design-studies .study-culture .falling-d::after{animation:ground-dots 11s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){
+ .design-studies .study-culture .culture-burst,.design-studies .study-culture .falling-d,.design-studies .study-culture .falling-d::after{animation:none!important}
+ .design-studies .study-culture .culture-focal{opacity:.65}
+}
+
+/* The bedding concept uses a crisp collection menu and a new editorial text position. */
+.design-studies[data-mode] .study-bedding .bedding-screen{isolation:isolate}
+.design-studies[data-mode] .study-bedding .bedding-menu{position:absolute;z-index:3;top:7%;left:7%;right:7%;display:flex;justify-content:space-between;gap:10px;color:#243940;font:500 clamp(6px,1.7cqw,8px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.14em}
+.design-studies[data-mode] .study-bedding .bedding-title{left:7%;right:auto;top:auto;bottom:9%;width:52%;height:auto;color:#172b34;text-align:left}
+.design-studies[data-mode] .study-bedding .bedding-title h3{position:static;margin:0;font:500 clamp(1.35rem,3.9cqw,2.6rem)/.88 "IBM Plex Sans",sans-serif;letter-spacing:-.065em}
+.design-studies[data-mode] .study-bedding .bedding-footer{left:auto;right:7%;bottom:10%;font:500 clamp(5px,1.4cqw,7px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.07em;text-align:right}
+/* Keep the live architecture count on the left and its activity count on the right. */
+.design-studies[data-mode] .study-system .system-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;max-width:none!important;width:100%;font-size:clamp(6px,1.55cqw,8px)}
+.design-studies[data-mode] .study-system .system-foot [data-link-count]{margin-left:auto;text-align:right;white-space:nowrap;color:#9cc9d6}
+/* A few neural nodes breathe in a staggered sequence instead of flashing together. */
+.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+1),
+.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+4){animation:neural-node-breathe 4.8s ease-in-out infinite}
+.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+2),
+.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+6){animation:neural-node-breathe 5.6s ease-in-out infinite 1.4s}
+@keyframes neural-node-breathe{0%,72%,100%{fill:#172c39;filter:none}78%,89%{fill:#9af2db;filter:drop-shadow(0 0 5px rgba(130,243,206,.9))}}
+@media(prefers-reduced-motion:reduce){.design-studies .study-neural .neural-nodes circle{animation:none!important}}

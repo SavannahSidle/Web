@@ -910,3 +910,26 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
   .poster-hero-actions{position:relative;left:auto;right:auto;bottom:auto;grid-row:2;justify-content:flex-start;margin:16px 22px 0}
   .poster-scroll{position:relative;right:auto;bottom:auto;grid-row:3;justify-self:end;margin:10px 22px 0}
 }
+
+/* Quiet motion in the poster hero: a sparse star field that stays behind the controls. */
+.poster-hero .hero-starfield{position:absolute;z-index:2;inset:0;overflow:hidden;pointer-events:none;opacity:.42;mask-image:linear-gradient(180deg,transparent 2%,#000 18%,#000 78%,transparent 100%)}
+.poster-hero .hero-starfield::before,.poster-hero .hero-starfield::after{content:"";position:absolute;inset:-18%;background-repeat:repeat;background-size:220px 180px;background-image:radial-gradient(1px 1px at 19px 28px,rgba(221,239,255,.72) 0,transparent 1.4px),radial-gradient(1px 1px at 107px 86px,rgba(168,205,255,.56) 0,transparent 1.5px),radial-gradient(1px 1px at 171px 144px,rgba(255,255,255,.44) 0,transparent 1.4px);animation:mica-star-drift 96s linear infinite}
+.poster-hero .hero-starfield::after{background-size:310px 250px;background-position:74px 38px;opacity:.52;transform:scale(1.14);animation-duration:148s;animation-direction:reverse}
+.poster-hero .poster-hero-actions,.poster-hero .poster-scroll{z-index:3}
+@keyframes mica-star-drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(3.5%,2.5%,0)}}
+@media(max-width:720px){.poster-hero .hero-starfield{opacity:.28}.poster-hero .hero-starfield::before{animation-duration:150s}.poster-hero .hero-starfield::after{animation-duration:190s}}
+/* Keep the homepage introduction composed at in-between widths. */
+@media(min-width:801px) and (max-width:1100px){
+ .editorial-intro{grid-template-columns:minmax(120px,.42fr) minmax(0,1.58fr);gap:clamp(30px,5vw,58px);padding-top:clamp(92px,10vw,132px);padding-bottom:clamp(84px,9vw,120px)}
+ .editorial-intro h2{font-size:clamp(3.15rem,5.3vw,4.9rem);line-height:.98}
+ .editorial-intro div>p{margin-top:30px;font-size:clamp(1rem,1.5vw,1.12rem)}
+ .intro-marker{width:15%;opacity:.7}
+}
+@media(prefers-reduced-motion:reduce){
+ .poster-hero .hero-starfield::before,.poster-hero .hero-starfield::after{animation:none!important}
+}
+
+/* Give the primary project link a precise raised edge and a quiet technical sheen. */
+.site-header .nav-cta{position:relative;background:linear-gradient(160deg,rgba(39,61,82,.72),rgba(8,24,37,.96));border-color:rgba(190,216,245,.56);box-shadow:0 3px 0 rgba(2,8,13,.9),0 8px 20px rgba(0,0,0,.23),inset 0 1px 0 rgba(234,244,255,.22);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.site-header .nav-cta:hover{transform:translateY(-2px);border-color:rgba(217,235,255,.82);box-shadow:0 5px 0 rgba(2,8,13,.86),0 13px 26px rgba(0,0,0,.3),inset 0 1px 0 rgba(244,249,255,.3)}
+.site-header .nav-cta:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(2,8,13,.9),0 3px 9px rgba(0,0,0,.25),inset 0 2px 6px rgba(0,0,0,.18)}
