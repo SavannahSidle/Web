@@ -309,6 +309,39 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     ctx.restore();
   };
   const observer = new ResizeObserver(resize); observer.observe(stage); resize();
+  if (!reducedMotion) {
+    let isInView = false, automaticFrame = 0, lastAutomaticFrame = 0;
+    const stopAutomaticTurn = () => {
+      if (automaticFrame) cancelAnimationFrame(automaticFrame);
+      automaticFrame = 0; lastAutomaticFrame = 0;
+    };
+    const turn = (time) => {
+      automaticFrame = 0;
+      if (!isInView || document.hidden) { lastAutomaticFrame = 0; return; }
+      if (lastAutomaticFrame) {
+        yaw += Math.min(50, time - lastAutomaticFrame) * (Math.PI * 2 / 100000);
+        draw();
+      }
+      lastAutomaticFrame = time;
+      automaticFrame = requestAnimationFrame(turn);
+    };
+    const startAutomaticTurn = () => {
+      if (isInView && !document.hidden && !automaticFrame) automaticFrame = requestAnimationFrame(turn);
+    };
+    if ('IntersectionObserver' in window) {
+      const turnObserver = new IntersectionObserver((entries) => {
+        isInView = Boolean(entries[0]?.isIntersecting);
+        if (isInView) startAutomaticTurn(); else stopAutomaticTurn();
+      }, { threshold: 0.08 });
+      turnObserver.observe(stage);
+    } else {
+      isInView = true;
+      startAutomaticTurn();
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopAutomaticTurn(); else startAutomaticTurn();
+    });
+  }
   stage.addEventListener('pointerdown', event => {event.stopPropagation();if(event.target.closest('button'))return;drag={x:event.clientX,y:event.clientY};stage.setPointerCapture?.(event.pointerId);});
   stage.addEventListener('pointermove', event => {if(!drag)return;const dx=event.clientX-drag.x,dy=event.clientY-drag.y;drag={x:event.clientX,y:event.clientY};yaw+=dx*.012;pitch=Math.max(-.55,Math.min(.55,pitch+dy*.008));draw();});
   const stopDrag = event => {if(drag){drag=null;event.stopPropagation();}};

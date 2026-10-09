@@ -1931,3 +1931,20 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies .study-space .space-screen[data-orbit-visible="true"]::before,
 .design-studies .study-space .space-screen[data-orbit-visible="true"]::after,
 .design-studies .study-space .space-screen[data-orbit-visible="true"] .planet-path{animation-play-state:running}
+
+
+/* Quiet motion for the landing artwork and the blue MICA mark. */
+.home .poster-hero-image{transform-origin:center;animation:mica-poster-breath 32s ease-in-out infinite alternate}
+.home .brand-mark{transform-origin:center;animation:mica-mark-drift 8s ease-in-out infinite}
+@keyframes mica-poster-breath{
+  from{transform:scale(1)}
+  to{transform:scale(1.014) translate3d(0,-.18%,0)}
+}
+@keyframes mica-mark-drift{
+  0%,100%{transform:translateY(0);box-shadow:0 0 24px rgba(105,162,231,.18)}
+  50%{transform:translateY(-1px);box-shadow:0 0 30px rgba(105,162,231,.3)}
+}
+@media(prefers-reduced-motion:reduce){
+  .home .poster-hero-image,.home .brand-mark{animation:none!important;transform:none!important}
+}
+/* A slow 3D turn lets the existing Velociraptor model reveal its volume. */
