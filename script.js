@@ -622,17 +622,27 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
   });
 });
 
-// Playable word slots support mouse/touch drag and a keyboard-friendly select/place flow.
+// Playable word slots support direct pointer drag plus a keyboard-friendly select/place flow.
 document.querySelectorAll('.learning-screen').forEach((screen) => {
   const slots = Array.from(screen.querySelectorAll('[data-word-slot]'));
   const tiles = Array.from(screen.querySelectorAll('[data-letter-tile]'));
   const status = screen.querySelector('[data-learning-status]');
+  const feedback = screen.querySelector('[data-learning-feedback]');
   let selectedLetter = '';
+  let activePointer = null;
   if (!slots.length || !tiles.length) return;
+
+  const announce = (message, success = false) => {
+    if (status) status.textContent = message;
+    if (feedback) {
+      feedback.textContent = message;
+      feedback.dataset.success = String(success);
+    }
+  };
   const selectTile = (tile) => {
     selectedLetter = tile?.dataset.letterTile || '';
     tiles.forEach((candidate) => candidate.dataset.selected = String(candidate === tile));
-    if (status && selectedLetter) status.textContent = `Letter ${selectedLetter} selected. Choose a blank slot.`;
+    if (selectedLetter) announce(`Letter ${selectedLetter} selected. Choose a blank slot.`);
   };
   const place = (slot, letter) => {
     if (!slot || !letter) return;
@@ -643,65 +653,98 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     slot.setAttribute('aria-label', `${ordinal} letter, ${letter}`);
     selectedLetter = '';
     tiles.forEach((tile) => tile.dataset.selected = 'false');
-    const word = slots.map((item) => item.textContent.trim()).filter((letter) => letter !== '_').join('').toLowerCase();
-    if (status) status.textContent = ['cat','cap','camp'].includes(word) ? `You made ${word}!` : `Current word: ${word}`;
+    const word = slots.map((item) => item.textContent.trim()).filter((value) => value !== '_').join('').toLowerCase();
+    if (word.length >= 3) announce(`Great! You spelled ${word.toUpperCase()}.`, true);
+    else announce(word ? `Current word: ${word.toUpperCase()}` : 'Choose letters to make a word.');
   };
+
   tiles.forEach((tile) => {
-    tile.addEventListener('click', (event) => { event.stopPropagation(); selectTile(tile); });
+    tile.draggable = false;
     tile.addEventListener('pointerdown', (event) => {
-      if (event.pointerType === 'mouse') return;
-      event.preventDefault();event.stopPropagation();
-      selectedLetter = tile.dataset.letterTile || '';
-      tile.dataset.dragging = 'true';
-      try { tile.setPointerCapture(event.pointerId); } catch {}
-      if (status && selectedLetter) status.textContent = `Dragging ${selectedLetter}. Drop it into a blank slot.`;
-    });
-    tile.addEventListener('pointerup', (event) => {
-      if (event.pointerType === 'mouse') return;
-      const letter = tile.dataset.letterTile || '';
-      const target = document.elementFromPoint(event.clientX, event.clientY);
-      const slot = target?.closest?.('[data-word-slot]');
-      tile.dataset.dragging = 'false';
-      if (slot && screen.contains(slot)) place(slot, letter);
-      else selectTile(tile);
+      if (event.button !== undefined && event.button !== 0) return;
+      event.preventDefault();
       event.stopPropagation();
+      activePointer = {id:event.pointerId, tile, x:event.clientX, y:event.clientY, moved:false};
+      selectedLetter = tile.dataset.letterTile || '';
+      tile.dataset.dragging = 'false';
+      announce(`Letter ${selectedLetter} ready to move.`);
     });
-    tile.addEventListener('pointercancel', () => { tile.dataset.dragging = 'false'; });
-    tile.addEventListener('dragstart', (event) => {
-      event.dataTransfer?.setData('text/plain', tile.dataset.letterTile);
-      if (event.dataTransfer) event.dataTransfer.effectAllowed = 'copy';
+    tile.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (tile.dataset.ignoreClick === 'true') {
+        tile.dataset.ignoreClick = 'false';
+        return;
+      }
       selectTile(tile);
     });
+    tile.addEventListener('dragstart', (event) => event.preventDefault());
+    tile.addEventListener('pointercancel', () => {
+      if (activePointer?.tile === tile) activePointer = null;
+      tile.dataset.dragging = 'false';
+    });
   });
+
+  window.addEventListener('pointermove', (event) => {
+    if (!activePointer || event.pointerId !== activePointer.id) return;
+    const distance = Math.hypot(event.clientX - activePointer.x, event.clientY - activePointer.y);
+    if (distance > 6) {
+      activePointer.moved = true;
+      activePointer.tile.dataset.dragging = 'true';
+    }
+  }, {passive:true});
+
+  window.addEventListener('pointerup', (event) => {
+    if (!activePointer || event.pointerId !== activePointer.id) return;
+    const {tile, moved} = activePointer;
+    const target = document.elementFromPoint(event.clientX, event.clientY);
+    const slot = target?.closest?.('[data-word-slot]');
+    tile.dataset.dragging = 'false';
+    tile.dataset.ignoreClick = 'true';
+    if (moved && slot && screen.contains(slot)) place(slot, tile.dataset.letterTile || '');
+    else if (moved) announce('Drop a letter into one of the blank spaces.');
+    else selectTile(tile);
+    activePointer = null;
+    window.setTimeout(() => { tile.dataset.ignoreClick = 'false'; }, 0);
+  });
+
   slots.forEach((slot) => {
     slot.addEventListener('click', (event) => {
       event.stopPropagation();
       if (selectedLetter) place(slot, selectedLetter);
       else if (slot.dataset.filled === 'true') {
-        slot.textContent = '_';slot.dataset.filled = 'false';
+        slot.textContent = '_';
+        slot.dataset.filled = 'false';
         const ordinal = ['first','second','third','fourth'][slots.indexOf(slot)] || 'next';
         slot.setAttribute('aria-label', `${ordinal} letter, empty`);
-        if (status) status.textContent = 'Letter cleared. Choose another letter when ready.';
+        const word = slots.map((item) => item.textContent.trim()).filter((value) => value !== '_').join('').toLowerCase();
+        announce(word.length >= 3 ? `Great! You spelled ${word.toUpperCase()}.` : 'Letter cleared. Choose another when ready.', word.length >= 3);
       }
     });
     slot.addEventListener('dragover', (event) => event.preventDefault());
     slot.addEventListener('drop', (event) => {
-      event.preventDefault();event.stopPropagation();
+      event.preventDefault();
+      event.stopPropagation();
       place(slot, event.dataTransfer?.getData('text/plain') || selectedLetter);
     });
   });
+
   screen.querySelector('[data-learning-reset]')?.addEventListener('click', (event) => {
-    event.preventDefault();event.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
     slots.slice(2).forEach((slot, index) => {
-      slot.textContent = '_';slot.dataset.filled = 'false';
+      slot.textContent = '_';
+      slot.dataset.filled = 'false';
       slot.setAttribute('aria-label', `${['third','fourth'][index] || 'next'} letter, empty`);
     });
     selectedLetter = '';
-    tiles.forEach((tile) => tile.dataset.selected = 'false');
-    if (status) status.textContent = 'Added letters were cleared.';
+    tiles.forEach((tile) => {
+      tile.dataset.selected = 'false';
+      tile.dataset.dragging = 'false';
+    });
+    announce('Choose letters to make a word.');
   });
 });
-
 
 // Map-layer controls make the wayfinding concept legible and selectable.
 document.querySelectorAll('.wayfinding-screen').forEach((screen) => {
