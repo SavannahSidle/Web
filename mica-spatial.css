@@ -2490,19 +2490,21 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .home .poster-hero .hero-starfield::after{background-size:340px 278px;animation-duration:122s;opacity:.45}
 .home .poster-hero .shooting-star{
-  left:27%;top:41%;width:clamp(92px,10vw,126px);height:2px;border-radius:50%;
-  background:linear-gradient(90deg,transparent 0%,rgba(197,220,255,.06) 8%,rgba(197,220,255,.18) 50%,rgba(230,241,255,.72) 88%,#fff 100%);
-  filter:drop-shadow(0 0 5px rgba(174,211,255,.55));
-  animation:mica-meteor-cross 17s cubic-bezier(.22,.58,.33,1) infinite;
+  left:27%;top:58%;width:clamp(88px,9vw,116px);height:2px;border-radius:50%;
+  background:linear-gradient(90deg,transparent 0%,rgba(197,220,255,.05) 8%,rgba(197,220,255,.2) 52%,rgba(230,241,255,.82) 88%,#fff 100%);
+  filter:drop-shadow(0 0 6px rgba(174,211,255,.65));
+  animation:mica-meteor-cross 22s linear infinite;
 }
 .home .poster-hero .shooting-star::after{
-  content:"";position:absolute;right:-1px;top:50%;width:5px;height:5px;border-radius:50%;
-  transform:translateY(-50%);background:#fff;box-shadow:0 0 5px 2px rgba(214,232,255,.88),0 0 13px 4px rgba(143,190,255,.38)
+  content:"";position:absolute;right:-1px;top:50%;width:6px;height:6px;border-radius:50%;
+  transform:translateY(-50%);background:#fff;box-shadow:0 0 6px 2px rgba(214,232,255,.92),0 0 14px 4px rgba(143,190,255,.42)
 }
 @keyframes mica-meteor-cross{
   0%,64%,100%{opacity:0;transform:translate3d(-14vw,-4vh,0) rotate(15deg)}
-  65.5%{opacity:.88}
-  71%{opacity:0;transform:translate3d(44vw,12vh,0) rotate(15deg)}
+  65%{opacity:0;transform:translate3d(-9vw,-2vh,0) rotate(15deg)}
+  66%{opacity:.9;transform:translate3d(-2vw,0,0) rotate(15deg)}
+  73%{opacity:.9;transform:translate3d(35vw,7vh,0) rotate(15deg)}
+  77%{opacity:0;transform:translate3d(44vw,10vh,0) rotate(15deg)}
 }
 .home .poster-hero .space-event{position:absolute;z-index:1;pointer-events:none;opacity:0}
 .home .poster-hero .space-event-comet{
