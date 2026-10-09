@@ -2053,16 +2053,11 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .design-studies[data-mode] .study-care .care-screen::after{display:none}
 
-/* A small stagger makes the editorial word feel alive without becoming a bounce effect. */
-.design-studies .study-editorial .ideas-bounce{white-space:nowrap}
-.design-studies .study-editorial .ideas-bounce span{
+/* Let the full editorial word lift subtly without changing its line box. */
+.design-studies .study-editorial .editorial-screen h3 em{
   display:inline-block;
   animation:ideas-float 4.2s ease-in-out infinite;
 }
-.design-studies .study-editorial .ideas-bounce span:nth-child(2){animation-delay:.08s}
-.design-studies .study-editorial .ideas-bounce span:nth-child(3){animation-delay:.16s}
-.design-studies .study-editorial .ideas-bounce span:nth-child(4){animation-delay:.24s}
-.design-studies .study-editorial .ideas-bounce span:nth-child(5){animation-delay:.32s}
 @keyframes ideas-float{
   0%,78%,100%{transform:translateY(0)}
   86%{transform:translateY(-2px)}
@@ -2070,5 +2065,5 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 @media(prefers-reduced-motion:reduce){
   .home .poster-hero .hero-starfield,.home .brand-mark,
-  .design-studies .study-editorial .ideas-bounce span{animation:none!important}
+  .design-studies .study-editorial .editorial-screen h3 em{animation:none!important}
 }
