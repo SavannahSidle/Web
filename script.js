@@ -248,11 +248,14 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     }
   };
   const body = '#8b9b71', flank = '#a7a37a', dark = '#5c705b', feather = '#c4b98e', bone = '#d8c9a6';
+  const motionRanges = { tailFan: null, sickleClaws: [] };
   addEllipsoid(-.15, -.01, 0, .8, .39, .37, body, 10, 14);
   addEllipsoid(-.69, -.04, 0, .42, .37, .39, flank, 8, 12);
   addEllipsoid(.34, .02, 0, .4, .31, .34, flank, 8, 12);
   addTube([-.93, -.02, 0], [-3.12, -.31, 0], .28, .025, dark, 10);
+  const tailFanStart = vertices.length;
   addTube([-.93, .04, 0], [-3.02, -.27, 0], .19, .015, feather, 9);
+  motionRanges.tailFan = [tailFanStart, vertices.length];
   // A lifted, articulated neck gives the silhouette the alert, upright raptor profile.
   addTube([.18, .13, 0], [.31, .48, 0], .23, .19, body, 10);
   addTube([.31, .48, 0], [.46, .81, 0], .19, .15, body, 10);
@@ -321,7 +324,9 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       addTube(knuckle, tip, .027, .012, flank, 6);
       // Small keratin tips; toe II carries the characteristic enlarged claw.
       if (toeIndex === 1) {
+        const clawStart = vertices.length;
         addTube(tip, [tip[0] - .025, -1.035, tip[2] + .018], .026, .002, bone, 7);
+        motionRanges.sickleClaws.push([clawStart, vertices.length]);
       } else {
         addTube(tip, [tip[0] + .035, -1.105, tip[2] + (toeIndex === 0 ? -.012 : .012)], .016, .001, bone, 5);
       }
@@ -338,6 +343,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   addEllipsoid(1.12, .99, .045, .018, .01, .012, '#53644e', 5, 6);
   addEllipsoid(1.12, .99, -.045, .018, .01, .012, '#53644e', 5, 6);
   let yaw = -.3, pitch = .08, zoom = 1, drag = null, width = 0, height = 0;
+  let gazeX = 0, gazeY = 0;
   const resize = () => {
     const rect = stage.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
     width = Math.max(1, rect.width); height = Math.max(1, rect.height);
@@ -350,7 +356,54 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     ctx.save();
     ctx.fillStyle = 'rgba(2, 8, 11, .3)'; ctx.beginPath(); ctx.ellipse(width * .52, height * .95, width * .3, height * .035, 0, 0, Math.PI * 2); ctx.fill();
     const camera = 6, scale = Math.min(width / 4.95, height / 2.45) * zoom;
-    const projected = vertices.map(([x, y, z]) => {
+    const motionTime = reducedMotion ? 0 : performance.now() / 1000;
+    const breath = Math.sin(motionTime * 1.35);
+    const tailSway = Math.sin(motionTime * .82);
+    const headScan = Math.sin(motionTime * .48);
+    const blinkPhase = (motionTime + 1.1) % 8.2;
+    const blink = reducedMotion || blinkPhase > .24 ? 0 : Math.sin(Math.PI * blinkPhase / .24);
+    const jawFlex = reducedMotion ? 0 : Math.max(0, Math.sin(motionTime * .31 - .8)) * .012;
+    const weightShift = reducedMotion ? 0 : Math.sin(motionTime * .67) * .006;
+    const projected = vertices.map(([baseX, baseY, baseZ], vertexIndex) => {
+      let x = baseX, y = baseY, z = baseZ;
+      if (!reducedMotion) {
+        // 1. Subtle ribcage breathing.
+        if (x > -1.12 && x < .58 && y > -.4 && y < .38) y += (y > 0 ? 1 : -1) * breath * .008;
+        // 2. The tail countersways gently, with more movement at the tip.
+        if (x < -.94 && x > -3.16) {
+          const tailWeight = Math.min(1, Math.max(0, (-x - .94) / 2.18));
+          y += Math.sin(motionTime * .82 + tailWeight * 1.8) * .024 * tailWeight;
+          z += Math.sin(motionTime * .58 + tailWeight * 1.4) * .012 * tailWeight;
+        }
+        // 3 & 10. The head scans slowly and follows a nearby pointer with a damped look.
+        if (x > .28 && y > .48) {
+          const headWeight = Math.min(1, Math.max(0, (y - .48) / .5));
+          x += headScan * .014 * headWeight;
+          y += (headScan * .005 + gazeY * .022) * headWeight;
+          z += (Math.sin(motionTime * .36) * .026 + gazeX * .045) * headWeight;
+        }
+        // 4. A quick, occasional blink.
+        if (x > .585 && x < .675 && y > .975 && y < 1.055 && Math.abs(Math.abs(z) - .205) < .035) {
+          y = 1.015 + (y - 1.015) * (1 - blink * .86);
+        }
+        // 5. The lower jaw loosens slightly between breaths.
+        if (x > .68 && x < 1.06 && y < .88 && Math.abs(z) < .1) y -= jawFlex * Math.max(0, (x - .68) / .38);
+        // 6. Fine tail-feather ripple.
+        if (motionRanges.tailFan && vertexIndex >= motionRanges.tailFan[0] && vertexIndex < motionRanges.tailFan[1]) {
+          y += Math.sin(motionTime * 2.7 + x * 1.8) * .009;
+        }
+        // 7. Toe II's sickle claws flex by a few degrees.
+        if (motionRanges.sickleClaws.some(([start, end]) => vertexIndex >= start && vertexIndex < end)) {
+          y += Math.sin(motionTime * .9 + baseZ * 2) * .006;
+        }
+        // 8. Hind legs share a restrained, planted weight shift.
+        if (x > -.98 && x < -.2 && y < -.2 && y > -1.05) y += weightShift * (z > 0 ? 1 : -1);
+        // 9. The small forearms flex close to the chest.
+        if (x > .45 && x < .94 && y > -.44 && y < .16) {
+          z += Math.sin(motionTime * 1.05 + (z > 0 ? 0 : Math.PI)) * .006;
+          y += Math.sin(motionTime * 1.05 + (z > 0 ? 0 : Math.PI)) * .004;
+        }
+      }
       const rx = x * Math.cos(yaw) + z * Math.sin(yaw), rz = -x * Math.sin(yaw) + z * Math.cos(yaw);
       const ry = y * Math.cos(pitch) - rz * Math.sin(pitch), rz2 = y * Math.sin(pitch) + rz * Math.cos(pitch);
       const perspective = camera / (camera + rz2);
@@ -402,7 +455,20 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     });
   }
   stage.addEventListener('pointerdown', event => {if(event.target.closest('button'))return;event.preventDefault();event.stopPropagation();drag={x:event.clientX,y:event.clientY};stage.setPointerCapture?.(event.pointerId);});
-  stage.addEventListener('pointermove', event => {if(!drag)return;const dx=event.clientX-drag.x,dy=event.clientY-drag.y;drag={x:event.clientX,y:event.clientY};yaw+=dx*.012;pitch=Math.max(-.55,Math.min(.55,pitch+dy*.008));draw();});
+  stage.addEventListener('pointermove', event => {
+    if (drag) {
+      const dx=event.clientX-drag.x,dy=event.clientY-drag.y;
+      drag={x:event.clientX,y:event.clientY};yaw+=dx*.012;pitch=Math.max(-.55,Math.min(.55,pitch+dy*.008));draw();
+      return;
+    }
+    if (!reducedMotion && event.pointerType === 'mouse') {
+      const rect=stage.getBoundingClientRect();
+      gazeX=Math.max(-1,Math.min(1,((event.clientX-rect.left)/rect.width-.5)*2));
+      gazeY=Math.max(-1,Math.min(1,((event.clientY-rect.top)/rect.height-.5)*2));
+      draw();
+    }
+  });
+  stage.addEventListener('pointerleave',()=>{gazeX=0;gazeY=0;if(!drag)draw();});
   const stopDrag = event => {if(drag){drag=null;event.stopPropagation();}};
   stage.addEventListener('pointerup',stopDrag);stage.addEventListener('pointercancel',stopDrag);
   stage.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();yaw+=(event.key==='ArrowRight'?.18:-.18);draw();}if(event.key==='ArrowUp'||event.key==='ArrowDown'){event.preventDefault();pitch=Math.max(-.55,Math.min(.55,pitch+(event.key==='ArrowUp'?.12:-.12)));draw();}});
