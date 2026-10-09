@@ -251,10 +251,27 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   addEllipsoid(-.15, -.01, 0, .8, .39, .37, body, 10, 14);
   addEllipsoid(-.69, -.04, 0, .42, .37, .39, flank, 8, 12);
   addEllipsoid(.34, .02, 0, .4, .31, .34, flank, 8, 12);
+  // Volume and anatomical landmarks: throat, shoulder, and hip masses overlap the core mesh.
+  addEllipsoid(-.08, -.18, 0, .63, .22, .31, '#788967', 9, 14);
+  addEllipsoid(.43, -.1, 0, .32, .27, .31, '#91a079', 8, 12);
+  addEllipsoid(-.63, -.13, 0, .3, .24, .32, '#879370', 8, 12);
   addTube([-.93, -.02, 0], [-2.33, -.23, 0], .28, .035, dark, 10);
   addTube([-.93, .04, 0], [-2.28, -.18, 0], .19, .018, feather, 9);
   addTube([.44, .16, 0], [.72, .56, 0], .22, .15, body, 9);
   addEllipsoid(.77, .57, 0, .3, .2, .2, flank, 8, 12);
+  // Defined cheek planes and a low brow give the skull a more recognizable raptor profile.
+  [-1, 1].forEach(side => {
+    addEllipsoid(.82, .53, side * .176, .17, .105, .055, '#7e8c66', 7, 10);
+    addTube([.83, .69, side * .17], [1.06, .67, side * .135], .036, .018, '#59694f', 7);
+    addEllipsoid(1.008, .652, side * .198, .019, .019, .012, '#f0d88b', 5, 7);
+    addEllipsoid(1.014, .652, side * .208, .009, .011, .007, '#17221f', 5, 6);
+  });
+  // Fine, muted dorsal scutes add surface detail without changing the silhouette.
+  for (let i = 0; i < 8; i++) {
+    const x = -.72 + i * .17;
+    const y = .3 + .045 * Math.sin((i / 7) * Math.PI);
+    addEllipsoid(x, y, 0, .065, .038, .12, i % 2 ? '#a0a982' : '#687a5f', 4, 7);
+  }
   addTube([.86, .58, 0], [1.42, .52, 0], .14, .045, body, 9);
   addTube([.86, .42, 0], [1.25, .36, 0], .09, .045, dark, 8);
   // Two feathered forelimbs with hooked claws.
@@ -287,6 +304,9 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   addEllipsoid(.98, .63, -.17, .035, .035, .025, '#e3c36d', 5, 8);
   addEllipsoid(1.005, .635, .195, .012, .013, .008, '#17221f', 5, 6);
   addEllipsoid(1.005, .635, -.195, .012, .013, .008, '#17221f', 5, 6);
+  // Small catchlights keep the eyes legible at thumbnail scale.
+  addEllipsoid(.997, .646, .214, .006, .006, .004, '#f2e9c9', 4, 5);
+  addEllipsoid(.997, .646, -.214, .006, .006, .004, '#f2e9c9', 4, 5);
   addEllipsoid(1.38, .555, .045, .018, .01, .012, '#53644e', 5, 6);
   addEllipsoid(1.38, .555, -.045, .018, .01, .012, '#53644e', 5, 6);
   let yaw = -.3, pitch = .08, zoom = 1, drag = null, width = 0, height = 0;
@@ -312,11 +332,16 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       const a = projected[face.a], b = projected[face.b], c = projected[face.c];
       const ab = [b.x-a.x,b.y-a.y,b.z-a.z], ac = [c.x-a.x,c.y-a.y,c.z-a.z];
       const normal = [ab[1]*ac[2]-ab[2]*ac[1],ab[2]*ac[0]-ab[0]*ac[2],ab[0]*ac[1]-ab[1]*ac[0]];
-      const norm = Math.hypot(...normal)||1, lit = Math.abs((normal[0]*-.35+normal[1]*.82+normal[2]*.46)/norm);
-      const shade = .5 + lit*.5, value = parseInt(face.color.slice(1),16), r = (value>>16)&255, g=(value>>8)&255, bl=value&255;
-      return {a,b,c,z:(a.z+b.z+c.z)/3,color:`rgb(${Math.round(r*shade)},${Math.round(g*shade)},${Math.round(bl*shade)})`};
+      const norm = Math.hypot(...normal)||1;
+      const facing = [normal[0]/norm, normal[1]/norm, normal[2]/norm];
+      const key = Math.max(0, facing[0]*-.28 + facing[1]*-.78 + facing[2]*.38);
+      const rim = Math.max(0, facing[2]) * .14;
+      const shade = Math.min(1.18, .48 + key*.66 + rim);
+      const value = parseInt(face.color.slice(1),16), r = (value>>16)&255, g=(value>>8)&255, bl=value&255;
+      const warmth = Math.max(0, key-.42);
+      return {a,b,c,z:(a.z+b.z+c.z)/3,color:`rgb(${Math.min(255,Math.round(r*shade+warmth*5))},${Math.min(255,Math.round(g*shade+warmth*8))},${Math.min(255,Math.round(bl*shade))})`};
     }).sort((a,b)=>a.z-b.z);
-    rendered.forEach(face => {ctx.beginPath();ctx.moveTo(face.a.x,face.a.y);ctx.lineTo(face.b.x,face.b.y);ctx.lineTo(face.c.x,face.c.y);ctx.closePath();ctx.fillStyle=face.color;ctx.fill();ctx.strokeStyle='rgba(17,29,26,.12)';ctx.lineWidth=.45;ctx.stroke();});
+    rendered.forEach(face => {ctx.beginPath();ctx.moveTo(face.a.x,face.a.y);ctx.lineTo(face.b.x,face.b.y);ctx.lineTo(face.c.x,face.c.y);ctx.closePath();ctx.fillStyle=face.color;ctx.fill();ctx.strokeStyle='rgba(17,29,26,.055)';ctx.lineWidth=.45;ctx.stroke();});
     ctx.restore();
   };
   const observer = new ResizeObserver(resize); observer.observe(stage); resize();
