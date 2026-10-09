@@ -251,26 +251,26 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   addEllipsoid(-.15, -.01, 0, .8, .39, .37, body, 10, 14);
   addEllipsoid(-.69, -.04, 0, .42, .37, .39, flank, 8, 12);
   addEllipsoid(.34, .02, 0, .4, .31, .34, flank, 8, 12);
-  addTube([-.93, -.02, 0], [-2.33, -.23, 0], .28, .035, dark, 10);
-  addTube([-.93, .04, 0], [-2.28, -.18, 0], .19, .018, feather, 9);
+  addTube([-.93, -.02, 0], [-2.82, -.31, 0], .28, .025, dark, 10);
+  addTube([-.93, .04, 0], [-2.74, -.27, 0], .19, .015, feather, 9);
   // A lifted, articulated neck gives the silhouette the alert, upright raptor profile.
-  addTube([.34, .14, 0], [.62, .52, 0], .23, .19, body, 10);
-  addTube([.62, .52, 0], [.82, .88, 0], .19, .145, body, 10);
-  addTube([.37, -.02, 0], [.72, .62, 0], .105, .075, flank, 8);
-  addEllipsoid(.91, .99, 0, .3, .18, .22, flank, 9, 14);
+  addTube([.28, .13, 0], [.48, .48, 0], .23, .19, body, 10);
+  addTube([.48, .48, 0], [.66, .81, 0], .19, .15, body, 10);
+  addTube([.31, -.02, 0], [.54, .58, 0], .105, .075, flank, 8);
+  addEllipsoid(.76, .93, 0, .3, .19, .23, flank, 9, 14);
   // Long, tapered muzzle with a distinct lower jaw and restrained teeth.
-  addTube([1.04, 1.04, 0], [1.62, .99, 0], .13, .035, body, 10);
-  addTube([1.04, .88, 0], [1.5, .89, 0], .075, .025, dark, 9);
-  addTube([1.02, .93, 0], [1.49, .93, 0], .025, .012, dark, 7);
+  addTube([.89, .98, 0], [1.42, .94, 0], .14, .065, body, 10);
+  addTube([.89, .84, 0], [1.36, .85, 0], .075, .035, dark, 9);
+  addTube([.88, .9, 0], [1.36, .9, 0], .025, .018, dark, 7);
   for (let tooth = 0; tooth < 5; tooth++) {
-    const tx = 1.11 + tooth * .075;
-    addTube([tx, .935, .12], [tx + .018, .895, .12], .012, .001, bone, 5);
-    addTube([tx, .935, -.12], [tx + .018, .895, -.12], .012, .001, bone, 5);
+    const tx = .96 + tooth * .067;
+    addTube([tx, .905, .12], [tx + .018, .865, .12], .012, .001, bone, 5);
+    addTube([tx, .905, -.12], [tx + .018, .865, -.12], .012, .001, bone, 5);
   }
   [-1, 1].forEach(side => {
-    addTube([.84, 1.115, side * .19], [1.08, 1.125, side * .18], .035, .018, dark, 7);
-    addEllipsoid(.99, 1.065, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
-    addEllipsoid(1.005, 1.066, side * .228, .018, .02, .011, '#17221f', 5, 7);
+    addTube([.68, 1.065, side * .19], [.91, 1.075, side * .18], .035, .018, dark, 7);
+    addEllipsoid(.83, 1.015, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
+    addEllipsoid(.845, 1.016, side * .228, .018, .02, .011, '#17221f', 5, 7);
   });
   // Two feathered forelimbs with hooked claws.
   [-.24, .24].forEach((z, i) => {
@@ -288,16 +288,14 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       z: -.39, shade: dark,
       hip: [-.63, -.19, -.39], knee: [-.31, -.52, -.39],
       hock: [-.54, -.91, -.39], ankle: [-.37, -1.08, -.39],
-      footShift: -.015
     },
     {
       z: .39, shade: flank,
       hip: [-.68, -.22, .39], knee: [-.39, -.55, .39],
       hock: [-.63, -.92, .39], ankle: [-.47, -1.08, .39],
-      footShift: -.06
     }
   ].forEach((leg, legIndex) => {
-    const { z, shade, hip, knee, hock, ankle, footShift } = leg;
+    const { z, shade, hip, knee, hock, ankle } = leg;
     // Femur: powerful but tapered from the pelvis to the forward knee.
     addEllipsoid(hip[0], hip[1], z, .19, .22, .14, shade, 7, 10);
     addTube(hip, knee, .145, .105, body, 8);
@@ -311,19 +309,19 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
 
     // Three compact toes fan gently forward and plant at a shared ground line.
     const toeSpecs = [
-      { endX: .095 + footShift, endZ: z - .13, len: .22 },
-      { endX: .18 + footShift, endZ: z, len: .28 },
-      { endX: .08 + footShift, endZ: z + .13, len: .21 }
+      { endZ: z - .11, len: .17 },
+      { endZ: z, len: .22 },
+      { endZ: z + .11, len: .17 }
     ];
     toeSpecs.forEach((toe, toeIndex) => {
-      const base = [ankle[0] + .035, -1.09, z];
+      const base = [ankle[0] + .025, -1.09, z];
       const knuckle = [ankle[0] + toe.len * .54, -1.115, z + (toe.endZ - z) * .56];
-      const tip = [toe.endX, -1.12, toe.endZ];
+      const tip = [ankle[0] + toe.len, -1.12, toe.endZ];
       addTube(base, knuckle, .037, .027, shade, 6);
       addTube(knuckle, tip, .027, .012, flank, 6);
       // Small keratin tips; toe II carries the characteristic enlarged claw.
       if (toeIndex === 1) {
-        addTube(tip, [tip[0] - .015, -1.045, tip[2] + .015], .03, .002, bone, 7);
+        addTube(tip, [tip[0] - .025, -1.035, tip[2] + .018], .026, .002, bone, 7);
       } else {
         addTube(tip, [tip[0] + .035, -1.105, tip[2] + (toeIndex === 0 ? -.012 : .012)], .016, .001, bone, 5);
       }
@@ -601,10 +599,30 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
 });
 
 
-// Randomly illuminate a few neural nodes at a time, with reduced-motion support.
+// Keep one neural node illuminated at all times, moving quickly through the network.
 document.querySelectorAll('.study-neural').forEach((study) => {
   const nodes = Array.from(study.querySelectorAll('.neural-nodes circle'));
-  if (nodes.length < 3 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (nodes.length < 3) return;
+  const buttons = Array.from(study.querySelectorAll('[data-neural-view]'));
+  const caption = study.querySelector('.neural-copy p');
+  const captions = {
+    design: 'Connect layers and define the model.',
+    train: 'Watch signals move through the network.',
+    inspect: 'Review the model output and activity.'
+  };
+  buttons.forEach((button) => button.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const view = button.dataset.neuralView;
+    study.dataset.neuralView = view;
+    buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+    if (caption) caption.textContent = captions[view] || captions.design;
+  }));
+
+  let currentNode = 0;
+  const setLitNode = () => nodes.forEach((node, index) => node.classList.toggle('is-lit', index === currentNode));
+  setLitNode();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   let visible = !('IntersectionObserver' in window);
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
@@ -612,19 +630,11 @@ document.querySelectorAll('.study-neural').forEach((study) => {
     }, { threshold: 0.08 });
     observer.observe(study);
   }
-  const lightRandomNodes = () => {
+  window.setInterval(() => {
     if (document.hidden || !visible) return;
-    nodes.forEach((node) => node.classList.remove('is-lit'));
-    const pool = nodes.slice();
-    for (let i = pool.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [pool[i], pool[j]] = [pool[j], pool[i]];
-    }
-    const count = 2 + Math.floor(Math.random() * 2);
-    pool.slice(0, count).forEach((node) => node.classList.add('is-lit'));
-  };
-  lightRandomNodes();
-  window.setInterval(lightRandomNodes, 950);
+    currentNode = (currentNode + 1) % nodes.length;
+    setLitNode();
+  }, 420);
 });
 
 
@@ -661,7 +671,7 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
   });
 });
 
-// Playable word slots support direct pointer drag plus a keyboard-friendly select/place flow.
+// Playable word slots: click a tile then a blank slot, drag between them, or use keyboard activation.
 document.querySelectorAll('.learning-screen').forEach((screen) => {
   const slots = Array.from(screen.querySelectorAll('[data-word-slot]'));
   const tiles = Array.from(screen.querySelectorAll('[data-letter-tile]'));
@@ -681,10 +691,10 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
   const selectTile = (tile) => {
     selectedLetter = tile?.dataset.letterTile || '';
     tiles.forEach((candidate) => candidate.dataset.selected = String(candidate === tile));
-    if (selectedLetter) announce(`Letter ${selectedLetter} selected. Choose a blank slot.`);
+    if (selectedLetter) announce(`Letter ${selectedLetter} selected. Choose an empty slot.`);
   };
   const place = (slot, letter) => {
-    if (!slot || !letter) return;
+    if (!slot || !letter || slot.dataset.filled === 'true') return;
     slot.textContent = letter;
     slot.dataset.filled = 'true';
     const slotNumber = slots.indexOf(slot) + 1;
@@ -701,11 +711,11 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     tile.draggable = false;
     tile.addEventListener('pointerdown', (event) => {
       if (event.button !== undefined && event.button !== 0) return;
-      event.preventDefault();
       event.stopPropagation();
       activePointer = {id:event.pointerId, tile, x:event.clientX, y:event.clientY, moved:false};
       selectedLetter = tile.dataset.letterTile || '';
       tile.dataset.dragging = 'false';
+      try { tile.setPointerCapture(event.pointerId); } catch {}
       announce(`Letter ${selectedLetter} ready to move.`);
     });
     tile.addEventListener('click', (event) => {
@@ -741,7 +751,7 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     tile.dataset.dragging = 'false';
     tile.dataset.ignoreClick = 'true';
     if (moved && slot && screen.contains(slot)) place(slot, tile.dataset.letterTile || '');
-    else if (moved) announce('Drop a letter into one of the blank spaces.');
+    else if (moved) announce('Drop the letter into an empty space.');
     else selectTile(tile);
     activePointer = null;
     window.setTimeout(() => { tile.dataset.ignoreClick = 'false'; }, 0);

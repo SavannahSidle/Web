@@ -2475,3 +2475,170 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .design-studies[data-mode] .study-space .space-focus{top:34%;width:43%}
 }
 @media(prefers-reduced-motion:reduce){.design-studies .study-culture .falling-d{animation:none!important}}
+
+
+/* 2026-10: round, slow star points and a meteor with its luminous head leading. */
+.home .poster-hero .hero-starfield{opacity:.62}
+.home .poster-hero .hero-starfield::before,
+.home .poster-hero .hero-starfield::after{
+  background-size:250px 205px;
+  background-image:
+    radial-gradient(circle 1.5px at 31px 42px,rgba(221,239,255,.84) 0 1.35px,transparent 2px),
+    radial-gradient(circle 1.8px at 128px 101px,rgba(168,205,255,.68) 0 1.55px,transparent 2.3px),
+    radial-gradient(circle 1.4px at 203px 169px,rgba(255,255,255,.58) 0 1.2px,transparent 1.9px);
+  animation-duration:86s;
+}
+.home .poster-hero .hero-starfield::after{background-size:340px 278px;animation-duration:122s;opacity:.45}
+.home .poster-hero .shooting-star{
+  left:27%;top:41%;width:clamp(92px,10vw,126px);height:2px;border-radius:50%;
+  background:linear-gradient(90deg,transparent 0%,rgba(197,220,255,.06) 8%,rgba(197,220,255,.18) 50%,rgba(230,241,255,.72) 88%,#fff 100%);
+  filter:drop-shadow(0 0 5px rgba(174,211,255,.55));
+  animation:mica-meteor-cross 17s cubic-bezier(.22,.58,.33,1) infinite;
+}
+.home .poster-hero .shooting-star::after{
+  content:"";position:absolute;right:-1px;top:50%;width:5px;height:5px;border-radius:50%;
+  transform:translateY(-50%);background:#fff;box-shadow:0 0 5px 2px rgba(214,232,255,.88),0 0 13px 4px rgba(143,190,255,.38)
+}
+@keyframes mica-meteor-cross{
+  0%,64%,100%{opacity:0;transform:translate3d(-14vw,-4vh,0) rotate(15deg)}
+  65.5%{opacity:.88}
+  71%{opacity:0;transform:translate3d(44vw,12vh,0) rotate(15deg)}
+}
+.home .poster-hero .space-event{position:absolute;z-index:1;pointer-events:none;opacity:0}
+.home .poster-hero .space-event-comet{
+  left:10%;top:27%;width:42px;height:1px;border-radius:50%;
+  background:linear-gradient(90deg,transparent,rgba(192,222,255,.12),rgba(229,241,255,.66));
+  animation:mica-comet-drift 29s ease-in-out infinite 7s
+}
+.home .poster-hero .space-event-comet::after{
+  content:"";position:absolute;right:0;top:50%;width:3px;height:3px;border-radius:50%;transform:translateY(-50%);
+  background:#fff;box-shadow:0 0 8px 2px rgba(183,218,255,.65)
+}
+@keyframes mica-comet-drift{
+  0%,52%,100%{opacity:0;transform:translate3d(-7vw,0,0) rotate(19deg)}
+  54%{opacity:.48}
+  61%{opacity:0;transform:translate3d(26vw,10vh,0) rotate(19deg)}
+}
+.home .poster-hero .space-event-glint{
+  left:73%;top:66%;width:3px;height:3px;border-radius:50%;background:#d9eaff;
+  box-shadow:0 0 7px 2px rgba(173,208,255,.48),18px -13px 0 -1px rgba(207,225,255,.68),39px 11px 0 -1px rgba(207,225,255,.48);
+  animation:mica-space-glint 23s ease-in-out infinite 3s
+}
+@keyframes mica-space-glint{
+  0%,100%{opacity:.2;transform:translate3d(0,0,0)}
+  50%{opacity:.68;transform:translate3d(-9px,-5px,0)}
+}
+@media(max-width:720px){
+ .home .poster-hero .hero-starfield{opacity:.54}
+ .home .poster-hero .shooting-star{left:18%;top:45%;width:84px}
+ .home .poster-hero .space-event-comet{left:5%;top:30%;width:30px}
+}
+@media(prefers-reduced-motion:reduce){
+ .home .poster-hero .hero-starfield::before,.home .poster-hero .hero-starfield::after,
+ .home .poster-hero .shooting-star,.home .poster-hero .space-event{animation:none!important}
+ .home .poster-hero .shooting-star,.home .poster-hero .space-event{display:none!important}
+}
+
+/* One animated point moves rapidly and continuously through the model graph. */
+.design-studies[data-mode] .study-neural .neural-actions{
+  position:absolute;left:6%;bottom:7%;z-index:4;display:flex;gap:4px;width:39%;max-width:190px
+}
+.design-studies[data-mode] .study-neural .neural-actions button{
+  flex:1 1 0;min-width:0;padding:5px 3px;border:1px solid rgba(135,199,194,.36);border-radius:3px;
+  background:rgba(13,35,47,.78);color:#b8d0d3;font:500 clamp(5px,1.35cqi,7px)/1 "IBM Plex Mono",monospace;
+  letter-spacing:.05em;text-transform:uppercase;cursor:pointer
+}
+.design-studies[data-mode] .study-neural .neural-actions button[aria-pressed="true"]{
+  border-color:#86edcf;background:rgba(62,137,128,.4);color:#f0fff8;box-shadow:0 0 10px rgba(112,234,204,.16)
+}
+.design-studies[data-mode] .study-neural .neural-nodes circle.is-lit{
+  fill:#9effd8!important;stroke:#e7fff6!important;filter:drop-shadow(0 0 7px rgba(134,255,216,.95))!important
+}
+.design-studies[data-mode] .study-neural .neural-nodes circle{transition:fill .16s ease,filter .16s ease,stroke .16s ease}
+@media(max-width:560px){
+ .design-studies[data-mode] .study-neural .neural-actions{left:6%;width:44%;bottom:6%}
+}
+
+/* More legible professional-service routes and a calmer advisory composition. */
+.design-studies[data-mode] .study-professional .professional-screen{
+  background:linear-gradient(90deg,#213e49 0 23%,#f4f1e9 23% 100%);color:#24383d
+}
+.design-studies[data-mode] .study-professional .professional-screen::before{
+  inset:0 77% 0 0;background:linear-gradient(150deg,#2d505a,#19333e)
+}
+.design-studies[data-mode] .study-professional .professional-side{
+  left:5%;width:14%;top:11%;height:78%
+}
+.design-studies[data-mode] .study-professional .professional-side span{color:#e0e9e3;line-height:1.8}
+.design-studies[data-mode] .study-professional .professional-main h3{
+  left:32%;right:6%;width:auto;top:14%;font-size:clamp(18px,5cqi,30px);line-height:.98
+}
+.design-studies[data-mode] .study-professional .professional-main p{
+  left:32%;right:7%;top:43%;width:auto;max-width:32ch;line-height:1.4
+}
+.design-studies[data-mode] .study-professional .professional-links{
+  left:32%;right:6%;top:64%;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px
+}
+.design-studies[data-mode] .study-professional .professional-links span{
+  position:relative;display:flex;align-items:center;min-height:26px;padding:5px 5px 5px 7px;
+  border:1px solid rgba(48,79,79,.23);border-radius:3px;background:rgba(255,255,255,.42);
+  font-size:clamp(6px,1.5cqi,8px);white-space:normal;overflow-wrap:normal
+}
+.design-studies[data-mode] .study-professional .professional-links span::after{
+  content:"↗";margin-left:auto;padding-left:3px;color:#b16c4f;font:600 8px/1 "IBM Plex Mono",monospace
+}
+.design-studies[data-mode] .study-professional .professional-main>b{
+  bottom:6%;padding:6px 10px;background:#b76f50;border-radius:2px;letter-spacing:.02em
+}
+.design-studies[data-mode] .study-minimal .practice-screen{background:linear-gradient(90deg,#223d47 0 20%,#f1ede4 20% 100%)}
+.design-studies[data-mode] .study-minimal .practice-top{color:#596d6d;letter-spacing:.12em}
+.design-studies[data-mode] .study-minimal .practice-copy{top:33%;left:33%;right:8%;gap:8px}
+.design-studies[data-mode] .study-minimal .practice-copy span{color:#9a674e}
+.design-studies[data-mode] .study-minimal .practice-copy strong{line-height:.95;letter-spacing:-.06em}
+.design-studies[data-mode] .study-minimal .practice-footer i{height:2px}
+.design-studies[data-mode="grid"] .study-minimal .practice-copy{left:33%;top:32%}
+
+/* Common Ground: tip back from the left edge, fall down the opposite way, land, then bounce. */
+.design-studies[data-mode] .study-culture .falling-d{transform-origin:0 52%;animation:ground-d-land 8.6s cubic-bezier(.33,.02,.28,1) infinite}
+@keyframes ground-d-land{
+  0%,61%,100%{opacity:1;transform:translate(0,0) rotate(0)}
+  66%{opacity:1;transform:translate(-3px,-8px) rotate(-9deg)}
+  72%{opacity:1;transform:translate(-9px,-3px) rotate(-31deg)}
+  79%{opacity:1;transform:translate(-15px,27px) rotate(-69deg)}
+  84%{opacity:1;transform:translate(-17px,71px) rotate(-89deg)}
+  87%{opacity:1;transform:translate(-17px,83px) rotate(-78deg)}
+  90%,94%{opacity:1;transform:translate(-17px,75px) rotate(-87deg)}
+  97%{opacity:1;transform:translate(-17px,83px) rotate(-89deg)}
+}
+@media(prefers-reduced-motion:reduce){.design-studies .study-culture .falling-d{animation:none!important}}
+
+/* Distinguish planet identities and keep the counter below the orbit labels. */
+.design-studies[data-mode] .study-space .space-focus{top:41%!important}
+.design-studies[data-mode] .study-space .planet-saturn{background:radial-gradient(circle at 36% 30%,#fff0c5,#c6a46d 64%,#87664d);width:8px;height:8px}
+.design-studies[data-mode] .study-space .planet-uranus{background:radial-gradient(circle at 35% 32%,#e1ffff,#72c7cf 62%,#3e7483);width:7px;height:7px}
+.design-studies[data-mode] .study-space .planet-neptune{background:radial-gradient(circle at 35% 30%,#bdcffd,#547ce0 62%,#29396f);width:7px;height:7px}
+.design-studies[data-mode] .study-space .planet-mars{background:radial-gradient(circle at 32% 28%,#ffd1ad,#c85b45 65%,#75352c)}
+.design-studies[data-mode] .study-space .orbit-saturn{left:53%;width:70%;height:90%}
+.design-studies[data-mode] .study-space .orbit-uranus{left:54%;width:81%;height:104%}
+.design-studies[data-mode] .study-space .orbit-neptune{left:55%;width:94%;height:112%}
+.design-studies[data-mode] .study-space .planet-jupiter::after{
+  content:"";position:absolute;left:56%;top:60%;width:26%;height:11%;border-radius:50%;background:rgba(145,65,49,.85)
+}
+.design-studies[data-mode] .study-space .planet-saturn::after{width:220%;height:68%;border-width:1.25px;box-shadow:0 0 4px rgba(238,211,160,.3)}
+.design-studies[data-mode] .study-space .space-rail .planet-scale{color:#cfdfeb}
+.design-studies[data-mode] .study-space .space-rail .planet-scale i{
+  background:radial-gradient(circle at 35% 28%,var(--planet-highlight,#e5f3f0),var(--planet-base,#628e9d) 61%,var(--planet-shadow,#263f59))
+}
+.design-studies[data-mode] .study-space .space-rail .planet-mercury{--planet-highlight:#f1e2c7;--planet-base:#9d8a6c;--planet-shadow:#514537}
+.design-studies[data-mode] .study-space .space-rail .planet-venus{--planet-highlight:#ffdb9c;--planet-base:#d29658;--planet-shadow:#6a493c}
+.design-studies[data-mode] .study-space .space-rail .planet-earth{--planet-highlight:#b9f0e4;--planet-base:#428ec1;--planet-shadow:#203b5f}
+.design-studies[data-mode] .study-space .space-rail .planet-mars{--planet-highlight:#ffc09a;--planet-base:#c85b45;--planet-shadow:#592b27}
+.design-studies[data-mode] .study-space .space-rail .planet-jupiter{--planet-highlight:#f7d4a4;--planet-base:#c47e58;--planet-shadow:#563c3b}
+.design-studies[data-mode] .study-space .space-rail .planet-saturn{--planet-highlight:#fff1cb;--planet-base:#c6a46d;--planet-shadow:#5d4835}
+.design-studies[data-mode] .study-space .space-rail .planet-uranus{--planet-highlight:#e1ffff;--planet-base:#72c7cf;--planet-shadow:#285664}
+.design-studies[data-mode] .study-space .space-rail .planet-neptune{--planet-highlight:#bdcffd;--planet-base:#547ce0;--planet-shadow:#222e6b}
+@media(max-width:560px){
+ .design-studies[data-mode] .study-space .space-focus{top:40%!important;width:43%}
+}
+
+/* Slow orbital/mesh motion through the hero keeps the MICA atmosphere alive. */
