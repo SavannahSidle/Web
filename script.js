@@ -280,23 +280,62 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     addTube([.82, -.34, z * 1.35], [.9, -.42, z * 1.35], .035, .006, bone, 6);
     for (let f = 0; f < 3; f++) addTube([.53 + f * .055, -.02, z * 1.13], [.64 + f * .06, -.12, z * 1.34], .035, .008, feather, 5);
   });
-  // Strong hind legs, long lower limbs, three toes, and the raised sickle claw.
-  [-.3, .3].forEach((z, i) => {
-    const shade = i ? flank : dark, dz = z * 1.45;
-    addEllipsoid(-.59, -.26, dz, .24, .32, .19, shade, 7, 10);
-    addTube([-.54, -.3, dz], [-.18, -.65, dz], .2, .13, body, 8);
-    addEllipsoid(-.18, -.65, dz, .14, .14, .13, flank, 6, 9);
-    addTube([-.18, -.65, dz], [.03, -1.04, dz], .12, .075, shade, 8);
-    addEllipsoid(.07, -1.06, dz, .12, .075, .12, flank, 6, 8);
-    [-1, 0, 1].forEach((toe) => {
-      const toeZ = dz + toe * .12;
-      addTube([.08, -1.07, dz], [.34, -1.1, toeZ], .07, .04, body, 6);
-      addTube([.34, -1.1, toeZ], [.47, -1.13, toeZ], .04, .005, bone, 6);
+  // Digitigrade hind limbs based on the documented V. mongoliensis proportions:
+  // femur and tibia are close in length; metatarsus is shorter; toes stay compact.
+  // The far leg is set slightly back and shaded to keep the side silhouette readable.
+  [
+    {
+      z: -.39, shade: dark,
+      hip: [-.63, -.19, -.39], knee: [-.31, -.52, -.39],
+      hock: [-.54, -.91, -.39], ankle: [-.37, -1.08, -.39],
+      footShift: -.015
+    },
+    {
+      z: .39, shade: flank,
+      hip: [-.68, -.22, .39], knee: [-.39, -.55, .39],
+      hock: [-.63, -.92, .39], ankle: [-.47, -1.08, .39],
+      footShift: -.06
+    }
+  ].forEach((leg, legIndex) => {
+    const { z, shade, hip, knee, hock, ankle, footShift } = leg;
+    // Femur: powerful but tapered from the pelvis to the forward knee.
+    addEllipsoid(hip[0], hip[1], z, .19, .22, .14, shade, 7, 10);
+    addTube(hip, knee, .145, .105, body, 8);
+    addEllipsoid(knee[0], knee[1], z, .105, .11, .105, flank, 6, 8);
+    // Tibia/fibula angle back toward the hock; the joint remains flexed.
+    addTube(knee, hock, .095, .065, shade, 8);
+    addEllipsoid(hock[0], hock[1], z, .075, .08, .075, dark, 6, 8);
+    // Short metatarsus angles forward to the ankle. No oversized foot mass.
+    addTube(hock, ankle, .065, .052, body, 7);
+    addEllipsoid(ankle[0], ankle[1], z, .06, .045, .065, flank, 6, 8);
+
+    // Three compact toes fan gently forward and plant at a shared ground line.
+    const toeSpecs = [
+      { endX: .095 + footShift, endZ: z - .13, len: .22 },
+      { endX: .18 + footShift, endZ: z, len: .28 },
+      { endX: .08 + footShift, endZ: z + .13, len: .21 }
+    ];
+    toeSpecs.forEach((toe, toeIndex) => {
+      const base = [ankle[0] + .035, -1.09, z];
+      const knuckle = [ankle[0] + toe.len * .54, -1.115, z + (toe.endZ - z) * .56];
+      const tip = [toe.endX, -1.12, toe.endZ];
+      addTube(base, knuckle, .037, .027, shade, 6);
+      addTube(knuckle, tip, .027, .012, flank, 6);
+      // Small keratin tips; toe II carries the characteristic enlarged claw.
+      if (toeIndex === 1) {
+        addTube(tip, [tip[0] - .015, -1.045, tip[2] + .015], .03, .002, bone, 7);
+      } else {
+        addTube(tip, [tip[0] + .035, -1.105, tip[2] + (toeIndex === 0 ? -.012 : .012)], .016, .001, bone, 5);
+      }
     });
-    addTube([.12, -1.02, dz + .02], [-.015, -.79, dz + .1], .065, .04, bone, 7);
-    addTube([-.015, -.79, dz + .1], [.17, -.69, dz + .1], .04, .004, bone, 7);
-    // small feather vanes along the thigh
-    for (let f = 0; f < 4; f++) addTube([-.64 + f * .1, -.05 - f * .03, dz + .12], [-.78 + f * .1, -.2 - f * .035, dz + .18], .045, .004, feather, 5);
+    // Sparse thigh feathers follow the leg instead of masking its joints.
+    for (let f = 0; f < 3; f++) {
+      addTube(
+        [hip[0] + .02 + f * .085, hip[1] + .09 - f * .02, z + .095],
+        [hip[0] - .075 + f * .085, hip[1] - .015 - f * .025, z + .13],
+        .032, .003, feather, 5
+      );
+    }
   });
   addEllipsoid(1.61, .99, .045, .018, .01, .012, '#53644e', 5, 6);
   addEllipsoid(1.61, .99, -.045, .018, .01, .012, '#53644e', 5, 6);
