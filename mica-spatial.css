@@ -2411,3 +2411,16 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .design-studies[data-mode] .study-diagonal .shape-three{animation:none!important}
   .design-studies[data-mode] .study-space .space-galaxy-image{filter:none}
 }
+
+/* Grid correction: keep the community filter in the left column below its title. */
+.design-studies[data-mode] .study-information .info-filter{
+  position:absolute!important;left:7%!important;right:auto!important;top:73%!important;bottom:auto!important;
+  width:31%!important;display:grid!important;grid-template-columns:1fr!important;gap:3px!important;
+  font-size:clamp(6px,1.7cqi,8px);line-height:1.15
+}
+.design-studies[data-mode] .study-information .info-filter b{
+  min-width:0;white-space:normal;padding:4px 5px;line-height:1.15
+}
+.design-studies[data-mode] .study-information .info-results{
+  left:46%!important;right:6%!important;top:17%!important;bottom:10%!important
+}
