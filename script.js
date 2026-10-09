@@ -681,9 +681,9 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
   });
   screen.querySelector('[data-learning-reset]')?.addEventListener('click', (event) => {
     event.preventDefault();event.stopPropagation();
-    slots.slice(2).forEach((slot) => {
+    slots.slice(2).forEach((slot, index) => {
       slot.textContent = '_';slot.dataset.filled = 'false';
-      slot.setAttribute('aria-label', 'Last letter, empty');
+      slot.setAttribute('aria-label', `${['third','fourth'][index] || 'next'} letter, empty`);
     });
     selectedLetter = '';
     tiles.forEach((tile) => tile.dataset.selected = 'false');
