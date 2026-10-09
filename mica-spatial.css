@@ -2448,3 +2448,22 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 @media(prefers-reduced-motion:reduce){
   .design-studies .study-editorial .editorial-screen h3 em span{animation:none!important}
 }
+
+/* Keep Common Ground's final letter full-size as it lifts from its left edge and tumbles away. */
+.design-studies[data-mode] .study-culture .falling-d{
+  transform-origin:0 52%;animation:ground-d 8s ease-in-out infinite
+}
+@keyframes ground-d{
+  0%,66%,100%{opacity:1;transform:translate(0,0) rotate(0)}
+  70%{opacity:1;transform:translate(-2px,-4px) rotate(-3deg)}
+  74%{opacity:1;transform:translate(-4px,-10px) rotate(2deg)}
+  78%{opacity:1;transform:translate(5px,-6px) rotate(17deg)}
+  84%{opacity:1;transform:translate(18px,10px) rotate(72deg)}
+  90%{opacity:.3;transform:translate(34px,32px) rotate(158deg)}
+  94%,98%{opacity:0;transform:translate(48px,58px) rotate(238deg)}
+}
+.design-studies[data-mode] .study-space .space-focus{top:34%}
+@media(max-width:560px){
+  .design-studies[data-mode] .study-space .space-focus{top:34%;width:43%}
+}
+@media(prefers-reduced-motion:reduce){.design-studies .study-culture .falling-d{animation:none!important}}
