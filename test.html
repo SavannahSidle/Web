@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#04111e">
+  <title>Test | MICA Digital</title>
+  <link rel="canonical" href="https://madeincanadadigital.ca/test.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261009mica-list-pass12">
+  <link rel="stylesheet" href="mica-spatial.css?v=20261009mica-list-pass12">
+  <style>
+    .hci-test-page{background:var(--paper);color:var(--ink)}
+    .hci-test-note{padding:10px max(24px,calc((100vw - 1240px)/2));background:#dbe8f5;color:#102c47;font:600 12px/1.45 "IBM Plex Mono",monospace;letter-spacing:.04em}
+    .hci-test-hero{min-height:clamp(520px,62vw,730px)}
+    .hci-test-hero .poster-hero-image{object-fit:cover}
+    .hci-test-hero .poster-hero-actions{z-index:4}
+    .hci-test-hero .poster-scroll{z-index:4}
+    .hci-test-section{padding:clamp(58px,8vw,104px) max(24px,calc((100vw - 1240px)/2))}
+    .hci-test-section.dark{background:#071827;color:#f5f7fb}
+    .hci-test-kicker{margin:0 0 16px;color:#4a83c6;font:600 11px/1.4 "IBM Plex Mono",monospace;letter-spacing:.13em;text-transform:uppercase}
+    .hci-test-section h2{max-width:900px;margin:0 0 20px;font:400 clamp(2.4rem,6vw,5.1rem)/.99 "DM Serif Display",serif;letter-spacing:-.035em}
+    .hci-test-intro{max-width:700px;color:#52657a;font-size:1.08rem}
+    .hci-test-section.dark .hci-test-intro{color:#c5d1de}
+    .hci-service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:38px}
+    .hci-service-card{min-height:210px;display:flex;flex-direction:column;align-items:flex-start;padding:24px;border:1px solid #cbd5e1;background:#fff;color:#071827;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+    .hci-service-card:hover{transform:translateY(-3px);border-color:#6f9ed2;box-shadow:0 12px 28px rgba(7,24,39,.1)}
+    .hci-service-card strong{font-size:1.22rem}
+    .hci-service-card span{margin-top:9px;color:#52657a}
+    .hci-service-card em{margin-top:auto;padding-top:24px;color:#235d9c;font:600 11px/1.4 "IBM Plex Mono",monospace;font-style:normal;text-transform:uppercase;letter-spacing:.08em}
+    .advisory-demo{max-width:940px;margin:38px auto 0;display:grid;grid-template-columns:.36fr 1fr;background:#f6f1e7;color:#0b1c29;border:1px solid rgba(208,222,239,.34);box-shadow:0 20px 50px rgba(0,0,0,.22)}
+    .advisory-side{padding:30px 24px;background:#123646;color:#eef4f8;display:flex;flex-direction:column;gap:12px}
+    .advisory-side strong,.advisory-side span,.advisory-category-label{font:600 11px/1.5 "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
+    .advisory-main{padding:clamp(28px,5vw,58px)}
+    .advisory-main h3{max-width:590px;margin:0 0 14px;font:400 clamp(2rem,4vw,3.4rem)/.98 "DM Serif Display",serif}
+    .advisory-main>p{max-width:520px;color:#53616a}
+    .advisory-category-label{margin:28px 0 10px;color:#53616a}
+    .advisory-categories{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 24px;padding:0;list-style:none}
+    .advisory-categories li{padding:8px 11px;border:1px solid #c6c5bd;background:#fff;font-size:.9rem}
+    .advisory-action{display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border:0;background:#b76548;color:white;font:600 14px/1.3 "IBM Plex Sans",sans-serif;cursor:pointer}
+    .advisory-action:hover{background:#92432d}
+    .advisory-detail{margin-top:18px;padding:16px 18px;border-left:3px solid #b76548;background:#fff;color:#283945}
+    .advisory-detail[hidden]{display:none}
+    .hci-contact{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,7vw,94px);margin-top:36px}
+    .hci-contact h3{font-size:clamp(1.8rem,3.8vw,3rem);line-height:1.02}
+    .hci-email-list{display:grid;gap:10px;margin-top:26px}
+    .hci-email-list a{display:flex;flex-direction:column;gap:3px;padding:14px 0;border-top:1px solid #cbd5e1}
+    .hci-email-list span{font:600 10px/1.4 "IBM Plex Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:#52657a}
+    .hci-form{display:grid;gap:17px}
+    .hci-form label{display:grid;gap:7px;font-weight:600}
+    .hci-form input,.hci-form select,.hci-form textarea{width:100%;min-height:48px;padding:12px 13px;border:1px solid #8796a4;border-radius:0;background:#fff;color:#071827;font:400 16px/1.5 "IBM Plex Sans",sans-serif}
+    .hci-form textarea{min-height:130px;resize:vertical}
+    .hci-form input:focus-visible,.hci-form select:focus-visible,.hci-form textarea:focus-visible,.hci-service-card:focus-visible,.advisory-action:focus-visible{outline:3px solid #2b77c1;outline-offset:3px}
+    .hci-form-help{margin:0;color:#42566b;font-size:.93rem}
+    .hci-form .button{justify-self:start;min-height:48px}
+    .hci-form .notice{margin:0}
+    .hci-test-footer{padding:40px max(24px,calc((100vw - 1240px)/2));background:#04111e;color:#f5f7fb}
+    .hci-test-footer p{max-width:1240px;margin:20px auto 0;color:#c5d1de}
+    .hci-test-footer .brand{width:max-content;margin:auto}
+    .hci-test-footer a:focus-visible,.site-header a:focus-visible,.poster-hero a:focus-visible{outline:3px solid #9fcaff;outline-offset:4px}
+    @media(max-width:820px){.hci-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hci-contact{grid-template-columns:1fr}}
+    @media(max-width:560px){.hci-test-note{font-size:10px}.hci-test-section{padding-left:20px;padding-right:20px}.hci-service-grid{grid-template-columns:1fr}.hci-service-card{min-height:165px}.advisory-demo{grid-template-columns:1fr}.advisory-side{padding:18px 22px;flex-direction:row;justify-content:space-between}.advisory-main{padding:28px 22px}.hci-test-footer{padding-left:20px;padding-right:20px}}
+    @media(prefers-reduced-motion:reduce){.hci-service-card{transition:none}.hci-service-card:hover{transform:none}}
+  </style>
+  <script src="script.js?v=20261009mica-list-pass12" defer></script>
+</head>
+<body class="home hci-test-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-site-header>
+    <a class="brand" href="index.html" aria-label="MICA Digital home"><span class="brand-mark" aria-hidden="true">M</span><span class="brand-copy"><strong>MICA <em>Digital</em></strong><small>Made in Canada Digital</small></span></a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a><a href="services.html">Services</a><a class="nav-cta" href="#test-inquiry">Discuss a project</a>
+    </nav>
+  </header>
+  <div class="hci-test-note" role="note">TEST PAGE · REVIEW VERSION · EXISTING PAGES ARE UNCHANGED</div>
+  <main id="main">
+    <section class="poster-hero hci-test-hero" aria-labelledby="test-hero-title">
+      <div class="hero-starfield" aria-hidden="true"><i class="shooting-star"></i><i class="space-event space-event-comet"></i><i class="space-event space-event-glint"></i></div>
+      <h1 class="visually-hidden" id="test-hero-title">MICA Digital — Canadian Websites and Digital Experiences</h1>
+      <img class="poster-hero-image" src="assets/mica-digital-social.jpg" width="1200" height="630" alt="" fetchpriority="high">
+      <div class="poster-hero-actions" aria-label="Explore MICA Digital">
+        <a class="button primary" href="#test-inquiry">Start a project</a>
+        <a class="poster-hero-link" href="#test-services">Explore services</a>
+      </div>
+      <a class="poster-scroll" href="#test-services">Scroll to review <span aria-hidden="true">↓</span></a>
+    </section>
+
+    <section class="hci-test-section" id="test-services" aria-labelledby="test-services-title">
+      <p class="hci-test-kicker">MICA / TEST SERVICES</p>
+      <h2 id="test-services-title">Start with the job your website needs to do.</h2>
+      <p class="hci-test-intro">All five service paths are visible and actionable. Choose one to open the project inquiry with that service selected.</p>
+      <div class="hci-service-grid">
+        <a class="hci-service-card" href="#test-inquiry" data-project-choice="Websites"><strong>Custom web design</strong><span>Build a clear, responsive foundation for the business.</span><em>Discuss web design →</em></a>
+        <a class="hci-service-card" href="#test-inquiry" data-project-choice="Website Redesign"><strong>Website redesign</strong><span>Improve an existing site while keeping what already works.</span><em>Discuss a redesign →</em></a>
+        <a class="hci-service-card" href="#test-inquiry" data-project-choice="UX &amp; HCI"><strong>UX &amp; HCI</strong><span>Make structure, navigation, and interaction easier to use.</span><em>Discuss UX &amp; HCI →</em></a>
+        <a class="hci-service-card" href="#test-inquiry" data-project-choice="Digital Experiences"><strong>Digital Experiences</strong><span>Plan an interactive experience, prototype, or focused tool.</span><em>Discuss digital experiences →</em></a>
+        <a class="hci-service-card" href="#test-inquiry" data-project-choice="Custom Development"><strong>Custom Development</strong><span>Build maintainable interactions and focused functionality.</span><em>Discuss development →</em></a>
+      </div>
+    </section>
+
+    <section class="hci-test-section dark" aria-labelledby="advisory-title">
+      <p class="hci-test-kicker">INTERFACE STUDY / TEST</p>
+      <h2 id="advisory-title">Trust &amp; clarity, with working controls.</h2>
+      <p class="hci-test-intro">The category labels stay visibly informational. The call to action is a real button with a clear response.</p>
+      <article class="advisory-demo">
+        <div class="advisory-side"><strong>Advisory</strong><span>People · Property · Practice</span></div>
+        <div class="advisory-main">
+          <h3>Clear guidance for complex work.</h3>
+          <p>Independent advice for important decisions.</p>
+          <p class="advisory-category-label">Areas of guidance</p>
+          <ul class="advisory-categories" aria-label="Areas of guidance">
+            <li>Disputes</li><li>Agreements</li><li>Planning</li>
+          </ul>
+          <button class="advisory-action" type="button" aria-expanded="false" aria-controls="advisory-detail">How we can help</button>
+          <div class="advisory-detail" id="advisory-detail" hidden>Start with a conversation about the decision, dispute, or agreement you need help with.</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="hci-test-section" id="test-inquiry" aria-labelledby="test-inquiry-title">
+      <p class="hci-test-kicker">PROJECT INQUIRY</p>
+      <h2 id="test-inquiry-title">Tell us what your business needs.</h2>
+      <p class="hci-test-intro">This test flow creates an email draft in your email app. It never sends automatically, and the project type includes website redesign.</p>
+      <div class="hci-contact">
+        <div>
+          <h3>Choose the address that fits.</h3>
+          <div class="hci-email-list">
+            <a href="mailto:projects@madeincanadadigital.ca"><span>New projects</span><strong>projects@madeincanadadigital.ca</strong></a>
+            <a href="mailto:support@madeincanadadigital.ca"><span>Client support</span><strong>support@madeincanadadigital.ca</strong></a>
+            <a href="mailto:info@madeincanadadigital.ca"><span>Everything else</span><strong>info@madeincanadadigital.ca</strong></a>
+          </div>
+        </div>
+        <form class="hci-form" data-contact-form method="post" action="test.html">
+          <label>Your name<input name="name" autocomplete="name" required></label>
+          <label>Business name<input name="business" autocomplete="organization" required></label>
+          <label>What do you need?
+            <select name="project">
+              <option>Websites</option><option>Website Redesign</option><option>Digital Experiences</option><option>UX &amp; HCI</option><option>Custom Development</option><option>I am not sure yet</option>
+            </select>
+          </label>
+          <label>Tell us about it<textarea name="message" required placeholder="What does the business do? What should the new website help people do?"></textarea></label>
+          <p class="hci-form-help" id="test-form-help">Your email app will open with a draft. Review it and press Send there; nothing is sent from this page. If the email app does not open, use the New projects address.</p>
+          <button class="button primary" type="submit" aria-describedby="test-form-help">Create email draft</button>
+          <p class="notice" role="status">Your email app should open now. The message has not been sent.</p>
+          <noscript><p>JavaScript is off. Please email <a href="mailto:projects@madeincanadadigital.ca">projects@madeincanadadigital.ca</a> directly; this page will not submit or expose your details in the URL.</p></noscript>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="hci-test-footer">
+    <a class="brand" href="index.html" aria-label="MICA Digital home"><span class="brand-mark" aria-hidden="true">M</span><span class="brand-copy"><strong>MICA <em>Digital</em></strong><small>Made in Canada Digital</small></span></a>
+    <p>Web design and development for Canadian businesses.<br>Based in Ottawa, working across Canada.<br><a href="mailto:info@madeincanadadigital.ca">info@madeincanadadigital.ca</a></p>
+  </footer>
+  <script>
+    document.querySelectorAll('[data-project-choice]').forEach(link => link.addEventListener('click', () => {
+      const select = document.querySelector('[data-contact-form] select[name="project"]');
+      if (select) select.value = link.dataset.projectChoice;
+    }));
+    const advisoryButton = document.querySelector('.advisory-action');
+    const advisoryDetail = document.querySelector('#advisory-detail');
+    advisoryButton?.addEventListener('click', () => {
+      const expanded = advisoryButton.getAttribute('aria-expanded') === 'true';
+      advisoryButton.setAttribute('aria-expanded', String(!expanded));
+      advisoryDetail.hidden = expanded;
+    });
+  </script>
+</body>
+</html>
