@@ -271,28 +271,28 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   addEllipsoid(-.15, -.01, 0, .8, .39, .37, body, 10, 14);
   addEllipsoid(-.69, -.04, 0, .42, .37, .39, flank, 8, 12);
   addEllipsoid(.34, .02, 0, .4, .31, .34, flank, 8, 12);
-  addTube([-.93, -.02, 0], [-3.12, -.31, 0], .28, .025, dark, 10);
+  addTube([-.93, -.02, 0], [-3.62, -.36, 0], .28, .018, dark, 10);
   const tailFanStart = vertices.length;
-  addTube([-.93, .04, 0], [-3.02, -.27, 0], .19, .015, feather, 9);
+  addTube([-.93, .04, 0], [-3.52, -.31, 0], .19, .012, feather, 9);
   motionRanges.tailFan = [tailFanStart, vertices.length];
-  // A lifted, articulated neck gives the silhouette the alert, upright raptor profile.
-  addTube([.18, .13, 0], [.31, .48, 0], .23, .19, body, 10);
-  addTube([.31, .48, 0], [.46, .81, 0], .19, .15, body, 10);
-  addTube([.21, -.02, 0], [.37, .58, 0], .105, .075, flank, 8);
-  addEllipsoid(.57, .93, 0, .32, .21, .24, flank, 9, 14);
-  // Long, tapered muzzle with a distinct lower jaw and restrained teeth.
-  addTube([.69, .98, 0], [1.08, .94, 0], .15, .09, body, 10);
-  addTube([.69, .84, 0], [1.03, .85, 0], .075, .045, dark, 9);
-  addTube([.68, .9, 0], [1.04, .9, 0], .025, .018, dark, 7);
+  // A compact, backwards-swept neck and blunt muzzle give the head a watchful profile.
+  addTube([.12, .12, 0], [-.08, .43, 0], .23, .19, body, 10);
+  addTube([-.08, .43, 0], [-.08, .76, 0], .19, .15, body, 10);
+  addTube([.14, -.02, 0], [-.19, .54, 0], .105, .075, flank, 8);
+  addEllipsoid(.08, .84, 0, .31, .22, .24, flank, 9, 14);
+  // Short, broad muzzle with a distinct jaw and a small, visible mouth line.
+  addTube([.28, .88, 0], [.66, .86, 0], .145, .105, body, 10);
+  addTube([.29, .76, 0], [.62, .77, 0], .075, .05, dark, 9);
+  addTube([.28, .82, 0], [.64, .82, 0], .025, .018, dark, 7);
   for (let tooth = 0; tooth < 5; tooth++) {
-    const tx = .76 + tooth * .052;
-    addTube([tx, .905, .12], [tx + .018, .865, .12], .012, .001, bone, 5);
-    addTube([tx, .905, -.12], [tx + .018, .865, -.12], .012, .001, bone, 5);
+    const tx = .34 + tooth * .055;
+    addTube([tx, .835, .12], [tx + .015, .8, .12], .011, .001, bone, 5);
+    addTube([tx, .835, -.12], [tx + .015, .8, -.12], .011, .001, bone, 5);
   }
   [-1, 1].forEach(side => {
-    addTube([.48, 1.065, side * .19], [.71, 1.075, side * .18], .035, .018, dark, 7);
-    addEllipsoid(.63, 1.015, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
-    addEllipsoid(.645, 1.016, side * .228, .018, .02, .011, '#17221f', 5, 7);
+    addTube([-.04, .96, side * .19], [.18, .97, side * .18], .035, .018, dark, 7);
+    addEllipsoid(.12, .89, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
+    addEllipsoid(.135, .89, side * .228, .018, .02, .011, '#17221f', 5, 7);
   });
   // Two feathered forelimbs with hooked claws.
   [-.24, .24].forEach((z, i) => {
@@ -359,8 +359,8 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       );
     }
   });
-  addEllipsoid(1.12, .99, .045, .018, .01, .012, '#53644e', 5, 6);
-  addEllipsoid(1.12, .99, -.045, .018, .01, .012, '#53644e', 5, 6);
+  addEllipsoid(.68, .87, .045, .022, .012, .014, '#53644e', 5, 6);
+  addEllipsoid(.68, .87, -.045, .022, .012, .014, '#53644e', 5, 6);
   let yaw = -.3, pitch = .08, zoom = 1, drag = null, width = 0, height = 0;
   let gazeX = 0, gazeY = 0;
   const resize = () => {
@@ -389,24 +389,24 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
         // 1. Subtle ribcage breathing.
         if (x > -1.12 && x < .58 && y > -.4 && y < .38) y += (y > 0 ? 1 : -1) * breath * .008;
         // 2. The tail countersways gently, with more movement at the tip.
-        if (x < -.94 && x > -3.16) {
-          const tailWeight = Math.min(1, Math.max(0, (-x - .94) / 2.18));
+        if (x < -.94 && x > -3.66) {
+          const tailWeight = Math.min(1, Math.max(0, (-x - .94) / 2.72));
           y += Math.sin(motionTime * .82 + tailWeight * 1.8) * .024 * tailWeight;
           z += Math.sin(motionTime * .58 + tailWeight * 1.4) * .012 * tailWeight;
         }
         // 3 & 10. The head scans slowly and follows a nearby pointer with a damped look.
-        if (x > .28 && y > .48) {
-          const headWeight = Math.min(1, Math.max(0, (y - .48) / .5));
+        if (x > -.2 && y > .46) {
+          const headWeight = Math.min(1, Math.max(0, (y - .46) / .52));
           x += headScan * .014 * headWeight;
           y += (headScan * .005 + gazeY * .022) * headWeight;
           z += (Math.sin(motionTime * .36) * .026 + gazeX * .045) * headWeight;
         }
         // 4. A quick, occasional blink.
-        if (x > .585 && x < .675 && y > .975 && y < 1.055 && Math.abs(Math.abs(z) - .205) < .035) {
-          y = 1.015 + (y - 1.015) * (1 - blink * .86);
+        if (x > .075 && x < .175 && y > .85 && y < .93 && Math.abs(Math.abs(z) - .205) < .035) {
+          y = .89 + (y - .89) * (1 - blink * .86);
         }
         // 5. The lower jaw loosens slightly between breaths.
-        if (x > .68 && x < 1.06 && y < .88 && Math.abs(z) < .1) y -= jawFlex * Math.max(0, (x - .68) / .38);
+        if (x > .28 && x < .65 && y < .79 && Math.abs(z) < .1) y -= jawFlex * Math.max(0, (x - .28) / .37);
         // 6. Fine tail-feather ripple.
         if (motionRanges.tailFan && vertexIndex >= motionRanges.tailFan[0] && vertexIndex < motionRanges.tailFan[1]) {
           y += Math.sin(motionTime * 2.7 + x * 1.8) * .009;
