@@ -11,12 +11,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="stylesheet" href="styles.css?v=20261009mica-list-pass12">
   <link rel="stylesheet" href="mica-spatial.css?v=20261009mica-list-pass12">
   <style>
     .hci-test-page{background:var(--paper);color:var(--ink)}
     .hci-test-note{padding:10px max(24px,calc((100vw - 1240px)/2));background:#dbe8f5;color:#102c47;font:600 12px/1.45 "IBM Plex Mono",monospace;letter-spacing:.04em}
-    .hci-test-hero{min-height:clamp(520px,62vw,730px)}
+    .hci-test-hero{width:100%;min-height:clamp(520px,62vw,730px)}
     .hci-test-hero .poster-hero-image{object-fit:cover}
     .hci-test-hero .poster-hero-actions{z-index:4}
     .hci-test-hero .poster-scroll{z-index:4}
@@ -50,6 +51,7 @@
     .hci-email-list{display:grid;gap:10px;margin-top:26px}
     .hci-email-list a{display:flex;flex-direction:column;gap:3px;padding:14px 0;border-top:1px solid #cbd5e1}
     .hci-email-list span{font:600 10px/1.4 "IBM Plex Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:#52657a}
+    html:not(.js) .hci-form{display:none}
     .hci-form{display:grid;gap:17px}
     .hci-form label{display:grid;gap:7px;font-weight:600}
     .hci-form input,.hci-form select,.hci-form textarea{width:100%;min-height:48px;padding:12px 13px;border:1px solid #8796a4;border-radius:0;background:#fff;color:#071827;font:400 16px/1.5 "IBM Plex Sans",sans-serif}
@@ -135,7 +137,7 @@
             <a href="mailto:info@madeincanadadigital.ca"><span>Everything else</span><strong>info@madeincanadadigital.ca</strong></a>
           </div>
         </div>
-        <form class="hci-form" data-contact-form method="post" action="test.html">
+        <form class="hci-form" id="test-contact-form" method="post" action="test.html">
           <label>Your name<input name="name" autocomplete="name" required></label>
           <label>Business name<input name="business" autocomplete="organization" required></label>
           <label>What do you need?
@@ -147,8 +149,8 @@
           <p class="hci-form-help" id="test-form-help">Your email app will open with a draft. Review it and press Send there; nothing is sent from this page. If the email app does not open, use the New projects address.</p>
           <button class="button primary" type="submit" aria-describedby="test-form-help">Create email draft</button>
           <p class="notice" role="status">Your email app should open now. The message has not been sent.</p>
-          <noscript><p>JavaScript is off. Please email <a href="mailto:projects@madeincanadadigital.ca">projects@madeincanadadigital.ca</a> directly; this page will not submit or expose your details in the URL.</p></noscript>
         </form>
+        <noscript><p class="hci-form-help">JavaScript is off, so this form is unavailable. Email <a href="mailto:projects@madeincanadadigital.ca">projects@madeincanadadigital.ca</a> directly; your details will not be put in the page URL.</p></noscript>
       </div>
     </section>
   </main>
@@ -158,9 +160,18 @@
   </footer>
   <script>
     document.querySelectorAll('[data-project-choice]').forEach(link => link.addEventListener('click', () => {
-      const select = document.querySelector('[data-contact-form] select[name="project"]');
+      const select = document.querySelector('#test-contact-form select[name="project"]');
       if (select) select.value = link.dataset.projectChoice;
     }));
+    const testForm = document.querySelector('#test-contact-form');
+    testForm?.addEventListener('submit', event => {
+      event.preventDefault();
+      const fields = new FormData(testForm);
+      const subject = encodeURIComponent('New website project inquiry');
+      const body = encodeURIComponent('Name: ' + fields.get('name') + '\nBusiness: ' + fields.get('business') + '\nProject: ' + fields.get('project') + '\n\n' + fields.get('message'));
+      window.location.href = 'mailto:projects@madeincanadadigital.ca?subject=' + subject + '&body=' + body;
+      document.querySelector('.hci-form .notice')?.classList.add('show');
+    });
     const advisoryButton = document.querySelector('.advisory-action');
     const advisoryDetail = document.querySelector('#advisory-detail');
     advisoryButton?.addEventListener('click', () => {
