@@ -746,6 +746,8 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
   let selectedLetter = '';
   let activePointer = null;
   if (!slots.length || !tiles.length) return;
+  // Mark the two starter letters as filled before interaction so a click returns them to the bank.
+  slots.forEach((slot) => { slot.dataset.filled = String(slot.textContent.trim() !== '_'); });
 
   const announce = (message, success = false) => {
     if (status) status.textContent = message;
