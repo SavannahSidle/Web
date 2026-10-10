@@ -440,58 +440,157 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     ctx.restore();
   };
   const observer = new ResizeObserver(resize); observer.observe(stage); resize();
-  if (!reducedMotion) {
-    let isInView = false, automaticFrame = 0, lastAutomaticFrame = 0;
-    const stopAutomaticTurn = () => {
-      if (automaticFrame) cancelAnimationFrame(automaticFrame);
-      automaticFrame = 0; lastAutomaticFrame = 0;
-    };
-    const turn = (time) => {
-      automaticFrame = 0;
-      if (!isInView || document.hidden) { lastAutomaticFrame = 0; return; }
-      if (lastAutomaticFrame) {
-        yaw += Math.min(50, time - lastAutomaticFrame) * (Math.PI * 2 / 100000);
+  const modelStatus = stage.querySelector('.raptor-status');
+  const controls = stage.querySelector('.raptor-controls');
+  const zoomIn = stage.querySelector('[data-raptor-action="zoom-in"]');
+  const zoomOut = stage.querySelector('[data-raptor-action="zoom-out"]');
+  let userPaused = reducedMotion;
+  let isInView = false, automaticFrame = 0, lastAutomaticFrame = 0, lastPaint = 0;
+  let activePointerId = null;
+  const announce = (message) => { if (modelStatus) modelStatus.textContent = message; };
+  const syncControls = () => {
+    if (zoomIn) zoomIn.disabled = zoom >= 1.5;
+    if (zoomOut) zoomOut.disabled = zoom <= .72;
+    const autoButton = stage.querySelector('[data-raptor-action="autoplay"]');
+    if (autoButton) {
+      autoButton.setAttribute('aria-pressed', String(!userPaused));
+      autoButton.setAttribute('aria-label', reducedMotion ? 'Automatic rotation unavailable while reduced motion is enabled' : userPaused ? 'Resume automatic rotation' : 'Pause automatic rotation');
+      autoButton.title = reducedMotion ? 'Automatic rotation is off for reduced motion' : userPaused ? 'Resume automatic rotation' : 'Pause automatic rotation';
+      autoButton.textContent = userPaused ? '▶' : 'Ⅱ';
+      autoButton.disabled = reducedMotion;
+    }
+  };
+  const stopAutomaticTurn = () => {
+    if (automaticFrame) cancelAnimationFrame(automaticFrame);
+    automaticFrame = 0; lastAutomaticFrame = 0; lastPaint = 0;
+  };
+  const startAutomaticTurn = () => {
+    if (!reducedMotion && !userPaused && isInView && !document.hidden && !automaticFrame) {
+      automaticFrame = requestAnimationFrame(turn);
+    }
+  };
+  const turn = (time) => {
+    automaticFrame = 0;
+    if (reducedMotion || userPaused || !isInView || document.hidden || stage.matches(':focus-within')) {
+      lastAutomaticFrame = 0;
+      return;
+    }
+    if (lastAutomaticFrame) {
+      const elapsed = Math.min(50, time - lastAutomaticFrame);
+      yaw += elapsed * (Math.PI * 2 / 120000);
+      if (time - lastPaint >= 1000 / 30) { draw(); lastPaint = time; }
+    }
+    lastAutomaticFrame = time;
+    automaticFrame = requestAnimationFrame(turn);
+  };
+  const pauseForUse = () => stopAutomaticTurn();
+  if (!reducedMotion && 'IntersectionObserver' in window) {
+    const turnObserver = new IntersectionObserver((entries) => {
+      isInView = Boolean(entries[0]?.isIntersecting);
+      if (isInView) startAutomaticTurn(); else stopAutomaticTurn();
+    }, { threshold: 0.08 });
+    turnObserver.observe(stage);
+  } else {
+    isInView = !reducedMotion;
+    startAutomaticTurn();
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAutomaticTurn(); else startAutomaticTurn();
+  });
+  stage.addEventListener('focusin', pauseForUse);
+  stage.addEventListener('focusout', () => requestAnimationFrame(() => {
+    if (!stage.matches(':focus-within')) startAutomaticTurn();
+  }));
+  const setZoom = (next, announceChange = true) => {
+    zoom = Math.max(.72, Math.min(1.5, next));
+    syncControls();
+    draw();
+    if (announceChange) announce(`Zoom ${Math.round(zoom * 100)} percent.`);
+  };
+  const resetView = () => {
+    yaw = -.3; pitch = .08; setZoom(1, false);
+    announce('Model view reset to the starting angle and 100 percent zoom.');
+  };
+  const describeOrientation = () => {
+    const direction = ['front three-quarter', 'side', 'rear three-quarter', 'rear', 'front three-quarter'][
+      Math.round((((yaw % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2)) / (Math.PI / 2))];
+    announce(`Model viewed from the ${direction} angle.`);
+  };
+  syncControls();
+  stage.addEventListener('pointerdown', event => {
+    if (event.target.closest('button, a, summary')) return;
+    activePointerId = event.pointerId;
+    drag = { x: event.clientX, y: event.clientY, started: false, type: event.pointerType };
+    if (event.pointerType === 'mouse') { event.preventDefault(); stage.setPointerCapture?.(event.pointerId); }
+    event.stopPropagation();
+    pauseForUse();
+  });
+  stage.addEventListener('pointermove', event => {
+    if (drag && event.pointerId === activePointerId) {
+      const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
+      if (!drag.started && Math.hypot(dx, dy) > 4) drag.started = true;
+      if (drag.started) {
+        drag.x = event.clientX; drag.y = event.clientY;
+        yaw += dx * .012;
+        if (drag.type !== 'touch') pitch = Math.max(-.55, Math.min(.55, pitch + dy * .008));
         draw();
       }
-      lastAutomaticFrame = time;
-      automaticFrame = requestAnimationFrame(turn);
-    };
-    const startAutomaticTurn = () => {
-      if (isInView && !document.hidden && !automaticFrame) automaticFrame = requestAnimationFrame(turn);
-    };
-    if ('IntersectionObserver' in window) {
-      const turnObserver = new IntersectionObserver((entries) => {
-        isInView = Boolean(entries[0]?.isIntersecting);
-        if (isInView) startAutomaticTurn(); else stopAutomaticTurn();
-      }, { threshold: 0.08 });
-      turnObserver.observe(stage);
-    } else {
-      isInView = true;
-      startAutomaticTurn();
-    }
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) stopAutomaticTurn(); else startAutomaticTurn();
-    });
-  }
-  stage.addEventListener('pointerdown', event => {if(event.target.closest('button'))return;event.preventDefault();event.stopPropagation();drag={x:event.clientX,y:event.clientY};stage.setPointerCapture?.(event.pointerId);});
-  stage.addEventListener('pointermove', event => {
-    if (drag) {
-      const dx=event.clientX-drag.x,dy=event.clientY-drag.y;
-      drag={x:event.clientX,y:event.clientY};yaw+=dx*.012;pitch=Math.max(-.55,Math.min(.55,pitch+dy*.008));draw();
       return;
     }
     if (!reducedMotion && event.pointerType === 'mouse') {
-      const rect=stage.getBoundingClientRect();
-      gazeX=Math.max(-1,Math.min(1,((event.clientX-rect.left)/rect.width-.5)*2));
-      gazeY=Math.max(-1,Math.min(1,((event.clientY-rect.top)/rect.height-.5)*2));
+      const rect = stage.getBoundingClientRect();
+      gazeX = Math.max(-1, Math.min(1, ((event.clientX - rect.left) / rect.width - .5) * 2));
+      gazeY = Math.max(-1, Math.min(1, ((event.clientY - rect.top) / rect.height - .5) * 2));
       draw();
     }
   });
-  stage.addEventListener('pointerleave',()=>{gazeX=0;gazeY=0;if(!drag)draw();});
-  const stopDrag = event => {if(drag){drag=null;event.stopPropagation();}};
-  stage.addEventListener('pointerup',stopDrag);stage.addEventListener('pointercancel',stopDrag);
-  stage.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();yaw+=(event.key==='ArrowRight'?.18:-.18);draw();}if(event.key==='ArrowUp'||event.key==='ArrowDown'){event.preventDefault();pitch=Math.max(-.55,Math.min(.55,pitch+(event.key==='ArrowUp'?.12:-.12)));draw();}});
-  stage.querySelectorAll('[data-raptor-action]').forEach(button=>button.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();if(button.dataset.raptorAction==='zoom-in')zoom=Math.min(1.5,zoom+.12);if(button.dataset.raptorAction==='zoom-out')zoom=Math.max(.72,zoom-.12);if(button.dataset.raptorAction==='reset'){yaw=-.3;pitch=.08;zoom=1;}draw();}));
+  stage.addEventListener('pointerleave', () => { gazeX=0; gazeY=0; if (!drag) draw(); });
+  const stopDrag = event => {
+    if (drag && event.pointerId === activePointerId) {
+      const moved = drag.started;
+      drag = null; activePointerId = null;
+      if (moved) describeOrientation();
+      if (!userPaused && !stage.matches(':focus-within')) startAutomaticTurn();
+    }
+  };
+  stage.addEventListener('pointerup', stopDrag);
+  stage.addEventListener('pointercancel', stopDrag);
+  stage.addEventListener('lostpointercapture', stopDrag);
+  stage.addEventListener('keydown', event => {
+    if (event.target !== stage) return;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault(); yaw += event.key === 'ArrowRight' ? .18 : -.18; draw(); describeOrientation();
+    } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault(); pitch = Math.max(-.55, Math.min(.55, pitch + (event.key === 'ArrowUp' ? .12 : -.12))); draw(); announce('Model tilt adjusted.');
+    } else if (event.key === '+' || event.key === '=') {
+      event.preventDefault(); setZoom(zoom + .12);
+    } else if (event.key === '-' || event.key === '_') {
+      event.preventDefault(); setZoom(zoom - .12);
+    } else if (event.key === 'Home') {
+      event.preventDefault(); resetView();
+    } else if (event.key === ' ') {
+      event.preventDefault(); userPaused = !userPaused; syncControls();
+      announce(userPaused ? 'Automatic rotation paused.' : 'Automatic rotation resumed.');
+      if (userPaused) stopAutomaticTurn(); else startAutomaticTurn();
+    }
+  });
+  stage.addEventListener('click', event => {
+    const button = event.target.closest('[data-raptor-action]');
+    if (!button) return;
+    event.preventDefault(); event.stopPropagation();
+    const action = button.dataset.raptorAction;
+    if (action === 'rotate-left') { yaw -= .22; draw(); describeOrientation(); }
+    if (action === 'rotate-right') { yaw += .22; draw(); describeOrientation(); }
+    if (action === 'zoom-in') setZoom(zoom + .12);
+    if (action === 'zoom-out') setZoom(zoom - .12);
+    if (action === 'reset') resetView();
+    if (action === 'autoplay' && !reducedMotion) {
+      userPaused = !userPaused; syncControls();
+      announce(userPaused ? 'Automatic rotation paused.' : 'Automatic rotation resumed.');
+      if (userPaused) stopAutomaticTurn(); else startAutomaticTurn();
+    }
+  });
+
 });
 
 const depthElement = document.querySelector('[data-depth]');
