@@ -2722,3 +2722,47 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .test4-copy .design-studies .study-dinosaur .raptor-controls button{transition:none!important}
   .test4-copy .design-studies .study-dinosaur .raptor-controls [data-raptor-action="autoplay"]{display:none}
 }
+
+/* Test 4 raptor refinement: give the model a clear lane and keep its controls off its silhouette. */
+.test4-copy .design-studies .study-dinosaur .raptor-viewport{
+  right:3%;top:19%;width:62%;height:64%;touch-action:pan-y;
+  background:radial-gradient(ellipse at 52% 82%,rgba(129,158,126,.18),transparent 43%),linear-gradient(180deg,rgba(11,21,23,.7),rgba(22,37,37,.58));
+}
+.test4-copy .design-studies .study-dinosaur .raptor-controls{
+  display:grid;grid-template-columns:repeat(6,30px);gap:3px;right:6px;top:6px;padding:5px;
+}
+.test4-copy .design-studies .study-dinosaur .raptor-controls button{width:30px;height:30px}
+.test4-copy .design-studies .study-dinosaur .raptor-hint{
+  left:7px;right:7px;bottom:6px;font-size:clamp(7px,1.55cqw,10px);letter-spacing:0;
+}
+.test4-copy .study-dinosaur .raptor-notes{left:5%;bottom:5%;width:38%;font-size:clamp(7px,1.5cqw,9px)}
+.test4-copy .study-dinosaur .raptor-notes summary{padding:5px 7px}
+.test4-copy .study-dinosaur .raptor-notes[open]{width:min(62%,280px);max-height:68%;overflow:auto}
+.test4-copy .design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel{
+  left:5%;top:23%;width:25%;height:31%;padding:5px;gap:2px;
+}
+.test4-copy .design-studies[data-mode="grid"] .study-dinosaur .pangaea-map{height:58%}
+.test4-copy .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus{left:5%;top:61%;width:35%}
+.test4-copy .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus h3{
+  margin:5px 0 2px;font-size:clamp(1rem,5.2cqw,1.4rem);line-height:1;
+}
+.test4-copy .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus span{
+  font-size:clamp(6px,1.65cqw,8px);overflow-wrap:normal;
+}
+.test4-copy .design-studies[data-mode="grid"] .study-dinosaur .raptor-viewport{right:3%;top:18%;width:63%;height:66%}
+.test4-copy .design-studies[data-mode="grid"] .study-dinosaur .raptor-controls{
+  grid-template-columns:repeat(6,25px);gap:2px;padding:4px;right:4px;top:4px;
+}
+.test4-copy .design-studies[data-mode="grid"] .study-dinosaur .raptor-controls button{width:25px;height:25px;font-size:15px}
+.test4-copy .design-studies[data-mode="grid"] .study-dinosaur .raptor-hint{
+  font-size:clamp(6px,1.45cqw,8px);line-height:1.15;
+}
+.test4-copy .design-studies[data-mode="grid"] .study-dinosaur .raptor-notes{bottom:5%;font-size:clamp(6px,1.4cqw,8px)}
+@media(max-width:620px){
+  .test4-copy .design-studies .study-dinosaur .raptor-controls{grid-template-columns:repeat(6,25px);gap:2px;padding:4px}
+  .test4-copy .design-studies .study-dinosaur .raptor-controls button{width:25px;height:25px}
+}
+@media(max-width:380px){
+  .test4-copy .design-studies .study-dinosaur .raptor-controls{grid-template-columns:repeat(6,22px);gap:2px;padding:3px}
+  .test4-copy .design-studies .study-dinosaur .raptor-controls button{width:22px;height:22px}
+}
