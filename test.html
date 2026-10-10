@@ -111,6 +111,18 @@
 @media(max-width:820px){.hci-test-page .hci-value-links{grid-template-columns:repeat(2,minmax(0,1fr));padding-inline:22px}.hci-test-page .hci-value-links .signal-item{min-height:156px}}
 @media(max-width:500px){.hci-test-page .hci-value-links{gap:8px;padding:12px 16px}.hci-test-page .hci-value-links .signal-item{min-height:172px;padding:15px 13px 13px}.hci-test-page .hci-value-links .signal-item p{font-size:.82rem;margin:12px 0}.hci-test-page .shooting-star-tertiary{left:59%;top:31%;width:45px}}
 @media(prefers-reduced-motion:reduce){.hci-test-page .hci-value-links .signal-item{transition:none}.hci-test-page .shooting-star-tertiary{display:none!important;animation:none!important}}
+
+/* Give each Test-page meteor its own position and scale despite the hero base rule. */
+.hci-test-page .poster-hero .shooting-star.shooting-star-secondary{top:35%;left:42%;width:82px;animation-delay:-11s}
+.hci-test-page .poster-hero .shooting-star.shooting-star-tertiary{top:23%;left:67%;width:58px;animation-name:mica-meteor-cross-tertiary;animation-delay:-13s;filter:blur(.35px) drop-shadow(0 0 3px rgba(174,211,255,.42))}
+@media(max-width:720px){
+ .hci-test-page .poster-hero .shooting-star.shooting-star-secondary{top:52%;left:35%;width:74px}
+ .hci-test-page .poster-hero .shooting-star.shooting-star-tertiary{top:31%;left:59%;width:45px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hci-test-page .poster-hero .shooting-star.shooting-star-secondary,
+ .hci-test-page .poster-hero .shooting-star.shooting-star-tertiary{display:none!important;animation:none!important}
+}
 </style>
 </head>
 <body class="home hci-test-page">
