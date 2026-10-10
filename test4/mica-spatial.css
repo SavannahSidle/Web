@@ -2766,3 +2766,18 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .test4-copy .design-studies .study-dinosaur .raptor-controls{grid-template-columns:repeat(6,22px);gap:2px;padding:3px}
   .test4-copy .design-studies .study-dinosaur .raptor-controls button{width:22px;height:22px}
 }
+
+.test4-copy .design-studies .study-dinosaur .pangaea-panel div span{
+  display:block;margin-top:2px;color:#b8c8b4;
+  font:500 clamp(6px,1.35cqw,8px)/1.2 "IBM Plex Mono",monospace;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.test4-copy .design-studies .study-dinosaur .dinosaur-periods{
+  font-size:clamp(6px,1.3cqw,8px);letter-spacing:.045em;
+}
+.test4-copy .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-periods{
+  left:39%;right:4%;bottom:6%;font-size:clamp(5px,1.25cqw,7px);gap:3px;
+}
+@media(max-width:620px){
+  .test4-copy .design-studies .study-dinosaur .dinosaur-periods{font-size:6px}
+}
