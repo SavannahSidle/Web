@@ -91,7 +91,15 @@
       .hci-test-page .poster-hero .shooting-star.shooting-star-tertiary{display:none!important;animation:none!important}
     }
   </style>
-  <script src="script.js?v=20261009mica-list-pass12" defer></script>
+  <script>
+  document.querySelectorAll('.hci-service-card[data-project-choice]').forEach((card) => {
+    card.addEventListener('click', () => {
+      const projectType = document.querySelector('#test-contact-form select[name="project"]');
+      if (projectType) projectType.value = card.dataset.projectChoice;
+    });
+  });
+</script>
+<script src="script.js?v=20261009mica-list-pass12" defer></script>
 </head>
 <body class="home hci-test-page">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -125,6 +133,7 @@
         <a class="hci-service-card" href="#test-inquiry" data-project-choice="UX &amp; HCI"><strong>UX &amp; HCI</strong><span>Make structure, navigation, and interaction easier to use.</span><em>Discuss UX &amp; HCI →</em></a>
         <a class="hci-service-card" href="#test-inquiry" data-project-choice="Digital Experiences"><strong>Digital Experiences</strong><span>Plan an interactive experience, prototype, or focused tool.</span><em>Discuss digital experiences →</em></a>
         <a class="hci-service-card" href="#test-inquiry" data-project-choice="Custom Development"><strong>Custom Development</strong><span>Build maintainable interactions and focused functionality.</span><em>Discuss development →</em></a>
+        <a class="hci-service-card" href="#test-inquiry" data-project-choice="Personalized game development"><strong>Personalized game development</strong><span>Create a custom game shaped around your audience, goals, and play context.</span><em>Discuss game development →</em></a>
       </div>
     </section>
 
@@ -148,7 +157,7 @@
           <label>Business name<input name="business" autocomplete="organization" required></label>
           <label>What do you need?
             <select name="project">
-              <option>Websites</option><option>Website Redesign</option><option>Digital Experiences</option><option>UX &amp; HCI</option><option>Custom Development</option><option>I am not sure yet</option>
+              <option>Websites</option><option>Website Redesign</option><option>Digital Experiences</option><option>UX &amp; HCI</option><option>Custom Development</option><option>Personalized game development</option><option>I am not sure yet</option>
             </select>
           </label>
           <label>Tell us about it<textarea name="message" required placeholder="What does the business do? What should the new website help people do?"></textarea></label>
