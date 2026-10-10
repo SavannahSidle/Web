@@ -41,11 +41,13 @@
     .advisory-main>p{max-width:520px;color:#53616a}
     .advisory-category-label{margin:28px 0 10px;color:#53616a}
     .advisory-categories{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 24px;padding:0;list-style:none}
-    .advisory-categories li{padding:8px 11px;border:1px solid #c6c5bd;background:#fff;font-size:.9rem}
-    .advisory-action{display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border:0;background:#b76548;color:white;font:600 14px/1.3 "IBM Plex Sans",sans-serif;cursor:pointer}
+    .advisory-topic{padding:8px 11px;border:1px solid #c6c5bd;background:#fff;color:#0b1c29;font:500 .9rem/1.4 "IBM Plex Sans",sans-serif;cursor:pointer}
+    .advisory-topic[aria-pressed="true"]{border-color:#1e5062;background:#1e5062;color:#fff}
+    .advisory-topic:hover{border-color:#1e5062}
+    .advisory-action{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:10px 16px;border:0;background:#b76548;color:white;font:600 14px/1.3 "IBM Plex Sans",sans-serif;text-decoration:none;cursor:pointer}
     .advisory-action:hover{background:#92432d}
-    .advisory-detail{margin-top:18px;padding:16px 18px;border-left:3px solid #b76548;background:#fff;color:#283945}
-    .advisory-detail[hidden]{display:none}
+    .advisory-topic:focus-visible,.advisory-action:focus-visible{outline:3px solid #2b77c1;outline-offset:3px}
+    .advisory-detail{margin:14px 0 20px;padding:16px 18px;border-left:3px solid #b76548;background:#fff;color:#283945}
     .hci-contact{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,7vw,94px);margin-top:36px}
     .hci-contact h3{font-size:clamp(1.8rem,3.8vw,3rem);line-height:1.02}
     .hci-email-list{display:grid;gap:10px;margin-top:26px}
@@ -94,8 +96,8 @@
 
     <section class="hci-test-section" id="test-services" aria-labelledby="test-services-title">
       <p class="hci-test-kicker">MICA / TEST SERVICES</p>
-      <h2 id="test-services-title">Start with the job your website needs to do.</h2>
-      <p class="hci-test-intro">All five service paths are visible and actionable. Choose one to open the project inquiry with that service selected.</p>
+      <h2 id="test-services-title">What should your website help people do?</h2>
+      <p class="hci-test-intro">Choose a starting point. We’ll shape the work around what your business and customers need.</p>
       <div class="hci-service-grid">
         <a class="hci-service-card" href="#test-inquiry" data-project-choice="Websites"><strong>Custom web design</strong><span>Build a clear, responsive foundation for the business.</span><em>Discuss web design →</em></a>
         <a class="hci-service-card" href="#test-inquiry" data-project-choice="Website Redesign"><strong>Website redesign</strong><span>Improve an existing site while keeping what already works.</span><em>Discuss a redesign →</em></a>
@@ -105,24 +107,7 @@
       </div>
     </section>
 
-    <section class="hci-test-section dark" aria-labelledby="advisory-title">
-      <p class="hci-test-kicker">INTERFACE STUDY / TEST</p>
-      <h2 id="advisory-title">Trust &amp; clarity, with working controls.</h2>
-      <p class="hci-test-intro">The category labels stay visibly informational. The call to action is a real button with a clear response.</p>
-      <article class="advisory-demo">
-        <div class="advisory-side"><strong>Advisory</strong><span>People · Property · Practice</span></div>
-        <div class="advisory-main">
-          <h3>Clear guidance for complex work.</h3>
-          <p>Independent advice for important decisions.</p>
-          <p class="advisory-category-label">Areas of guidance</p>
-          <ul class="advisory-categories" aria-label="Areas of guidance">
-            <li>Disputes</li><li>Agreements</li><li>Planning</li>
-          </ul>
-          <button class="advisory-action" type="button" aria-expanded="false" aria-controls="advisory-detail">How we can help</button>
-          <div class="advisory-detail" id="advisory-detail" hidden>Start with a conversation about the decision, dispute, or agreement you need help with.</div>
-        </div>
-      </article>
-    </section>
+
 
     <section class="hci-test-section" id="test-inquiry" aria-labelledby="test-inquiry-title">
       <p class="hci-test-kicker">PROJECT INQUIRY</p>
@@ -153,6 +138,26 @@
         <noscript><p class="hci-form-help">JavaScript is off, so this form is unavailable. Email <a href="mailto:projects@madeincanadadigital.ca">projects@madeincanadadigital.ca</a> directly; your details will not be put in the page URL.</p></noscript>
       </div>
     </section>
+    <section class="hci-test-section dark" aria-labelledby="advisory-title">
+      <p class="hci-test-kicker">PROFESSIONAL SERVICES / TRUST &amp; CLARITY</p>
+      <h2 id="advisory-title">Advice for the moments that matter.</h2>
+      <p class="hci-test-intro">Clear next steps for complex decisions about people, property, and practice.</p>
+      <article class="advisory-demo">
+        <div class="advisory-side"><strong>Advisory</strong><span>People · Property · Practice</span></div>
+        <div class="advisory-main">
+          <h3>Clear guidance for complex work.</h3>
+          <p>Thoughtful guidance, grounded in what matters to you.</p>
+          <p class="advisory-category-label">Areas of guidance</p>
+          <div class="advisory-categories" role="group" aria-label="Areas of guidance">
+            <button class="advisory-topic" type="button" aria-pressed="true" data-advisory-topic data-advisory-copy="Resolve a difficult situation with a clear view of your options and next steps.">Disputes</button>
+            <button class="advisory-topic" type="button" aria-pressed="false" data-advisory-topic data-advisory-copy="Draft, review, and negotiate agreements with the important details in plain view.">Agreements</button>
+            <button class="advisory-topic" type="button" aria-pressed="false" data-advisory-topic data-advisory-copy="Make a considered plan for what comes next, grounded in your priorities.">Planning</button>
+          </div>
+          <p class="advisory-detail" id="advisory-detail" aria-live="polite">Resolve a difficult situation with a clear view of your options and next steps.</p>
+          <a class="advisory-action" href="#test-inquiry" data-project-choice="UX &amp; HCI">Discuss a similar project <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </section>
   </main>
   <footer class="hci-test-footer">
     <a class="brand" href="index.html" aria-label="MICA Digital home"><span class="brand-mark" aria-hidden="true">M</span><span class="brand-copy"><strong>MICA <em>Digital</em></strong><small>Made in Canada Digital</small></span></a>
@@ -172,13 +177,11 @@
       window.location.href = 'mailto:projects@madeincanadadigital.ca?subject=' + subject + '&body=' + body;
       document.querySelector('.hci-form .notice')?.classList.add('show');
     });
-    const advisoryButton = document.querySelector('.advisory-action');
     const advisoryDetail = document.querySelector('#advisory-detail');
-    advisoryButton?.addEventListener('click', () => {
-      const expanded = advisoryButton.getAttribute('aria-expanded') === 'true';
-      advisoryButton.setAttribute('aria-expanded', String(!expanded));
-      advisoryDetail.hidden = expanded;
-    });
+    document.querySelectorAll('[data-advisory-topic]').forEach(button => button.addEventListener('click', () => {
+      document.querySelectorAll('[data-advisory-topic]').forEach(topic => topic.setAttribute('aria-pressed', String(topic === button)));
+      advisoryDetail.textContent = button.dataset.advisoryCopy;
+    }));
   </script>
 </body>
 </html>
