@@ -2664,3 +2664,346 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
  .design-studies[data-mode] .study-professional .professional-links span{padding-inline:5px}
  .design-studies[data-mode] .study-minimal .practice-copy{max-width:70%}
 }
+
+
+/* Test 6: accessible, touch-friendly dinosaur viewer controls. */
+.site-live .design-studies .study-dinosaur .raptor-viewport{
+  touch-action:pan-y;
+}
+.site-live .design-studies .study-dinosaur .raptor-controls{
+  z-index:5;display:grid;grid-template-columns:repeat(3,minmax(34px,38px));gap:5px;
+  right:8px;top:8px;padding:6px;border:1px solid rgba(194,219,209,.28);
+  border-radius:7px;background:rgba(5,15,18,.88);backdrop-filter:blur(8px);
+}
+.site-live .design-studies .study-dinosaur .raptor-controls button{
+  width:36px;height:36px;font-size:17px;touch-action:manipulation;
+}
+.site-live .design-studies .study-dinosaur .raptor-controls button:hover:not(:disabled){
+  background:#315754;color:#fff;
+}
+.site-live .design-studies .study-dinosaur .raptor-controls button:focus-visible,
+.site-live .design-studies .study-dinosaur .raptor-viewport:focus-visible,
+.site-live .study-dinosaur .raptor-notes summary:focus-visible,
+.site-live .study-dinosaur .raptor-notes a:focus-visible{
+  outline:2px solid #d8eaa2;outline-offset:2px;
+}
+.site-live .design-studies .study-dinosaur .raptor-controls button:disabled{
+  opacity:.42;cursor:not-allowed;
+}
+.site-live .design-studies .study-dinosaur .raptor-hint{
+  z-index:2;left:9px;right:9px;bottom:8px;color:#e0e9dc;
+  font:500 clamp(8px,1.8cqw,11px)/1.3 "IBM Plex Mono",monospace;
+  letter-spacing:.015em;text-shadow:0 1px 4px #07110f;
+}
+.site-live .design-studies .study-dinosaur .raptor-status{
+  position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+.site-live .study-dinosaur .raptor-notes{
+  position:absolute;z-index:3;left:5%;bottom:15%;width:34%;color:#edf1e2;
+  font:clamp(7px,1.5cqw,9px)/1.35 "IBM Plex Sans",sans-serif;
+}
+.site-live .study-dinosaur .raptor-notes summary{
+  width:max-content;max-width:100%;padding:4px 6px;border:1px solid rgba(193,216,186,.35);
+  border-radius:4px;background:rgba(8,20,23,.84);color:#e1e9cf;cursor:pointer;
+}
+.site-live .study-dinosaur .raptor-notes[open]{
+  width:min(50%,230px);padding:7px;border:1px solid rgba(193,216,186,.4);
+  border-radius:6px;background:rgba(7,17,19,.96);box-shadow:0 8px 24px rgba(0,0,0,.35);
+}
+.site-live .study-dinosaur .raptor-notes p{margin:5px 0;color:#d2dbcc}
+.site-live .study-dinosaur .raptor-notes a{display:inline-block;margin:3px 8px 0 0;color:#cfe8a4;text-underline-offset:2px}
+.site-live .study-dinosaur .raptor-status:empty{display:none}
+@media(max-width:620px){
+  .site-live .design-studies .study-dinosaur .raptor-controls{grid-template-columns:repeat(3,34px);gap:4px;padding:5px}
+  .site-live .design-studies .study-dinosaur .raptor-controls button{width:34px;height:34px}
+}
+@media(prefers-reduced-motion:reduce){
+  .site-live .design-studies .study-dinosaur .raptor-controls button{transition:none!important}
+  .site-live .design-studies .study-dinosaur .raptor-controls [data-raptor-action="autoplay"]{display:none}
+}
+
+/* Test 6 raptor refinement: give the model a clear lane and keep its controls off its silhouette. */
+.site-live .design-studies .study-dinosaur .raptor-viewport{
+  right:3%;top:19%;width:62%;height:64%;touch-action:pan-y;
+  background:radial-gradient(ellipse at 52% 82%,rgba(129,158,126,.18),transparent 43%),linear-gradient(180deg,rgba(11,21,23,.7),rgba(22,37,37,.58));
+}
+.site-live .design-studies .study-dinosaur .raptor-controls{
+  display:grid;grid-template-columns:repeat(6,30px);gap:3px;right:6px;top:6px;padding:5px;
+}
+.site-live .design-studies .study-dinosaur .raptor-controls button{width:30px;height:30px}
+.site-live .design-studies .study-dinosaur .raptor-hint{
+  left:7px;right:7px;bottom:6px;font-size:clamp(7px,1.55cqw,10px);letter-spacing:0;
+}
+.site-live .study-dinosaur .raptor-notes{left:5%;bottom:5%;width:38%;font-size:clamp(7px,1.5cqw,9px)}
+.site-live .study-dinosaur .raptor-notes summary{padding:5px 7px}
+.site-live .study-dinosaur .raptor-notes[open]{width:min(62%,280px);max-height:68%;overflow:auto}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel{
+  left:5%;top:23%;width:25%;height:31%;padding:5px;gap:2px;
+}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-map{height:58%}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus{left:5%;top:61%;width:35%}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus h3{
+  margin:5px 0 2px;font-size:clamp(1rem,5.2cqw,1.4rem);line-height:1;
+}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus span{
+  font-size:clamp(6px,1.65cqw,8px);overflow-wrap:normal;
+}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .raptor-viewport{right:3%;top:18%;width:63%;height:66%}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .raptor-controls{
+  grid-template-columns:repeat(6,25px);gap:2px;padding:4px;right:4px;top:4px;
+}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .raptor-controls button{width:25px;height:25px;font-size:15px}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .raptor-hint{
+  font-size:clamp(6px,1.45cqw,8px);line-height:1.15;
+}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .raptor-notes{bottom:5%;font-size:clamp(6px,1.4cqw,8px)}
+@media(max-width:620px){
+  .site-live .design-studies .study-dinosaur .raptor-controls{grid-template-columns:repeat(6,25px);gap:2px;padding:4px}
+  .site-live .design-studies .study-dinosaur .raptor-controls button{width:25px;height:25px}
+}
+@media(max-width:380px){
+  .site-live .design-studies .study-dinosaur .raptor-controls{grid-template-columns:repeat(6,22px);gap:2px;padding:3px}
+  .site-live .design-studies .study-dinosaur .raptor-controls button{width:22px;height:22px}
+}
+
+.site-live .design-studies .study-dinosaur .pangaea-panel div span{
+  display:block;margin-top:2px;color:#b8c8b4;
+  font:500 clamp(6px,1.35cqw,8px)/1.2 "IBM Plex Mono",monospace;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.site-live .design-studies .study-dinosaur .dinosaur-periods{
+  font-size:clamp(6px,1.3cqw,8px);letter-spacing:.045em;
+}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-periods{
+  left:39%;right:4%;bottom:6%;font-size:clamp(5px,1.25cqw,7px);gap:3px;
+}
+@media(max-width:620px){
+  .site-live .design-studies .study-dinosaur .dinosaur-periods{font-size:6px}
+}
+
+
+/* Test 6: mental health support study, with clear pathways and compact, usable controls. */
+.site-live .design-studies .study-care .care-screen{
+  position:relative;display:grid;isolation:isolate;overflow:hidden;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  grid-template-rows:auto 1fr auto;gap:clamp(7px,1.25cqw,14px);
+  align-content:stretch;padding:clamp(13px,4.2cqw,34px)!important;
+  border:1px solid rgba(54,76,63,.2);border-left:5px solid #527568;
+  border-radius:4px;
+  background:
+    radial-gradient(circle at 15% 82%,rgba(170,193,170,.18),transparent 35%),
+    linear-gradient(118deg,#f6f3eb 0%,#f6f3eb 53%,#e7ede4 53%,#e7ede4 100%);
+  color:#18362f;
+}
+.site-live .design-studies .study-care .care-screen::before{
+  content:"";position:absolute;z-index:0;left:7%;bottom:17%;width:26%;aspect-ratio:1;border:1px solid rgba(70,112,91,.22);border-radius:50%;box-shadow:0 0 0 13px rgba(89,130,105,.045),0 0 0 26px rgba(89,130,105,.035);pointer-events:none;
+}
+.site-live .design-studies .study-care .care-screen::after{
+  content:"";position:absolute;z-index:0;left:18%;bottom:28%;width:7%;height:17%;border-left:1px solid #73937d;border-right:1px solid #73937d;transform:rotate(16deg);opacity:.65;pointer-events:none;
+}
+.site-live .design-studies .study-care .care-screen>*{position:relative;z-index:1}
+.site-live .design-studies .study-care .care-top{
+  grid-column:1/-1;grid-row:1;display:flex;justify-content:space-between;align-items:center;gap:8px;
+  color:#38584e;font:600 clamp(7px,1.15cqw,10px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.12em
+}
+.site-live .design-studies .study-care .care-location{color:#537365;white-space:nowrap}
+.site-live .design-studies .study-care .care-intro{grid-column:1;grid-row:2;align-self:center;max-width:29ch}
+.site-live .design-studies .study-care .care-intro h3{
+  position:static;margin:0 0 clamp(7px,1.2cqw,12px);max-width:12ch;
+  color:#18362f;font:400 clamp(1.05rem,4.25cqw,2.15rem)/.99 "DM Serif Display",Georgia,serif;letter-spacing:-.025em
+}
+.site-live .design-studies .study-care .care-intro>p{
+  margin:0;max-width:26ch;color:#3e5a51;font-size:clamp(9px,1.9cqw,14px);line-height:1.45
+}
+.site-live .design-studies .study-care .care-illustration{display:block;position:relative;width:35%;height:3px;margin-top:clamp(10px,2.4cqw,24px);background:#a1b6a3;border-radius:99px}
+.site-live .design-studies .study-care .care-illustration i,.site-live .design-studies .study-care .care-illustration b,.site-live .design-studies .study-care .care-illustration em{position:absolute;bottom:0;display:block;width:1px;height:clamp(12px,2.2cqw,22px);background:#73937d;transform-origin:bottom}
+.site-live .design-studies .study-care .care-illustration i{left:25%;transform:rotate(-24deg)}
+.site-live .design-studies .study-care .care-illustration b{left:51%;height:clamp(17px,3.3cqw,34px)}
+.site-live .design-studies .study-care .care-illustration em{left:76%;transform:rotate(24deg)}
+.site-live .design-studies .study-care .care-options{
+  position:static;left:auto;right:auto;top:auto;grid-column:2;grid-row:2;align-self:center;
+  display:grid;gap:clamp(4px,.8cqw,8px);margin:0;min-width:0
+}
+.site-live .design-studies .study-care .care-option{
+  appearance:none;width:100%;min-width:0;min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:clamp(5px,1.1cqw,11px) clamp(8px,1.45cqw,15px);
+  border:1px solid #b8c8ba;border-radius:5px;background:rgba(255,255,252,.88);color:#18362f;text-align:left;
+  font:inherit;cursor:pointer;transition:background-color .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease
+}
+.site-live .design-studies .study-care .care-option:hover{background:#fff;border-color:#577c69;box-shadow:0 3px 12px rgba(30,68,52,.08);transform:translateY(-1px)}
+.site-live .design-studies .study-care .care-option:focus-visible,.site-live .design-studies .study-care .care-back:focus-visible,.site-live .design-studies .study-care .care-action:focus-visible,.site-live .design-studies .study-care .care-source:focus-visible,.site-live .design-studies .study-care .care-crisis a:focus-visible{
+  outline:3px solid #245d46;outline-offset:3px
+}
+.site-live .design-studies .study-care .care-option[aria-pressed="true"]{border-color:#315f4e;background:#e3eee5;box-shadow:inset 3px 0 #315f4e}
+.site-live .design-studies .study-care .care-option>span:first-child{min-width:0;display:grid;gap:2px}
+.site-live .design-studies .study-care .care-option strong{font-size:clamp(9px,1.75cqw,13px);font-weight:600;line-height:1.18}
+.site-live .design-studies .study-care .care-option small{position:static;left:auto;bottom:auto;color:#526c61;font-size:clamp(8px,1.3cqw,10px);line-height:1.2}
+.site-live .design-studies .study-care .care-arrow{flex:0 0 auto;color:#315f4e;font-size:clamp(12px,2cqw,17px)}
+.site-live .design-studies .study-care .care-crisis{
+  grid-column:1/-1;grid-row:3;margin:0;padding-top:clamp(5px,.8cqw,9px);border-top:1px solid rgba(61,94,75,.22);
+  color:#334e44;font-size:clamp(8px,1.45cqw,11px);line-height:1.35
+}
+.site-live .design-studies .study-care .care-crisis strong{font-weight:700}
+.site-live .design-studies .study-care .care-crisis a{color:#214f3c;text-decoration:underline;text-underline-offset:2px;font-weight:700}
+.site-live .design-studies .study-care .care-privacy{position:absolute;right:4%;bottom:2.4%;z-index:2;margin:0;color:#557064;font-size:clamp(7px,1.1cqw,9px);line-height:1.2}
+.site-live .design-studies .study-care .care-response[hidden]{display:none}
+.site-live .design-studies .study-care .care-response{
+  position:absolute;z-index:5;inset:0;overflow:auto;display:grid;align-content:center;
+  padding:clamp(16px,4.5cqw,40px);background:#f6f3eb;color:#18362f;
+  border:1px solid #8ca596;border-left:5px solid #527568;box-shadow:inset 0 0 0 7px rgba(255,255,255,.52)
+}
+.site-live .design-studies .study-care .care-result{max-width:67ch}
+.site-live .design-studies .study-care .care-result-kicker{margin:0 0 6px;color:#476758;font:600 clamp(7px,1.15cqw,10px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.12em}
+.site-live .design-studies .study-care .care-result h4{margin:0 0 7px;color:#173a30;font:400 clamp(1.1rem,3cqw,1.8rem)/1.05 "DM Serif Display",Georgia,serif}
+.site-live .design-studies .study-care .care-result>p:not(.care-result-kicker){margin:0 0 10px;color:#36554a;font-size:clamp(9px,1.55cqw,13px);line-height:1.42}
+.site-live .design-studies .study-care .care-result-actions{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 8px}
+.site-live .design-studies .study-care .care-action,.site-live .design-studies .study-care .care-back{
+  min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:8px 13px;border:1px solid #718e7d;border-radius:5px;
+  background:#fffefa;color:#193d31;font:600 clamp(9px,1.5cqw,12px)/1.2 "IBM Plex Sans",sans-serif;text-decoration:none;cursor:pointer
+}
+.site-live .design-studies .study-care .care-action-primary{background:#285943;border-color:#285943;color:#fff}
+.site-live .design-studies .study-care .care-action:hover,.site-live .design-studies .study-care .care-back:hover{background:#e4eee5}
+.site-live .design-studies .study-care .care-action-primary:hover{background:#1d4936;color:#fff}
+.site-live .design-studies .study-care .care-source{display:block;width:fit-content;max-width:100%;margin:2px 0 8px;color:#214f3c;font-size:clamp(8px,1.35cqw,11px);line-height:1.25;text-decoration:underline;text-underline-offset:2px}
+.site-live .design-studies .study-care .care-back{min-height:38px;padding:6px 11px}
+.site-live .design-studies .study-care .care-response[hidden]+template{display:none}
+.site-live .design-studies .study-care [inert]{pointer-events:none}
+@media(max-width:640px){
+  .site-live .design-studies .study-care .care-screen{aspect-ratio:auto;min-height:410px;grid-template-columns:1fr;grid-template-rows:auto auto 1fr auto;padding:18px!important;gap:12px}
+  .site-live .design-studies .study-care .care-top{font-size:9px}
+  .site-live .design-studies .study-care .care-intro{max-width:none}
+  .site-live .design-studies .study-care .care-intro h3{max-width:15ch;font-size:1.55rem}
+  .site-live .design-studies .study-care .care-intro>p{font-size:13px}
+  .site-live .design-studies .study-care .care-illustration{display:none}
+  .site-live .design-studies .study-care .care-options{grid-column:1;grid-row:3;gap:8px}
+  .site-live .design-studies .study-care .care-option{min-height:52px;padding:8px 12px}
+  .site-live .design-studies .study-care .care-option strong{font-size:13px}
+  .site-live .design-studies .study-care .care-option small{font-size:11px}
+  .site-live .design-studies .study-care .care-crisis{grid-column:1;grid-row:4;font-size:11px}
+  .site-live .design-studies .study-care .care-privacy{right:5%;bottom:1%;font-size:9px}
+  .site-live .design-studies .study-care .care-response{padding:18px;align-content:start}
+  .site-live .design-studies .study-care .care-result h4{font-size:1.45rem}
+  .site-live .design-studies .study-care .care-result>p:not(.care-result-kicker){font-size:12px}
+  .site-live .design-studies .study-care .care-action,.site-live .design-studies .study-care .care-back{min-height:44px;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .site-live .design-studies .study-care .care-option{transition:none}
+}
+
+
+/* Test 6: interactive care and bedding studies. */
+.site-live .pet-screen{position:relative;isolation:isolate;}
+.site-live .pet-open,.site-live .bedding-launch{position:absolute;z-index:4;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:44px;padding:.65rem .9rem;border:1px solid rgba(255,255,255,.74);border-radius:2px;background:rgba(10,23,29,.84);color:#fff;font:600 .78rem/1.1 "IBM Plex Sans",sans-serif;letter-spacing:.02em;cursor:pointer;transition:background .18s ease,transform .18s ease;}
+.site-live .pet-open{left:7%;bottom:3.5%;}
+.site-live .pet-open:hover,.site-live .bedding-launch:hover{background:#173a40;transform:translateY(-1px)}
+.site-live .pet-open:focus-visible,.site-live .pet-panel button:focus-visible,.site-live .bedding-screen button:focus-visible{outline:3px solid #f2c879;outline-offset:3px}
+.site-live .pet-panel{position:absolute;z-index:6;inset:0;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:clamp(8px,1.7cqw,14px);overflow:auto;padding:clamp(12px,3cqw,24px);background:#f2efe6;color:#1e302d;font:500 clamp(10px,1.8cqw,14px)/1.45 "IBM Plex Sans",sans-serif;}
+.site-live .pet-panel[hidden],.site-live .bedding-panel[hidden]{display:none!important}
+.site-live .pet-panel-head,.site-live .bedding-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.site-live .pet-kicker,.site-live .bedding-kicker,.site-live .pet-overline,.site-live .bedding-overline,.site-live .bedding-label{font:600 .68em/1.3 "IBM Plex Mono",monospace;letter-spacing:.1em;color:#536a63}
+.site-live .pet-panel h4,.site-live .bedding-panel h4{margin:.35em 0 0;font:500 clamp(1.25rem,4cqw,2rem)/1 "IBM Plex Sans",sans-serif;letter-spacing:-.04em;color:#1e302d}
+.site-live .pet-panel button,.site-live .bedding-panel button{font:600 .78em/1.15 "IBM Plex Sans",sans-serif;cursor:pointer}
+.site-live .pet-close,.site-live .bedding-close{min-height:44px;padding:.55em .7em;border:1px solid #9faea6;background:transparent;color:#1e302d}
+.site-live .pet-tabs,.site-live .bedding-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.site-live .pet-tabs [role=tab],.site-live .bedding-tabs [role=tab]{min-height:44px;padding:.55em .4em;border:1px solid #aab7af;background:transparent;color:#344a43}
+.site-live .pet-tabs [aria-selected=true],.site-live .bedding-tabs [aria-selected=true]{background:#25463d;border-color:#25463d;color:#fff}
+.site-live .pet-panel-copy,.site-live .bedding-panel-copy{min-height:0;overflow:auto;padding:.9em 1em;background:rgba(255,255,255,.62);border-left:2px solid #9baf9e;}
+.site-live .pet-panel-copy p,.site-live .bedding-panel-copy p{margin:.2em 0 .65em}
+.site-live .pet-panel-copy p:not(.pet-overline){max-width:42ch;font-size:1.06em;line-height:1.48}
+.site-live .pet-panel-copy span,.site-live .pet-note,.site-live .bedding-fine,.site-live .bedding-disclaimer{font-size:.78em;color:#52645d}
+.site-live .pet-note{margin:0}
+.site-live .bedding-screen{position:relative;isolation:isolate}
+.site-live .bedding-menu{align-items:center;gap:clamp(4px,1cqw,10px)}
+.site-live .bedding-menu button{min-height:40px;padding:.55em .4em;border:0;border-bottom:1px solid transparent;background:rgba(250,248,243,.8);color:#243940;font:600 clamp(7px,1.6cqw,10px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.1em;cursor:pointer}
+.site-live .bedding-menu button:hover{border-color:#405d58}
+.site-live .bedding-launch{right:7%;bottom:7%;background:#f5f2e9;color:#1d3439;border-color:rgba(29,52,57,.34);}
+.site-live .bedding-launch:hover{background:#fff;color:#1d3439}
+.site-live .bedding-panel{position:absolute;z-index:6;inset:0;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:clamp(6px,1.5cqw,11px);overflow:auto;padding:clamp(10px,2.5cqw,20px);background:rgba(246,244,237,.98);color:#253b3c;font:500 clamp(9px,1.6cqw,13px)/1.35 "IBM Plex Sans",sans-serif;}
+.site-live .bedding-panel h4{font-size:clamp(1.1rem,3.4cqw,1.75rem)}
+.site-live .bedding-panel-copy{border-left-color:#bd9b70}
+.site-live .bedding-description{font-size:.94em;color:#435451}
+.site-live .bedding-label{margin:.7em 0 .35em!important}
+.site-live .bedding-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.site-live .bedding-options button{min-height:48px;display:flex;align-items:center;justify-content:flex-start;gap:5px;padding:5px;border:1px solid #bdc5bc;background:#fff;color:#273a37;text-align:left}
+.site-live .bedding-options button[aria-pressed=true],.site-live .bedding-sizes button[aria-pressed=true]{outline:2px solid #445f53;outline-offset:1px;background:#edf2e9}
+.site-live .fabric-swatch{flex:0 0 17px;width:17px;height:17px;border-radius:50%;border:1px solid rgba(23,36,31,.2)}
+.site-live .swatch-oat{background:#c9b99c}.site-live .swatch-cloud{background:#e9e8e1}.site-live .swatch-clay{background:#ab735d}
+.site-live .bedding-sizes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.site-live .bedding-sizes button{min-height:42px;border:1px solid #bdc5bc;background:#fff;color:#273a37}
+.site-live .bedding-purchase-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:.55em 0}
+.site-live .bedding-purchase-row>div:first-child{display:grid;gap:2px;font-size:.77em;color:#52645d}
+.site-live .bedding-purchase-row strong{font-size:1.4em;color:#253b3c}
+.site-live .bedding-quantity{display:flex;align-items:center;gap:8px}
+.site-live .bedding-quantity button,.site-live .bedding-bag button{width:40px;min-height:40px;border:1px solid #aab7af;background:#fff;color:#253b3c}
+.site-live .bedding-quantity output{min-width:1ch;text-align:center;font-weight:700}
+.site-live .bedding-add{width:100%;min-height:44px;padding:.65em;border:1px solid #183a39;background:#183a39;color:#fff}
+.site-live .bedding-disclaimer{margin:.45em 0 0!important;font-size:.7em}
+.site-live .bedding-bag{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:.45em .65em;border-top:1px solid #c9d0c8;font-size:.78em}
+.site-live .bedding-bag[hidden]{display:none!important}.site-live .bedding-bag p{margin:0}
+@media(max-width:620px){.site-live .pet-panel,.site-live .bedding-panel{padding:10px;gap:7px}.site-live .pet-panel h4{font-size:1.28rem}.site-live .bedding-options button{font-size:.72em;gap:3px;padding:4px}.site-live .bedding-panel{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.site-live .pet-open,.site-live .bedding-launch{transition:none}}
+
+
+/* Arts & Culture: accessible miniature navigation and a complete, one-shot letter fall. */
+.design-studies .study-culture .culture-menu{
+  z-index:4;left:5%;top:8%;gap:5px;min-width:clamp(62px,19cqi,84px)
+}
+.design-studies .study-culture .culture-menu button,
+.design-studies .study-culture .culture-replay,
+.design-studies .study-culture .culture-details-toggle{
+  min-height:30px;border:1px solid rgba(255,219,180,.42);border-radius:2px;
+  padding:5px 7px;background:rgba(20,14,38,.46);color:#fff1df;
+  font:600 clamp(8px,2.25cqi,10px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.06em;
+  text-align:left;cursor:pointer
+}
+.design-studies .study-culture .culture-menu button[aria-pressed="true"]{
+  border-color:#f2d47c;background:rgba(242,212,124,.16);color:#ffe6a2
+}
+.design-studies .study-culture .culture-menu button:hover,
+.design-studies .study-culture .culture-replay:hover,
+.design-studies .study-culture .culture-details-toggle:hover{background:rgba(255,241,223,.18)}
+.design-studies .study-culture .culture-menu button:focus-visible,
+.design-studies .study-culture .culture-replay:focus-visible,
+.design-studies .study-culture .culture-details-toggle:focus-visible{
+  outline:2px solid #ffe6a2;outline-offset:2px
+}
+.design-studies .study-culture .culture-event{z-index:2}
+.design-studies .study-culture .culture-event section{display:grid;align-content:start;justify-items:start;gap:clamp(5px,1.5cqi,9px)}
+.design-studies .study-culture .culture-event strong{font-size:clamp(9px,2.7cqi,12px);line-height:1.25}
+.design-studies .study-culture .culture-event span{font-size:clamp(10px,3cqi,14px);line-height:1.32}
+.design-studies .study-culture .culture-event small{font:500 clamp(8px,2.25cqi,10px)/1.3 "IBM Plex Mono",monospace;color:#f1d9ca}
+.design-studies .study-culture .culture-details-toggle{min-height:32px;text-align:center}
+.design-studies .study-culture .culture-event-details{margin:0;max-width:32ch;color:#fff1df;font-size:clamp(9px,2.5cqi,11px);line-height:1.3}
+.design-studies .study-culture .culture-replay{
+  position:absolute;z-index:4;left:5%;bottom:7%;min-height:32px;display:inline-flex;align-items:center;gap:5px;
+  color:#ffe6a2
+}
+.design-studies .study-culture .culture-type{z-index:1}
+.design-studies .study-culture .falling-d{animation:none!important;transform-origin:0 52%;will-change:transform}
+.design-studies .study-culture .culture-screen.is-d-motion .falling-d{
+  animation:culture-d-tumble 4.8s cubic-bezier(.32,.02,.24,1) both!important
+}
+@keyframes culture-d-tumble{
+  0%,35%{transform:translate(0,0) rotate(0)}
+  44%{transform:translate(-2px,-5px) rotate(-8deg)}
+  54%{transform:translate(2px,-8px) rotate(8deg)}
+  68%{transform:translate(13px,7px) rotate(42deg)}
+  82%{transform:translate(24px,25px) rotate(78deg)}
+  88%{transform:translate(26px,30px) rotate(96deg)}
+  92%{transform:translate(27px,26px) rotate(86deg)}
+  96%,100%{transform:translate(27px,30px) rotate(90deg)}
+}
+.design-studies .study-culture [hidden]{display:none!important}
+@media(max-width:560px){
+  .design-studies .study-culture .culture-menu{left:4%;top:7%;min-width:58px;gap:3px}
+  .design-studies .study-culture .culture-menu button{min-height:27px;padding:4px;font-size:8px}
+  .design-studies .study-culture .culture-type{left:15%;width:32%;font-size:clamp(1.35rem,8cqi,2rem)}
+  .design-studies .study-culture .culture-event{left:56%;right:5%;top:30%;max-width:39%}
+  .design-studies .study-culture .culture-replay{left:4%;bottom:5%;min-height:28px;font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .design-studies .study-culture .culture-burst{animation:none!important;opacity:0}
+  .design-studies .study-culture .falling-d{animation:none!important;transform:none!important}
+  .design-studies .study-culture .culture-replay{display:none!important}
+}

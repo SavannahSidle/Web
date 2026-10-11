@@ -1,9 +1,23 @@
 const menuButton = document.querySelector('.menu-button');
 const nav = document.querySelector('#site-nav');
 if (menuButton && nav) {
-  menuButton.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
+  const setMenuOpen = (open) => {
+    nav.classList.toggle('open', open);
     menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  };
+  menuButton.addEventListener('click', () => setMenuOpen(!nav.classList.contains('open')));
+  nav.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setMenuOpen(false);
+  });
+  document.addEventListener('click', (event) => {
+    if (nav.classList.contains('open') && !nav.contains(event.target) && !menuButton.contains(event.target)) setMenuOpen(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav.classList.contains('open')) {
+      setMenuOpen(false);
+      menuButton.focus();
+    }
   });
 }
 
@@ -13,11 +27,16 @@ const form = document.querySelector('[data-contact-form]');
 if (form) {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
+    if (!form.reportValidity()) return;
     const fields = new FormData(form);
     const subject = encodeURIComponent('New website project inquiry');
     const body = encodeURIComponent(`Name: ${fields.get('name')}\nBusiness: ${fields.get('business')}\nProject: ${fields.get('project')}\n\n${fields.get('message')}`);
+    const notice = document.querySelector('.notice');
+    if (notice) {
+      notice.textContent = 'Opening your email app. The message has not been sent. If it does not open, email projects@madeincanadadigital.ca.';
+      notice.classList.add('show');
+    }
     window.location.href = `mailto:projects@madeincanadadigital.ca?subject=${subject}&body=${body}`;
-    document.querySelector('.notice')?.classList.add('show');
   });
 }
 
@@ -252,28 +271,28 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   addEllipsoid(-.15, -.01, 0, .8, .39, .37, body, 10, 14);
   addEllipsoid(-.69, -.04, 0, .42, .37, .39, flank, 8, 12);
   addEllipsoid(.34, .02, 0, .4, .31, .34, flank, 8, 12);
-  addTube([-.93, -.02, 0], [-3.12, -.31, 0], .28, .025, dark, 10);
+  addTube([-.93, -.02, 0], [-3.62, -.36, 0], .28, .018, dark, 10);
   const tailFanStart = vertices.length;
-  addTube([-.93, .04, 0], [-3.02, -.27, 0], .19, .015, feather, 9);
+  addTube([-.93, .04, 0], [-3.52, -.31, 0], .19, .012, feather, 9);
   motionRanges.tailFan = [tailFanStart, vertices.length];
-  // A lifted, articulated neck gives the silhouette the alert, upright raptor profile.
-  addTube([.18, .13, 0], [.31, .48, 0], .23, .19, body, 10);
-  addTube([.31, .48, 0], [.46, .81, 0], .19, .15, body, 10);
-  addTube([.21, -.02, 0], [.37, .58, 0], .105, .075, flank, 8);
-  addEllipsoid(.57, .93, 0, .32, .21, .24, flank, 9, 14);
-  // Long, tapered muzzle with a distinct lower jaw and restrained teeth.
-  addTube([.69, .98, 0], [1.08, .94, 0], .15, .09, body, 10);
-  addTube([.69, .84, 0], [1.03, .85, 0], .075, .045, dark, 9);
-  addTube([.68, .9, 0], [1.04, .9, 0], .025, .018, dark, 7);
+  // A compact, backwards-swept neck and blunt muzzle give the head a watchful profile.
+  addTube([.12, .12, 0], [-.08, .43, 0], .23, .19, body, 10);
+  addTube([-.08, .43, 0], [-.08, .76, 0], .19, .15, body, 10);
+  addTube([.14, -.02, 0], [-.19, .54, 0], .105, .075, flank, 8);
+  addEllipsoid(.08, .84, 0, .31, .22, .24, flank, 9, 14);
+  // Short, broad muzzle with a distinct jaw and a small, visible mouth line.
+  addTube([.28, .88, 0], [.66, .86, 0], .145, .105, body, 10);
+  addTube([.29, .76, 0], [.62, .77, 0], .075, .05, dark, 9);
+  addTube([.28, .82, 0], [.64, .82, 0], .025, .018, dark, 7);
   for (let tooth = 0; tooth < 5; tooth++) {
-    const tx = .76 + tooth * .052;
-    addTube([tx, .905, .12], [tx + .018, .865, .12], .012, .001, bone, 5);
-    addTube([tx, .905, -.12], [tx + .018, .865, -.12], .012, .001, bone, 5);
+    const tx = .34 + tooth * .055;
+    addTube([tx, .835, .12], [tx + .015, .8, .12], .011, .001, bone, 5);
+    addTube([tx, .835, -.12], [tx + .015, .8, -.12], .011, .001, bone, 5);
   }
   [-1, 1].forEach(side => {
-    addTube([.48, 1.065, side * .19], [.71, 1.075, side * .18], .035, .018, dark, 7);
-    addEllipsoid(.63, 1.015, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
-    addEllipsoid(.645, 1.016, side * .228, .018, .02, .011, '#17221f', 5, 7);
+    addTube([-.04, .96, side * .19], [.18, .97, side * .18], .035, .018, dark, 7);
+    addEllipsoid(.12, .89, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
+    addEllipsoid(.135, .89, side * .228, .018, .02, .011, '#17221f', 5, 7);
   });
   // Two feathered forelimbs with hooked claws.
   [-.24, .24].forEach((z, i) => {
@@ -340,8 +359,8 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       );
     }
   });
-  addEllipsoid(1.12, .99, .045, .018, .01, .012, '#53644e', 5, 6);
-  addEllipsoid(1.12, .99, -.045, .018, .01, .012, '#53644e', 5, 6);
+  addEllipsoid(.68, .87, .045, .022, .012, .014, '#53644e', 5, 6);
+  addEllipsoid(.68, .87, -.045, .022, .012, .014, '#53644e', 5, 6);
   let yaw = -.3, pitch = .08, zoom = 1, drag = null, width = 0, height = 0;
   let gazeX = 0, gazeY = 0;
   const resize = () => {
@@ -370,24 +389,24 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
         // 1. Subtle ribcage breathing.
         if (x > -1.12 && x < .58 && y > -.4 && y < .38) y += (y > 0 ? 1 : -1) * breath * .008;
         // 2. The tail countersways gently, with more movement at the tip.
-        if (x < -.94 && x > -3.16) {
-          const tailWeight = Math.min(1, Math.max(0, (-x - .94) / 2.18));
+        if (x < -.94 && x > -3.66) {
+          const tailWeight = Math.min(1, Math.max(0, (-x - .94) / 2.72));
           y += Math.sin(motionTime * .82 + tailWeight * 1.8) * .024 * tailWeight;
           z += Math.sin(motionTime * .58 + tailWeight * 1.4) * .012 * tailWeight;
         }
         // 3 & 10. The head scans slowly and follows a nearby pointer with a damped look.
-        if (x > .28 && y > .48) {
-          const headWeight = Math.min(1, Math.max(0, (y - .48) / .5));
+        if (x > -.2 && y > .46) {
+          const headWeight = Math.min(1, Math.max(0, (y - .46) / .52));
           x += headScan * .014 * headWeight;
           y += (headScan * .005 + gazeY * .022) * headWeight;
           z += (Math.sin(motionTime * .36) * .026 + gazeX * .045) * headWeight;
         }
         // 4. A quick, occasional blink.
-        if (x > .585 && x < .675 && y > .975 && y < 1.055 && Math.abs(Math.abs(z) - .205) < .035) {
-          y = 1.015 + (y - 1.015) * (1 - blink * .86);
+        if (x > .075 && x < .175 && y > .85 && y < .93 && Math.abs(Math.abs(z) - .205) < .035) {
+          y = .89 + (y - .89) * (1 - blink * .86);
         }
         // 5. The lower jaw loosens slightly between breaths.
-        if (x > .68 && x < 1.06 && y < .88 && Math.abs(z) < .1) y -= jawFlex * Math.max(0, (x - .68) / .38);
+        if (x > .28 && x < .65 && y < .79 && Math.abs(z) < .1) y -= jawFlex * Math.max(0, (x - .28) / .37);
         // 6. Fine tail-feather ripple.
         if (motionRanges.tailFan && vertexIndex >= motionRanges.tailFan[0] && vertexIndex < motionRanges.tailFan[1]) {
           y += Math.sin(motionTime * 2.7 + x * 1.8) * .009;
@@ -421,58 +440,157 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     ctx.restore();
   };
   const observer = new ResizeObserver(resize); observer.observe(stage); resize();
-  if (!reducedMotion) {
-    let isInView = false, automaticFrame = 0, lastAutomaticFrame = 0;
-    const stopAutomaticTurn = () => {
-      if (automaticFrame) cancelAnimationFrame(automaticFrame);
-      automaticFrame = 0; lastAutomaticFrame = 0;
-    };
-    const turn = (time) => {
-      automaticFrame = 0;
-      if (!isInView || document.hidden) { lastAutomaticFrame = 0; return; }
-      if (lastAutomaticFrame) {
-        yaw += Math.min(50, time - lastAutomaticFrame) * (Math.PI * 2 / 100000);
+  const modelStatus = stage.querySelector('.raptor-status');
+  const controls = stage.querySelector('.raptor-controls');
+  const zoomIn = stage.querySelector('[data-raptor-action="zoom-in"]');
+  const zoomOut = stage.querySelector('[data-raptor-action="zoom-out"]');
+  let userPaused = reducedMotion;
+  let isInView = false, automaticFrame = 0, lastAutomaticFrame = 0, lastPaint = 0;
+  let activePointerId = null;
+  const announce = (message) => { if (modelStatus) modelStatus.textContent = message; };
+  const syncControls = () => {
+    if (zoomIn) zoomIn.disabled = zoom >= 1.5;
+    if (zoomOut) zoomOut.disabled = zoom <= .72;
+    const autoButton = stage.querySelector('[data-raptor-action="autoplay"]');
+    if (autoButton) {
+      autoButton.setAttribute('aria-pressed', String(!userPaused));
+      autoButton.setAttribute('aria-label', reducedMotion ? 'Automatic rotation unavailable while reduced motion is enabled' : userPaused ? 'Resume automatic rotation' : 'Pause automatic rotation');
+      autoButton.title = reducedMotion ? 'Automatic rotation is off for reduced motion' : userPaused ? 'Resume automatic rotation' : 'Pause automatic rotation';
+      autoButton.textContent = userPaused ? '▶' : 'Ⅱ';
+      autoButton.disabled = reducedMotion;
+    }
+  };
+  const stopAutomaticTurn = () => {
+    if (automaticFrame) cancelAnimationFrame(automaticFrame);
+    automaticFrame = 0; lastAutomaticFrame = 0; lastPaint = 0;
+  };
+  const startAutomaticTurn = () => {
+    if (!reducedMotion && !userPaused && isInView && !document.hidden && !automaticFrame) {
+      automaticFrame = requestAnimationFrame(turn);
+    }
+  };
+  const turn = (time) => {
+    automaticFrame = 0;
+    if (reducedMotion || userPaused || !isInView || document.hidden || stage.matches(':focus-within')) {
+      lastAutomaticFrame = 0;
+      return;
+    }
+    if (lastAutomaticFrame) {
+      const elapsed = Math.min(50, time - lastAutomaticFrame);
+      yaw += elapsed * (Math.PI * 2 / 120000);
+      if (time - lastPaint >= 1000 / 30) { draw(); lastPaint = time; }
+    }
+    lastAutomaticFrame = time;
+    automaticFrame = requestAnimationFrame(turn);
+  };
+  const pauseForUse = () => stopAutomaticTurn();
+  if (!reducedMotion && 'IntersectionObserver' in window) {
+    const turnObserver = new IntersectionObserver((entries) => {
+      isInView = Boolean(entries[0]?.isIntersecting);
+      if (isInView) startAutomaticTurn(); else stopAutomaticTurn();
+    }, { threshold: 0.08 });
+    turnObserver.observe(stage);
+  } else {
+    isInView = !reducedMotion;
+    startAutomaticTurn();
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAutomaticTurn(); else startAutomaticTurn();
+  });
+  stage.addEventListener('focusin', pauseForUse);
+  stage.addEventListener('focusout', () => requestAnimationFrame(() => {
+    if (!stage.matches(':focus-within')) startAutomaticTurn();
+  }));
+  const setZoom = (next, announceChange = true) => {
+    zoom = Math.max(.72, Math.min(1.5, next));
+    syncControls();
+    draw();
+    if (announceChange) announce(`Zoom ${Math.round(zoom * 100)} percent.`);
+  };
+  const resetView = () => {
+    yaw = -.3; pitch = .08; setZoom(1, false);
+    announce('Model view reset to the starting angle and 100 percent zoom.');
+  };
+  const describeOrientation = () => {
+    const direction = ['front three-quarter', 'side', 'rear three-quarter', 'rear', 'front three-quarter'][
+      Math.round((((yaw % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2)) / (Math.PI / 2))];
+    announce(`Model viewed from the ${direction} angle.`);
+  };
+  syncControls();
+  stage.addEventListener('pointerdown', event => {
+    if (event.target.closest('button, a, summary')) return;
+    activePointerId = event.pointerId;
+    drag = { x: event.clientX, y: event.clientY, started: false, type: event.pointerType };
+    if (event.pointerType === 'mouse') { event.preventDefault(); stage.setPointerCapture?.(event.pointerId); }
+    event.stopPropagation();
+    pauseForUse();
+  });
+  stage.addEventListener('pointermove', event => {
+    if (drag && event.pointerId === activePointerId) {
+      const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
+      if (!drag.started && Math.hypot(dx, dy) > 4) drag.started = true;
+      if (drag.started) {
+        drag.x = event.clientX; drag.y = event.clientY;
+        yaw += dx * .012;
+        if (drag.type !== 'touch') pitch = Math.max(-.55, Math.min(.55, pitch + dy * .008));
         draw();
       }
-      lastAutomaticFrame = time;
-      automaticFrame = requestAnimationFrame(turn);
-    };
-    const startAutomaticTurn = () => {
-      if (isInView && !document.hidden && !automaticFrame) automaticFrame = requestAnimationFrame(turn);
-    };
-    if ('IntersectionObserver' in window) {
-      const turnObserver = new IntersectionObserver((entries) => {
-        isInView = Boolean(entries[0]?.isIntersecting);
-        if (isInView) startAutomaticTurn(); else stopAutomaticTurn();
-      }, { threshold: 0.08 });
-      turnObserver.observe(stage);
-    } else {
-      isInView = true;
-      startAutomaticTurn();
-    }
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) stopAutomaticTurn(); else startAutomaticTurn();
-    });
-  }
-  stage.addEventListener('pointerdown', event => {if(event.target.closest('button'))return;event.preventDefault();event.stopPropagation();drag={x:event.clientX,y:event.clientY};stage.setPointerCapture?.(event.pointerId);});
-  stage.addEventListener('pointermove', event => {
-    if (drag) {
-      const dx=event.clientX-drag.x,dy=event.clientY-drag.y;
-      drag={x:event.clientX,y:event.clientY};yaw+=dx*.012;pitch=Math.max(-.55,Math.min(.55,pitch+dy*.008));draw();
       return;
     }
     if (!reducedMotion && event.pointerType === 'mouse') {
-      const rect=stage.getBoundingClientRect();
-      gazeX=Math.max(-1,Math.min(1,((event.clientX-rect.left)/rect.width-.5)*2));
-      gazeY=Math.max(-1,Math.min(1,((event.clientY-rect.top)/rect.height-.5)*2));
+      const rect = stage.getBoundingClientRect();
+      gazeX = Math.max(-1, Math.min(1, ((event.clientX - rect.left) / rect.width - .5) * 2));
+      gazeY = Math.max(-1, Math.min(1, ((event.clientY - rect.top) / rect.height - .5) * 2));
       draw();
     }
   });
-  stage.addEventListener('pointerleave',()=>{gazeX=0;gazeY=0;if(!drag)draw();});
-  const stopDrag = event => {if(drag){drag=null;event.stopPropagation();}};
-  stage.addEventListener('pointerup',stopDrag);stage.addEventListener('pointercancel',stopDrag);
-  stage.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();yaw+=(event.key==='ArrowRight'?.18:-.18);draw();}if(event.key==='ArrowUp'||event.key==='ArrowDown'){event.preventDefault();pitch=Math.max(-.55,Math.min(.55,pitch+(event.key==='ArrowUp'?.12:-.12)));draw();}});
-  stage.querySelectorAll('[data-raptor-action]').forEach(button=>button.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();if(button.dataset.raptorAction==='zoom-in')zoom=Math.min(1.5,zoom+.12);if(button.dataset.raptorAction==='zoom-out')zoom=Math.max(.72,zoom-.12);if(button.dataset.raptorAction==='reset'){yaw=-.3;pitch=.08;zoom=1;}draw();}));
+  stage.addEventListener('pointerleave', () => { gazeX=0; gazeY=0; if (!drag) draw(); });
+  const stopDrag = event => {
+    if (drag && event.pointerId === activePointerId) {
+      const moved = drag.started;
+      drag = null; activePointerId = null;
+      if (moved) describeOrientation();
+      if (!userPaused && !stage.matches(':focus-within')) startAutomaticTurn();
+    }
+  };
+  stage.addEventListener('pointerup', stopDrag);
+  stage.addEventListener('pointercancel', stopDrag);
+  stage.addEventListener('lostpointercapture', stopDrag);
+  stage.addEventListener('keydown', event => {
+    if (event.target !== stage) return;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault(); yaw += event.key === 'ArrowRight' ? .18 : -.18; draw(); describeOrientation();
+    } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault(); pitch = Math.max(-.55, Math.min(.55, pitch + (event.key === 'ArrowUp' ? .12 : -.12))); draw(); announce('Model tilt adjusted.');
+    } else if (event.key === '+' || event.key === '=') {
+      event.preventDefault(); setZoom(zoom + .12);
+    } else if (event.key === '-' || event.key === '_') {
+      event.preventDefault(); setZoom(zoom - .12);
+    } else if (event.key === 'Home') {
+      event.preventDefault(); resetView();
+    } else if (event.key === ' ') {
+      event.preventDefault(); userPaused = !userPaused; syncControls();
+      announce(userPaused ? 'Automatic rotation paused.' : 'Automatic rotation resumed.');
+      if (userPaused) stopAutomaticTurn(); else startAutomaticTurn();
+    }
+  });
+  stage.addEventListener('click', event => {
+    const button = event.target.closest('[data-raptor-action]');
+    if (!button) return;
+    event.preventDefault(); event.stopPropagation();
+    const action = button.dataset.raptorAction;
+    if (action === 'rotate-left') { yaw -= .22; draw(); describeOrientation(); }
+    if (action === 'rotate-right') { yaw += .22; draw(); describeOrientation(); }
+    if (action === 'zoom-in') setZoom(zoom + .12);
+    if (action === 'zoom-out') setZoom(zoom - .12);
+    if (action === 'reset') resetView();
+    if (action === 'autoplay' && !reducedMotion) {
+      userPaused = !userPaused; syncControls();
+      announce(userPaused ? 'Automatic rotation paused.' : 'Automatic rotation resumed.');
+      if (userPaused) stopAutomaticTurn(); else startAutomaticTurn();
+    }
+  });
+
 });
 
 const depthElement = document.querySelector('[data-depth]');
@@ -882,3 +1000,266 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
   }, { threshold: 0.08 });
   orbitalScreens.forEach((screen) => orbitalObserver.observe(screen));
 }
+
+
+/* Test 6 mental health study: selectable, keyboard-friendly support routes. */
+(() => {
+  document.querySelectorAll('[data-care-widget]').forEach((widget) => {
+    const choices = Array.from(widget.querySelectorAll('[data-care-choice]'));
+    const response = widget.querySelector('.care-response');
+    const templates = new Map(Array.from(widget.querySelectorAll('template[data-care-template]'), (template) => [template.dataset.careTemplate, template]));
+    const baseContent = Array.from(widget.querySelectorAll('.care-top,.care-intro,.care-options,.care-crisis'));
+    let returnFocus = null;
+    if (!choices.length || !response) return;
+
+    const closeResponse = (restoreFocus = true) => {
+      response.hidden = true;
+      response.replaceChildren();
+      widget.classList.remove('care-response-open');
+      baseContent.forEach((element) => { element.inert = false; });
+      choices.forEach((choice) => choice.setAttribute('aria-pressed', 'false'));
+      if (restoreFocus && returnFocus) returnFocus.focus();
+    };
+
+    choices.forEach((choice) => {
+      choice.addEventListener('click', () => {
+        const template = templates.get(choice.dataset.careChoice);
+        if (!template) return;
+        returnFocus = choice;
+        choices.forEach((item) => item.setAttribute('aria-pressed', String(item === choice)));
+        response.replaceChildren(template.content.cloneNode(true));
+        response.hidden = false;
+        widget.classList.add('care-response-open');
+        baseContent.forEach((element) => { element.inert = true; });
+        const heading = response.querySelector('h4');
+        if (heading) {
+          heading.tabIndex = -1;
+          heading.focus();
+        }
+        response.querySelector('[data-care-back]')?.addEventListener('click', () => closeResponse(true));
+      });
+    });
+
+    widget.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !response.hidden) {
+        event.preventDefault();
+        closeResponse(true);
+      }
+    });
+  });
+})();
+
+
+/* Test 6 care and bedding preview interactions. */
+(() => {
+  const petCopy = {
+    companions: ['MEET THE COMPANIONS', 'Portraits, everyday routines, and the small details that make each companion their own.', 'Sample editorial content'],
+    care: ['CARE, AT A GLANCE', 'Browse routine grooming, feeding, and activity checklists. For individual health concerns, speak with a veterinary professional.', 'General information only; not veterinary advice'],
+    notes: ['FIELD NOTES', 'Short stories about training, companionship, and the everyday moments worth remembering.', 'Sample editorial content']
+  };
+  document.querySelectorAll('[data-pet-study]').forEach((study) => {
+    const open = study.querySelector('.pet-open');
+    const panel = study.querySelector('.pet-panel');
+    const heading = study.querySelector('[data-pet-heading]');
+    const copy = study.querySelector('[data-pet-copy]');
+    const status = study.querySelector('[data-pet-status]');
+    const tabs = [...study.querySelectorAll('[data-pet-topic]')];
+    const close = study.querySelector('.pet-close');
+    if (!open || !panel || !copy) return;
+    const select = (name, moveFocus = false) => {
+      const tab = tabs.find((item) => item.dataset.petTopic === name);
+      const entry = petCopy[name];
+      if (!tab || !entry) return;
+      tabs.forEach((item) => {
+        const selected = item === tab;
+        item.setAttribute('aria-selected', String(selected));
+        item.tabIndex = selected ? 0 : -1;
+      });
+      copy.setAttribute('aria-labelledby', tab.id);
+      copy.innerHTML = '<p class="pet-overline"></p><p></p><span></span>';
+      const lines = copy.querySelectorAll('p, span');
+      lines[0].textContent = entry[0];
+      lines[1].textContent = entry[1];
+      lines[2].textContent = entry[2];
+      status.textContent = entry[0] + '. ' + entry[1];
+      if (moveFocus) tab.focus();
+    };
+    const closePanel = (restore = true) => {
+      panel.hidden = true;
+      open.setAttribute('aria-expanded', 'false');
+      if (restore) open.focus();
+    };
+    open.addEventListener('click', () => {
+      panel.hidden = false;
+      open.setAttribute('aria-expanded', 'true');
+      heading.focus();
+    });
+    close?.addEventListener('click', () => closePanel(true));
+    tabs.forEach((tab, index) => tab.addEventListener('click', () => select(tab.dataset.petTopic)));
+    study.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !panel.hidden) {
+        event.preventDefault();
+        closePanel(true);
+        return;
+      }
+      const current = event.target.closest('[data-pet-topic]');
+      if (!current) return;
+      const index = tabs.indexOf(current);
+      let next = index;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      select(tabs[next].dataset.petTopic, true);
+    });
+  });
+
+  const fabricPrices = { 'Washed linen': 148, 'Cotton percale': 118, 'Textured hemp': 168 };
+  document.querySelectorAll('[data-bedding-study]').forEach((study) => {
+    const panel = study.querySelector('.bedding-panel');
+    const heading = study.querySelector('[data-bedding-heading]');
+    const openers = [...study.querySelectorAll('[data-bedding-open]')];
+    const tabs = [...study.querySelectorAll('.bedding-tabs [data-bedding-tab]')];
+    const copy = study.querySelector('[data-bedding-copy]');
+    const status = study.querySelector('[data-bedding-status]');
+    const fabricButtons = [...study.querySelectorAll('[data-bedding-fabric]')];
+    const sizeButtons = [...study.querySelectorAll('[data-bedding-size]')];
+    const countOutput = study.querySelector('[data-bedding-count]');
+    const price = study.querySelector('[data-bedding-price]');
+    const bag = study.querySelector('.bedding-bag');
+    const bagStatus = study.querySelector('[data-bedding-bag-status]');
+    let selectedFabric = 'Washed linen';
+    let selectedSize = 'Queen';
+    let quantity = 1;
+    const viewName = (view) => view.charAt(0).toUpperCase() + view.slice(1);
+    const selectTab = (name, focus = false) => {
+      const tab = tabs.find((item) => item.dataset.beddingTab === name);
+      if (!tab || !copy) return;
+      tabs.forEach((item) => {
+        const active = item === tab;
+        item.setAttribute('aria-selected', String(active));
+        item.tabIndex = active ? 0 : -1;
+      });
+      copy.setAttribute('aria-labelledby', tab.id);
+      copy.querySelectorAll('[data-bedding-view]').forEach((view) => { view.hidden = view.dataset.beddingView !== name; });
+      if (heading) heading.textContent = name === 'linen' ? 'Choose your linen' : name === 'bedroom' ? 'A room to unwind' : 'Care notes';
+      if (focus) tab.focus();
+      status.textContent = viewName(name) + ' details opened.';
+    };
+    const closePanel = (restore = true) => {
+      panel.hidden = true;
+      if (restore) lastOpener?.focus();
+    };
+    let lastOpener = null;
+    openers.forEach((button) => button.addEventListener('click', () => {
+      lastOpener = button;
+      panel.hidden = false;
+      selectTab(button.dataset.beddingTab || 'linen');
+      heading?.focus();
+    }));
+    study.querySelector('.bedding-close')?.addEventListener('click', () => closePanel(true));
+    tabs.forEach((tab, index) => tab.addEventListener('click', () => selectTab(tab.dataset.beddingTab)));
+    study.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !panel.hidden) {
+        event.preventDefault();
+        closePanel(true);
+        return;
+      }
+      const current = event.target.closest('.bedding-tabs [data-bedding-tab]');
+      if (!current) return;
+      const index = tabs.indexOf(current);
+      let next = index;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      selectTab(tabs[next].dataset.beddingTab, true);
+    });
+    const updatePrice = () => {
+      const each = fabricPrices[selectedFabric];
+      if (price) price.textContent = 'CA$' + Math.round(each * (selectedSize === 'King' ? 1.18 : selectedSize === 'Twin' ? .82 : 1));
+    };
+    fabricButtons.forEach((button) => button.addEventListener('click', () => {
+      selectedFabric = button.dataset.beddingFabric;
+      fabricButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      updatePrice();
+      status.textContent = selectedFabric + ' selected.';
+    }));
+    sizeButtons.forEach((button) => button.addEventListener('click', () => {
+      selectedSize = button.dataset.beddingSize;
+      sizeButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      updatePrice();
+      status.textContent = selectedSize + ' size selected.';
+    }));
+    study.querySelectorAll('[data-bedding-quantity]').forEach((button) => button.addEventListener('click', () => {
+      quantity = Math.max(1, Math.min(9, quantity + Number(button.dataset.beddingQuantity)));
+      countOutput.value = String(quantity);
+      countOutput.textContent = String(quantity);
+      status.textContent = 'Quantity ' + quantity + '.';
+    }));
+    study.querySelector('[data-bedding-add]')?.addEventListener('click', () => {
+      bag.hidden = false;
+      bagStatus.textContent = quantity + ' ' + selectedSize + ' ' + selectedFabric.toLowerCase() + (quantity === 1 ? ' set' : ' sets') + ' in your concept bag. Checkout is not available in this preview.';
+      status.textContent = bagStatus.textContent;
+      bagStatus.focus?.();
+    });
+    study.querySelector('[data-bedding-remove]')?.addEventListener('click', () => {
+      bag.hidden = true;
+      status.textContent = 'Sample removed from the concept bag.';
+      study.querySelector('[data-bedding-add]')?.focus();
+    });
+    updatePrice();
+  });
+})();
+
+
+/* Arts & Culture / Common Ground: usable concept navigation, honest event details, and replayable motion. */
+(() => {
+  document.querySelectorAll(".study-culture").forEach((study) => {
+    const screen = study.querySelector(".culture-screen");
+    const viewButtons = [...study.querySelectorAll("[data-culture-view]")];
+    const panels = [...study.querySelectorAll("[data-culture-panel]")];
+    const replay = study.querySelector("[data-culture-replay]");
+    const detailToggle = study.querySelector(".culture-details-toggle");
+    const detailText = study.querySelector("[data-culture-details]");
+    if (!screen) return;
+
+    viewButtons.forEach((button) => button.addEventListener("click", () => {
+      const selected = button.dataset.cultureView;
+      viewButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+      panels.forEach((panel) => { panel.hidden = panel.dataset.culturePanel !== selected; });
+    }));
+
+    detailToggle?.addEventListener("click", () => {
+      const expanded = detailToggle.getAttribute("aria-expanded") !== "true";
+      detailToggle.setAttribute("aria-expanded", String(expanded));
+      detailText.hidden = !expanded;
+      detailToggle.textContent = expanded ? "Hide event details" : "Event details";
+    });
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const play = () => {
+      if (reducedMotion.matches) return;
+      screen.classList.remove("is-d-motion");
+      void screen.offsetWidth;
+      screen.classList.add("is-d-motion");
+    };
+    replay?.addEventListener("click", play);
+    if (!reducedMotion.matches) {
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          play();
+          observer.disconnect();
+        }, { threshold: 0.25 });
+        observer.observe(screen);
+      } else {
+        play();
+      }
+    }
+  });
+})();

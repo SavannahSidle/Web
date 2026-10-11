@@ -933,3 +933,8 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .site-header .nav-cta{position:relative;background:linear-gradient(160deg,rgba(39,61,82,.72),rgba(8,24,37,.96));border-color:rgba(190,216,245,.56);box-shadow:0 3px 0 rgba(2,8,13,.9),0 8px 20px rgba(0,0,0,.23),inset 0 1px 0 rgba(234,244,255,.22);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 .site-header .nav-cta:hover{transform:translateY(-2px);border-color:rgba(217,235,255,.82);box-shadow:0 5px 0 rgba(2,8,13,.86),0 13px 26px rgba(0,0,0,.3),inset 0 1px 0 rgba(244,249,255,.3)}
 .site-header .nav-cta:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(2,8,13,.9),0 3px 9px rgba(0,0,0,.25),inset 0 2px 6px rgba(0,0,0,.18)}
+
+
+/* Test 6 review-copy banner */
+.test6-banner strong{letter-spacing:.08em}.test6-banner a{color:inherit;text-underline-offset:3px}.site-live{scroll-padding-top:1rem}
+@media(max-width:520px){}
