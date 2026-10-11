@@ -3033,16 +3033,16 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   0%,10%{transform:translate(0,0) rotate(0deg)}
   18%{transform:translate(-.12em,.32em) rotate(-22deg)}
   28%{transform:translate(-.28em,.44em) rotate(-5deg)}
-  56%{transform:translate(1.15em,-4.6em) rotate(72deg)}
-  71%{transform:translate(1.25em,-6em) rotate(90deg)}
-  80%{transform:translate(1.25em,-5.65em) rotate(108deg)}
-  88%{transform:translate(1.25em,-6em) rotate(88deg)}
-  94%{transform:translate(1.25em,-5.88em) rotate(96deg)}
-  100%{transform:translate(1.25em,-6em) rotate(90deg)}
+  56%{transform:translate(1.05em,-3.7em) rotate(56deg)}
+  73%{transform:translate(1.1em,-4.9em) rotate(0deg)}
+  82%{transform:translate(1.1em,-4.62em) rotate(-15deg)}
+  90%{transform:translate(1.1em,-4.9em) rotate(3deg)}
+  96%{transform:translate(1.1em,-4.82em) rotate(-5deg)}
+  100%{transform:translate(1.1em,-4.9em) rotate(0deg)}
 }
 @media(prefers-reduced-motion:reduce){
   .design-studies[data-mode] .study-culture .culture-type .falling-d{
-    animation:none!important;transform:translate(1.25em,-6em) rotate(90deg)!important;
+    animation:none!important;transform:translate(1.1em,-4.9em) rotate(0deg)!important;
   }
 }
 
