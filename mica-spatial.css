@@ -1660,18 +1660,6 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode="grid"] .study-product .product-readouts>div{gap:3px;padding:5px 3px}
 .design-studies[data-mode="grid"] .study-product .product-graph{right:25%;height:26%}
 
-/* Mental health choices align as one set; remove the bottom furniture block. */
-.design-studies[data-mode] .study-care .care-screen::after{display:none}
-.design-studies[data-mode] .study-care .care-options{
-  display:grid;grid-column:2;grid-row:2;align-self:center;align-content:center;
-  grid-template-columns:minmax(0,1fr);gap:4px;margin:0;padding:0;
-}
-.design-studies[data-mode] .study-care .care-options-label{
-  display:block;margin:0 0 2px;text-align:center;color:#765c4d;
-  font:600 clamp(6px,1.4cqw,8px)/1 "IBM Plex Mono",monospace;letter-spacing:.13em;
-}
-.design-studies[data-mode] .study-care .care-options b{min-height:26px;padding:5px 7px}
-
 /* Neural labels no longer collide with the diagram or its action. */
 .design-studies[data-mode] .study-neural .neural-meta{
   position:absolute;left:6%;bottom:8%;z-index:3;width:37%;
@@ -2030,73 +2018,6 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies .study-local-mini .study-screen{
   box-shadow:inset 0 0 0 7px #ffdc4f,inset 0 0 0 8px rgba(20,20,16,.42),0 18px 48px rgba(0,0,0,.23);
 }
-
-/* The mental-health options form one centered group with its label directly above. */
-.design-studies[data-mode] .study-care .care-options{
-  left:auto;
-  right:7%;
-  top:49%;
-  width:39%;
-  transform:none;
-}
-.design-studies[data-mode] .study-care .care-options-label{
-  width:100%;
-  text-align:center;
-}
-.design-studies[data-mode] .study-care .care-screen::after{display:none}
-
-/* Let the full editorial word lift subtly without changing its line box. */
-.design-studies .study-editorial .editorial-screen h3 em{
-  display:inline-block;
-  animation:ideas-float 4.2s ease-in-out infinite;
-}
-@keyframes ideas-float{
-  0%,78%,100%{transform:translateY(0)}
-  86%{transform:translateY(-2px)}
-  92%{transform:translateY(0)}
-}
-@media(prefers-reduced-motion:reduce){
-  .home .poster-hero .hero-starfield,.home .brand-mark,
-  .design-studies .study-editorial .editorial-screen h3 em{animation:none!important}
-}
-
-
-/* The mental-health study uses a clear two-column composition at every preview size. */
-.design-studies[data-mode] .study-care .care-screen{
-  display:block!important;
-  position:relative;
-  overflow:hidden;
-}
-.design-studies[data-mode] .study-care .care-top{
-  position:absolute;left:8%;right:8%;top:7%;z-index:2;
-}
-.design-studies[data-mode] .study-care .care-screen h3{
-  position:absolute;left:8%;top:34%;width:43%;max-width:43%;
-  margin:0;font-size:clamp(1.05rem,3.8cqw,1.5rem);line-height:1.02;
-}
-.design-studies[data-mode] .study-care .care-screen>small{
-  position:absolute;left:8%;right:auto;bottom:9%;width:42%;
-  font-size:clamp(7px,1.8cqw,9px);line-height:1.25;
-}
-.design-studies[data-mode] .study-care .care-options{
-  position:absolute;left:auto;right:7%;top:52%;width:43%;
-  display:grid;grid-template-columns:minmax(0,1fr);gap:5px;
-  margin:0;padding:0;transform:none;
-}
-.design-studies[data-mode] .study-care .care-options-label{
-  display:block;width:100%;margin:0 0 2px;text-align:center;
-  font-size:clamp(6px,1.45cqw,8px);line-height:1.15;
-}
-.design-studies[data-mode] .study-care .care-options b,
-.design-studies[data-mode] .study-care .care-options b:first-child{
-  display:block;min-height:0;padding:5px 7px;
-  border:1px solid rgba(112,82,64,.22);border-radius:6px;
-  background:rgba(255,250,241,.78);
-  font-size:clamp(7px,1.8cqw,10px);line-height:1.15;
-  white-space:nowrap;
-}
-.design-studies[data-mode] .study-care .care-screen::after{display:none}
-
 
 /* Homepage alignment and the darker closing moment. */
 .home .editorial-intro{align-items:start}
