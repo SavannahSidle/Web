@@ -874,22 +874,11 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .poster-hero::before{content:"";position:absolute;z-index:-2;inset:-5%;background:url("../assets/mica-digital-social.jpg") center/cover no-repeat;filter:blur(18px) saturate(.75);opacity:0;transform:scale(1.08)}
 .poster-hero::after{content:"";position:absolute;z-index:0;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(1,7,14,.05) 58%,rgba(1,7,14,.48) 100%)}
 .poster-hero-image{position:absolute;z-index:-1;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.poster-hero .hero-panel-cleanup{position:absolute;z-index:1;inset:0;display:block;pointer-events:none}
-.poster-hero .hero-artifact-mask{position:absolute;display:block;pointer-events:none}
-.poster-hero .hero-artifact-mask--mountains{
-  top:0;right:0;width:26%;height:28%;
-  clip-path:polygon(11.5% 0,100% 0,100% 75%,25% 100%);
-  background:linear-gradient(155deg,#06152c 0%,#0a1e40 42%,#041327 100%);
-}
-.poster-hero .hero-artifact-mask--ribbon{
-  top:26.5%;right:0;width:24%;height:38%;
-  clip-path:polygon(0 0,100% 30%,100% 100%,0 100%);
-  background:linear-gradient(115deg,#041124 0%,#030e20 100%);
-}
-.poster-hero .hero-artifact-mask--panel{
-  top:65%;right:0;width:40%;height:35%;
-  clip-path:polygon(8% 14%,100% 0,100% 100%,7% 100%);
-  background:linear-gradient(150deg,#010c22 0%,#06152a 50%,#020b17 100%);
+.poster-hero .hero-panel-cleanup{
+  position:absolute;z-index:1;inset:0;display:block;pointer-events:none;
+  background:
+    radial-gradient(ellipse 68% 48% at 110% 110%,rgba(4,17,36,.98) 0%,rgba(4,17,36,.96) 76%,rgba(4,17,36,0) 100%),
+    linear-gradient(90deg,rgba(4,17,36,0) 0%,rgba(4,17,36,.98) 12%,rgba(4,17,36,.98) 100%) right top / 27% 100% no-repeat;
 }
 .poster-hero-actions{position:absolute;z-index:2;left:max(28px,calc((100vw - var(--max))/2));bottom:clamp(28px,4vw,54px);display:flex;align-items:center;gap:24px}
 .poster-hero-link,.poster-scroll{color:#e4edf8;font:500 12px/1.2 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
