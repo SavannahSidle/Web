@@ -1367,8 +1367,11 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
 // Test 1: add focused, local interactions for the visual-only studies.
 (() => {
   const data = {
+    'study-system': {label:'System legend', choices:[['INPUT','Signals and requests enter the system.'],['RULES','Conditions shape which route is selected.'],['ROUTER','Routes a request to an output.'],['CACHE','Keeps a temporary copy for faster retrieval.'],['EVENTS','Records system events.'],['STORAGE','Keeps persistent data.'],['OUTPUT','Returns a result.']], note:'Lines indicate conceptual connections; they are not live data flows.'},
+    'study-spatial': {label:'Room measurements', choices:[['Compact','A smaller room plan.'],['Standard','A balanced room plan.'],['Open','A larger room plan.']], dimensions:true, note:'Room dimensions are illustrative.'},
     'study-calm': {label:'Plan view', choices:[['Today','Choose one manageable task for today.'],['Week','A week view would group small actions by day.'],['Notes','A quiet space for a short reflection.']], task:true},
     'study-editorial': {label:'Browse the issue', choices:[['Essays','A short reading list about form and culture.'],['Objects','Selected objects with maker and material notes.'],['Ideas','A subject index for the issue.']]},
+    'study-local': {label:'Estimate steps', choices:[['1 · Describe','Share the type of repair and the service area.'],['2 · Review','Confirm scope and whether an on-site visit is needed.'],['3 · Estimate','Receive a written estimate before work begins.']], note:'The displayed price, booking time, and availability are sample values and need confirmation.'},
     'study-food': {label:'Menu filter', filter:'food', choices:[['All','Sample seasonal menu. Ingredients and prices are illustrative.'],['Plant-forward','Charred leeks and brown butter squash. Ask the restaurant to confirm allergens.'],['Fish','Roasted lake fish. Ask the restaurant to confirm sourcing and allergens.']]},
     'study-architecture': {label:'Project index', choices:[['Ottawa','House project · Ottawa.'],['Adaptive reuse','A home adapted for a new use.'],['Materials','Project materials and methods would be listed here.']]},
     'study-professional': {label:'How we can help', choices:[['Disputes','A consultation could clarify options, process, and next steps.'],['Agreements','Review the decision, obligations, and timing.'],['Planning','Organize questions and documents before advice.']], note:'Concept copy. The specialty, credentials, and service details require confirmation.'},
@@ -1376,6 +1379,11 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
     'study-luxury-mini': {label:'Explore the material study', choices:[['Form','A minimal, sculptural object.'],['Object','A closer look at a material-led piece.'],['Space','A room study with proportion and light notes.']]},
     'study-minimal': {label:'Advisory pathway', choices:[['Clear advice','Understand the question and available options.'],['Measured action','Agree on a practical next step.'],['Preparation','List documents and questions for a first conversation.']], note:'Concept copy. No professional credentials or specific advice are implied.'},
     'study-playful': {label:'Try a palette', choices:[['Coral and teal','High contrast with a warm focal colour.'],['Blue and lime','A cooler palette with a bright accent.'],['Ink and paper','A restrained two-colour view.']], palette:true},
+    'study-wayfinding': {label:'Map layers', choices:[['Routes','Show route information.'],['Places','Show places on the map.'],['Services','Show local services.']], note:'Map coverage and route accessibility need local verification.'},
+    'study-space': {label:'Compare planets', choices:[['Compare','Choose two planets below to compare their names and types.']], compare:true, note:'Illustrative diagram; sizes and distances are not to scale.'},
+    'study-dinosaur': {label:'Specimen notes', choices:[['Anatomy','Rotate the model to inspect the reconstruction.'],['Evidence','Open “About this reconstruction” for sources and inferred anatomy.'],['Region','The specimen display describes a Gobi-region reconstruction.']], note:'Interpretive model; soft tissue is inferred.'},
+    'study-pets': {label:'Care topics', choices:[['Companions','Browse animal profiles and practical care notes.'],['Care','Use species-specific care guidance and veterinary advice.'],['Field notes','Read dated observations and source notes.']], note:'General information does not replace advice from a qualified veterinarian.'},
+    'study-care': {label:'Support region', choices:[['Ontario','Ontario community support options.'],['Canada','National crisis and federal support options.']], region:true, note:'If there is immediate danger, call 9-1-1. In Canada, call or text 9-8-8 for suicide crisis support.'},
     'study-product': {label:'Telemetry range', choices:[['24 hours','Signal / last 24 hours · illustrative data.'],['7 days','Signal / last 7 days · illustrative data.'],['30 days','Signal / last 30 days · illustrative data.']], note:'Metrics are sample values, not a live service.'},
     'study-accessible': {label:'Choose a next step', choices:[['View schedule','A schedule view would show today’s appointments and changes.'],['Ask for help','A short help path with a clear phone or text option.']], note:'Concept preview. No information is submitted or stored.'},
     'study-bakery': {label:'Browse baking', choices:[['Cakes','Seasonal cakes and celebration orders.'],['Pastries','Daily pastry selection; availability varies.'],['Bread','Loaves and pickup details.']], note:'Illustrative menu. Confirm ingredients, allergens, prices, and pickup details with the bakery.'},
@@ -1463,6 +1471,33 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
       });
       region.insertBefore(input,group);
       region.insertBefore(group,output);
+    }
+    if (config.dimensions) {
+      const dimensions = document.createElement('div');
+      dimensions.className = 'test1-dimensions';
+      [['Room width',2,8,4],['Room depth',2,8,5]].forEach(([label,min,max,start]) => {
+        const wrap=document.createElement('label'); wrap.textContent=label;
+        const range=document.createElement('input'); range.type='range'; range.min=min; range.max=max; range.value=start; range.setAttribute('aria-label',label);
+        range.addEventListener('input',() => { output.textContent=`Sample room: ${dimensions.querySelectorAll('input')[0].value} m wide by ${dimensions.querySelectorAll('input')[1].value} m deep.`; });
+        wrap.append(range); dimensions.append(wrap);
+      });
+      region.append(dimensions);
+    }
+    if (config.compare) {
+      const compare=document.createElement('div'); compare.className='test1-compare';
+      const planets=['Mercury','Venus','Earth','Mars','Jupiter','Saturn','Uranus','Neptune'];
+      const a=document.createElement('select'),b=document.createElement('select');
+      a.setAttribute('aria-label','First planet'); b.setAttribute('aria-label','Second planet');
+      planets.forEach((name) => { a.add(new Option(name,name)); b.add(new Option(name,name)); });
+      a.value='Jupiter'; b.value='Saturn';
+      const update=()=>{output.textContent=`Compare ${a.value} with ${b.value}. Select a planet above to inspect its type and artwork.`};
+      a.addEventListener('change',update); b.addEventListener('change',update); compare.append(a,b); region.append(compare); update();
+    }
+    if (config.region) {
+      const select=document.createElement('select'); select.setAttribute('aria-label','Choose support region');
+      [['Ontario','Ontario'],['Canada','Canada'],['British Columbia','British Columbia'],['Alberta','Alberta'],['Quebec','Quebec'],['Atlantic Canada','Atlantic Canada'],['Territories','Territories']].forEach(([label,value])=>select.add(new Option(label,value)));
+      select.addEventListener('change',()=>{output.textContent=`${select.value} selected. Check the linked official directory for current regional resources.`});
+      region.append(select);
     }
     if (config.palette) {
       const applyPalette = (name) => {

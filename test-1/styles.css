@@ -983,3 +983,13 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .test1-task-toggle input{width:18px;height:18px;accent-color:#84b5ea}
 .test1-task-toggle .is-complete{text-decoration:line-through;color:#a9c8a7}
 .study-food .food-menu li[hidden],.study-information .info-results>div[hidden]{display:none!important}
+.test1-dimensions{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+.test1-dimensions label{display:grid;gap:5px;color:#dce8f2;font-size:12px}
+.test1-dimensions input{width:100%;accent-color:#8ebcff}
+.test1-compare{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.test1-compare select,.test1-feature select{min-height:42px;padding:8px 10px;border:1px solid #54718c;border-radius:4px;background:#071927;color:#f4f8fc;font:inherit}
+.test1-compare select:focus-visible,.test1-feature select:focus-visible{outline:3px solid #a9d2ff;outline-offset:2px}
+.test1-feature,.test1-feature-options,.test1-study-details{min-width:0;max-width:100%;box-sizing:border-box}
+.test1-feature input,.test1-feature select,.test1-compare select{max-width:100%;box-sizing:border-box}
+.test1-compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))}
+@media(max-width:520px){.test1-study-details summary{max-width:100%;white-space:normal}.test1-feature-options button{flex:1 1 auto}.test1-feature-output,.test1-feature-note{overflow-wrap:anywhere}}
