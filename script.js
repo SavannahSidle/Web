@@ -67,7 +67,7 @@ if (!reducedMotion && 'IntersectionObserver' in window) {
 const studiesSection = document.querySelector('.design-studies');
 if (studiesSection) {
   const studyTrack = studiesSection.querySelector('[data-study-track]');
-  const studyCards = Array.from(studiesSection.querySelectorAll('.study'));
+  const studyCards = Array.from(studiesSection.querySelectorAll('.study:not([data-study-draft])'));
   const modeButtons = Array.from(studiesSection.querySelectorAll('[data-view-mode]'));
   const slideButtons = Array.from(studiesSection.querySelectorAll('[data-slide]'));
   const slideStatus = studiesSection.querySelector('[data-slide-status]');
@@ -270,15 +270,15 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   const motionRanges = { tailFan: null, sickleClaws: [] };
   addEllipsoid(-.15, -.01, 0, .8, .39, .37, body, 10, 14);
   addEllipsoid(-.69, -.04, 0, .42, .37, .39, flank, 8, 12);
-  addEllipsoid(.34, .02, 0, .4, .31, .34, flank, 8, 12);
+  addEllipsoid(.1, .02, 0, .36, .29, .33, flank, 8, 12);
   addTube([-.93, -.02, 0], [-3.62, -.36, 0], .28, .018, dark, 10);
   const tailFanStart = vertices.length;
   addTube([-.93, .04, 0], [-3.52, -.31, 0], .19, .012, feather, 9);
   motionRanges.tailFan = [tailFanStart, vertices.length];
   // A compact, backwards-swept neck and blunt muzzle give the head a watchful profile.
-  addTube([.12, .12, 0], [-.08, .43, 0], .23, .19, body, 10);
-  addTube([-.08, .43, 0], [-.08, .76, 0], .19, .15, body, 10);
-  addTube([.14, -.02, 0], [-.19, .54, 0], .105, .075, flank, 8);
+  addTube([.1, .12, 0], [.02, .43, 0], .22, .18, body, 10);
+  addTube([.02, .43, 0], [.08, .72, 0], .18, .14, body, 10);
+  addTube([.1, .02, 0], [.05, .54, 0], .09, .06, flank, 8);
   addEllipsoid(.08, .84, 0, .31, .22, .24, flank, 9, 14);
   // Short, broad muzzle with a distinct jaw and a small, visible mouth line.
   addTube([.28, .88, 0], [.66, .86, 0], .145, .105, body, 10);
