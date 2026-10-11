@@ -2920,3 +2920,69 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .home .poster-hero .shooting-star--secondary::after{width:4px;height:4px;box-shadow:0 0 5px 1.5px rgba(214,232,255,.86),0 0 10px 3px rgba(143,190,255,.35)}
 .home .poster-hero .shooting-star--tertiary::after{width:3px;height:3px;box-shadow:0 0 4px 1px rgba(214,232,255,.78),0 0 8px 2px rgba(143,190,255,.28)}
+
+
+/* October 11 refinements: keep the learning tiles soft and give Room 01 a usable layout. */
+.design-studies[data-mode] .study-learning .word-slots button[data-word-slot="0"]{background:#d9e9f1;color:#20324f}
+.design-studies[data-mode] .study-learning .word-slots button[data-word-slot="1"]{background:#f1dfeb;color:#20324f}
+.design-studies[data-mode] .study-spatial .room-controls{left:5%;width:23%;gap:clamp(5px,.8cqw,9px)}
+.design-studies[data-mode] .study-spatial .room-stage{inset:19% 3% 19% 31%;perspective:1100px;perspective-origin:54% 56%;overflow:hidden}
+.design-studies[data-mode] .study-spatial .room-model{
+  --spatial-yaw:-16deg;--spatial-pitch:4deg;left:51%;top:49%;width:88%;height:88%;
+  transform:translate(-50%,-50%) rotateX(var(--spatial-pitch)) rotateY(var(--spatial-yaw));
+}
+.design-studies[data-mode] .study-spatial .room-floor{
+  left:50%;top:69%;width:108%;height:72%;
+  background:repeating-linear-gradient(0deg,transparent 0 18px,rgba(232,229,214,.14) 18px 19px),repeating-linear-gradient(90deg,transparent 0 18px,rgba(232,229,214,.14) 18px 19px),linear-gradient(145deg,#a9a794,#7b8177 61%,#586660);
+  border-color:rgba(235,232,215,.72)
+}
+.design-studies[data-mode] .study-spatial .room-back-wall{
+  left:50%;top:36%;width:82%;height:65%;
+  background:linear-gradient(135deg,#e7e2d4,#c8c6b9 62%,#a9b0a6);
+  border-color:rgba(255,255,245,.82);box-shadow:inset 0 -5px 0 rgba(91,99,87,.24)
+}
+.design-studies[data-mode] .study-spatial .room-side-wall{
+  background:linear-gradient(105deg,#8d988f,#707e77);border-color:rgba(232,230,215,.6)
+}
+.design-studies[data-mode] .study-spatial .room-window{
+  border:5px solid #f3eee0;background:linear-gradient(150deg,#d8e7e7,#a9c3c2 68%,#738b88);
+  box-shadow:0 2px 0 rgba(78,87,76,.25)
+}
+.design-studies[data-mode] .study-spatial .room-rug{
+  left:42%;top:68%;width:38%;height:25%;transform:translate(-50%,-50%) rotateX(67deg) translateZ(2px);
+  border-radius:2px;background:repeating-linear-gradient(90deg,rgba(226,208,175,.18) 0 5px,transparent 5px 10px),linear-gradient(135deg,#647f7b,#405f60);
+  border:1px solid rgba(242,229,202,.65)
+}
+.design-studies[data-mode] .study-spatial .room-furniture{inset:0}
+.design-studies[data-mode] .study-spatial .room-chair[data-position="0"]{left:11%;top:61%}
+.design-studies[data-mode] .study-spatial .room-chair[data-position="1"]{left:43%;top:61%}
+.design-studies[data-mode] .study-spatial .room-chair[data-position="2"]{left:73%;top:61%}
+.design-studies[data-mode] .study-spatial .room-chair{width:15%;height:17%}
+.design-studies[data-mode] .study-spatial .room-couch[data-position="0"]{left:10%;top:43%}
+.design-studies[data-mode] .study-spatial .room-couch[data-position="1"]{left:42%;top:43%}
+.design-studies[data-mode] .study-spatial .room-couch[data-position="2"]{left:70%;top:43%}
+.design-studies[data-mode] .study-spatial .room-couch{width:27%;height:22%}
+.design-studies[data-mode] .study-spatial .room-caption h3{font:600 clamp(8px,1.1cqw,12px)/1 "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
+.design-studies[data-mode] .study-spatial .room-caption span{display:block;color:#d3d4ca;font-size:clamp(6px,.85cqw,8px);line-height:1.2}
+.design-studies[data-mode] .study-spatial .spatial-hint{font-size:clamp(5px,.9cqw,7px);letter-spacing:.08em}
+.design-studies[data-mode] .study-culture .culture-type{position:absolute}
+.design-studies[data-mode] .study-culture .culture-type .falling-d{
+  position:absolute;left:-.08em;bottom:-.12em;z-index:3;display:block;font-style:normal;
+  transform:rotate(0deg);transform-origin:center;animation:groundSmileyD 1.15s cubic-bezier(.2,.8,.2,1) both
+}
+@keyframes groundSmileyD{
+  0%{translate:-1.1em -2.1em;rotate:-18deg}
+  62%{translate:-.12em .08em;rotate:18deg}
+  78%{translate:0 -.08em;rotate:205deg}
+  100%{translate:0 0;rotate:180deg}
+}
+.design-studies .study-space .space-map{left:51%;width:56%}
+@media(max-width:900px){
+ .design-studies[data-mode] .study-spatial .room-stage{inset:20% 2% 20% 30%}
+ .design-studies[data-mode] .study-spatial .room-model{width:93%}
+}
+@media(max-width:560px){
+ .design-studies[data-mode] .study-spatial .room-controls{left:4%;width:25%}
+ .design-studies[data-mode] .study-spatial .room-stage{inset:22% 1% 21% 29%}
+ .design-studies[data-mode] .study-spatial .room-model{width:100%;height:82%}
+}
