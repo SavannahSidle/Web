@@ -2149,7 +2149,22 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .design-studies[data-mode] .study-culture .culture-type i{display:inline;font-size:inherit;line-height:inherit}
 .design-studies[data-mode] .study-culture .falling-d::after{display:none}
-.design-studies[data-mode] .study-culture .culture-event{left:57%;right:4%;top:20%;width:39%;max-width:none;gap:clamp(4px,1.2cqi,7px)}
+.design-studies[data-mode] .study-culture .culture-event{
+  left:57%;right:4%;top:20%;width:39%;max-width:none;gap:0
+}
+.design-studies[data-mode] .study-culture .culture-event section{
+  display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0;
+  padding:clamp(7px,1.5cqi,10px);border:1px solid rgba(255,241,223,.2);
+  border-radius:2px;background:rgba(20,14,38,.7)
+}
+.design-studies[data-mode] .study-culture .culture-event section>:not([hidden]){
+  position:static!important;inset:auto!important;transform:none!important;max-width:100%;
+  min-width:0;margin:0;white-space:normal;overflow-wrap:anywhere;line-height:1.3
+}
+.design-studies[data-mode] .study-culture .culture-event strong{font-size:clamp(7px,1.8cqi,8px)}
+.design-studies[data-mode] .study-culture .culture-event span{font-size:clamp(8px,1.9cqi,9px);line-height:1.35}
+.design-studies[data-mode] .study-culture .culture-event small{font-size:clamp(7px,1.6cqi,8px);line-height:1.3}
+.design-studies[data-mode] .study-culture .culture-event .culture-details-toggle{min-height:30px}
 .design-studies[data-mode] .study-culture .culture-index{right:7%;bottom:7%;writing-mode:vertical-rl}
 
 /* Give the editorial study enough type scale in both gallery modes. */
