@@ -1308,6 +1308,7 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
       search.value = '';
       category.value = '';
       for (const card of getCards()) card.hidden = false;
+      status.textContent = `${getCards().length} of ${getCards().length} studies shown.`;
       empty.hidden = true;
     }
   };
