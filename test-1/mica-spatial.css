@@ -2153,7 +2153,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   font-size:clamp(1.35rem,8.5cqi,2.45rem);line-height:.78;letter-spacing:-.075em
 }
 .design-studies[data-mode] .study-culture .culture-type i{display:inline;font-size:inherit;line-height:inherit}
-.design-studies[data-mode] .study-culture .falling-d::after{display:none}
+
 .design-studies[data-mode] .study-culture .culture-event{
   left:57%;right:4%;top:20%;width:39%;max-width:none;gap:0
 }
@@ -2880,24 +2880,9 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   color:#ffe6a2
 }
 .design-studies .study-culture .culture-type{z-index:1}
-.design-studies .study-culture .falling-d{
-  display:inline-block!important;font-size:inherit!important;line-height:inherit!important;
-  animation:none!important;transform-origin:0 52%;will-change:transform
-}
-.design-studies .study-culture .culture-screen.is-d-motion .falling-d{
-  animation:culture-d-tumble 4.8s cubic-bezier(.32,.02,.24,1) both!important
-}
-@keyframes culture-d-tumble{
-  0%,35%{transform:translate(0,0) rotate(0)}
-  43%{transform:translate(6px,7px) rotate(12deg)}
-  54%{transform:translate(4px,1px) rotate(-7deg)}
-  66%{transform:translate(0,-8px) rotate(-32deg)}
-  78%{transform:translate(-6px,-14px) rotate(-68deg)}
-  87%{transform:translate(-10px,-20px) rotate(-86deg)}
-  91%{transform:translate(-12px,-23px) rotate(-95deg)}
-  95%{transform:translate(-11px,-20px) rotate(-88deg)}
-  98%,100%{transform:translate(-12px,-22px) rotate(-90deg)}
-}
+
+
+
 .design-studies .study-culture [hidden]{display:none!important}
 @media(max-width:560px){
   .design-studies .study-culture .culture-menu{left:4%;top:7%;min-width:58px;gap:3px}
@@ -2906,7 +2891,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 @media(prefers-reduced-motion:reduce){
   .design-studies .study-culture .culture-burst{animation:none!important;opacity:0}
-  .design-studies .study-culture .falling-d{animation:none!important;transform:none!important}
+  
   .design-studies .study-culture .culture-replay{display:none!important}
 }
 
@@ -2966,16 +2951,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-spatial .room-caption span{display:block;color:#d3d4ca;font-size:clamp(6px,.85cqw,8px);line-height:1.2}
 .design-studies[data-mode] .study-spatial .spatial-hint{font-size:clamp(5px,.9cqw,7px);letter-spacing:.08em}
 .design-studies[data-mode] .study-culture .culture-type{position:absolute}
-.design-studies[data-mode] .study-culture .culture-type .falling-d{
-  position:absolute;left:-.08em;bottom:-.12em;z-index:3;display:block;font-style:normal;
-  transform:rotate(0deg);transform-origin:center;animation:groundSmileyD 1.15s cubic-bezier(.2,.8,.2,1) both
-}
-@keyframes groundSmileyD{
-  0%{translate:-1.1em -2.1em;rotate:-18deg}
-  62%{translate:-.12em .08em;rotate:18deg}
-  78%{translate:0 -.08em;rotate:205deg}
-  100%{translate:0 0;rotate:180deg}
-}
+
+
 .design-studies .study-space .space-map{left:51%;width:56%}
 @media(max-width:900px){
  .design-studies[data-mode] .study-spatial .room-stage{inset:20% 2% 20% 30%}
@@ -2995,9 +2972,9 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .design-studies[data-mode] .study-space[data-selected-planet="Venus"] .space-focus{top:21%!important}
 .design-studies[data-mode] .study-space .space-map{left:43%;width:58%}
-.design-studies[data-mode] .study-space .orbit-saturn{width:70%!important;height:90%!important}
-.design-studies[data-mode] .study-space .orbit-uranus{width:88%!important;height:104%!important}
-.design-studies[data-mode] .study-space .orbit-neptune{width:104%!important;height:116%!important}
+.design-studies[data-mode] .study-space .orbit-saturn{width:72%;height:92%}
+.design-studies[data-mode] .study-space .orbit-uranus{width:84%;height:104%}
+.design-studies[data-mode] .study-space .orbit-neptune{width:96%;height:116%}
 .design-studies[data-mode] .study-space .space-planet.planet-saturn,
 .design-studies[data-mode] .study-space .space-planet.planet-uranus,
 .design-studies[data-mode] .study-space .space-planet.planet-neptune{transform:translate(-50%,-50%)}
@@ -3042,3 +3019,68 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .design-studies[data-mode] .study-care .care-illustration em{left:74%;height:48%;transform:rotate(23deg)}
 .site-live .design-studies[data-mode] .study-care .care-option{border-radius:12px;background:rgba(250,253,248,.96)}
 .site-live .design-studies[data-mode] .study-care .care-option[aria-pressed="true"]{background:#e5f2e9}
+
+/* Common Ground D: one clear cascade for the same-size terminal letter in both modes. */
+.design-studies[data-mode] .study-culture .culture-type .falling-d{
+  position:absolute;left:-.08em;bottom:-.12em;z-index:3;display:block;
+  font-style:normal;font-size:inherit!important;line-height:inherit!important;
+  transform-origin:0 50%;transform:none;will-change:transform;animation:none!important;
+}
+.design-studies[data-mode] .study-culture .culture-screen.is-d-motion .culture-type .falling-d{
+  animation:common-ground-d 1.85s cubic-bezier(.2,.75,.2,1) both!important;
+}
+@keyframes common-ground-d{
+  0%,10%{transform:translate(0,0) rotate(0deg)}
+  18%{transform:translate(-.12em,.32em) rotate(-22deg)}
+  28%{transform:translate(-.28em,.44em) rotate(-5deg)}
+  56%{transform:translate(1.15em,-4.6em) rotate(72deg)}
+  71%{transform:translate(1.25em,-6em) rotate(90deg)}
+  80%{transform:translate(1.25em,-5.65em) rotate(108deg)}
+  88%{transform:translate(1.25em,-6em) rotate(88deg)}
+  94%{transform:translate(1.25em,-5.88em) rotate(96deg)}
+  100%{transform:translate(1.25em,-6em) rotate(90deg)}
+}
+@media(prefers-reduced-motion:reduce){
+  .design-studies[data-mode] .study-culture .culture-type .falling-d{
+    animation:none!important;transform:translate(1.25em,-6em) rotate(90deg)!important;
+  }
+}
+
+/* Room 01: a furnished single-room preview with clear space between pieces. */
+.design-studies[data-mode] .study-spatial .room-floor{
+  background:
+    repeating-linear-gradient(0deg,rgba(75,58,38,.17) 0 1px,transparent 1px 16px),
+    repeating-linear-gradient(90deg,transparent 0 29px,rgba(75,58,38,.16) 29px 30px,transparent 30px 76px),
+    linear-gradient(145deg,#c3b18d,#a39376 60%,#777b6e);
+  box-shadow:0 18px 24px rgba(0,0,0,.36),inset 0 1px rgba(255,255,255,.5);
+}
+.design-studies[data-mode] .study-spatial .room-couch[data-position="0"]{left:17%;top:48%}
+.design-studies[data-mode] .study-spatial .room-couch[data-position="1"]{left:52%;top:48%}
+.design-studies[data-mode] .study-spatial .room-couch[data-position="2"]{left:52%;top:48%}
+.design-studies[data-mode] .study-spatial .room-chair[data-position="0"]{left:20%;top:73%}
+.design-studies[data-mode] .study-spatial .room-chair[data-position="1"]{left:68%;top:73%}
+.design-studies[data-mode] .study-spatial .room-chair[data-position="2"]{left:68%;top:73%}
+.design-studies[data-mode] .study-spatial .room-caption{width:92%;bottom:5%;display:grid;gap:2px}
+.design-studies[data-mode] .study-spatial .room-caption h3{
+  white-space:nowrap;font:400 clamp(10px,1.45cqi,17px)/1.05 "DM Serif Display",Georgia,serif;
+  letter-spacing:-.025em;text-transform:none;color:#f5f0df;
+}
+.design-studies[data-mode] .study-spatial .room-caption span{
+  display:block;color:rgba(229,225,207,.72);font-size:clamp(6px,.8cqw,8px);line-height:1.2;
+}
+
+/* Keep outer planet controls readable after Saturn and comfortably separated. */
+.design-studies[data-mode] .study-space .space-rail{left:5%;right:1%}
+.design-studies[data-mode] .study-space .space-rail .planet-saturn{translate:clamp(1px,.5cqi,3px) 0}
+.design-studies[data-mode] .study-space .space-rail .planet-uranus{translate:clamp(2px,1cqi,5px) 0}
+.design-studies[data-mode] .study-space .space-rail .planet-neptune{translate:clamp(3px,1.5cqi,7px) 0}
+
+/* The duplicated slogan baked into the campaign image is masked under its live text. */
+.home .poster-hero .hero-readable-tagline{
+  color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.9),0 0 12px rgba(2,10,18,.9);
+  font-weight:600;letter-spacing:.08em;
+}
+
+/* The C and A tiles use separate soft colors; the other letter choices retain their palette. */
+.design-studies[data-mode] .study-learning .word-slots button[data-word-slot="0"]{background:#dce8fb;color:#20324f}
+.design-studies[data-mode] .study-learning .word-slots button[data-word-slot="1"]{background:#f6dce8;color:#20324f}

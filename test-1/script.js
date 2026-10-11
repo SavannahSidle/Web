@@ -835,8 +835,8 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
       const action = button.dataset.roomAction;
       if (!['chair', 'couch'].includes(action)) return;
       const pieces = Array.from(furniture.querySelectorAll(`.room-${action}`));
-      if (pieces.length >= 3) {
-        if (roomStatus) roomStatus.textContent = `Room 01 already has three ${action}s.`;
+      if (pieces.length >= 2) {
+        if (roomStatus) roomStatus.textContent = `Room 01 can show up to two ${action}s in this preview.`;
         return;
       }
       const piece = document.createElement('div');
