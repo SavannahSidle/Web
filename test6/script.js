@@ -1215,3 +1215,51 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
     updatePrice();
   });
 })();
+
+
+/* Arts & Culture / Common Ground: usable concept navigation, honest event details, and replayable motion. */
+(() => {
+  document.querySelectorAll(".study-culture").forEach((study) => {
+    const screen = study.querySelector(".culture-screen");
+    const viewButtons = [...study.querySelectorAll("[data-culture-view]")];
+    const panels = [...study.querySelectorAll("[data-culture-panel]")];
+    const replay = study.querySelector("[data-culture-replay]");
+    const detailToggle = study.querySelector(".culture-details-toggle");
+    const detailText = study.querySelector("[data-culture-details]");
+    if (!screen) return;
+
+    viewButtons.forEach((button) => button.addEventListener("click", () => {
+      const selected = button.dataset.cultureView;
+      viewButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+      panels.forEach((panel) => { panel.hidden = panel.dataset.culturePanel !== selected; });
+    }));
+
+    detailToggle?.addEventListener("click", () => {
+      const expanded = detailToggle.getAttribute("aria-expanded") !== "true";
+      detailToggle.setAttribute("aria-expanded", String(expanded));
+      detailText.hidden = !expanded;
+      detailToggle.textContent = expanded ? "Hide event details" : "Event details";
+    });
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const play = () => {
+      if (reducedMotion.matches) return;
+      screen.classList.remove("is-d-motion");
+      void screen.offsetWidth;
+      screen.classList.add("is-d-motion");
+    };
+    replay?.addEventListener("click", play);
+    if (!reducedMotion.matches) {
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          play();
+          observer.disconnect();
+        }, { threshold: 0.25 });
+        observer.observe(screen);
+      } else {
+        play();
+      }
+    }
+  });
+})();
