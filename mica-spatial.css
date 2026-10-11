@@ -1726,15 +1726,15 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-space .orbit-mercury{border-color:rgba(207,190,165,.34)}
 .design-studies[data-mode] .study-space .orbit-earth{border-color:rgba(135,197,236,.45)}
 .design-studies[data-mode] .study-space .orbit-jupiter,.design-studies[data-mode] .study-space .orbit-saturn{border-color:rgba(117,170,225,.26)}
-.design-studies[data-mode] .study-space .planet-path{position:absolute;inset:0;display:block;border:0;border-radius:50%;animation:planet-orbit var(--orbit-time) linear infinite}
+.design-studies[data-mode] .study-space .planet-path{position:absolute;inset:0;display:block;border:0;border-radius:50%;animation:planet-orbit var(--orbit-time) linear infinite;animation-delay:calc(var(--orbit-time) * -.17)}
 .design-studies[data-mode] .study-space .space-planet{position:absolute;left:50%;top:0;display:block;width:clamp(4px,1.1cqw,8px);height:clamp(4px,1.1cqw,8px);transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 0 10px rgba(128,210,245,.55)}
 .design-studies[data-mode] .study-space .planet-mercury{background:#d6c8ac;width:4px;height:4px}
 .design-studies[data-mode] .study-space .planet-venus{background:#d7a77f;width:5px;height:5px}
 .design-studies[data-mode] .study-space .planet-earth{background:radial-gradient(circle at 35% 30%,#b9f0e4,#428ec1 72%);width:6px;height:6px}
 .design-studies[data-mode] .study-space .planet-mars{background:#d77962;width:5px;height:5px}
 .design-studies[data-mode] .study-space .planet-jupiter{background:linear-gradient(0deg,#d58c61 0 27%,#f0c294 28% 45%,#a96554 46% 70%,#edd0a7 71%);width:10px;height:10px}
-.design-studies[data-mode] .study-space .planet-saturn{background:#d9bd89;width:8px;height:8px}
-.design-studies[data-mode] .study-space .planet-saturn::after{content:"";position:absolute;left:50%;top:50%;width:170%;height:55%;border:1px solid rgba(236,211,161,.9);border-radius:50%;transform:translate(-50%,-50%) rotate(-24deg)}
+.design-studies[data-mode] .study-space .space-planet.planet-saturn{background:#d9bd89;width:8px;height:8px}
+.design-studies[data-mode] .study-space .space-planet.planet-saturn::after{content:"";position:absolute;left:50%;top:50%;width:170%;height:55%;border:1px solid rgba(236,211,161,.9);border-radius:50%;transform:translate(-50%,-50%) rotate(-24deg)}
 .design-studies[data-mode] .study-space .planet-uranus{background:#8ed8d7;width:7px;height:7px}
 .design-studies[data-mode] .study-space .planet-neptune{background:#7199ed;width:7px;height:7px}
 @keyframes planet-orbit{to{transform:rotate(360deg)}}
@@ -1973,13 +1973,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies .study-culture .culture-burst-one{right:10%;bottom:10%;animation-delay:1.2s}
 .design-studies .study-culture .culture-burst-two{right:23%;bottom:21%;width:19px;height:19px;animation-delay:5.3s}
 @keyframes culture-burst{0%,78%,100%{opacity:0;transform:scale(.35)}82%{opacity:.58}96%{opacity:0;transform:scale(1.6)}}
-.design-studies .study-culture .falling-d{position:relative;display:inline-block;transform-origin:14% 78%;animation:ground-d 11s cubic-bezier(.32,.08,.3,1) infinite}
-.design-studies .study-culture .falling-d::after{content:"";position:absolute;left:33%;top:19%;width:2px;height:2px;border-radius:50%;background:#251a3b;opacity:0;box-shadow:5px 0 #251a3b}
-@keyframes ground-d{0%,74%,100%{transform:translate(0,0) rotate(0)}77%{transform:translate(-2px,-5px) rotate(-12deg)}80%{transform:translate(1px,-8px) rotate(-24deg)}84%{transform:translate(10px,12px) rotate(58deg)}88%{transform:translate(25px,48px) rotate(172deg)}90%{transform:translate(29px,57px) rotate(255deg)}92%{transform:translate(27px,49px) rotate(285deg)}94%{transform:translate(30px,58px) rotate(270deg)}96%{transform:translate(30px,53px) rotate(270deg)}98%{transform:translate(30px,57px) rotate(270deg)}}
-@keyframes ground-dots{0%,86%,100%{opacity:0}88%,91%{opacity:1}}
-.design-studies .study-culture .falling-d::after{animation:ground-dots 11s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){
- .design-studies .study-culture .culture-burst,.design-studies .study-culture .falling-d,.design-studies .study-culture .falling-d::after{animation:none!important}
+ .design-studies .study-culture .culture-burst{animation:none!important}
  .design-studies .study-culture .culture-focal{opacity:.65}
 }
 
@@ -2237,27 +2232,15 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   left:8%;right:auto;bottom:9%;font:500 clamp(5px,1.5cqi,8px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.09em;text-align:left;color:#fff
 }
 
-/* Keep the original vertical Common Ground composition and the D at full type size. */
+/* Common Ground keeps the approved vertical composition and type scale in both modes. */
 .design-studies[data-mode] .study-culture .culture-type{
-  left:13%;top:4%;width:34%;height:91%;writing-mode:vertical-rl;transform:rotate(180deg);
+  left:24%;top:4%;width:30%;height:91%;writing-mode:vertical-rl;transform:rotate(180deg);
   font-size:clamp(1.35rem,8.5cqi,2.45rem);line-height:.78;letter-spacing:-.075em
 }
 .design-studies[data-mode] .study-culture .culture-type i{display:inline;font-size:inherit;line-height:inherit}
-.design-studies[data-mode] .study-culture .falling-d{
-  display:inline-block;font-size:inherit!important;line-height:inherit!important;transform-origin:50% 25%;animation:ground-d 7.2s ease-in-out infinite
-}
 .design-studies[data-mode] .study-culture .falling-d::after{display:none}
 .design-studies[data-mode] .study-culture .culture-event{left:58%;right:7%;top:31%;max-width:34%;gap:clamp(5px,1.8cqi,10px)}
 .design-studies[data-mode] .study-culture .culture-index{right:7%;bottom:7%;writing-mode:vertical-rl}
-@keyframes ground-d{
-  0%,53%,100%{opacity:1;transform:translate(0,0) rotate(0)}
-  57%{opacity:1;transform:translate(-2px,-5px) rotate(-4deg)}
-  62%{opacity:1;transform:translate(-3px,-11px) rotate(0)}
-  68%{opacity:1;transform:translate(5px,-7px) rotate(16deg)}
-  75%{opacity:1;transform:translate(13px,18px) rotate(55deg)}
-  82%{opacity:0;transform:translate(24px,48px) rotate(105deg)}
-}
-@media(prefers-reduced-motion:reduce){.design-studies .study-culture .falling-d{animation:none!important}}
 
 /* Give the editorial study enough type scale in both gallery modes. */
 .design-studies[data-mode] .study-editorial .editorial-screen h3{
@@ -2457,26 +2440,6 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .design-studies .study-editorial .editorial-screen h3 em span{animation:none!important}
 }
 
-/* Keep Common Ground's final letter full-size as it lifts from its left edge and tumbles away. */
-.design-studies[data-mode] .study-culture .falling-d{
-  transform-origin:0 52%;animation:ground-d 8s ease-in-out infinite
-}
-@keyframes ground-d{
-  0%,66%,100%{opacity:1;transform:translate(0,0) rotate(0)}
-  70%{opacity:1;transform:translate(-2px,-4px) rotate(-3deg)}
-  74%{opacity:1;transform:translate(-4px,-10px) rotate(2deg)}
-  78%{opacity:1;transform:translate(5px,-6px) rotate(17deg)}
-  84%{opacity:1;transform:translate(18px,10px) rotate(72deg)}
-  90%{opacity:.3;transform:translate(34px,32px) rotate(158deg)}
-  94%,98%{opacity:0;transform:translate(48px,58px) rotate(238deg)}
-}
-.design-studies[data-mode] .study-space .space-focus{top:34%}
-@media(max-width:560px){
-  .design-studies[data-mode] .study-space .space-focus{top:34%;width:43%}
-}
-@media(prefers-reduced-motion:reduce){.design-studies .study-culture .falling-d{animation:none!important}}
-
-
 /* 2026-10: round, slow star points and a meteor with its luminous head leading. */
 .home .poster-hero .hero-starfield{opacity:.62}
 .home .poster-hero .hero-starfield::before,
@@ -2600,33 +2563,23 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-minimal .practice-footer i{height:2px}
 .design-studies[data-mode="grid"] .study-minimal .practice-copy{left:33%;top:32%}
 
-/* Common Ground: tip back from the left edge, fall down the opposite way, land, then bounce. */
-.design-studies[data-mode] .study-culture .falling-d{transform-origin:0 52%;animation:ground-d-land 8.6s cubic-bezier(.33,.02,.28,1) infinite}
-@keyframes ground-d-land{
-  0%,61%,100%{opacity:1;transform:translate(0,0) rotate(0)}
-  66%{opacity:1;transform:translate(2px,-8px) rotate(9deg)}
-  72%{opacity:1;transform:translate(7px,-3px) rotate(31deg)}
-  79%{opacity:1;transform:translate(15px,27px) rotate(69deg)}
-  84%{opacity:1;transform:translate(20px,71px) rotate(89deg)}
-  87%{opacity:1;transform:translate(22px,83px) rotate(101deg)}
-  90%,94%{opacity:1;transform:translate(23px,75px) rotate(92deg)}
-  97%{opacity:1;transform:translate(23px,83px) rotate(89deg)}
-}
-@media(prefers-reduced-motion:reduce){.design-studies .study-culture .falling-d{animation:none!important}}
-
 /* Distinguish planet identities and keep the counter below the orbit labels. */
-.design-studies[data-mode] .study-space .space-focus{top:41%!important}
-.design-studies[data-mode] .study-space .planet-saturn{background:radial-gradient(circle at 36% 30%,#fff0c5,#c6a46d 64%,#87664d);width:8px;height:8px}
+.design-studies[data-mode] .study-space .space-focus{top:39%!important;left:6%;width:36%;display:grid;align-content:start;gap:clamp(8px,2cqw,14px);padding:clamp(5px,1.4cqw,10px);border-radius:3px;background:linear-gradient(90deg,rgba(5,14,26,.9),rgba(5,14,26,.63),transparent)}
+.design-studies[data-mode] .study-space .space-focus small{display:block;margin:0}
+.design-studies[data-mode] .study-space .space-focus h3{margin:0;line-height:1}
+.design-studies[data-mode] .study-space .space-focus span{display:block;margin-top:-4px}
+.design-studies[data-mode] .study-space .space-planet.planet-saturn{background:radial-gradient(circle at 36% 30%,#fff0c5,#c6a46d 64%,#87664d);width:8px;height:8px}
 .design-studies[data-mode] .study-space .planet-uranus{background:radial-gradient(circle at 35% 32%,#e1ffff,#72c7cf 62%,#3e7483);width:7px;height:7px}
 .design-studies[data-mode] .study-space .planet-neptune{background:radial-gradient(circle at 35% 30%,#bdcffd,#547ce0 62%,#29396f);width:7px;height:7px}
 .design-studies[data-mode] .study-space .planet-mars{background:radial-gradient(circle at 32% 28%,#ffd1ad,#c85b45 65%,#75352c)}
-.design-studies[data-mode] .study-space .orbit-saturn{left:53%;width:70%;height:90%}
-.design-studies[data-mode] .study-space .orbit-uranus{left:54%;width:81%;height:104%}
-.design-studies[data-mode] .study-space .orbit-neptune{left:55%;width:94%;height:112%}
+.design-studies[data-mode] .study-space .orbit-jupiter{width:48%;height:68%}
+.design-studies[data-mode] .study-space .orbit-saturn{left:50%;width:65%;height:84%}
+.design-studies[data-mode] .study-space .orbit-uranus{left:50%;width:81%;height:100%}
+.design-studies[data-mode] .study-space .orbit-neptune{left:50%;width:97%;height:116%}
 .design-studies[data-mode] .study-space .planet-jupiter::after{
   content:"";position:absolute;left:56%;top:60%;width:26%;height:11%;border-radius:50%;background:rgba(145,65,49,.85)
 }
-.design-studies[data-mode] .study-space .planet-saturn::after{width:220%;height:68%;border-width:1.25px;box-shadow:0 0 4px rgba(238,211,160,.3)}
+.design-studies[data-mode] .study-space .space-planet.planet-saturn::after{width:220%;height:68%;border-width:1.25px;box-shadow:0 0 4px rgba(238,211,160,.3)}
 .design-studies[data-mode] .study-space .space-rail .planet-scale{color:#cfdfeb}
 .design-studies[data-mode] .study-space .space-rail .planet-scale i{
   background:radial-gradient(circle at 35% 28%,var(--planet-highlight,#e5f3f0),var(--planet-base,#628e9d) 61%,var(--planet-shadow,#263f59))
@@ -2640,7 +2593,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-space .space-rail .planet-uranus{--planet-highlight:#e1ffff;--planet-base:#72c7cf;--planet-shadow:#285664}
 .design-studies[data-mode] .study-space .space-rail .planet-neptune{--planet-highlight:#bdcffd;--planet-base:#547ce0;--planet-shadow:#222e6b}
 @media(max-width:560px){
- .design-studies[data-mode] .study-space .space-focus{top:40%!important;width:43%}
+ .design-studies[data-mode] .study-space .space-focus{top:39%!important;left:5%;width:37%}
 }
 
 /* Slow orbital/mesh motion through the hero keeps the MICA atmosphere alive. */
@@ -2785,9 +2738,9 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 
 /* Test 6: mental health support study, with clear pathways and compact, usable controls. */
 .site-live .design-studies .study-care .care-screen{
-  position:relative;display:grid;isolation:isolate;overflow:hidden;
+  position:relative;display:grid;isolation:isolate;overflow:hidden;aspect-ratio:4 / 3;
   grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
-  grid-template-rows:auto 1fr auto;gap:clamp(7px,1.25cqw,14px);
+  grid-template-rows:auto minmax(0,1fr) auto auto;gap:clamp(7px,1.25cqw,14px);
   align-content:stretch;padding:clamp(13px,4.2cqw,34px)!important;
   border:1px solid rgba(54,76,63,.2);border-left:5px solid #527568;
   border-radius:4px;
@@ -2796,12 +2749,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
     linear-gradient(118deg,#f6f3eb 0%,#f6f3eb 53%,#e7ede4 53%,#e7ede4 100%);
   color:#18362f;
 }
-.site-live .design-studies .study-care .care-screen::before{
-  content:"";position:absolute;z-index:0;left:7%;bottom:17%;width:26%;aspect-ratio:1;border:1px solid rgba(70,112,91,.22);border-radius:50%;box-shadow:0 0 0 13px rgba(89,130,105,.045),0 0 0 26px rgba(89,130,105,.035);pointer-events:none;
-}
-.site-live .design-studies .study-care .care-screen::after{
-  content:"";position:absolute;z-index:0;left:18%;bottom:28%;width:7%;height:17%;border-left:1px solid #73937d;border-right:1px solid #73937d;transform:rotate(16deg);opacity:.65;pointer-events:none;
-}
+.site-live .design-studies .study-care .care-screen::before,
+.site-live .design-studies .study-care .care-screen::after{display:none}
 .site-live .design-studies .study-care .care-screen>*{position:relative;z-index:1}
 .site-live .design-studies .study-care .care-top{
   grid-column:1/-1;grid-row:1;display:flex;justify-content:space-between;align-items:center;gap:8px;
@@ -2816,7 +2765,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .design-studies .study-care .care-intro>p{
   margin:0;max-width:26ch;color:#3e5a51;font-size:clamp(9px,1.9cqw,14px);line-height:1.45
 }
-.site-live .design-studies .study-care .care-illustration{display:block;position:relative;width:35%;height:3px;margin-top:clamp(10px,2.4cqw,24px);background:#a1b6a3;border-radius:99px}
+.site-live .design-studies .study-care .care-illustration{display:none}
 .site-live .design-studies .study-care .care-illustration i,.site-live .design-studies .study-care .care-illustration b,.site-live .design-studies .study-care .care-illustration em{position:absolute;bottom:0;display:block;width:1px;height:clamp(12px,2.2cqw,22px);background:#73937d;transform-origin:bottom}
 .site-live .design-studies .study-care .care-illustration i{left:25%;transform:rotate(-24deg)}
 .site-live .design-studies .study-care .care-illustration b{left:51%;height:clamp(17px,3.3cqw,34px)}
@@ -2846,7 +2795,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .site-live .design-studies .study-care .care-crisis strong{font-weight:700}
 .site-live .design-studies .study-care .care-crisis a{color:#214f3c;text-decoration:underline;text-underline-offset:2px;font-weight:700}
-.site-live .design-studies .study-care .care-privacy{position:absolute;right:4%;bottom:2.4%;z-index:2;margin:0;color:#557064;font-size:clamp(7px,1.1cqw,9px);line-height:1.2}
+.site-live .design-studies .study-care .care-privacy{position:static;grid-column:1/-1;grid-row:4;z-index:2;margin:0;color:#557064;font-size:clamp(7px,1.1cqw,9px);line-height:1.2}
 .site-live .design-studies .study-care .care-response[hidden]{display:none}
 .site-live .design-studies .study-care .care-response{
   position:absolute;z-index:5;inset:0;overflow:auto;display:grid;align-content:center;
@@ -2870,7 +2819,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .design-studies .study-care .care-response[hidden]+template{display:none}
 .site-live .design-studies .study-care [inert]{pointer-events:none}
 @media(max-width:640px){
-  .site-live .design-studies .study-care .care-screen{aspect-ratio:auto;min-height:410px;grid-template-columns:1fr;grid-template-rows:auto auto 1fr auto;padding:18px!important;gap:12px}
+  .site-live .design-studies .study-care .care-screen{aspect-ratio:auto;min-height:430px;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto auto;padding:18px!important;gap:12px}
   .site-live .design-studies .study-care .care-top{font-size:9px}
   .site-live .design-studies .study-care .care-intro{max-width:none}
   .site-live .design-studies .study-care .care-intro h3{max-width:15ch;font-size:1.55rem}
@@ -2881,7 +2830,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .site-live .design-studies .study-care .care-option strong{font-size:13px}
   .site-live .design-studies .study-care .care-option small{font-size:11px}
   .site-live .design-studies .study-care .care-crisis{grid-column:1;grid-row:4;font-size:11px}
-  .site-live .design-studies .study-care .care-privacy{right:5%;bottom:1%;font-size:9px}
+  .site-live .design-studies .study-care .care-privacy{grid-column:1;grid-row:5;font-size:9px}
   .site-live .design-studies .study-care .care-response{padding:18px;align-content:start}
   .site-live .design-studies .study-care .care-result h4{font-size:1.45rem}
   .site-live .design-studies .study-care .care-result>p:not(.care-result-kicker){font-size:12px}
@@ -2980,25 +2929,29 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   color:#ffe6a2
 }
 .design-studies .study-culture .culture-type{z-index:1}
-.design-studies .study-culture .falling-d{animation:none!important;transform-origin:0 52%;will-change:transform}
+.design-studies .study-culture .falling-d{
+  display:inline-block!important;font-size:inherit!important;line-height:inherit!important;
+  animation:none!important;transform-origin:0 52%;will-change:transform
+}
 .design-studies .study-culture .culture-screen.is-d-motion .falling-d{
   animation:culture-d-tumble 4.8s cubic-bezier(.32,.02,.24,1) both!important
 }
 @keyframes culture-d-tumble{
   0%,35%{transform:translate(0,0) rotate(0)}
-  44%{transform:translate(-2px,-5px) rotate(-8deg)}
-  54%{transform:translate(2px,-8px) rotate(8deg)}
-  68%{transform:translate(13px,7px) rotate(42deg)}
-  82%{transform:translate(24px,25px) rotate(78deg)}
-  88%{transform:translate(26px,30px) rotate(96deg)}
-  92%{transform:translate(27px,26px) rotate(86deg)}
-  96%,100%{transform:translate(27px,30px) rotate(90deg)}
+  44%{transform:translate(2px,7px) rotate(8deg)}
+  54%{transform:translate(-2px,-10px) rotate(-8deg)}
+  66%{transform:translate(-8px,-8px) rotate(-24deg)}
+  78%{transform:translate(-17px,-15px) rotate(-58deg)}
+  86%{transform:translate(-27px,-31px) rotate(-86deg)}
+  90%{transform:translate(-30px,-37px) rotate(-96deg)}
+  93%{transform:translate(-32px,-32px) rotate(-87deg)}
+  97%,100%{transform:translate(-33px,-37px) rotate(-90deg)}
 }
 .design-studies .study-culture [hidden]{display:none!important}
 @media(max-width:560px){
   .design-studies .study-culture .culture-menu{left:4%;top:7%;min-width:58px;gap:3px}
   .design-studies .study-culture .culture-menu button{min-height:27px;padding:4px;font-size:8px}
-  .design-studies .study-culture .culture-type{left:15%;width:32%;font-size:clamp(1.35rem,8cqi,2rem)}
+  .design-studies .study-culture .culture-type{left:24%;width:29%;font-size:clamp(1.35rem,8cqi,2rem)}
   .design-studies .study-culture .culture-event{left:56%;right:5%;top:30%;max-width:39%}
   .design-studies .study-culture .culture-replay{left:4%;bottom:5%;min-height:28px;font-size:8px}
 }
