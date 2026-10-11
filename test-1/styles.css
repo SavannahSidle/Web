@@ -877,7 +877,8 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .poster-hero .hero-panel-cleanup{
   position:absolute;z-index:1;inset:0;display:block;pointer-events:none;
   background:
-    radial-gradient(ellipse 68% 48% at 110% 110%,rgba(4,17,36,.98) 0%,rgba(4,17,36,.96) 76%,rgba(4,17,36,0) 100%),
+    radial-gradient(ellipse 75% 60% at 105% 105%,rgba(4,17,36,.98) 0%,rgba(4,17,36,.98) 90%,rgba(4,17,36,0) 100%),
+    radial-gradient(ellipse 40% 35% at 72% 5%,rgba(4,17,36,.98) 0%,rgba(4,17,36,.98) 90%,rgba(4,17,36,0) 100%),
     linear-gradient(90deg,rgba(4,17,36,0) 0%,rgba(4,17,36,.98) 12%,rgba(4,17,36,.98) 100%) right top / 27% 100% no-repeat;
 }
 .poster-hero-actions{position:absolute;z-index:2;left:max(28px,calc((100vw - var(--max))/2));bottom:clamp(28px,4vw,54px);display:flex;align-items:center;gap:24px}
