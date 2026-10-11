@@ -268,17 +268,18 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   };
   const body = '#8b9b71', flank = '#a7a37a', dark = '#5c705b', feather = '#c4b98e', bone = '#d8c9a6';
   const motionRanges = { tailFan: null, sickleClaws: [] };
-  addEllipsoid(-.15, -.01, 0, .8, .39, .37, body, 10, 14);
-  addEllipsoid(-.69, -.04, 0, .42, .37, .39, flank, 8, 12);
-  addEllipsoid(.04, .01, 0, .29, .25, .29, flank, 8, 12);
+  addEllipsoid(-.2, -.04, 0, .78, .32, .30, body, 10, 14);
+  addEllipsoid(-.72, -.07, 0, .38, .30, .32, flank, 8, 12);
+  // Keep the pectoral area tucked into a lean ribcage rather than a protruding human-like chest.
+  addEllipsoid(-.01, -.12, 0, .22, .18, .25, flank, 8, 12);
   addTube([-.93, -.02, 0], [-3.62, -.36, 0], .28, .018, dark, 10);
   const tailFanStart = vertices.length;
   addTube([-.93, .04, 0], [-3.52, -.31, 0], .19, .012, feather, 9);
   motionRanges.tailFan = [tailFanStart, vertices.length];
   // A compact, backwards-swept neck and blunt muzzle give the head a watchful profile.
-  addTube([.1, .12, 0], [.02, .43, 0], .22, .18, body, 10);
-  addTube([.02, .43, 0], [.08, .72, 0], .18, .14, body, 10);
-  addTube([.1, .02, 0], [.05, .66, 0], .09, .06, flank, 8);
+  addTube([.02, .1, 0], [.02, .43, 0], .15, .12, body, 10);
+  addTube([.02, .43, 0], [.08, .72, 0], .12, .10, body, 10);
+  addTube([.02, .02, 0], [.05, .66, 0], .07, .045, flank, 8);
   addEllipsoid(.08, .84, 0, .31, .22, .24, flank, 9, 14);
   // Short, broad muzzle with a distinct jaw and a small, visible mouth line.
   addTube([.28, .88, 0], [.66, .86, 0], .145, .105, body, 10);
@@ -294,13 +295,13 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     addEllipsoid(.12, .89, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
     addEllipsoid(.135, .89, side * .228, .018, .02, .011, '#17221f', 5, 7);
   });
-  // Two feathered forelimbs with hooked claws.
-  [-.24, .24].forEach((z, i) => {
-    addEllipsoid(.46, .08, z, .16, .18, .14, i ? body : dark, 6, 9);
-    addTube([.49, .02, z], [.57, -.25, z * 1.2], .09, .065, body, 7);
-    addTube([.57, -.25, z * 1.2], [.82, -.34, z * 1.35], .065, .035, flank, 7);
-    addTube([.82, -.34, z * 1.35], [.9, -.42, z * 1.35], .035, .006, bone, 6);
-    for (let f = 0; f < 3; f++) addTube([.53 + f * .055, -.02, z * 1.13], [.64 + f * .06, -.12, z * 1.34], .035, .008, feather, 5);
+  // Narrow feathered forelimbs tuck close to the torso, with hooked claws.
+  [-.22, .22].forEach((z, i) => {
+    addEllipsoid(.34, -.02, z, .12, .13, .11, i ? body : dark, 6, 9);
+    addTube([.38, -.06, z], [.46, -.27, z * 1.16], .072, .052, body, 7);
+    addTube([.46, -.27, z * 1.16], [.66, -.37, z * 1.28], .052, .03, flank, 7);
+    addTube([.66, -.37, z * 1.28], [.75, -.44, z * 1.28], .03, .005, bone, 6);
+    for (let f = 0; f < 3; f++) addTube([.42 + f * .045, -.09, z * 1.12], [.51 + f * .05, -.17, z * 1.25], .027, .006, feather, 5);
   });
   // Digitigrade hind limbs based on the documented V. mongoliensis proportions:
   // femur and tibia are close in length; metatarsus is shorter; toes stay compact.
