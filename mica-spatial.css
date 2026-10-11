@@ -3007,3 +3007,14 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .design-studies .study-culture .falling-d{animation:none!important;transform:none!important}
   .design-studies .study-culture .culture-replay{display:none!important}
 }
+
+
+/* Two smaller, staggered meteors keep the homepage sky active between the main passes. */
+.home .poster-hero .shooting-star--secondary{
+  top:39%;width:68px;height:1.5px;animation-delay:-7s
+}
+.home .poster-hero .shooting-star--tertiary{
+  top:70%;width:48px;height:1px;opacity:.76;animation-delay:-14s
+}
+.home .poster-hero .shooting-star--secondary::after{width:4px;height:4px;box-shadow:0 0 5px 1.5px rgba(214,232,255,.86),0 0 10px 3px rgba(143,190,255,.35)}
+.home .poster-hero .shooting-star--tertiary::after{width:3px;height:3px;box-shadow:0 0 4px 1px rgba(214,232,255,.78),0 0 8px 2px rgba(143,190,255,.28)}
