@@ -822,39 +822,31 @@ document.querySelectorAll('.study-neural').forEach((study) => {
 });
 
 
-// Room planner controls: add an adjoining room and compact furniture pieces.
+// Room 01 controls: furniture is placed in separate floor slots to prevent collisions.
 document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
   const furniture = screen.querySelector('[data-room-furniture]');
   const roomStatus = screen.querySelector('[data-room-status]');
-  const roomLabel = screen.querySelector('[data-room-label]');
   if (!furniture) return;
   screen.querySelectorAll('[data-room-action]').forEach((button) => {
     button.addEventListener('click', (event) => {
       event.preventDefault();
       event.stopPropagation();
       const action = button.dataset.roomAction;
-      if (action === 'room') {
-        const added = screen.dataset.roomAdded !== 'true';
-        screen.dataset.roomAdded = String(added);
-        button.setAttribute('aria-pressed', String(added));
-        roomLabel.textContent = added ? 'ROOM 01 + 02' : 'ROOM 01';
-        if (roomStatus) roomStatus.textContent = added ? 'A second connected room was added.' : 'Showing one room.';
-        return;
-      }
+      if (!['chair', 'couch'].includes(action)) return;
       const pieces = Array.from(furniture.querySelectorAll(`.room-${action}`));
       if (pieces.length >= 3) {
-        if (roomStatus) roomStatus.textContent = `Three ${action}s are already in the room.`;
+        if (roomStatus) roomStatus.textContent = `Room 01 already has three ${action}s.`;
         return;
       }
       const piece = document.createElement('div');
       piece.className = `room-${action}`;
+      piece.dataset.position = String(pieces.length);
       piece.setAttribute('aria-hidden', 'true');
       furniture.append(piece);
-      if (roomStatus) roomStatus.textContent = `${action === 'chair' ? 'Chair' : 'Couch'} added to the room.`;
+      if (roomStatus) roomStatus.textContent = `${action === 'chair' ? 'Chair' : 'Couch'} placed in Room 01.`;
     });
   });
 });
-
 // Playable word slots: click a tile then a blank slot, drag between them, or use keyboard activation.
 document.querySelectorAll('.learning-screen').forEach((screen) => {
   const slots = Array.from(screen.querySelectorAll('[data-word-slot]'));
