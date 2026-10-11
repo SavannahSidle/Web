@@ -300,9 +300,9 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-information .information-screen header{color:#42615b}
 .design-studies .study-information .information-screen h3{font:400 clamp(1.05rem,2vw,1.55rem)/.95 "DM Serif Display",Georgia,serif;color:#243c38}
 .design-studies .study-information .info-filter{width:100%;font-size:8px;color:#526962}
-.design-studies .study-information .info-filter b{display:block;padding:6px 8px;border:1px solid rgba(49,91,80,.32);border-radius:4px;background:rgba(249,248,239,.72);color:#23423b}
+.design-studies .study-information .info-all-services{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:5px 7px;border:1px solid rgba(49,91,80,.32);border-radius:4px;background:rgba(249,248,239,.72);color:#23423b;text-decoration:none}
 .design-studies .study-information .info-results{display:grid;align-content:center;gap:6px}
-.design-studies .study-information .info-results div{padding:7px 24px 7px 9px;border:1px solid rgba(42,87,74,.15);border-radius:5px;background:rgba(250,249,241,.83);box-shadow:0 4px 11px rgba(34,72,61,.06)}
+.design-studies .study-information .info-results a{padding:7px 24px 7px 9px;border:1px solid rgba(42,87,74,.15);border-radius:5px;background:rgba(250,249,241,.83);box-shadow:0 4px 11px rgba(34,72,61,.06)}
 .design-studies .study-information .info-results b{font-size:clamp(8px,.78vw,10px);color:#26483f}
 .design-studies .study-information .info-results span{font-size:clamp(7px,.66vw,9px);line-height:1.2;color:#61756d}
 .design-studies .study-information .info-results i{right:8px;color:#b66b4c}
@@ -336,7 +336,7 @@ body{background:#edf2f6;color:#0b1b28}
  .design-studies .study-professional .professional-links span{font-size:7px}
  .design-studies .study-information .information-screen{grid-template-columns:minmax(0,1fr) minmax(76px,.6fr);gap:6px;padding:7%!important}
  .design-studies .study-information .information-screen::before{width:31%}
- .design-studies .study-information .info-results div{padding:5px 20px 5px 7px}
+ .design-studies .study-information .info-results a{padding:5px 24px 5px 7px}
  .wayfinding-title h3{font-size:clamp(1.35rem,5vw,1.8rem)}
  .wayfinding-map{left:30%}
 }
@@ -1249,7 +1249,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   appearance:none;
   -webkit-appearance:none;
   min-width:0;
-  min-height:38px;
+  min-height:44px;
   padding:5px 1px 3px;
   border:1px solid transparent;
   border-radius:4px;
@@ -1314,7 +1314,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-diagonal .motion-field{
   position:absolute;
   z-index:1;
-  inset:0;
+  inset:0 2% 0 0;
   overflow:hidden;
   pointer-events:none;
 }
@@ -1584,8 +1584,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;
   scrollbar-color:rgba(57,104,92,.42) transparent;padding-right:3px;
 }
-.design-studies[data-mode] .study-information .info-results div{
-  position:relative;flex:0 0 auto;min-height:31px;padding:5px 22px 5px 8px;
+.design-studies[data-mode] .study-information .info-results a{
+  position:relative;flex:0 0 auto;min-height:44px;padding:6px 24px 6px 8px;color:#26483f;text-decoration:none;
 }
 .design-studies[data-mode] .study-information .info-results i{position:absolute;top:50%;transform:translateY(-50%)}
 .design-studies[data-mode] .study-information .information-screen>small{position:absolute;left:38%;right:7%;bottom:4%;font-size:6px}
@@ -1709,9 +1709,14 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   border:1px solid rgba(135,197,236,.28);border-radius:50%;transform:translate(-50%,-50%);
 }
 .design-studies[data-mode] .study-space .orbit-mercury{border-color:rgba(207,190,165,.34)}
+.design-studies[data-mode] .study-space .orbit-venus{border-color:rgba(226,183,139,.3)}
 .design-studies[data-mode] .study-space .orbit-earth{border-color:rgba(135,197,236,.45)}
-.design-studies[data-mode] .study-space .orbit-jupiter,.design-studies[data-mode] .study-space .orbit-saturn{border-color:rgba(117,170,225,.26)}
-.design-studies[data-mode] .study-space .planet-path{position:absolute;inset:0;display:block;border:0;border-radius:50%;animation:planet-orbit var(--orbit-time) linear infinite;animation-delay:calc(var(--orbit-time) * -.17)}
+.design-studies[data-mode] .study-space .orbit-mars{border-color:rgba(230,139,115,.3)}
+.design-studies[data-mode] .study-space .orbit-jupiter{border-color:rgba(244,195,143,.33)}
+.design-studies[data-mode] .study-space .orbit-saturn{border-color:rgba(217,189,137,.3)}
+.design-studies[data-mode] .study-space .orbit-uranus{border-color:rgba(142,216,215,.34)}
+.design-studies[data-mode] .study-space .orbit-neptune{border-color:rgba(113,153,237,.35)}
+.design-studies[data-mode] .study-space .planet-path{position:absolute;inset:0;display:block;border:0;border-radius:50%;animation:planet-orbit var(--orbit-time) linear infinite;animation-delay:calc(var(--orbit-time) * var(--orbit-phase, -.17))}
 .design-studies[data-mode] .study-space .space-planet{position:absolute;left:50%;top:0;display:block;width:clamp(4px,1.1cqw,8px);height:clamp(4px,1.1cqw,8px);transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 0 10px rgba(128,210,245,.55)}
 .design-studies[data-mode] .study-space .planet-mercury{background:#d6c8ac;width:4px;height:4px}
 .design-studies[data-mode] .study-space .planet-venus{background:#d7a77f;width:5px;height:5px}
@@ -1772,10 +1777,10 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 /* Community filter is given its own lane above the scrollable results. */
 .design-studies[data-mode] .study-information .information-screen h3{left:7%;top:21%;width:37%;max-width:10ch}
 .design-studies[data-mode] .study-information .info-filter{
-  position:absolute;left:55%;right:7%;top:22%;width:auto;display:grid;grid-template-columns:1fr;gap:3px;
+  position:absolute;left:38%;right:6%;top:28%;width:auto;display:flex;align-items:center;justify-content:space-between;gap:6px;
   z-index:2;line-height:1.2;white-space:normal;
 }
-.design-studies[data-mode] .study-information .info-filter b{min-width:0;white-space:nowrap;padding:5px 6px}
+.design-studies[data-mode] .study-information .info-all-services{min-width:0;white-space:nowrap;padding:5px 7px}
 .design-studies[data-mode] .study-information .info-results{left:38%;right:7%;top:43%;bottom:10%}
 .design-studies[data-mode="grid"] .study-information .info-results{left:38%;right:6%;top:43%;bottom:11%}
 /* The yellow local service direction sits apart from the quiet editorial card. */
@@ -1966,9 +1971,9 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 /* The bedding concept uses a crisp collection menu and a new editorial text position. */
 .design-studies[data-mode] .study-bedding .bedding-screen{isolation:isolate}
 .design-studies[data-mode] .study-bedding .bedding-menu{position:absolute;z-index:3;top:7%;left:7%;right:7%;display:flex;justify-content:space-between;gap:10px;color:#243940;font:500 clamp(6px,1.7cqw,8px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.14em}
-.design-studies[data-mode] .study-bedding .bedding-title{left:7%;right:auto;top:auto;bottom:9%;width:52%;height:auto;color:#172b34;text-align:left}
-.design-studies[data-mode] .study-bedding .bedding-title h3{position:static;margin:0;font:500 clamp(1.35rem,3.9cqw,2.6rem)/.88 "IBM Plex Sans",sans-serif;letter-spacing:-.065em}
-.design-studies[data-mode] .study-bedding .bedding-footer{left:auto;right:7%;bottom:10%;font:500 clamp(5px,1.4cqw,7px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.07em;text-align:right}
+.design-studies[data-mode] .study-bedding .bedding-title{left:8%;right:auto;top:auto;bottom:18%;width:60%;height:auto;color:#fff;text-align:left;text-shadow:0 2px 14px rgba(17,24,28,.42)}
+.design-studies[data-mode] .study-bedding .bedding-title h3{position:static;margin:0;font:400 clamp(2rem,7cqi,3.4rem)/.84 Georgia,serif;letter-spacing:-.06em;color:#fff;text-shadow:0 2px 14px rgba(17,24,28,.42)}
+.design-studies[data-mode] .study-bedding .bedding-footer{left:8%;right:auto;bottom:9%;font:500 clamp(5px,1.5cqi,8px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.09em;text-align:left;color:#fff}
 /* Keep the live architecture count on the left and its activity count on the right. */
 .design-studies[data-mode] .study-system .system-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;max-width:none!important;width:100%;font-size:clamp(6px,1.55cqw,8px)}
 .design-studies[data-mode] .study-system .system-foot [data-link-count]{margin-left:auto;text-align:right;white-space:nowrap;color:#9cc9d6}
@@ -2132,7 +2137,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   color:#263b42;font:500 clamp(6px,1.7cqi,8px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.12em
 }
 .design-studies[data-mode] .study-bedding .bedding-title{
-  left:8%;right:auto;top:12%;bottom:auto;width:60%;height:auto;color:#fff;text-align:left;text-shadow:0 2px 14px rgba(17,24,28,.42)
+  left:8%;right:auto;top:auto;bottom:18%;width:60%;height:auto;color:#fff;text-align:left;text-shadow:0 2px 14px rgba(17,24,28,.42)
 }
 .design-studies[data-mode] .study-bedding .bedding-title h3{
   position:static;margin:0;font:400 clamp(2rem,7cqi,3.4rem)/.84 Georgia,serif;letter-spacing:-.06em;color:#fff;
@@ -2314,7 +2319,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .design-studies[data-mode] .study-space .space-focus{top:29%;width:38%}
 .design-studies[data-mode] .study-space .space-rail .planet-scale::before{display:none!important}
-.design-studies[data-mode] .study-space .space-rail .planet-scale b{position:relative;top:0;line-height:1.1}
+.design-studies[data-mode] .study-space .space-rail .planet-scale b{position:relative;top:-2px;line-height:1.2}
 @media(prefers-reduced-motion:reduce){
   .design-studies[data-mode] .study-diagonal .shape-three{animation:none!important}
   .design-studies[data-mode] .study-space .space-galaxy-image{filter:none}
@@ -2346,8 +2351,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   display:flex!important;flex-direction:column;gap:4px;overflow-y:auto!important;
   overscroll-behavior:contain;scrollbar-width:thin
 }
-.design-studies[data-mode] .study-information .info-results div{
-  flex:0 0 auto;min-height:29px;padding:5px 21px 5px 7px;line-height:1.15
+.design-studies[data-mode] .study-information .info-results a{
+  flex:0 0 auto;min-height:44px;padding:6px 21px 6px 7px;line-height:1.2
 }
 .design-studies[data-mode] .study-information .information-screen>small{
   position:absolute!important;left:42%!important;right:6%!important;bottom:3%!important;text-align:right;font-size:6px
@@ -2489,10 +2494,10 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode="grid"] .study-minimal .practice-copy{left:33%;top:32%}
 
 /* Distinguish planet identities and keep the counter below the orbit labels. */
-.design-studies[data-mode] .study-space .space-focus{top:39%!important;left:6%;width:36%;display:grid;align-content:start;gap:clamp(8px,2cqw,14px);padding:clamp(5px,1.4cqw,10px);border-radius:3px;background:linear-gradient(90deg,rgba(5,14,26,.9),rgba(5,14,26,.63),transparent)}
-.design-studies[data-mode] .study-space .space-focus small{display:block;margin:0}
-.design-studies[data-mode] .study-space .space-focus h3{margin:0;line-height:1}
-.design-studies[data-mode] .study-space .space-focus span{display:block;margin-top:-4px}
+.design-studies[data-mode] .study-space .space-focus{top:34%!important;left:6%;width:36%;display:grid;align-content:start;gap:clamp(4px,1cqi,7px);padding:clamp(5px,1.4cqw,10px);border-radius:3px;background:linear-gradient(90deg,rgba(5,14,26,.9),rgba(5,14,26,.63),transparent)}
+.design-studies[data-mode] .study-space .space-focus small{display:block;grid-row:2;margin:2px 0 0;color:#93bfd9}
+.design-studies[data-mode] .study-space .space-focus h3{grid-row:1;margin:0;line-height:1}
+.design-studies[data-mode] .study-space .space-focus span{grid-row:3;display:block;margin:0}
 .design-studies[data-mode] .study-space .space-planet.planet-saturn{background:radial-gradient(circle at 36% 30%,#fff0c5,#c6a46d 64%,#87664d);width:8px;height:8px}
 .design-studies[data-mode] .study-space .planet-uranus{background:radial-gradient(circle at 35% 32%,#e1ffff,#72c7cf 62%,#3e7483);width:7px;height:7px}
 .design-studies[data-mode] .study-space .planet-neptune{background:radial-gradient(circle at 35% 30%,#bdcffd,#547ce0 62%,#29396f);width:7px;height:7px}
@@ -2501,8 +2506,13 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-space .orbit-saturn{left:50%;width:65%;height:84%}
 .design-studies[data-mode] .study-space .orbit-uranus{left:50%;width:81%;height:100%}
 .design-studies[data-mode] .study-space .orbit-neptune{left:50%;width:97%;height:116%}
-.design-studies[data-mode] .study-space .planet-jupiter::after{
-  content:"";position:absolute;left:56%;top:60%;width:26%;height:11%;border-radius:50%;background:rgba(145,65,49,.85)
+.design-studies[data-mode] .study-space .space-planet.planet-jupiter{
+  width:18px;height:18px;overflow:hidden;border:1px solid rgba(242,219,177,.72);
+  background:repeating-linear-gradient(0deg,#b87553 0 3px,#e5c39b 3px 5px,#a85f4d 5px 7px,#efd2a9 7px 10px,#c99066 10px 13px);
+  box-shadow:inset -4px -2px 6px rgba(53,33,34,.45),inset 2px 1px 4px rgba(255,243,210,.58),0 0 11px rgba(244,185,132,.34)
+}
+.design-studies[data-mode] .study-space .space-planet.planet-jupiter::after{
+  content:"";position:absolute;left:55%;top:61%;width:24%;height:12%;border-radius:50%;background:#a84c3e;box-shadow:inset 0 1px 1px rgba(54,27,35,.5)
 }
 .design-studies[data-mode] .study-space .space-planet.planet-saturn::after{width:220%;height:68%;border-width:1.25px;box-shadow:0 0 4px rgba(238,211,160,.3)}
 .design-studies[data-mode] .study-space .space-rail .planet-scale{color:#cfdfeb}
@@ -2518,7 +2528,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-space .space-rail .planet-uranus{--planet-highlight:#e1ffff;--planet-base:#72c7cf;--planet-shadow:#285664}
 .design-studies[data-mode] .study-space .space-rail .planet-neptune{--planet-highlight:#bdcffd;--planet-base:#547ce0;--planet-shadow:#222e6b}
 @media(max-width:560px){
- .design-studies[data-mode] .study-space .space-focus{top:39%!important;left:5%;width:37%}
+ .design-studies[data-mode] .study-space .space-focus{top:34%!important;left:5%;width:37%}
 }
 
 /* Slow orbital/mesh motion through the hero keeps the MICA atmosphere alive. */
@@ -2602,6 +2612,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 
 /* Test 6 raptor refinement: give the model a clear lane and keep its controls off its silhouette. */
+.site-live .design-studies .study-dinosaur .dinosaur-header{left:5%;right:3%;text-align:right}
+.site-live .design-studies .study-dinosaur .dinosaur-header span:last-child{text-align:right}
 .site-live .design-studies .study-dinosaur .raptor-viewport{
   right:3%;top:19%;width:62%;height:64%;touch-action:pan-y;
   background:radial-gradient(ellipse at 52% 82%,rgba(129,158,126,.18),transparent 43%),linear-gradient(180deg,rgba(11,21,23,.7),rgba(22,37,37,.58));
@@ -2617,10 +2629,11 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .study-dinosaur .raptor-notes summary{padding:5px 7px}
 .site-live .study-dinosaur .raptor-notes[open]{width:min(62%,280px);max-height:68%;overflow:auto}
 .site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel{
-  left:5%;top:23%;width:25%;height:31%;padding:5px;gap:2px;
+  left:4%;top:23%;width:27%;height:33%;padding:5px;gap:2px;
 }
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel small{max-width:100%;white-space:normal;font-size:clamp(5px,1.15cqw,7px);line-height:1.2;letter-spacing:.04em}
 .site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-map{height:58%}
-.site-live .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus{left:5%;top:61%;width:35%}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus{left:3%;top:61%;width:35%}
 .site-live .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus h3{
   margin:5px 0 2px;font-size:clamp(1rem,5.2cqw,1.4rem);line-height:1;
 }
@@ -2662,11 +2675,12 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 
 
 /* Test 6: mental health support study, with clear pathways and compact, usable controls. */
+.site-live .design-studies .study-care{container-type:inline-size}
 .site-live .design-studies .study-care .care-screen{
   position:relative;display:grid;isolation:isolate;overflow:hidden;aspect-ratio:4 / 3;
   grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
-  grid-template-rows:auto minmax(0,1fr) auto auto;gap:clamp(7px,1.25cqw,14px);
-  align-content:stretch;padding:clamp(13px,4.2cqw,34px)!important;
+  grid-template-rows:auto minmax(min-content,1fr) auto auto;gap:clamp(7px,1.25cqw,14px);
+  align-content:start;padding:clamp(13px,4.2cqw,34px)!important;
   border:1px solid rgba(54,76,63,.2);border-left:5px solid #527568;
   border-radius:4px;
   background:
@@ -2744,7 +2758,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .design-studies .study-care .care-response[hidden]+template{display:none}
 .site-live .design-studies .study-care [inert]{pointer-events:none}
 @media(max-width:640px){
-  .site-live .design-studies .study-care .care-screen{aspect-ratio:auto;min-height:430px;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto auto;padding:18px!important;gap:12px}
+  .site-live .design-studies .study-care .care-screen{aspect-ratio:auto;min-height:480px;grid-template-columns:minmax(0,1fr);grid-template-rows:max-content max-content max-content max-content max-content;align-content:start;padding:18px!important;gap:12px}
   .site-live .design-studies .study-care .care-top{font-size:9px}
   .site-live .design-studies .study-care .care-intro{max-width:none}
   .site-live .design-studies .study-care .care-intro h3{max-width:15ch;font-size:1.55rem}
@@ -2760,6 +2774,20 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .site-live .design-studies .study-care .care-result h4{font-size:1.45rem}
   .site-live .design-studies .study-care .care-result>p:not(.care-result-kicker){font-size:12px}
   .site-live .design-studies .study-care .care-action,.site-live .design-studies .study-care .care-back{min-height:44px;font-size:12px}
+}
+@container (max-width:360px){
+  .site-live .design-studies .study-care .care-screen{aspect-ratio:auto;min-height:520px;grid-template-columns:minmax(0,1fr);grid-template-rows:max-content max-content max-content max-content max-content;align-content:start;padding:18px!important;gap:10px}
+  .site-live .design-studies .study-care .care-top{grid-column:1;grid-row:1;flex-wrap:wrap;letter-spacing:.08em}
+  .site-live .design-studies .study-care .care-intro{grid-column:1;grid-row:2;align-self:start}
+  .site-live .design-studies .study-care .care-intro h3{max-width:15ch;font-size:clamp(1.35rem,6cqw,1.55rem)}
+  .site-live .design-studies .study-care .care-intro>p{font-size:12px}
+  .site-live .design-studies .study-care .care-options{grid-column:1;grid-row:3;gap:8px}
+  .site-live .design-studies .study-care .care-option{min-height:52px;padding:8px 12px}
+  .site-live .design-studies .study-care .care-option strong{font-size:13px}
+  .site-live .design-studies .study-care .care-option small{font-size:11px}
+  .site-live .design-studies .study-care .care-crisis{grid-column:1;grid-row:4;font-size:11px}
+  .site-live .design-studies .study-care .care-privacy{grid-column:1;grid-row:5;font-size:9px}
+  .site-live .design-studies .study-care .care-response{padding:18px;align-content:start}
 }
 @media(prefers-reduced-motion:reduce){
   .site-live .design-studies .study-care .care-option{transition:none}
@@ -2861,14 +2889,14 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 @keyframes culture-d-tumble{
   0%,35%{transform:translate(0,0) rotate(0)}
-  44%{transform:translate(2px,7px) rotate(8deg)}
-  54%{transform:translate(-2px,2px) rotate(-8deg)}
-  66%{transform:translate(-8px,-8px) rotate(-24deg)}
-  78%{transform:translate(-17px,-20px) rotate(-58deg)}
-  86%{transform:translate(-27px,-32px) rotate(-86deg)}
-  90%{transform:translate(-30px,-65px) rotate(-96deg)}
-  93%{transform:translate(-32px,-57px) rotate(-87deg)}
-  97%,100%{transform:translate(-33px,-63px) rotate(-90deg)}
+  43%{transform:translate(6px,7px) rotate(12deg)}
+  54%{transform:translate(4px,1px) rotate(-7deg)}
+  66%{transform:translate(0,-8px) rotate(-32deg)}
+  78%{transform:translate(-6px,-14px) rotate(-68deg)}
+  87%{transform:translate(-10px,-20px) rotate(-86deg)}
+  91%{transform:translate(-12px,-23px) rotate(-95deg)}
+  95%{transform:translate(-11px,-20px) rotate(-88deg)}
+  98%,100%{transform:translate(-12px,-22px) rotate(-90deg)}
 }
 .design-studies .study-culture [hidden]{display:none!important}
 @media(max-width:560px){

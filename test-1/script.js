@@ -270,7 +270,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   const motionRanges = { tailFan: null, sickleClaws: [] };
   addEllipsoid(-.15, -.01, 0, .8, .39, .37, body, 10, 14);
   addEllipsoid(-.69, -.04, 0, .42, .37, .39, flank, 8, 12);
-  addEllipsoid(.1, .02, 0, .36, .29, .33, flank, 8, 12);
+  addEllipsoid(.04, .01, 0, .29, .25, .29, flank, 8, 12);
   addTube([-.93, -.02, 0], [-3.62, -.36, 0], .28, .018, dark, 10);
   const tailFanStart = vertices.length;
   addTube([-.93, .04, 0], [-3.52, -.31, 0], .19, .012, feather, 9);
@@ -278,7 +278,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   // A compact, backwards-swept neck and blunt muzzle give the head a watchful profile.
   addTube([.1, .12, 0], [.02, .43, 0], .22, .18, body, 10);
   addTube([.02, .43, 0], [.08, .72, 0], .18, .14, body, 10);
-  addTube([.1, .02, 0], [.05, .54, 0], .09, .06, flank, 8);
+  addTube([.1, .02, 0], [.05, .66, 0], .09, .06, flank, 8);
   addEllipsoid(.08, .84, 0, .31, .22, .24, flank, 9, 14);
   // Short, broad muzzle with a distinct jaw and a small, visible mouth line.
   addTube([.28, .88, 0], [.66, .86, 0], .145, .105, body, 10);
@@ -1427,8 +1427,8 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
         }
         if (config.filter === 'directory') {
           const terms = {Housing:'housing|rent|utilities',Food:'food|market|meal',Health:'health|clinic|care',Family:'family|childcare|parenting',Legal:'legal|referral'}[name] || '';
-          card.querySelectorAll('.info-results > div').forEach((item) => { item.hidden = !new RegExp(terms,'i').test(item.textContent); });
-          output.textContent = `${card.querySelectorAll('.info-results > div:not([hidden])').length} matching services in this sample directory.`;
+          card.querySelectorAll('.info-results > a').forEach((item) => { item.hidden = !new RegExp(terms,'i').test(item.textContent); });
+          output.textContent = `${card.querySelectorAll('.info-results > a:not([hidden])').length} matching services in this sample directory.`;
         }
         if (card.classList.contains('study-product')) {
           const label = card.querySelector('.product-chart-label');
@@ -1462,7 +1462,7 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
       const input = document.createElement('input');
       input.type = 'search'; input.placeholder = 'Search by service'; input.setAttribute('aria-label','Search community services');
       const results = card.querySelector('.info-results');
-      const items = [...(results?.children || [])];
+      const items = [...(results?.querySelectorAll(':scope > a') || [])];
       input.addEventListener('input',() => {
         const q = input.value.trim().toLowerCase(); let count=0;
         const selected = group.querySelector('button[aria-pressed="true"]')?.textContent || '';
