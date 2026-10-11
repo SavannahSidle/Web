@@ -877,12 +877,12 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .poster-hero .hero-panel-cleanup{position:absolute;z-index:1;inset:0;display:block;pointer-events:none}
 .poster-hero .hero-panel-cleanup::before,.poster-hero .hero-panel-cleanup::after{content:"";position:absolute;display:block;pointer-events:none}
 .poster-hero .hero-panel-cleanup::before{
-  top:0;right:0;width:26%;height:38%;clip-path:polygon(0 0,100% 0,100% 60%,14% 100%);
-  background:linear-gradient(135deg,#07152a 0%,#030c19 78%);
+  top:0;right:23%;width:13%;height:38%;clip-path:polygon(0 0,100% 0,100% 82%,14% 100%);
+  background:linear-gradient(145deg,rgba(3,11,21,.96) 0%,rgba(3,11,21,.9) 76%);
 }
 .poster-hero .hero-panel-cleanup::after{
-  top:0;right:0;width:42%;height:100%;clip-path:polygon(5% 70%,100% 56%,100% 100%,0 100%);
-  background:linear-gradient(145deg,#061329 0%,#020b15 72%);
+  top:27%;right:0;width:24%;height:44%;clip-path:polygon(100% 0,100% 100%,0 100%,7% 70%,13% 24%);
+  background:linear-gradient(145deg,rgba(3,11,21,.94) 0%,rgba(3,11,21,.88) 78%);
 }
 .poster-hero-actions{position:absolute;z-index:2;left:max(28px,calc((100vw - var(--max))/2));bottom:clamp(28px,4vw,54px);display:flex;align-items:center;gap:24px}
 .poster-hero-link,.poster-scroll{color:#e4edf8;font:500 12px/1.2 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
