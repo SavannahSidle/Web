@@ -27,8 +27,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20261011mica-live2">
-  <link rel="stylesheet" href="mica-spatial.css?v=20261012study-repair1">
-  <script src="script.js?v=20261011gallery-raptor1" defer></script>
+  <link rel="stylesheet" href="mica-spatial.css?v=20261013-room-planner1">
+  <script src="script.js?v=20261013-room-planner1" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -149,22 +149,22 @@
   <div class="spatial-top"><span>ROOM / BUILDER</span><span data-room-label>ROOM 01</span></div>
   <aside class="room-controls" aria-label="Room builder controls">
     <button type="button" data-room-action="room" aria-pressed="false">ADD ROOM</button>
-    <span>ADD FURNITURE</span>
-    <button type="button" data-room-action="chair">+ CHAIR</button>
-    <button type="button" data-room-action="couch">+ COUCH</button>
-    <button type="button" data-spatial-action="light" aria-pressed="false" aria-label="Change room lighting">LIGHT</button>
+    <span>DRAG FURNITURE INTO ROOM</span>
+    <button type="button" data-room-action="chair" aria-label="Add or drag a chair into the room">+ CHAIR</button>
+    <button type="button" data-room-action="couch" aria-label="Add or drag a couch into the room">+ COUCH</button>
+    <button type="button" data-spatial-action="light" aria-pressed="false" aria-label="Switch to cool room lighting">WARM LIGHT</button>
     <button type="button" data-spatial-action="reset" aria-label="Reset room view">RESET VIEW</button>
   </aside>
   <div class="room-stage">
-    <div class="room-model" data-spatial-model role="group" tabindex="0" aria-label="Interactive three-dimensional room. Drag to rotate or use arrow keys.">
+    <div class="room-model" data-spatial-model data-room-drop-surface role="group" tabindex="0" aria-label="Interactive three-dimensional room. Drag to rotate or use arrow keys.">
       <div class="room-floor"></div><div class="room-back-wall"></div><div class="room-side-wall"></div>
       <div class="room-window"></div><div class="room-rug"></div>
-      <div class="room-addition" aria-hidden="true"><i></i><b></b></div>
+      <div class="room-addition" aria-hidden="true"><i class="room-addition-wall"></i><b class="room-addition-floor"></b><span class="room-addition-side"></span></div>
       <div class="room-furniture" data-room-furniture aria-live="polite"></div>
     </div>
   </div>
   <div class="room-caption"><small>SPATIAL STUDY / 04</small><h3>Make room for living.</h3></div>
-  <span class="spatial-hint">DRAG TO ROTATE · BUILD A ROOM</span><span class="visually-hidden" data-room-status aria-live="polite"></span>
+  <span class="spatial-hint">DRAG FURNITURE · ROTATE TO VIEW</span><span class="visually-hidden" data-room-status aria-live="polite"></span>
 </div><p>Interior / Interactive 3D room planner</p></article>
           <article class="study study-architecture" data-reveal><div class="study-screen architecture-screen"><header>STUDIO / NORTH <span>PROJECT INDEX</span></header><div class="architecture-plan" aria-hidden="true"><i></i><i></i><i></i><b></b></div><div class="architecture-caption"><h3>Living<br>with less.</h3><p>House / Ottawa<br>Adaptive reuse</p></div></div><p>Architecture / Project archive</p></article>
           <article class="study study-learning" data-reveal><div class="study-screen learning-screen"><div class="learning-progress"><span style="width:42%"></span></div><div class="learning-count">WORD PLAY <b>04 / 08</b></div><div class="learning-spark" aria-hidden="true"><i></i><i></i><i></i></div><h3>Build a<br>word.</h3><div class="word-slots" role="group" aria-label="Word letter slots"><button type="button" data-word-slot="0" aria-label="First letter, c">c</button><button type="button" data-word-slot="1" aria-label="Second letter, a">a</button><button type="button" data-word-slot="2" aria-label="Third letter, empty">_</button><button type="button" data-word-slot="3" aria-label="Fourth letter, empty">_</button></div><div class="letter-bank" role="group" aria-label="Available letters"><button type="button" data-letter-tile="t" draggable="true" aria-label="Choose or drag letter t">t</button><button type="button" data-letter-tile="m" draggable="true" aria-label="Choose or drag letter m">m</button><button type="button" data-letter-tile="p" draggable="true" aria-label="Choose or drag letter p">p</button><button type="button" data-letter-tile="r" draggable="true" aria-label="Choose or drag letter r">r</button><button type="button" data-letter-tile="s" draggable="true" aria-label="Choose or drag letter s">s</button><button type="button" data-letter-tile="d" draggable="true" aria-label="Choose or drag letter d">d</button><button type="button" data-learning-reset aria-label="Clear the last letters" title="Clear letters">×</button></div><div class="learning-help" data-learning-feedback>Choose a letter, then choose an empty slot. Or drag a letter to a slot.</div><span class="visually-hidden" data-learning-status aria-live="polite"></span></div><p>Children’s learning / Playful access</p></article>
