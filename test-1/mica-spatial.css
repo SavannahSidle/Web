@@ -3084,3 +3084,11 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 /* The C and A tiles use separate soft colors; the other letter choices retain their palette. */
 .design-studies[data-mode] .study-learning .word-slots button[data-word-slot="0"]{background:#dce8fb;color:#20324f}
 .design-studies[data-mode] .study-learning .word-slots button[data-word-slot="1"]{background:#f6dce8;color:#20324f}
+
+/* Group the bedding navigation and place its title just above the footer. */
+.design-studies[data-mode] .study-bedding .bedding-menu{
+  left:50%;right:auto;width:max-content;max-width:86%;transform:translateX(-50%);
+  justify-content:center;flex-wrap:nowrap;gap:clamp(8px,1.8cqi,12px)
+}
+.design-studies[data-mode] .study-bedding .bedding-menu button{white-space:nowrap}
+.design-studies[data-mode] .study-bedding .bedding-title{bottom:14%}
