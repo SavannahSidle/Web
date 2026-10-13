@@ -3092,3 +3092,28 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .design-studies[data-mode] .study-bedding .bedding-menu button{white-space:nowrap}
 .design-studies[data-mode] .study-bedding .bedding-title{bottom:14%}
+
+
+/* Diagonal editorial: add floating triangle accents and align the title and index. */
+.design-studies[data-mode] .study-diagonal .shape-one,
+.design-studies[data-mode] .study-diagonal .shape-five,
+.design-studies[data-mode] .study-diagonal .shape-eight{
+  border-radius:0;
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+.design-studies[data-mode] .study-diagonal .shape-one{
+  --shape-width:16px;--shape-height:15px;
+  --shape-fill:rgba(195,220,255,.7);--shape-glow:rgba(163,198,246,.24)
+}
+.design-studies[data-mode] .study-diagonal .shape-five{
+  --shape-width:18px;--shape-height:17px;
+  --shape-fill:rgba(214,201,244,.68);--shape-glow:rgba(185,163,229,.24)
+}
+.design-studies[data-mode] .study-diagonal .shape-eight{
+  --shape-top:40%;--shape-width:9px;--shape-height:9px;
+  --shape-fill:#ff4b16;--shape-glow:rgba(255,75,22,.78)
+}
+.design-studies[data-mode] .study-diagonal .diagonal-screen h3{right:calc(8% + 8px)}
+.design-studies[data-mode] .study-diagonal .diagonal-index{
+  right:calc(9% + 6px);bottom:calc(8% + 6px)
+}
