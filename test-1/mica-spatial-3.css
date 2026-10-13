@@ -1,0 +1,942 @@
+.design-studies[data-mode] .study-diagonal .diagonal-copy{left:9%;bottom:17%;width:37%;font-size:clamp(8px,2.1cqw,10px);line-height:1.3}
+.design-studies[data-mode] .study-diagonal .diagonal-index{right:9%;bottom:8%;font-size:clamp(6px,1.65cqw,7px)}
+@media(prefers-reduced-motion:reduce){
+  .design-studies[data-mode] .study-diagonal .motion-field{display:none}
+  .design-studies .study-space .space-rail .planet-scale{transition:none}
+}
+
+
+/* Interactive 3D spatial archive study */
+.design-studies[data-mode] .study-spatial .spatial-screen{
+  position:relative;isolation:isolate;overflow:hidden;container-type:inline-size;
+  color:#e8e2d4;
+  background:
+    radial-gradient(ellipse at 73% 42%,rgba(205,158,103,.13),transparent 35%),
+    linear-gradient(138deg,#141c1d 0%,#192523 54%,#0d1719 100%);
+}
+.design-studies[data-mode] .study-spatial .spatial-screen::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.28;
+  background-image:linear-gradient(rgba(205,215,201,.11) 1px,transparent 1px),linear-gradient(90deg,rgba(205,215,201,.11) 1px,transparent 1px);
+  background-size:7cqw 7cqw;
+  mask-image:radial-gradient(ellipse at 68% 48%,#000 2%,transparent 71%);
+}
+.design-studies[data-mode] .study-spatial .spatial-screen::after{
+  content:"";position:absolute;z-index:0;right:8%;top:15%;width:43%;height:70%;
+  border:1px solid rgba(225,211,181,.16);border-radius:50%;
+  transform:rotate(-18deg);box-shadow:0 0 0 12px rgba(225,211,181,.025),0 0 0 29px rgba(225,211,181,.018);
+  pointer-events:none;
+}
+.design-studies[data-mode] .study-spatial .spatial-screen>*{z-index:1}
+.design-studies[data-mode] .study-spatial .spatial-top{
+  position:absolute;left:6%;right:6%;top:7%;display:flex;justify-content:space-between;
+  color:rgba(229,225,207,.72);font:600 clamp(6px,1.55cqw,9px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.13em;
+}
+.design-studies[data-mode] .study-spatial .spatial-top span:last-child{color:#c7d4b8}
+.design-studies[data-mode] .study-spatial .spatial-scene{
+  position:absolute;inset:13% 1% 8% 43%;perspective:900px;perspective-origin:48% 50%;
+  overflow:visible;touch-action:pan-y;
+}
+.design-studies[data-mode] .study-spatial .spatial-model{
+  --spatial-yaw:-28deg;--spatial-pitch:15deg;
+  position:absolute;left:50%;top:49%;width:77%;height:78%;
+  transform:translate(-50%,-50%) rotateX(var(--spatial-pitch)) rotateY(var(--spatial-yaw));
+  transform-style:preserve-3d;transition:transform .25s ease-out;
+  cursor:grab;outline:none;touch-action:none;
+}
+.design-studies[data-mode] .study-spatial .spatial-model:active{cursor:grabbing}
+.design-studies[data-mode] .study-spatial .spatial-model:focus-visible{filter:drop-shadow(0 0 8px rgba(203,223,187,.65))}
+.design-studies[data-mode] .study-spatial .spatial-ground{
+  position:absolute;left:50%;top:67%;width:112%;height:78%;border:1px solid rgba(227,211,173,.35);
+  background:linear-gradient(145deg,rgba(196,171,126,.25),rgba(54,69,62,.62));
+  box-shadow:0 18px 24px rgba(0,0,0,.35),inset 0 1px rgba(255,255,255,.2);
+  transform:translate(-50%,-50%) rotateX(68deg) translateZ(-28px);
+}
+.design-studies[data-mode] .study-spatial .spatial-back{
+  position:absolute;left:51%;top:42%;width:65%;height:69%;border:1px solid rgba(230,218,187,.55);
+  background:linear-gradient(135deg,#777867,#a79a7c 46%,#4a5c51);
+  box-shadow:12px 13px 0 rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.5);
+  transform:translate(-50%,-50%) translateZ(-32px);
+}
+.design-studies[data-mode] .study-spatial .spatial-side{
+  position:absolute;left:80%;top:43%;width:18%;height:68%;
+  border:1px solid rgba(230,218,187,.3);
+  background:linear-gradient(90deg,#38483f,#202e2b);
+  transform:translate(-50%,-50%) rotateY(58deg) translateZ(-10px);
+  transform-origin:left center;
+}
+.design-studies[data-mode] .study-spatial .spatial-portal{
+  position:absolute;left:50%;top:49%;width:47%;height:65%;
+  border:clamp(5px,2.1cqw,14px) solid #c6b38e;border-bottom:0;border-radius:50% 50% 0 0;
+  background:linear-gradient(90deg,rgba(25,37,34,.92),rgba(15,25,24,.65));
+  box-shadow:8px 9px 18px rgba(0,0,0,.3),inset 0 0 0 1px rgba(255,255,255,.22);
+  transform:translate(-50%,-50%) translateZ(34px);
+}
+.design-studies[data-mode] .study-spatial .spatial-portal::before{
+  content:"";position:absolute;left:50%;bottom:0;width:61%;height:58%;
+  border:1px solid rgba(221,204,164,.45);border-bottom:0;border-radius:50% 50% 0 0;
+  background:linear-gradient(180deg,rgba(202,175,128,.19),rgba(11,22,22,.58));
+  transform:translateX(-50%);
+}
+.design-studies[data-mode] .study-spatial .spatial-pillar{
+  position:absolute;top:59%;width:9%;height:38%;
+  border:1px solid rgba(230,218,187,.42);
+  background:linear-gradient(90deg,#c7b48e,#81785f 42%,#4b5548);
+  box-shadow:5px 7px 12px rgba(0,0,0,.3);
+  transform:translate(-50%,-50%) translateZ(46px);
+}
+.design-studies[data-mode] .study-spatial .spatial-pillar-one{left:24%}
+.design-studies[data-mode] .study-spatial .spatial-pillar-two{left:76%}
+.design-studies[data-mode] .study-spatial .spatial-deck{
+  position:absolute;left:50%;top:72%;width:81%;height:14%;
+  border:1px solid rgba(236,222,192,.5);background:linear-gradient(180deg,#d0be99,#766d59);
+  box-shadow:0 12px 16px rgba(0,0,0,.3);
+  transform:translate(-50%,-50%) translateZ(52px);
+}
+.design-studies[data-mode] .study-spatial .spatial-bench{
+  position:absolute;left:50%;top:62%;width:25%;height:8%;
+  border:1px solid rgba(234,221,192,.3);background:#a98f6b;
+  box-shadow:0 7px 11px rgba(0,0,0,.35);
+  transform:translate(-50%,-50%) translateZ(70px);
+}
+.design-studies[data-mode] .study-spatial .spatial-light{
+  position:absolute;left:50%;top:17%;width:30%;height:30%;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,219,157,.6),rgba(240,181,113,.12) 36%,transparent 71%);
+  transform:translate(-50%,-50%) translateZ(78px);pointer-events:none;
+}
+.design-studies[data-mode] .study-spatial .spatial-copy{
+  position:absolute;left:7%;bottom:15%;width:36%;
+}
+.design-studies[data-mode] .study-spatial .spatial-copy small{
+  display:block;margin-bottom:1.5cqw;color:#c4bc9e;
+  font:600 clamp(6px,1.5cqw,9px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.13em;
+}
+.design-studies[data-mode] .study-spatial .spatial-copy h3{
+  position:static;max-width:100%;margin:0;color:#f0ebdd;
+  font:400 clamp(1.35rem,5.2cqw,3.2rem)/.9 "DM Serif Display",Georgia,serif;
+  letter-spacing:-.035em;text-shadow:0 3px 16px rgba(0,0,0,.28);
+}
+.design-studies[data-mode] .study-spatial .spatial-controls{
+  position:absolute;right:6%;top:13%;display:flex;gap:5px;
+}
+.design-studies[data-mode] .study-spatial .spatial-controls button{
+  min-height:26px;padding:0 8px;border:1px solid rgba(229,226,208,.34);border-radius:2px;
+  background:rgba(18,28,27,.8);color:#e4e1d4;
+  font:600 clamp(6px,1.35cqw,8px)/1 "IBM Plex Mono",monospace;letter-spacing:.08em;cursor:pointer;
+}
+.design-studies[data-mode] .study-spatial .spatial-controls button:hover,
+.design-studies[data-mode] .study-spatial .spatial-controls button:focus-visible{border-color:#d9cca8;background:#34413a;color:white}
+.design-studies[data-mode] .study-spatial .spatial-controls button:focus-visible{outline:2px solid #d9cca8;outline-offset:3px}
+.design-studies[data-mode] .study-spatial .spatial-hint{
+  position:absolute;left:7%;bottom:7%;color:rgba(229,225,207,.66);
+  font:600 clamp(5px,1.25cqw,7px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.11em;
+}
+.design-studies[data-mode] .study-spatial [data-spatial-model]:focus-visible{outline:2px solid rgba(219,207,177,.6);outline-offset:5px}
+.design-studies[data-mode] .study-spatial [data-spatial-model][data-dragging="true"]{transition:none}
+.design-studies[data-mode] .study-spatial .spatial-screen[data-light="cool"]{
+  background:radial-gradient(ellipse at 73% 42%,rgba(112,173,188,.2),transparent 35%),linear-gradient(138deg,#111e21 0%,#17292c 54%,#0c171a 100%);
+}
+.design-studies[data-mode] .study-spatial .spatial-screen[data-light="cool"] .spatial-light{
+  background:radial-gradient(circle,rgba(152,231,236,.66),rgba(102,190,211,.14) 36%,transparent 71%);
+}
+@media(max-width:720px){
+  .design-studies[data-mode] .study-spatial .spatial-scene{inset:13% 1% 7% 40%}
+  .design-studies[data-mode] .study-spatial .spatial-copy{left:6%;width:35%;bottom:17%}
+}
+@media(prefers-reduced-motion:reduce){
+  .design-studies[data-mode] .study-spatial .spatial-model,
+  .design-studies[data-mode] .study-spatial .spatial-screen *{scroll-behavior:auto;transition:none}
+}
+
+
+/* Study refinements requested for legibility and contained composition. */
+/* System status moves to the side opposite the STORAGE node. */
+.design-studies[data-mode] .study-system .system-head b{position:absolute;left:7%;right:auto;top:0}
+.design-studies[data-mode] .study-system .system-head span:first-child{z-index:1}
+
+/* Restaurant prices sit clear of the food image. */
+.design-studies[data-mode] .study-food .food-menu li i{margin-right:clamp(10px,2cqw,18px)}
+
+/* Keep local booking text readable over the map. */
+.design-studies[data-mode] .study-local .local-nav span:last-child{color:#142a2a;background:rgba(240,243,231,.94);border-color:rgba(20,42,42,.34)}
+
+/* The spatial archive gets visible edge thickness, material, and a deeper portal. */
+.design-studies[data-mode] .study-spatial .spatial-ground{
+  background:
+    repeating-linear-gradient(0deg,transparent 0 15px,rgba(231,220,190,.1) 15px 16px),
+    repeating-linear-gradient(90deg,transparent 0 15px,rgba(231,220,190,.1) 15px 16px),
+    linear-gradient(145deg,rgba(196,171,126,.36),rgba(54,69,62,.8));
+  box-shadow:0 23px 28px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.28);
+}
+.design-studies[data-mode] .study-spatial .spatial-back{
+  border-color:rgba(239,229,201,.7);
+  background:linear-gradient(130deg,#a3967c 0%,#687263 42%,#34463f 100%);
+  box-shadow:16px 14px 0 rgba(0,0,0,.23),inset 0 1px rgba(255,255,255,.55);
+  transform:translate(-50%,-50%) translateZ(-36px) rotateY(-7deg);
+}
+.design-studies[data-mode] .study-spatial .spatial-back::before{
+  content:"";position:absolute;left:0;right:0;top:-8%;height:8%;
+  background:linear-gradient(90deg,#d0c09a,#938768 55%,#596452);
+  transform:skewX(-18deg);transform-origin:left bottom;
+}
+.design-studies[data-mode] .study-spatial .spatial-back::after{
+  content:"";position:absolute;top:3%;right:-15%;width:15%;height:100%;
+  background:linear-gradient(90deg,#4f5d4e,#25342f);
+  transform:skewY(-16deg);transform-origin:left top;
+}
+.design-studies[data-mode] .study-spatial .spatial-portal{
+  border-color:#d2c19b;
+  background:linear-gradient(90deg,rgba(12,22,22,.96),rgba(31,45,39,.68));
+  box-shadow:12px 13px 0 rgba(0,0,0,.26),inset 0 0 0 2px rgba(255,255,255,.18),0 0 24px rgba(224,186,128,.12);
+}
+.design-studies[data-mode] .study-spatial .spatial-portal::after{
+  content:"";position:absolute;top:0;right:-13%;width:13%;height:100%;
+  background:linear-gradient(90deg,#8e8062,#4c5849);
+  transform:skewY(-19deg);transform-origin:left top;
+}
+.design-studies[data-mode] .study-spatial .spatial-light{width:45%;height:42%;filter:blur(1px);opacity:.9}
+.design-studies[data-mode] .study-spatial .spatial-deck{
+  height:18%;background:linear-gradient(180deg,#e1cfaa 0 30%,#b19c76 31% 100%);
+  box-shadow:0 15px 17px rgba(0,0,0,.4),inset 0 1px rgba(255,255,255,.52);
+}
+.design-studies[data-mode] .study-spatial .spatial-bench{
+  border-color:rgba(234,221,192,.58);
+  background:linear-gradient(180deg,#c1a47c,#795f48);
+  box-shadow:0 10px 14px rgba(0,0,0,.45),inset 0 1px rgba(255,255,255,.28);
+}
+
+/* Small spacing correction for the advisory concept. */
+.design-studies[data-mode] .study-professional .professional-side{top:8%;height:82%}
+.design-studies[data-mode] .study-professional .professional-main h3{top:32%;font-size:clamp(.95rem,2.05vw,1.42rem);line-height:.96}
+.design-studies[data-mode] .study-professional .professional-main p{top:54%;font-size:clamp(7.5px,.68vw,9px);line-height:1.25}
+.design-studies[data-mode] .study-professional .professional-links{top:28%;gap:4px}
+.design-studies[data-mode] .study-professional .professional-links span{padding:5px 6px;font-size:clamp(6px,.62vw,8px)}
+.design-studies[data-mode] .study-professional .professional-main>b{top:auto;bottom:11%;padding:5px 8px;font-size:6.5px}
+
+/* Community guide: compact result rows inside an independently scrollable list. */
+.design-studies[data-mode] .study-information .info-results{
+  position:absolute;left:38%;right:7%;top:38%;bottom:10%;
+  display:flex;flex-direction:column;align-content:flex-start;gap:5px;
+  overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;
+  scrollbar-color:rgba(57,104,92,.42) transparent;padding-right:3px;
+}
+.design-studies[data-mode] .study-information .info-results a{
+  position:relative;flex:0 0 auto;min-height:44px;padding:6px 24px 6px 8px;color:#26483f;text-decoration:none;
+}
+.design-studies[data-mode] .study-information .info-results i{position:absolute;top:50%;transform:translateY(-50%)}
+.design-studies[data-mode] .study-information .information-screen>small{position:absolute;left:38%;right:7%;bottom:4%;font-size:6px}
+.design-studies[data-mode="grid"] .study-information .info-results{left:38%;right:6%;top:39%;bottom:11%}
+
+/* Product interface as a compact telemetry surface instead of a loose set of widgets. */
+.design-studies[data-mode] .study-product .study-screen{
+  background:
+    linear-gradient(rgba(100,181,203,.09) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(100,181,203,.09) 1px,transparent 1px),
+    radial-gradient(ellipse at 73% 44%,rgba(37,150,177,.19),transparent 42%),
+    linear-gradient(145deg,#08141f,#132634 72%,#09151f);
+  background-size:22px 22px,22px 22px,auto,auto;
+}
+.design-studies[data-mode] .study-product .study-screen::after{right:-9%;top:9%;width:50%;height:86%;opacity:.48}
+.design-studies[data-mode] .study-product .study-nav{left:7%;top:7%;font-size:clamp(6px,1.5cqw,9px)}
+.design-studies[data-mode] .study-product .product-stamp{
+  position:absolute;right:7%;top:7%;color:#8eb1c1;
+  font:500 clamp(5px,1.25cqw,7px)/1 "IBM Plex Mono",monospace;letter-spacing:.1em;
+}
+.design-studies[data-mode] .study-product .product-stamp i{
+  display:inline-block;width:5px;height:5px;margin-right:4px;border-radius:50%;background:#84ecc9;box-shadow:0 0 9px rgba(132,236,201,.75)
+}
+.design-studies[data-mode] .study-product .product-metric-label{
+  position:absolute;left:8%;top:24%;color:#83a9b9;
+  font:600 clamp(5px,1.25cqw,7px)/1 "IBM Plex Mono",monospace;letter-spacing:.12em;
+}
+.design-studies[data-mode] .study-product .study-metric{
+  left:8%;top:29%;width:32%;padding:7px 8px;border:0;border-left:2px solid #82e8d0;
+  border-radius:0;background:linear-gradient(90deg,rgba(24,53,67,.75),rgba(15,34,46,.38));box-shadow:none;
+}
+.design-studies[data-mode] .study-product .study-metric b{display:block;font-size:clamp(1.7rem,10cqw,2.6rem);letter-spacing:-.07em}
+.design-studies[data-mode] .study-product .study-metric i{width:100%;height:2px;margin-top:5px}
+.design-studies[data-mode] .study-product .study-metric small{display:block;margin-top:4px;color:#8dd9c6;font:500 clamp(5px,1.2cqw,7px)/1 "IBM Plex Mono",monospace}
+.design-studies[data-mode] .study-product .product-readouts{
+  position:absolute;left:45%;right:7%;top:25%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3%;
+}
+.design-studies[data-mode] .study-product .product-readouts>div{
+  min-width:0;display:flex;flex-direction:column;gap:5px;padding:7px 5px;
+  border-top:1px solid rgba(149,201,216,.3);border-bottom:1px solid rgba(149,201,216,.16);
+  background:linear-gradient(180deg,rgba(23,53,66,.68),rgba(11,30,41,.12));
+}
+.design-studies[data-mode] .study-product .product-readouts span{
+  color:#89abb7;font:500 clamp(4.5px,1.05cqw,6px)/1 "IBM Plex Mono",monospace;letter-spacing:.08em;
+}
+.design-studies[data-mode] .study-product .product-readouts b{
+  color:#e8f2ed;font:500 clamp(10px,2.5cqw,15px)/1 "IBM Plex Sans",sans-serif;letter-spacing:-.04em;
+}
+.design-studies[data-mode] .study-product .product-readouts b span{display:inline;color:#9bb7bd;font-size:.65em}
+.design-studies[data-mode] .study-product .product-readouts i{
+  color:#78d8be;font:500 clamp(4.5px,1.05cqw,6px)/1 "IBM Plex Mono",monospace;font-style:normal
+}
+.design-studies[data-mode] .study-product .product-ring{right:19%;top:58%;width:27%;opacity:.26}
+.design-studies[data-mode] .study-product .product-pie{right:10%;top:57%;bottom:auto;width:clamp(39px,11cqw,66px)}
+.design-studies[data-mode] .study-product .product-pie-label{
+  position:absolute;right:5%;top:88%;width:28%;text-align:center;color:#8eacb7;
+  font:500 clamp(4px,1.05cqw,6px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.08em;
+}
+.design-studies[data-mode] .study-product .product-chart-label{
+  position:absolute;left:8%;bottom:43%;color:#86aebb;font:500 clamp(4px,1.05cqw,6px)/1 "IBM Plex Mono",monospace;letter-spacing:.09em;
+}
+.design-studies[data-mode] .study-product .study-chart{left:8%;right:auto;top:62%;bottom:auto;width:33%;height:22%;gap:5px}
+.design-studies[data-mode] .study-product .product-graph{
+  left:43%;right:24%;top:57%;bottom:auto;width:auto;height:28%;
+  padding:5px;border:1px solid rgba(139,195,209,.19);border-radius:3px;background:rgba(8,25,35,.7);
+}
+.design-studies[data-mode] .study-product .product-graph::before{
+  content:"";position:absolute;left:0;right:0;top:50%;border-top:1px dashed rgba(149,200,213,.16)
+}
+.design-studies[data-mode] .study-product .product-graph svg{position:relative;z-index:1}
+.design-studies[data-mode="grid"] .study-product .product-readouts{gap:2%}
+.design-studies[data-mode="grid"] .study-product .product-readouts>div{gap:3px;padding:5px 3px}
+.design-studies[data-mode="grid"] .study-product .product-graph{right:25%;height:26%}
+
+/* Neural labels no longer collide with the diagram or its action. */
+.design-studies[data-mode] .study-neural .neural-meta{
+  position:absolute;left:6%;bottom:8%;z-index:3;width:37%;
+  color:#8db5c1;font:500 clamp(5px,1.25cqw,7px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.09em;
+}
+.design-studies[data-mode] .study-neural .neural-copy{top:30%;width:38%}
+.design-studies[data-mode] .study-neural .neural-copy h3{font-size:clamp(1.05rem,2.25vw,1.75rem);margin:6px 0 4px}
+.design-studies[data-mode] .study-neural .neural-copy p{font-size:clamp(7px,.68vw,9px);line-height:1.25}
+.design-studies[data-mode] .study-neural .neural-copy>b{margin-top:8px;padding:6px 7px;font-size:6px}
+.design-studies[data-mode] .study-neural .neural-nodes circle{
+  transition:fill .22s ease,filter .22s ease,stroke .22s ease;
+}
+.design-studies[data-mode] .study-neural .neural-nodes circle.is-lit{
+  fill:#9effd8;stroke:#e7fff6;filter:drop-shadow(0 0 7px rgba(134,255,216,.95));
+}
+.design-studies[data-mode="grid"] .study-neural .neural-meta{left:6%;width:37%;bottom:8%}
+@media(max-width:760px){
+  .design-studies[data-mode] .study-food .food-menu li i{margin-right:10px}
+  .design-studies[data-mode] .study-professional .professional-side{top:8%;height:82%}
+  .design-studies[data-mode] .study-information .info-results{left:38%;right:6%;top:38%;bottom:11%}
+  .design-studies[data-mode] .study-product .product-readouts{left:44%;right:6%;top:25%}
+  .design-studies[data-mode] .study-product .product-pie{right:7%;width:clamp(34px,12cqw,54px)}
+  .design-studies[data-mode] .study-neural .neural-copy{top:30%;width:38%}
+}
+
+.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(5n){fill:#172c39;filter:none}
+.design-studies[data-mode] .study-information .info-results:focus-visible{outline:2px solid #286a62;outline-offset:2px}
+
+
+/* Focused interface-study refinements: orbit, room builder, and clean grid layouts. */
+.design-studies[data-mode] .study-space .space-screen{container-type:inline-size}
+.design-studies[data-mode] .study-space .space-screen::before{
+  animation:space-drift-a 72s linear infinite;
+  background-position:0 0,0 0,0 0,0 0,0 0;
+}
+.design-studies[data-mode] .study-space .space-screen::after{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.38;
+  background-image:radial-gradient(circle at 24% 44%,rgba(210,235,255,.92) 0 1px,transparent 1.7px),radial-gradient(circle at 67% 72%,rgba(133,211,238,.8) 0 1px,transparent 1.7px),radial-gradient(circle at 83% 25%,rgba(255,255,255,.8) 0 1px,transparent 1.7px);
+  background-size:149px 123px,187px 161px,221px 177px;
+  animation:space-drift-b 110s linear infinite;
+}
+@keyframes space-drift-a{to{background-position:180px 95px,-140px 165px,230px -120px,0 0,0 0}}
+@keyframes space-drift-b{to{background-position:-170px 130px,220px -105px,-130px 180px}}
+.design-studies[data-mode] .study-space .space-map{border:0}
+.design-studies[data-mode] .study-space .planet-orbit{
+  position:absolute;left:50%;top:50%;width:var(--orbit-width);height:var(--orbit-height);
+  border:1px solid rgba(135,197,236,.28);border-radius:50%;transform:translate(-50%,-50%);
+}
+.design-studies[data-mode] .study-space .orbit-mercury{border-color:rgba(207,190,165,.34)}
+.design-studies[data-mode] .study-space .orbit-venus{border-color:rgba(226,183,139,.3)}
+.design-studies[data-mode] .study-space .orbit-earth{border-color:rgba(135,197,236,.45)}
+.design-studies[data-mode] .study-space .orbit-mars{border-color:rgba(230,139,115,.3)}
+.design-studies[data-mode] .study-space .orbit-jupiter{border-color:rgba(244,195,143,.33)}
+.design-studies[data-mode] .study-space .orbit-saturn{border-color:rgba(217,189,137,.3)}
+.design-studies[data-mode] .study-space .orbit-uranus{border-color:rgba(142,216,215,.34)}
+.design-studies[data-mode] .study-space .orbit-neptune{border-color:rgba(113,153,237,.35)}
+.design-studies[data-mode] .study-space .planet-path{position:absolute;inset:0;display:block;border:0;border-radius:50%;animation:planet-orbit var(--orbit-time) linear infinite;animation-delay:calc(var(--orbit-time) * var(--orbit-phase, -.17))}
+.design-studies[data-mode] .study-space .space-planet{position:absolute;left:50%;top:0;display:block;width:clamp(4px,1.1cqw,8px);height:clamp(4px,1.1cqw,8px);transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 0 10px rgba(128,210,245,.55)}
+.design-studies[data-mode] .study-space .planet-mercury{background:#d6c8ac;width:4px;height:4px}
+.design-studies[data-mode] .study-space .planet-venus{background:#d7a77f;width:5px;height:5px}
+.design-studies[data-mode] .study-space .planet-earth{background:radial-gradient(circle at 35% 30%,#b9f0e4,#428ec1 72%);width:6px;height:6px}
+.design-studies[data-mode] .study-space .planet-mars{background:#d77962;width:5px;height:5px}
+.design-studies[data-mode] .study-space .planet-jupiter{background:linear-gradient(0deg,#d58c61 0 27%,#f0c294 28% 45%,#a96554 46% 70%,#edd0a7 71%);width:10px;height:10px}
+.design-studies[data-mode] .study-space .space-planet.planet-saturn{background:#d9bd89;width:8px;height:8px}
+.design-studies[data-mode] .study-space .space-planet.planet-saturn::after{content:"";position:absolute;left:50%;top:50%;width:170%;height:55%;border:1px solid rgba(236,211,161,.9);border-radius:50%;transform:translate(-50%,-50%) rotate(-24deg)}
+.design-studies[data-mode] .study-space .planet-uranus{background:#8ed8d7;width:7px;height:7px}
+.design-studies[data-mode] .study-space .planet-neptune{background:#7199ed;width:7px;height:7px}
+@keyframes planet-orbit{to{transform:rotate(360deg)}}
+.design-studies[data-mode] .study-space .space-focus{z-index:2}
+.design-studies[data-mode] .study-space .space-rail{z-index:2}
+@media(prefers-reduced-motion:reduce){
+ .design-studies .study-space .space-screen::before,.design-studies .study-space .space-screen::after,.design-studies .study-space .planet-path{animation:none!important}
+}
+.design-studies[data-mode] .study-system .system-head b{left:auto;right:7%;top:0}
+.design-studies[data-mode] .study-food .food-menu li i{margin-right:clamp(18px,3.4cqw,30px);transform:translateX(-5px)}
+/* Professional study gets a compact, predictable hierarchy in the grid. */
+.design-studies[data-mode] .study-professional .professional-screen{
+  display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr);grid-template-rows:1fr;
+  gap:clamp(8px,2cqw,18px);padding:8%!important;background:#f1eee5;color:#233237;
+}
+.design-studies[data-mode] .study-professional .professional-screen::before{
+  width:29%;clip-path:none;background:#d9e3da;
+}
+.design-studies[data-mode] .study-professional .professional-screen::after{display:none}
+.design-studies[data-mode] .study-professional .professional-side{
+  position:relative;inset:auto;grid-column:1;grid-row:1;width:auto;height:auto;min-width:0;
+  padding:15% 6% 12% 0;color:#233237;border-right:1px solid rgba(35,50,55,.19);
+  display:flex;flex-direction:column;justify-content:space-between;gap:10px;
+}
+.design-studies[data-mode] .study-professional .professional-side strong{font:600 clamp(8px,1.4cqw,12px)/1.15 "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
+.design-studies[data-mode] .study-professional .professional-side span{font:500 clamp(6px,1.05cqw,8px)/1.5 "IBM Plex Mono",monospace;color:#52615d}
+.design-studies[data-mode] .study-professional .professional-main{
+  position:relative;inset:auto;grid-column:2;grid-row:1;min-width:0;padding:5% 0 2%!important;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:clamp(4px,1cqw,9px);
+}
+.design-studies[data-mode] .study-professional .professional-main h3{
+  position:static;inset:auto;width:auto;margin:0;color:#233237;
+  font:400 clamp(15px,3.1cqw,25px)/.98 "DM Serif Display",Georgia,serif;letter-spacing:-.025em;overflow-wrap:normal;
+}
+.design-studies[data-mode] .study-professional .professional-main p{
+  position:static;inset:auto;width:auto;margin:0;color:#53615f;
+  font-size:clamp(7px,1.25cqw,10px);line-height:1.25;
+}
+.design-studies[data-mode] .study-professional .professional-links{
+  position:static;inset:auto;width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(3px,.8cqw,7px);margin-top:clamp(3px,.7cqw,6px);
+}
+.design-studies[data-mode] .study-professional .professional-links span{
+  min-width:0;padding:5px 2px 0;border-color:rgba(35,50,55,.24);color:#334b48;
+  font-size:clamp(6px,1.05cqw,8px);line-height:1.15;overflow-wrap:anywhere;
+}
+.design-studies[data-mode] .study-professional .professional-main>b{
+  position:static;inset:auto;margin:0;padding:5px 8px;background:#253e42;color:#f8f5ec;
+  font-size:clamp(6px,1cqw,8px);line-height:1.1;
+}
+/* Community filter is given its own lane above the scrollable results. */
+.design-studies[data-mode] .study-information .information-screen h3{left:7%;top:21%;width:37%;max-width:10ch}
+.design-studies[data-mode] .study-information .info-filter{
+  position:absolute;left:38%;right:6%;top:28%;width:auto;display:flex;align-items:center;justify-content:space-between;gap:6px;
+  z-index:2;line-height:1.2;white-space:normal;
+}
+.design-studies[data-mode] .study-information .info-all-services{min-width:0;white-space:nowrap;padding:5px 7px}
+.design-studies[data-mode] .study-information .info-results{left:38%;right:7%;top:43%;bottom:10%}
+.design-studies[data-mode="grid"] .study-information .info-results{left:38%;right:6%;top:43%;bottom:11%}
+/* The yellow local service direction sits apart from the quiet editorial card. */
+.design-studies[data-mode] .study-local-mini .study-screen{box-shadow:inset 0 0 0 1px rgba(44,45,26,.2),0 15px 26px rgba(0,0,0,.14)}
+/* 3D room builder: draggable room plus optional room/furniture additions. */
+.design-studies[data-mode] .study-spatial .spatial-screen{
+  container-type:inline-size;background:radial-gradient(ellipse at 74% 47%,rgba(188,178,141,.14),transparent 44%),linear-gradient(138deg,#111d22,#182a2b 62%,#0b171c);color:#eee9dc;
+}
+.design-studies[data-mode] .study-spatial .spatial-screen::before{
+  opacity:.2;background-image:linear-gradient(rgba(219,228,212,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(219,228,212,.12) 1px,transparent 1px)
+}
+.design-studies[data-mode] .study-spatial .spatial-screen::after{display:none}
+.design-studies[data-mode] .study-spatial .spatial-top{z-index:4}
+.design-studies[data-mode] .study-spatial .room-controls{
+  position:absolute;z-index:4;left:6%;top:21%;width:24%;display:grid;align-content:start;gap:clamp(4px,.7cqw,7px)
+}
+.design-studies[data-mode] .study-spatial .room-controls>span{padding-top:7px;color:#aab7aa;font:600 clamp(5px,1.05cqw,7px)/1 "IBM Plex Mono",monospace;letter-spacing:.1em}
+.design-studies[data-mode] .study-spatial .room-controls button{
+  min-width:0;min-height:clamp(21px,4.6cqw,30px);padding:0 5px;border:1px solid rgba(224,224,202,.34);background:rgba(13,23,26,.82);color:#e7e8dc;
+  text-align:left;font:600 clamp(5px,1.1cqw,8px)/1 "IBM Plex Mono",monospace;letter-spacing:.07em;cursor:pointer
+}
+.design-studies[data-mode] .study-spatial .room-controls button:hover,.design-studies[data-mode] .study-spatial .room-controls button:focus-visible,.design-studies[data-mode] .study-spatial .room-controls button[aria-pressed="true"]{border-color:#c3d2a4;background:#324740;color:#fff}
+.design-studies[data-mode] .study-spatial .room-stage{
+  position:absolute;inset:20% 3% 17% 28%;perspective:820px;perspective-origin:56% 54%;overflow:visible;touch-action:pan-y
+}
+.design-studies[data-mode] .study-spatial .room-model{
+  --spatial-yaw:-29deg;--spatial-pitch:10deg;position:absolute;left:56%;top:51%;width:76%;height:83%;
+  transform:translate(-50%,-50%) rotateX(var(--spatial-pitch)) rotateY(var(--spatial-yaw));
+  transform-style:preserve-3d;transition:transform .25s ease-out;cursor:grab;outline:none;touch-action:none
+}
+.design-studies[data-mode] .study-spatial .room-model:active{cursor:grabbing}
+.design-studies[data-mode] .study-spatial .room-floor{
+  position:absolute;left:50%;top:67%;width:109%;height:76%;transform:translate(-50%,-50%) rotateX(68deg) translateZ(-18px);
+  border:1px solid rgba(229,222,196,.6);background:repeating-linear-gradient(0deg,transparent 0 13px,rgba(225,222,202,.12) 13px 14px),repeating-linear-gradient(90deg,transparent 0 13px,rgba(225,222,202,.12) 13px 14px),linear-gradient(145deg,#a5a28f,#626d66 60%,#3d514d);
+  box-shadow:0 20px 26px rgba(0,0,0,.43),inset 0 1px rgba(255,255,255,.45)
+}
+.design-studies[data-mode] .study-spatial .room-back-wall{
+  position:absolute;left:50%;top:38%;width:80%;height:62%;transform:translate(-50%,-50%) translateZ(-32px);
+  border:1px solid rgba(240,235,215,.6);background:linear-gradient(90deg,#d4c9ab,#b3b39e 55%,#89948a);box-shadow:12px 13px 0 rgba(0,0,0,.23),inset 0 1px rgba(255,255,255,.7)
+}
+.design-studies[data-mode] .study-spatial .room-side-wall{
+  position:absolute;left:88%;top:42%;width:20%;height:63%;transform:translate(-50%,-50%) rotateY(57deg) translateZ(-12px);
+  transform-origin:left center;border:1px solid rgba(240,235,215,.45);background:linear-gradient(90deg,#929c8e,#53645f);box-shadow:8px 9px 0 rgba(0,0,0,.19)
+}
+.design-studies[data-mode] .study-spatial .room-window{
+  position:absolute;z-index:1;left:49%;top:31%;width:29%;height:24%;transform:translate(-50%,-50%) translateZ(4px);
+  border:5px solid #e7ddc8;background:linear-gradient(145deg,#d6e8e6,#97b8b3 60%,#728b86);box-shadow:0 5px 12px rgba(37,49,42,.22)
+}
+.design-studies[data-mode] .study-spatial .room-window::before,.design-studies[data-mode] .study-spatial .room-window::after{content:"";position:absolute;background:rgba(238,234,219,.8)}
+.design-studies[data-mode] .study-spatial .room-window::before{left:50%;top:0;bottom:0;width:2px}.design-studies[data-mode] .study-spatial .room-window::after{top:50%;left:0;right:0;height:2px}
+.design-studies[data-mode] .study-spatial .room-rug{
+  position:absolute;left:53%;top:68%;width:53%;height:35%;transform:translate(-50%,-50%) rotateX(68deg) translateZ(8px);
+  background:repeating-linear-gradient(135deg,#7d897a 0 2px,#9aa08e 2px 4px);border:1px solid rgba(249,241,216,.48);box-shadow:0 8px 12px rgba(0,0,0,.2)
+}
+.design-studies[data-mode] .study-spatial .room-addition{display:none;position:absolute;left:8%;top:51%;width:42%;height:44%;transform:translateY(-50%) translateZ(-10px);transform-style:preserve-3d}
+.design-studies[data-mode] .study-spatial .room-addition i{position:absolute;inset:0;border:1px solid rgba(230,226,202,.55);background:linear-gradient(140deg,#928d7a,#6d796f);transform:rotateY(16deg);transform-origin:right center}
+.design-studies[data-mode] .study-spatial .room-addition b{position:absolute;left:0;right:0;bottom:0;height:20%;background:linear-gradient(#a49c85,#65695c);transform:rotateX(64deg);transform-origin:bottom}
+.design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-addition{display:block}
+.design-studies[data-mode] .study-spatial .room-furniture{position:absolute;inset:0;transform-style:preserve-3d}
+.design-studies[data-mode] .study-spatial .room-chair,.design-studies[data-mode] .study-spatial .room-couch{
+  position:absolute;z-index:3;transform-style:preserve-3d;filter:drop-shadow(5px 7px 5px rgba(0,0,0,.28))
+}
+.design-studies[data-mode] .study-spatial .room-chair{left:42%;top:63%;width:17%;height:17%}
+.design-studies[data-mode] .study-spatial .room-chair::before{content:"";position:absolute;left:12%;top:0;width:76%;height:53%;border:2px solid #e4c89b;background:linear-gradient(135deg,#ae8059,#76563f);transform:translateZ(12px)}
+.design-studies[data-mode] .study-spatial .room-chair::after{content:"";position:absolute;left:10%;top:45%;width:80%;height:34%;background:linear-gradient(#c39a6e,#795b40);transform:translateZ(20px);box-shadow:0 0 0 1px rgba(255,255,255,.22)}
+.design-studies[data-mode] .study-spatial .room-couch{left:61%;top:61%;width:29%;height:24%}
+.design-studies[data-mode] .study-spatial .room-couch::before{content:"";position:absolute;inset:0 0 30%;border:2px solid #ddd2b9;border-radius:4px 4px 0 0;background:linear-gradient(145deg,#d1c5a8,#888978);transform:translateZ(10px)}
+.design-studies[data-mode] .study-spatial .room-couch::after{content:"";position:absolute;left:3%;right:3%;bottom:0;height:35%;border-radius:3px;background:linear-gradient(#aa7657,#74533f);transform:translateZ(20px);box-shadow:0 0 0 1px rgba(255,255,255,.22)}
+.design-studies[data-mode] .study-spatial .room-caption{position:absolute;z-index:3;left:6%;right:auto;bottom:7%;width:35%}
+.design-studies[data-mode] .study-spatial .room-caption small{color:#bdc4aa;font:600 clamp(5px,1cqw,7px)/1 "IBM Plex Mono",monospace;letter-spacing:.13em}
+.design-studies[data-mode] .study-spatial .room-caption h3{margin:4px 0 0;color:#f0ead9;font:400 clamp(16px,3.6cqw,27px)/.92 "DM Serif Display",Georgia,serif;letter-spacing:-.035em}
+.design-studies[data-mode] .study-spatial .spatial-hint{z-index:3;left:auto;right:6%;bottom:7%;font-size:clamp(4px, .9cqw,6px)}
+.design-studies[data-mode] .study-spatial .spatial-model[data-dragging="true"]{transition:none}
+.design-studies[data-mode] .study-spatial .room-model[data-dragging="true"]{transition:none}
+.design-studies[data-mode="grid"] .study-spatial .room-stage{inset:20% 1% 17% 26%}
+.design-studies[data-mode="grid"] .study-spatial .room-model{width:78%}
+@media(max-width:900px){
+ .design-studies[data-mode] .study-spatial .room-controls{width:28%}
+ .design-studies[data-mode] .study-spatial .room-stage{left:25%;right:1%}
+ .design-studies[data-mode] .study-professional .professional-main h3{font-size:clamp(14px,3.1cqw,23px)}
+}
+@media(max-width:560px){
+ .design-studies[data-mode] .study-spatial .room-controls{width:29%;gap:3px}
+ .design-studies[data-mode] .study-spatial .room-stage{left:24%;inset-block:22% 20%}
+ .design-studies[data-mode] .study-spatial .room-model{width:90%;height:80%;left:57%}
+ .design-studies[data-mode] .study-information .info-filter{left:51%;right:6%;top:23%}
+}
+@keyframes room-spin{to{transform:translate(-50%,-50%) rotateX(var(--spatial-pitch)) rotateY(var(--spatial-yaw))}}
+@media(prefers-reduced-motion:reduce){
+ .design-studies[data-mode] .study-spatial .room-model{transition:none}
+}
+
+
+
+/* Study controls remain clear and usable at thumbnail and showcase sizes. */
+.design-studies[data-mode] .study-learning .word-slots button,
+.design-studies[data-mode] .study-learning .letter-bank button{
+  display:grid;place-items:center;flex:0 0 auto;border:0;border-radius:4px;
+  background:#fff8d6;color:#20324f;font:700 clamp(10px,2.1cqw,16px)/1 "IBM Plex Sans",sans-serif;
+  box-shadow:0 3px 0 rgba(40,55,72,.16);cursor:pointer;touch-action:manipulation;
+}
+.design-studies[data-mode] .study-learning .word-slots button{
+  width:clamp(23px,2.1vw,31px);height:clamp(27px,2.35vw,35px);
+}
+.design-studies[data-mode] .study-learning .word-slots button[data-filled="true"]{background:#fff}
+.design-studies[data-mode] .study-learning .letter-bank button{
+  width:clamp(22px,1.9vw,28px);height:clamp(22px,1.9vw,28px);font-size:clamp(9px,1.8cqw,13px);
+}
+.design-studies[data-mode] .study-learning .letter-bank button[data-selected="true"]{
+  transform:translateY(-3px);background:#234f68;color:#fff;box-shadow:0 4px 0 rgba(32,50,79,.24)
+}
+.design-studies[data-mode] .study-learning button:focus-visible{outline:2px solid #163a60;outline-offset:3px}
+.design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-model{width:92%}
+.design-studies[data-mode] .study-spatial .room-addition{transition:opacity .2s ease}
+.design-studies[data-mode] .study-spatial .room-chair:nth-child(2){left:24%;top:67%}
+.design-studies[data-mode] .study-spatial .room-chair:nth-child(3){left:50%;top:55%}
+.design-studies[data-mode] .study-spatial .room-couch:nth-child(2){left:25%;top:55%}
+.design-studies[data-mode] .study-spatial .room-couch:nth-child(3){left:61%;top:68%}
+.design-studies[data-mode] .study-system .system-head b{z-index:2}
+@media(max-width:560px){
+ .design-studies[data-mode] .study-professional .professional-screen{gap:7px;padding:7%!important}
+ .design-studies[data-mode] .study-professional .professional-main{gap:4px}
+ .design-studies[data-mode] .study-information .information-screen h3{max-width:9ch}
+ .design-studies[data-mode] .study-information .info-filter{left:53%;right:5%;font-size:7px}
+ .design-studies[data-mode] .study-information .info-filter b{padding:4px}
+ .design-studies[data-mode] .study-spatial .room-caption{width:33%}
+ .design-studies[data-mode] .study-spatial .room-caption h3{font-size:clamp(14px,3.4cqw,22px)}
+ .design-studies[data-mode] .study-spatial .room-controls button{font-size:clamp(4.5px,.95cqw,7px);padding-inline:3px}
+}
+@media(prefers-reduced-motion:reduce){
+ .design-studies[data-mode] .study-learning .letter-bank button[data-selected="true"]{transform:none}
+ .design-studies[data-mode] .study-spatial .room-addition{transition:none}
+}
+
+.design-studies .study-space .space-screen::before,
+.design-studies .study-space .space-screen::after,
+.design-studies .study-space .planet-path{animation-play-state:paused}
+.design-studies .study-space .space-screen[data-orbit-visible="true"]::before,
+.design-studies .study-space .space-screen[data-orbit-visible="true"]::after,
+.design-studies .study-space .space-screen[data-orbit-visible="true"] .planet-path{animation-play-state:running}
+
+
+/* Quiet motion for the landing artwork and the blue MICA mark. */
+.home .poster-hero-image{transform-origin:center;animation:mica-poster-breath 32s ease-in-out infinite alternate}
+.home .brand-mark{transform-origin:center;animation:mica-mark-drift 8s ease-in-out infinite}
+@keyframes mica-poster-breath{
+  from{transform:scale(1)}
+  to{transform:scale(1.014) translate3d(0,-.18%,0)}
+}
+@keyframes mica-mark-drift{
+  0%,100%{transform:translateY(0);box-shadow:0 0 24px rgba(105,162,231,.18)}
+  50%{transform:translateY(-1px);box-shadow:0 0 30px rgba(105,162,231,.3)}
+}
+@media(prefers-reduced-motion:reduce){
+  .home .poster-hero-image,.home .brand-mark{animation:none!important;transform:none!important}
+}
+/* A slow 3D turn lets the existing Velociraptor model reveal its volume. */
+
+/* Shared elevation gives the study previews a little physical depth without changing their layouts. */
+.design-studies .study-screen{filter:drop-shadow(0 8px 14px rgba(0,5,14,.24))}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ .design-studies .study-screen{transition:filter .35s ease}
+ .design-studies .study:hover .study-screen{filter:drop-shadow(0 12px 20px rgba(0,5,14,.34))}
+}
+/* The map layers are controls, not decorative labels. */
+.design-studies .study-wayfinding .wayfinding-options button{appearance:none;font:inherit;cursor:pointer;color:inherit}
+.design-studies .study-wayfinding .wayfinding-options button[aria-pressed="true"]{background:#fff;border-color:#315d5c;box-shadow:0 2px 8px rgba(23,50,50,.12)}
+.design-studies .study-wayfinding .wayfinding-screen[data-layer="places"] .wayfinding-map{filter:saturate(.62)}
+.design-studies .study-wayfinding .wayfinding-screen[data-layer="places"] .wayfinding-map i{opacity:1;transform:scale(1.25)}
+.design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map::before,.design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map::after{opacity:.28}
+.design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map i{opacity:.35}
+.design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map b{transform:scale(1.55)}
+/* A soft landscape sits behind the calm study's existing interface. */
+.design-studies .study-calm .calm-trail-image{position:absolute;z-index:0;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;opacity:.24;filter:saturate(.54) contrast(.92);pointer-events:none}
+.design-studies .study-calm .calm-screen::after{content:"";position:absolute;z-index:0;inset:0;background:linear-gradient(90deg,rgba(243,242,231,.96) 0%,rgba(243,242,231,.89) 42%,rgba(243,242,231,.35) 100%);pointer-events:none}
+.design-studies .study-calm .calm-screen>*:not(.calm-trail-image){z-index:1}
+/* Common Ground: one distant point, two quiet bursts, and a tiny recurring gag. */
+.design-studies .study-culture .culture-focal{position:absolute;z-index:0;right:12%;bottom:12%;width:5px;height:5px;border-radius:50%;background:#ffd79a;box-shadow:0 0 14px 4px rgba(255,193,131,.32)}
+.design-studies .study-culture .culture-burst{position:absolute;z-index:0;width:34px;height:34px;border:1px solid rgba(246,164,124,.54);border-radius:50%;opacity:0;transform:scale(.35);animation:culture-burst 8s ease-out infinite}
+.design-studies .study-culture .culture-burst-one{right:10%;bottom:10%;animation-delay:1.2s}
+.design-studies .study-culture .culture-burst-two{right:23%;bottom:21%;width:19px;height:19px;animation-delay:5.3s}
+@keyframes culture-burst{0%,78%,100%{opacity:0;transform:scale(.35)}82%{opacity:.58}96%{opacity:0;transform:scale(1.6)}}
+@media(prefers-reduced-motion:reduce){
+ .design-studies .study-culture .culture-burst{animation:none!important}
+ .design-studies .study-culture .culture-focal{opacity:.65}
+}
+
+/* The bedding concept uses a crisp collection menu and a new editorial text position. */
+.design-studies[data-mode] .study-bedding .bedding-screen{isolation:isolate}
+.design-studies[data-mode] .study-bedding .bedding-menu{position:absolute;z-index:3;top:7%;left:7%;right:7%;display:flex;justify-content:space-between;gap:10px;color:#243940;font:500 clamp(6px,1.7cqw,8px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.14em}
+.design-studies[data-mode] .study-bedding .bedding-title{left:8%;right:auto;top:auto;bottom:18%;width:60%;height:auto;color:#fff;text-align:left;text-shadow:0 2px 14px rgba(17,24,28,.42)}
+.design-studies[data-mode] .study-bedding .bedding-title h3{position:static;margin:0;font:400 clamp(2rem,7cqi,3.4rem)/.84 Georgia,serif;letter-spacing:-.06em;color:#fff;text-shadow:0 2px 14px rgba(17,24,28,.42)}
+.design-studies[data-mode] .study-bedding .bedding-footer{left:8%;right:auto;bottom:9%;font:500 clamp(5px,1.5cqi,8px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.09em;text-align:left;color:#fff}
+/* Keep the live architecture count on the left and its activity count on the right. */
+.design-studies[data-mode] .study-system .system-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;max-width:none!important;width:100%;font-size:clamp(6px,1.55cqw,8px)}
+.design-studies[data-mode] .study-system .system-foot [data-link-count]{margin-left:auto;text-align:right;white-space:nowrap;color:#9cc9d6}
+/* A few neural nodes breathe in a staggered sequence instead of flashing together. */
+.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+1),
+.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+4){animation:neural-node-breathe 4.8s ease-in-out infinite}
+.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+2),
+.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+6){animation:neural-node-breathe 5.6s ease-in-out infinite 1.4s}
+@keyframes neural-node-breathe{0%,72%,100%{fill:#172c39;filter:none}78%,89%{fill:#9af2db;filter:drop-shadow(0 0 5px rgba(130,243,206,.9))}}
+@media(prefers-reduced-motion:reduce){.design-studies .study-neural .neural-nodes circle{animation:none!important}}
+
+
+/* Focused checklist refinements: visible but quiet depth, clearer study labels, and restrained motion. */
+.home .poster-hero .hero-starfield{opacity:.56}
+.home .poster-hero .hero-starfield::before{animation-duration:74s}
+.home .poster-hero .hero-starfield::after{animation-duration:116s}
+.home .brand-mark{animation:mica-mark-drift 7s ease-in-out infinite}
+@keyframes mica-mark-drift{
+  0%,100%{transform:translateY(0);box-shadow:0 0 25px rgba(105,162,231,.22)}
+  50%{transform:translateY(-2px);box-shadow:0 0 36px rgba(105,162,231,.38)}
+}
+
+/* Give the grid previews enough elevation to read as crafted interfaces. */
+.design-studies[data-mode="grid"] .study-screen{
+  filter:drop-shadow(0 15px 19px rgba(0,4,12,.34)) drop-shadow(0 2px 3px rgba(123,174,215,.1));
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+  .design-studies[data-mode="grid"] .study:hover .study-screen{
+    transform:translateY(-4px);
+    box-shadow:0 22px 54px rgba(0,0,0,.38);
+  }
+}
+
+/* Map label sits on the pale route panel. */
+.design-studies .study-local .local-nav span:last-child{
+  color:#102a32;
+  border-color:rgba(16,42,50,.42);
+}
+
+/* Keep menu prices within the text column, away from the food image. */
+.design-studies .study-food .food-menu li i{
+  justify-self:start;
+  transform:translateX(-8px);
+}
+
+/* A restrained inset keyline distinguishes the local-business study. */
+.design-studies .study-local-mini .study-screen{
+  box-shadow:inset 0 0 0 7px #ffdc4f,inset 0 0 0 8px rgba(20,20,16,.42),0 18px 48px rgba(0,0,0,.23);
+}
+
+/* Homepage alignment and the darker closing moment. */
+.home .editorial-intro{align-items:start}
+.home .editorial-intro .section-number{grid-column:1;grid-row:1;margin:0}
+.home .editorial-intro>div[data-reveal]{grid-column:2;grid-row:1;min-width:0}
+.home .editorial-intro div>p{margin:clamp(24px,3vw,40px) 0 0;max-width:62ch}
+@media(max-width:850px){
+ .home .editorial-intro{grid-template-columns:minmax(0,1fr);gap:22px}
+ .home .editorial-intro .section-number,.home .editorial-intro>div[data-reveal]{grid-column:1;grid-row:auto}
+}
+.home .closing-cta.cosmic-echo{
+ background:radial-gradient(ellipse at 78% 62%,rgba(53,116,182,.14),transparent 42%),linear-gradient(120deg,#04111e 0%,#071a2a 58%,#092038 100%);
+ color:#f2f6fa
+}
+.home .closing-cta .eyebrow{color:#a9c8ea}
+.home .closing-cta .echo-orbit{border-color:rgba(155,197,242,.12);box-shadow:0 0 0 90px rgba(141,189,255,.025),0 0 0 190px rgba(141,189,255,.018),0 0 0 285px rgba(141,189,255,.01)}
+.home .closing-cta .button.light{background:#d9eaff;color:#071624;border-color:#a9c8ed}
+
+/* Keep the poster art pixel-identical; animate only the atmospheric layer behind it. */
+.home .poster-hero .hero-starfield{opacity:.7}
+.home .poster-hero .shooting-star{
+ position:absolute;z-index:1;top:18%;left:-14%;width:92px;height:1px;
+ background:linear-gradient(90deg,transparent,rgba(211,232,255,.8),transparent);
+ filter:drop-shadow(0 0 4px rgba(174,211,255,.45));
+ opacity:0;transform:rotate(-17deg);animation:mica-shoot 21s ease-in-out infinite;
+}
+@keyframes mica-shoot{
+ 0%,68%,100%{opacity:0;transform:translate3d(0,0,0) rotate(-17deg)}
+ 70%{opacity:.72}
+ 74%{opacity:0;transform:translate3d(115vw,35vh,0) rotate(-17deg)}
+}
+@media(prefers-reduced-motion:reduce){.home .poster-hero .shooting-star{animation:none!important;display:none}}
+
+/* Consistent landscape preview frames; adapt internal compositions to the frame. */
+.design-studies .study-screen{container-type:inline-size;overflow:hidden}
+
+.design-studies[data-mode] .study-food .food-menu{left:6%;top:8%;width:60%;max-width:60%}
+.design-studies[data-mode] .study-food .food-menu>span{font-size:clamp(6px,2.25cqi,9px)}
+.design-studies[data-mode] .study-food .food-menu h3{margin:clamp(5px,2.4cqi,11px) 0 clamp(6px,2.4cqi,11px);font-size:clamp(1.25rem,10cqi,2.3rem);line-height:.84}
+.design-studies[data-mode] .study-food .food-menu li{min-height:0;padding:clamp(3px,1.2cqi,6px) 0;gap:4px;font-size:clamp(7px,3cqi,11px);line-height:1.15}
+.design-studies[data-mode] .study-food .food-menu li i{margin-right:clamp(4px,2cqi,12px);transform:none}
+.design-studies[data-mode] .study-local .local-nav{left:6%;right:6%;top:6%;gap:4px}
+.design-studies[data-mode] .study-local .local-nav span{font-size:clamp(6px,2.25cqi,9px);padding:clamp(3px,1.5cqi,6px)}
+.design-studies[data-mode] .study-local .local-route{right:3%;top:20%;width:38%;height:53%}
+.design-studies[data-mode] .study-local .local-service{left:6%;top:31%;width:51%}
+.design-studies[data-mode] .study-local .local-service h3{font-size:clamp(1rem,8cqi,1.8rem);line-height:.94}
+.design-studies[data-mode] .study-local .local-service p{margin:clamp(3px,1.8cqi,8px) 0;font-size:clamp(7px,2.7cqi,10px);line-height:1.15}
+.design-studies[data-mode] .study-local .local-service b{margin-top:3px;padding:clamp(4px,1.6cqi,7px);font-size:clamp(6px,2.2cqi,9px)}
+.design-studies[data-mode] .study-local .local-screen aside{right:4%;top:auto;bottom:5%;width:34%;padding:4px 5px;gap:2px}
+.design-studies[data-mode] .study-local .local-screen aside strong{font-size:clamp(8px,3cqi,12px)}
+.design-studies[data-mode] .study-local .local-screen aside span{font-size:clamp(6px,2cqi,8px);line-height:1.1}
+.design-studies .study-editorial .editorial-screen h3 em{display:inline-flex;gap:.005em;animation:none}
+.design-studies .study-editorial .editorial-screen h3 em span{display:inline-block;animation:idea-letter 2.8s ease-in-out infinite}
+.design-studies .study-editorial .editorial-screen h3 em span:nth-child(2){animation-delay:.08s}
+.design-studies .study-editorial .editorial-screen h3 em span:nth-child(3){animation-delay:.16s}
+.design-studies .study-editorial .editorial-screen h3 em span:nth-child(4){animation-delay:.24s}
+.design-studies .study-editorial .editorial-screen h3 em span:nth-child(5){animation-delay:.32s}
+@keyframes idea-letter{0%,72%,100%{transform:translateY(0)}78%{transform:translateY(-3px)}84%{transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.design-studies .study-editorial .editorial-screen h3 em span{animation:none!important}}
+/* Restore direct manipulation without browser text selection on the model. */
+.design-studies .raptor-viewport{user-select:none;-webkit-user-select:none;touch-action:none;cursor:grab}
+.design-studies .raptor-viewport:active{cursor:grabbing}
+.design-studies .raptor-canvas{pointer-events:none}
+
+/* Keep menu labels and prices inside the dark text column, clear of the dish photo. */
+.design-studies[data-mode] .study-food .food-menu{left:6%;width:48%;max-width:48%}
+.design-studies[data-mode] .study-food .food-menu li{grid-template-columns:minmax(0,1fr) max-content}
+.design-studies[data-mode] .study-food .food-menu li i{justify-self:start;margin:0;padding-left:5px}
+
+
+/* Focused study repairs: more legible motion, stable compositions, and clear interactions. */
+.home .poster-hero .hero-starfield{opacity:.92}
+.home .poster-hero .hero-starfield::before{animation-duration:32s}
+.home .poster-hero .hero-starfield::after{animation-duration:48s;opacity:.68}
+.home .poster-hero .shooting-star{
+  top:43%;left:30%;width:clamp(92px,14vw,156px);height:2px;
+  animation:mica-shoot-center 13s linear infinite;
+  filter:drop-shadow(0 0 6px rgba(174,211,255,.72));
+}
+@keyframes mica-shoot-center{
+  0%,48%,100%{opacity:0;transform:translate3d(0,0,0) rotate(-15deg)}
+  50%{opacity:.95}
+  57%{opacity:0;transform:translate3d(48vw,13vh,0) rotate(-15deg)}
+}
+@media(max-width:720px){
+  .home .poster-hero .hero-starfield{opacity:.62}
+  .home .poster-hero .hero-starfield::before{animation-duration:40s}
+  .home .poster-hero .hero-starfield::after{animation-duration:58s}
+  .home .poster-hero .shooting-star{left:22%;top:47%;width:82px}
+}
+@media(prefers-reduced-motion:reduce){
+  .home .poster-hero .hero-starfield::before,.home .poster-hero .hero-starfield::after,
+  .home .poster-hero .shooting-star{animation:none!important}
+}
+
+/* Three service-map points now travel on separate, precise orbits. */
+.services-page .service-map .map-point{
+  width:6px;height:6px;left:calc(50% + var(--map-orbit-radius) - 3px);top:calc(50% - 3px);
+  right:auto;bottom:auto;transform-origin:calc(3px - var(--map-orbit-radius)) 3px;
+  animation:service-map-orbit var(--map-orbit-speed) linear infinite;
+}
+.services-page .service-map .point-a{--map-orbit-radius:34%;--map-orbit-speed:4.2s;animation-delay:-1.1s}
+.services-page .service-map .point-b{--map-orbit-radius:25%;--map-orbit-speed:5.1s;animation-direction:reverse;animation-delay:-2.4s}
+.services-page .service-map .point-c{--map-orbit-radius:15%;--map-orbit-speed:3.7s;animation-delay:-.6s}
+@keyframes service-map-orbit{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.services-page .service-map .map-point{animation:none!important}}
+
+/* Restore the calm bedding study's original image-led, serif title treatment. */
+.design-studies[data-mode] .study-bedding .bedding-screen{isolation:isolate}
+.design-studies[data-mode] .study-bedding .bedding-menu{
+  position:absolute;z-index:3;top:7%;left:7%;right:7%;display:flex;justify-content:space-between;gap:8px;
+  color:#263b42;font:500 clamp(6px,1.7cqi,8px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.12em
+}
+.design-studies[data-mode] .study-bedding .bedding-title{
+  left:8%;right:auto;top:auto;bottom:18%;width:60%;height:auto;color:#fff;text-align:left;text-shadow:0 2px 14px rgba(17,24,28,.42)
+}
+.design-studies[data-mode] .study-bedding .bedding-title h3{
+  position:static;margin:0;font:400 clamp(2rem,7cqi,3.4rem)/.84 Georgia,serif;letter-spacing:-.06em;color:#fff;
+  text-shadow:0 2px 14px rgba(17,24,28,.42)
+}
+.design-studies[data-mode] .study-bedding .bedding-footer{
+  left:8%;right:auto;bottom:9%;font:500 clamp(5px,1.5cqi,8px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.09em;text-align:left;color:#fff
+}
+
+/* Common Ground keeps the approved vertical composition and type scale in both modes. */
+.design-studies[data-mode] .study-culture .culture-type{
+  left:24%;top:4%;width:30%;height:91%;writing-mode:vertical-rl;transform:rotate(180deg);
+  font-size:clamp(1.35rem,8.5cqi,2.45rem);line-height:.78;letter-spacing:-.075em
+}
+.design-studies[data-mode] .study-culture .culture-type i{display:inline;font-size:inherit;line-height:inherit}
+
+.design-studies[data-mode] .study-culture .culture-event{
+  left:57%;right:4%;top:20%;width:39%;max-width:none;gap:0
+}
+.design-studies[data-mode] .study-culture .culture-event section{
+  display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0;
+  padding:clamp(7px,1.5cqi,10px);border:1px solid rgba(255,241,223,.2);
+  border-radius:2px;background:rgba(20,14,38,.7)
+}
+.design-studies[data-mode] .study-culture .culture-event section>:not([hidden]){
+  position:static!important;inset:auto!important;transform:none!important;max-width:100%;
+  min-width:0;margin:0;white-space:normal;overflow-wrap:anywhere;line-height:1.3
+}
+.design-studies[data-mode] .study-culture .culture-event strong{font-size:clamp(7px,1.8cqi,8px)}
+.design-studies[data-mode] .study-culture .culture-event span{font-size:clamp(8px,1.9cqi,9px);line-height:1.35}
+.design-studies[data-mode] .study-culture .culture-event small{font-size:clamp(7px,1.6cqi,8px);line-height:1.3}
+.design-studies[data-mode] .study-culture .culture-event .culture-details-toggle{min-height:30px}
+.design-studies[data-mode] .study-culture .culture-index{right:7%;bottom:7%;writing-mode:vertical-rl}
+
+/* Give the editorial study enough type scale in both gallery modes. */
+.design-studies[data-mode] .study-editorial .editorial-screen h3{
+  top:5%;right:5%;width:66%;max-width:66%;font-size:clamp(30px,9cqi,66px);line-height:.76
+}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em span{
+  font-size:inherit!important;line-height:inherit;letter-spacing:inherit
+}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em span{animation-duration:1.8s}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em span:nth-child(2){animation-delay:.06s}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em span:nth-child(3){animation-delay:.12s}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em span:nth-child(4){animation-delay:.18s}
+.design-studies[data-mode] .study-editorial .editorial-screen h3 em span:nth-child(5){animation-delay:.24s}
+@media(prefers-reduced-motion:reduce){.design-studies .study-editorial .editorial-screen h3 em span{animation:none!important}}
+
+/* Add a real job-site image to the local-service interface without crowding its copy. */
+.design-studies[data-mode] .study-local .local-route{display:none!important}
+.design-studies[data-mode] .study-local .local-workers{
+  position:absolute;z-index:1;right:3%;top:19%;width:38%;height:51%;object-fit:cover;object-position:50% 42%;
+  border:1px solid rgba(240,244,232,.72);border-radius:8px;filter:saturate(.82) contrast(1.03);
+  box-shadow:0 14px 30px rgba(8,25,29,.2)
+}
+.design-studies[data-mode] .study-local .local-service{z-index:2}
+.design-studies[data-mode] .study-local .local-screen aside{z-index:2;bottom:5%;right:4%;width:34%}
+
+/* One-line room study title; the model and controls keep their current behaviour. */
+.design-studies[data-mode] .study-spatial .room-caption{width:82%;bottom:6%}
+.design-studies[data-mode] .study-spatial .room-caption h3{
+  white-space:nowrap;font-size:clamp(14px,3.4cqi,27px);letter-spacing:-.045em
+}
+
+/* Calm Experience: separate the daily prompt from its action row. */
+.design-studies[data-mode] .study-calm .calm-copy{left:8%;top:23%;width:61%}
+.design-studies[data-mode] .study-calm .calm-copy h3{font-size:clamp(19px,6.3cqi,28px);line-height:.94}
+.design-studies[data-mode] .study-calm .calm-copy p{margin-top:clamp(4px,1.3cqi,7px);font-size:clamp(8px,2cqi,10px);line-height:1.2}
+.design-studies[data-mode] .study-calm .calm-task{
+  left:7%;right:7%;bottom:18%;grid-template-columns:minmax(0,1fr) 14px;gap:7px;padding:7px 9px
+}
+.design-studies[data-mode] .study-calm .calm-task b{font-size:clamp(8px,2.4cqi,10px);line-height:1.15}
+
+/* Put the community filter directly under its heading; keep the directory list in its own lane. */
+.design-studies[data-mode] .study-information .info-filter{
+  left:7%;right:auto;top:43%;width:28%;gap:4px;z-index:2;font-size:clamp(7px,1.8cqi,8px)
+}
+.design-studies[data-mode] .study-information .info-filter b{white-space:normal;padding:5px 6px;line-height:1.15}
+.design-studies[data-mode] .study-information .info-results{left:42%;right:6%;top:21%;bottom:10%}
+.design-studies[data-mode="grid"] .study-information .info-results{left:42%;right:6%;top:21%;bottom:10%}
+
+/* Distinct, more composed directions for the two professional studies. */
+.design-studies[data-mode] .study-professional .professional-screen{
+  display:block!important;position:relative;overflow:hidden;padding:0!important;
+  background:linear-gradient(90deg,#1c3540 0 25%,#f1eee5 25% 100%);color:#26363a
+}
+.design-studies[data-mode] .study-professional .professional-screen::before{
+  inset:0 75% 0 0;width:auto;clip-path:none;background:linear-gradient(160deg,#284651,#172a34);box-shadow:inset -1px 0 rgba(255,255,255,.18)
+}
+.design-studies[data-mode] .study-professional .professional-screen::after{display:none}
+.design-studies[data-mode] .study-professional .professional-side{
+  position:absolute;left:6%;top:13%;width:15%;height:74%;padding:0;border:0;color:#eff1e9;
+  display:flex;flex-direction:column;justify-content:space-between;gap:8px
+}
+.design-studies[data-mode] .study-professional .professional-side strong{
+  font:600 clamp(7px,2cqi,9px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:#e7b387
+}
+.design-studies[data-mode] .study-professional .professional-side span{
+  font:500 clamp(6px,1.65cqi,8px)/1.65 "IBM Plex Mono",monospace;color:#d0dcd9
+}
+.design-studies[data-mode] .study-professional .professional-main{position:static;padding:0!important}
+.design-studies[data-mode] .study-professional .professional-main h3{
+  position:absolute;left:34%;right:7%;top:17%;width:54%;margin:0;
+  font:400 clamp(17px,5.1cqi,29px)/.98 "DM Serif Display",Georgia,serif;letter-spacing:-.025em;color:#26363a
+}
+.design-studies[data-mode] .study-professional .professional-main p{
+  position:absolute;left:34%;right:8%;top:45%;width:53%;margin:0;
+  color:#63706c;font-size:clamp(8px,2cqi,10px);line-height:1.28
+}
+.design-studies[data-mode] .study-professional .professional-links{
+  position:absolute;left:34%;right:7%;top:66%;bottom:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px
+}
+.design-studies[data-mode] .study-professional .professional-links span{
+  min-width:0;padding:5px 2px 0;border-color:rgba(39,61,63,.25);color:#465d5b;
+  font:500 clamp(6px,1.65cqi,8px)/1.2 "IBM Plex Mono",monospace;overflow-wrap:anywhere
+}
+.design-studies[data-mode] .study-professional .professional-main>b{
+  position:absolute;left:34%;right:auto;top:auto;bottom:7%;margin:0;padding:6px 9px;
+  background:#b66f50;color:#fffaf0;font-size:clamp(6px,1.7cqi,8px);line-height:1.1
+}
+.design-studies[data-mode] .study-minimal .practice-screen{
+  position:relative;isolation:isolate;overflow:hidden;padding:0!important;
+  background:linear-gradient(90deg,#263e48 0 20%,#eee9df 20%);color:#263e48
+}
+.design-studies[data-mode] .study-minimal .practice-screen::before{
+  content:"";position:absolute;left:20%;top:0;bottom:0;width:1px;background:rgba(33,64,70,.26)
+}
+.design-studies[data-mode] .study-minimal .practice-top{
+  left:27%;right:7%;top:10%;color:#53686a;font:500 clamp(6px,1.7cqi,8px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.1em
+}
+.design-studies[data-mode] .study-minimal .practice-spine{left:27%;right:7%;top:28%;height:1px;background:#b76f53}
+.design-studies[data-mode] .study-minimal .practice-copy{
+  left:34%;right:7%;top:35%;width:auto;color:#213a43
+}
+.design-studies[data-mode] .study-minimal .practice-copy span{color:#8a6555;font:500 clamp(7px,1.9cqi,9px)/1.2 "IBM Plex Mono",monospace}
+.design-studies[data-mode] .study-minimal .practice-copy strong{
+  display:block;margin-top:7px;font:400 clamp(21px,7cqi,39px)/.9 "DM Serif Display",Georgia,serif;letter-spacing:-.045em;color:#213a43
+}
+.design-studies[data-mode] .study-minimal .practice-footer{left:27%;right:7%;bottom:12%;color:#51686a}
+.design-studies[data-mode] .study-minimal .practice-footer i{background:#b76f53}
+.design-studies[data-mode="grid"] .study-minimal .practice-copy{left:32%;right:6%;top:31%}
+.design-studies[data-mode="grid"] .study-minimal .practice-copy strong{font-size:clamp(19px,6.4cqi,32px)}
+
+/* Make the interface-study word board work with mouse, pen, and touch dragging. */
+.design-studies[data-mode] .study-learning .word-slots{
+  left:8%;top:59%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(3px,1.2cqi,6px);width:47%
+}
+.design-studies[data-mode] .study-learning .word-slots button{
+  width:clamp(25px,7cqi,34px);height:clamp(27px,7cqi,36px);touch-action:none;user-select:none;-webkit-user-select:none
+}
+.design-studies[data-mode] .study-learning .letter-bank{
+  left:auto;right:8%;top:53%;display:grid;grid-template-columns:repeat(3,minmax(25px,1fr));gap:clamp(3px,1cqi,5px);
+  width:clamp(84px,26cqi,152px);touch-action:none
+}
+.design-studies[data-mode] .study-learning .letter-bank button{
+  width:clamp(24px,6.2cqi,30px);height:clamp(24px,6.2cqi,30px);min-width:24px;min-height:24px;touch-action:none;user-select:none;-webkit-user-select:none
+}
+.design-studies[data-mode] .study-learning .learning-help{
+  left:8%;right:8%;bottom:6%;max-width:none;font-size:clamp(7px,1.7cqi,9px);line-height:1.2;text-align:left
+}
+.design-studies[data-mode] .study-learning .learning-help[data-success="true"]{
+  color:#173e32;font-weight:700;background:rgba(255,255,255,.68);border-radius:4px;padding:4px 6px
+}
+
+/* Small, specific study corrections requested for both preview modes. */
+.design-studies[data-mode] .study-future .readout-c{left:auto;right:7%;top:auto;bottom:13%;text-align:right}
+.design-studies[data-mode] .study-diagonal .diagonal-screen h3{right:calc(8% + 2px)}
