@@ -2897,3 +2897,124 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .home .poster-hero .shooting-star--secondary::after{width:4px;height:4px;box-shadow:0 0 5px 1.5px rgba(214,232,255,.86),0 0 10px 3px rgba(143,190,255,.35)}
 .home .poster-hero .shooting-star--tertiary::after{width:3px;height:3px;box-shadow:0 0 4px 1px rgba(214,232,255,.78),0 0 8px 2px rgba(143,190,255,.28)}
+
+
+/* Oct 13: clearer, buildable room planner. */
+.design-studies[data-mode] .study-spatial .room-controls button{
+  min-height:clamp(30px,5.8cqw,40px);padding-inline:7px;border-radius:3px;
+  letter-spacing:.035em;touch-action:manipulation;
+}
+.design-studies[data-mode] .study-spatial .room-controls button[data-room-action="chair"],
+.design-studies[data-mode] .study-spatial .room-controls button[data-room-action="couch"]{
+  cursor:grab;touch-action:none;user-select:none;
+}
+.design-studies[data-mode] .study-spatial .room-controls button[data-room-action="chair"]:active,
+.design-studies[data-mode] .study-spatial .room-controls button[data-room-action="couch"]:active{cursor:grabbing}
+.design-studies[data-mode] .study-spatial .room-stage{perspective:980px;perspective-origin:53% 57%}
+.design-studies[data-mode] .study-spatial .room-model{
+  --spatial-yaw:-28deg;--spatial-pitch:7deg;
+  width:78%;height:82%;left:55%;top:51%;
+}
+.design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-model{width:94%}
+.design-studies[data-mode] .study-spatial .room-floor{
+  left:50%;top:67%;width:78%;height:78%;
+  transform:translate(-50%,-50%) rotateX(80deg) translateZ(-12px);
+}
+.design-studies[data-mode] .study-spatial .room-back-wall{
+  left:50%;top:38%;width:72%;height:70%;
+  transform:translate(-50%,-50%) translateZ(-32px);
+}
+.design-studies[data-mode] .study-spatial .room-side-wall{
+  left:85%;top:43%;width:20%;height:70%;transform:translate(-50%,-50%) rotateY(62deg) translateZ(-12px);
+}
+.design-studies[data-mode] .study-spatial .room-rug{
+  left:52%;top:68%;width:46%;height:31%;
+  transform:translate(-50%,-50%) rotateX(80deg) translateZ(8px);
+}
+.design-studies[data-mode] .study-spatial .room-addition{
+  left:72%;top:51%;width:40%;height:70%;
+  transform:translateY(-50%) translateZ(-12px);transform-style:preserve-3d;
+}
+.design-studies[data-mode] .study-spatial .room-addition-wall{
+  position:absolute;left:0;top:0;width:100%;height:68%;
+  border:1px solid rgba(240,235,215,.58);
+  background:linear-gradient(90deg,#d7cfb8,#bfc5b5 62%,#9ca99c);
+  box-shadow:8px 10px 0 rgba(0,0,0,.17);
+}
+.design-studies[data-mode] .study-spatial .room-addition-floor{
+  position:absolute;left:0;top:58%;width:100%;height:46%;
+  border:1px solid rgba(229,222,196,.58);
+  background:repeating-linear-gradient(0deg,transparent 0 13px,rgba(225,222,202,.14) 13px 14px),repeating-linear-gradient(90deg,transparent 0 13px,rgba(225,222,202,.14) 13px 14px),linear-gradient(145deg,#b3ad99,#747d71 62%,#53645d);
+  transform:rotateX(78deg);transform-origin:top center;
+  box-shadow:0 13px 18px rgba(0,0,0,.25);
+}
+.design-studies[data-mode] .study-spatial .room-addition-side{
+  position:absolute;right:-5%;top:0;width:24%;height:68%;
+  border:1px solid rgba(240,235,215,.48);
+  background:linear-gradient(90deg,#a1aa9a,#61716a);
+  transform:rotateY(58deg);transform-origin:left center;
+}
+.design-studies[data-mode] .study-spatial .room-chair{
+  left:40%;top:66%;width:22%;height:25%;
+  background:linear-gradient(90deg,transparent 14%,#684a32 16% 22%,transparent 24% 76%,#684a32 78% 84%,transparent 86%) bottom/100% 44% no-repeat;
+}
+.design-studies[data-mode] .study-spatial .room-chair::before{
+  left:9%;top:0;width:82%;height:57%;border:2px solid #f0d5a5;
+  background:linear-gradient(135deg,#c08c59,#79563d);transform:translateZ(13px);
+}
+.design-studies[data-mode] .study-spatial .room-chair::after{
+  left:8%;top:48%;width:84%;height:30%;background:linear-gradient(#d7ad77,#9a7048);
+}
+.design-studies[data-mode] .study-spatial .room-couch{
+  left:61%;top:61%;width:32%;height:28%;
+}
+.design-studies[data-mode] .study-spatial .room-couch::before{
+  inset:0 0 31%;border:2px solid #eee1c8;border-radius:6px 6px 2px 2px;
+  background:linear-gradient(145deg,#e2d5b9,#a49f8b);
+}
+.design-studies[data-mode] .study-spatial .room-couch::after{
+  left:3%;right:3%;bottom:0;height:36%;border-radius:3px;
+  background:linear-gradient(#c4946d,#815a43);
+}
+.design-studies[data-mode] .study-spatial .room-screen[data-light="warm"]{
+  background:radial-gradient(ellipse at 72% 40%,rgba(255,178,86,.32),transparent 50%),linear-gradient(135deg,#332b22,#171d1c 72%);
+}
+.design-studies[data-mode] .study-spatial .room-screen[data-light="cool"]{
+  background:radial-gradient(ellipse at 72% 40%,rgba(94,202,255,.34),transparent 50%),linear-gradient(135deg,#172d3a,#101c25 72%);
+}
+.design-studies[data-mode] .study-spatial .room-back-wall,
+.design-studies[data-mode] .study-spatial .room-floor,
+.design-studies[data-mode] .study-spatial .room-window,
+.design-studies[data-mode] .study-spatial .room-rug{transition:background .35s ease,filter .35s ease,box-shadow .35s ease}
+.design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-back-wall{
+  background:linear-gradient(90deg,#f0d7ad,#d8c69e 58%,#ae9a77);
+}
+.design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-floor{
+  background:repeating-linear-gradient(0deg,transparent 0 13px,rgba(255,242,205,.25) 13px 14px),repeating-linear-gradient(90deg,transparent 0 13px,rgba(255,242,205,.25) 13px 14px),linear-gradient(145deg,#c39e6c,#8b7453 60%,#594d3c);
+}
+.design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-window{
+  border-color:#ffe2ac;box-shadow:0 0 30px rgba(255,185,91,.78),0 5px 12px rgba(37,49,42,.22);
+}
+.design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-back-wall{
+  background:linear-gradient(90deg,#b9d8e1,#8eafbd 58%,#627f90);
+}
+.design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-floor{
+  background:repeating-linear-gradient(0deg,transparent 0 13px,rgba(209,241,255,.24) 13px 14px),repeating-linear-gradient(90deg,transparent 0 13px,rgba(209,241,255,.24) 13px 14px),linear-gradient(145deg,#7295a4,#465f71 60%,#263b4b);
+}
+.design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-window{
+  filter:hue-rotate(21deg) saturate(1.7);border-color:#b9ecff;
+  box-shadow:0 0 32px rgba(93,206,255,.82),0 5px 12px rgba(37,49,42,.22);
+}
+.design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-addition-wall{
+  background:linear-gradient(90deg,#e4d0a8,#ceb78d 62%,#a78d66);
+}
+.design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-addition-wall{
+  background:linear-gradient(90deg,#c2dde7,#9bbbc8 62%,#7895a7);
+}
+.design-studies[data-mode] .study-spatial .room-drag-ghost{
+  position:fixed;z-index:9999;pointer-events:none;display:grid;place-items:center;
+  width:58px;height:42px;border:1px solid rgba(240,224,190,.9);border-radius:5px;
+  background:rgba(37,47,43,.92);color:#fff0d0;
+  font:600 10px/1 "IBM Plex Mono",monospace;letter-spacing:.08em;
+  box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
