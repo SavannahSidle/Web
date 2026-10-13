@@ -19,7 +19,7 @@ body{background:#edf2f6;color:#0b1b28}
 .home .hero{position:relative;min-height:calc(100svh - 78px);padding:clamp(38px,6vh,74px) max(28px,calc((100vw - var(--max))/2)) clamp(100px,12vh,142px);isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 75% 49%,rgba(57,111,175,.2),transparent 35%),linear-gradient(123deg,#06121c 0%,#081a28 53%,#07131f 100%)}
 .home .hero::before{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.22;background:linear-gradient(rgba(132,177,224,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(132,177,224,.06) 1px,transparent 1px);background-size:88px 88px;mask-image:linear-gradient(90deg,transparent 0%,#000 54%,#000 100%)}
 .home .hero::after{content:"";position:absolute;z-index:-1;right:-12%;top:10%;width:min(70vw,920px);aspect-ratio:1;border:1px solid rgba(169,203,242,.08);border-radius:50%;box-shadow:0 0 0 90px rgba(169,203,242,.018),0 0 0 190px rgba(169,203,242,.012);pointer-events:none}
-.home .hero-geometry,.home .cosmic-haze,.home .hero::before,.home .hero::after{display:none!important}
+.home .hero-geometry, .home .cosmic-haze, .home .hero::before, .home .hero::after{display:none!important}
 .home .hero-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(390px,1.08fr);gap:clamp(16px,4vw,64px);align-items:center;min-height:clamp(490px,67vh,690px)}
 .home .hero-copy-block{position:relative;z-index:2;width:100%;max-width:650px;padding-block:12px}
 .home .hero .eyebrow{color:#9fc5f4;font-size:11px;letter-spacing:.2em;margin-bottom:26px}
@@ -57,7 +57,7 @@ body{background:#edf2f6;color:#0b1b28}
 .signal-row{position:absolute;z-index:3;left:max(28px,calc((100vw - var(--max))/2));right:max(28px,calc((100vw - var(--max))/2));bottom:0;border-top:1px solid rgba(187,215,246,.18);background:linear-gradient(90deg,rgba(8,24,37,.86),rgba(8,24,37,.58));backdrop-filter:blur(14px)}
 .home .signal-item summary{color:#e4edf7}.home .signal-item p{color:#c5d4e1}
 .editorial-intro{background:#edf2f6}
-.editorial-intro h2,.capabilities-heading h2{font-family:"IBM Plex Sans",sans-serif;font-weight:500;letter-spacing:-.065em}
+.editorial-intro h2, .capabilities-heading h2{font-family:"IBM Plex Sans",sans-serif;font-weight:500;letter-spacing:-.065em}
 .capabilities{background:#e3eaf0}
 .capability-blueprint{opacity:.13}
 .design-studies{padding:clamp(86px,10vw,142px) max(24px,calc((100vw - var(--max))/2));background:radial-gradient(ellipse at 84% 48%,rgba(44,92,141,.24),transparent 36%),linear-gradient(138deg,#06121c,#091b29 59%,#07131e);color:#f2f6fa}
@@ -67,7 +67,7 @@ body{background:#edf2f6;color:#0b1b28}
 .studies-heading>p{max-width:470px;margin-bottom:4px;color:#b9c8d7;font-size:1rem;line-height:1.55}
 .studies-tools{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:26px}
 .studies-view-toggle{display:flex;align-items:center;gap:4px;padding:4px;border:1px solid rgba(195,220,247,.22);background:rgba(9,26,39,.66)}
-.studies-view-toggle button,.studies-controls button{font:500 13px "IBM Plex Sans",sans-serif;color:#cfdae5;border:1px solid transparent;background:transparent;cursor:pointer}
+.studies-view-toggle button, .studies-controls button{font:500 13px "IBM Plex Sans",sans-serif;color:#cfdae5;border:1px solid transparent;background:transparent;cursor:pointer}
 .studies-view-toggle button{padding:9px 15px}
 .studies-view-toggle button[aria-pressed="true"]{background:#dbeafa;color:#0a1a27}
 .studies-controls{display:flex;align-items:center;gap:16px}
@@ -89,11 +89,11 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies[data-mode="grid"] .studies-grid{overflow:visible;mask-image:none}
 .design-studies[data-mode="grid"] .study{opacity:1;transform:none;transition:none}
 .design-studies[data-mode="grid"] .study-screen{box-shadow:0 18px 48px rgba(0,0,0,.23)}
-.studies-view-toggle button:focus-visible,.studies-controls button:focus-visible,[data-study-track]:focus-visible{outline:2px solid #a9d2ff;outline-offset:4px}
+.studies-view-toggle button:focus-visible, .studies-controls button:focus-visible, [data-study-track]:focus-visible{outline:2px solid #a9d2ff;outline-offset:4px}
 .process-strip{background:#0b1e2b}
 .closing-cta{overflow:hidden;background-color:#081724}
 .closing-cta h2{font:500 clamp(3rem,6.4vw,6rem)/.94 "IBM Plex Sans",sans-serif;letter-spacing:-.075em}
-.button:focus-visible,.site-header a:focus-visible,footer a:focus-visible{outline:2px solid #8abafa;outline-offset:4px}
+.button:focus-visible, .site-header a:focus-visible, footer a:focus-visible{outline:2px solid #8abafa;outline-offset:4px}
 
 @media(max-width:960px){
   .home .hero-grid{grid-template-columns:minmax(0,1fr) minmax(320px,.9fr);gap:14px}
@@ -139,7 +139,7 @@ body{background:#edf2f6;color:#0b1b28}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .hero-interfaces,.hero-frame,.hero-geometry,.geometry-orbit,.geometry-path,.geometry-ring,.ring-small,.geometry-core,.geometry-point,.design-studies[data-mode="showcase"] .study{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .hero-interfaces, .hero-frame, .hero-geometry, .geometry-orbit, .geometry-path, .geometry-ring, .ring-small, .geometry-core, .geometry-point, .design-studies[data-mode="showcase"] .study{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 
 /* Nine interface panels travel around one controlled elliptical wheel. */
@@ -158,11 +158,11 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies[data-mode="showcase"] .study:nth-child(3n) .study-screen{animation-delay:-2.1s}
 .design-studies[data-mode="showcase"] .study:nth-child(3n + 1) .study-screen{animation-delay:-4.2s}
 .design-studies[data-mode="showcase"] .study>p{margin-top:11px;color:#cbdced;text-shadow:0 2px 14px #06131d}
-.design-studies[data-mode="showcase"] .study[data-position="-1"]>p,.design-studies[data-mode="showcase"] .study[data-position="1"]>p{opacity:.8}
-.design-studies[data-mode="showcase"] .study[data-position="-2"]>p,.design-studies[data-mode="showcase"] .study[data-position="2"]>p{opacity:.55}
+.design-studies[data-mode="showcase"] .study[data-position="-1"]>p, .design-studies[data-mode="showcase"] .study[data-position="1"]>p{opacity:.8}
+.design-studies[data-mode="showcase"] .study[data-position="-2"]>p, .design-studies[data-mode="showcase"] .study[data-position="2"]>p{opacity:.55}
 .design-studies[data-mode="showcase"] .studies-grid:focus-visible{outline:2px solid #a9d2ff;outline-offset:6px}
 .design-studies[data-mode="grid"] .studies-grid{position:static;height:auto;min-height:0;touch-action:auto;perspective:none}
-.design-studies[data-mode="grid"] .studies-grid::before,.design-studies[data-mode="grid"] .studies-grid::after{display:none}
+.design-studies[data-mode="grid"] .studies-grid::before, .design-studies[data-mode="grid"] .studies-grid::after{display:none}
 .design-studies[data-mode="grid"] .study{position:relative;left:auto;top:auto;width:auto;visibility:visible;opacity:1;pointer-events:auto;padding:0;transform:none}
 @keyframes interface-hover{0%,100%{translate:0 0}50%{translate:0 -7px}}
 @media(max-width:760px){
@@ -181,7 +181,7 @@ body{background:#edf2f6;color:#0b1b28}
 .capabilities{padding:clamp(88px,9vw,128px) max(28px,calc((100vw - var(--max))/2));background:#0b1b29;color:#eef4fa;border-top:1px solid rgba(180,207,234,.17);border-bottom:1px solid rgba(180,207,234,.17)}
 .capabilities::before{content:"";position:absolute;inset:0 0 0 auto;width:52%;pointer-events:none;background:radial-gradient(ellipse at 73% 38%,rgba(46,108,163,.18),transparent 58%),linear-gradient(90deg,transparent,rgba(94,151,199,.035));z-index:0}
 .capabilities .capability-blueprint{inset:0 -5% 0 40%;opacity:.36;mask-image:linear-gradient(90deg,transparent,#000 25%,#000 88%,transparent)}
-.capabilities .capability-blueprint::before,.capabilities .capability-blueprint::after{border-color:rgba(105,170,223,.17)}
+.capabilities .capability-blueprint::before, .capabilities .capability-blueprint::after{border-color:rgba(105,170,223,.17)}
 .capabilities .capability-blueprint span{background:rgba(124,180,224,.2)}
 .capabilities .capability-blueprint i{background:#85caff;box-shadow:0 0 18px 6px rgba(87,173,240,.28)}
 .capabilities-heading{grid-template-columns:1fr auto;gap:16px 24px;align-items:end;margin-bottom:clamp(40px,6vw,72px)}
@@ -231,7 +231,7 @@ body{background:#edf2f6;color:#0b1b28}
 }
 @media(max-width:420px){.capabilities-heading{grid-template-columns:1fr}.capabilities-heading .text-link{grid-column:1;grid-row:3;justify-self:start}}
 @media(prefers-reduced-motion:reduce){
- .design-studies[data-mode="showcase"] .study,.design-studies[data-mode="showcase"] .study-screen{transition:none!important;animation:none!important}
+ .design-studies[data-mode="showcase"] .study, .design-studies[data-mode="showcase"] .study-screen{transition:none!important;animation:none!important}
 }
 
 /* Distinct visual systems for the requested interface studies and hero panel. */
@@ -250,7 +250,7 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-care .care-top{color:#765c4d}
 .design-studies .study-care .care-screen h3{font:400 clamp(1.18rem,2.25vw,1.85rem)/1.02 "DM Serif Display",Georgia,serif;letter-spacing:-.015em;color:#493a34}
 .design-studies .study-care .care-screen>small{color:#735b4c}
-.design-studies .study-care .care-options b,.design-studies .study-care .care-options b:first-child{border-color:rgba(112,82,64,.3);color:#4a3c34}
+.design-studies .study-care .care-options b, .design-studies .study-care .care-options b:first-child{border-color:rgba(112,82,64,.3);color:#4a3c34}
 .design-studies .study-care .care-options b{padding-inline:10px;border-radius:7px;background:rgba(255,249,239,.62)}
 
 .design-studies .study-system .system-screen{position:relative;isolation:isolate;background-color:#091724;background-image:radial-gradient(ellipse at 50% 53%,rgba(20,126,163,.25),transparent 42%),linear-gradient(rgba(105,197,226,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(105,197,226,.075) 1px,transparent 1px),linear-gradient(140deg,#10283a,#07131f 70%);background-size:auto,22px 22px,22px 22px,auto;color:#dff8ff}
@@ -292,7 +292,7 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-architecture .architecture-screen{background-color:#102a34;background-image:linear-gradient(rgba(106,200,211,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(106,200,211,.12) 1px,transparent 1px),radial-gradient(ellipse at 76% 35%,rgba(63,159,168,.2),transparent 45%);background-size:18px 18px,18px 18px,auto;color:#e4f3ed}
 .design-studies .study-architecture .architecture-screen>header{color:#add7d5}
 .design-studies .study-architecture .architecture-plan{border-color:#71bbc0;background:repeating-linear-gradient(0deg,transparent 0 18px,rgba(106,200,211,.16) 18px 19px),repeating-linear-gradient(90deg,transparent 0 18px,rgba(106,200,211,.16) 18px 19px)}
-.design-studies .study-architecture .architecture-plan::before,.design-studies .study-architecture .architecture-plan::after,.design-studies .study-architecture .architecture-plan i,.design-studies .study-architecture .architecture-plan b{border-color:#74bec0;background-color:transparent}
+.design-studies .study-architecture .architecture-plan::before, .design-studies .study-architecture .architecture-plan::after, .design-studies .study-architecture .architecture-plan i, .design-studies .study-architecture .architecture-plan b{border-color:#74bec0;background-color:transparent}
 .design-studies .study-architecture .architecture-caption p{color:#b8d0cc}
 
 .design-studies .study-information .information-screen{position:relative;isolation:isolate;overflow:hidden;background:#dce8e1;color:#173b3b}
@@ -312,7 +312,7 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-wayfinding .wayfinding-screen{position:relative;isolation:isolate;overflow:hidden;background:#e8e5d9;color:#14292c}
 .wayfinding-top{position:absolute;z-index:3;left:7%;right:7%;top:8%;display:flex;justify-content:space-between;font:8px "IBM Plex Mono",monospace;letter-spacing:.08em}
 .wayfinding-map{position:absolute;inset:0 0 0 8%;overflow:hidden;background:linear-gradient(153deg,transparent 0 28%,#d17853 28.2% 28.8%,transparent 29%),linear-gradient(29deg,transparent 0 46%,rgba(25,76,80,.86) 46.2% 47%,transparent 47.2%),linear-gradient(145deg,transparent 0 62%,rgba(25,76,80,.86) 62.2% 63%,transparent 63.2%),repeating-linear-gradient(0deg,transparent 0 29px,rgba(21,57,57,.11) 29px 30px),repeating-linear-gradient(90deg,transparent 0 29px,rgba(21,57,57,.11) 29px 30px),#d7dfd5;clip-path:polygon(9% 0,100% 0,100% 100%,0 100%)}
-.wayfinding-map::before,.wayfinding-map::after{content:"";position:absolute;inset:-25% 25%;border:1px solid rgba(24,66,65,.28);transform:rotate(32deg) skewX(-12deg)}
+.wayfinding-map::before, .wayfinding-map::after{content:"";position:absolute;inset:-25% 25%;border:1px solid rgba(24,66,65,.28);transform:rotate(32deg) skewX(-12deg)}
 .wayfinding-map::after{inset:-20% 48%;transform:rotate(-28deg) skewX(10deg);border-color:rgba(24,66,65,.19)}
 .wayfinding-map i{position:absolute;width:7px;height:7px;border:1px solid #fff;border-radius:50%;background:#b95037;box-shadow:0 0 0 5px rgba(185,80,55,.17)}
 .wayfinding-map i:nth-child(1){left:31%;top:27%}.wayfinding-map i:nth-child(2){right:22%;top:49%;background:#174e55}.wayfinding-map i:nth-child(3){left:48%;bottom:17%;background:#174e55}
@@ -327,7 +327,7 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-care .care-screen h3{font-size:clamp(1.12rem,1.8vw,1.55rem);line-height:1.05}
 .design-studies .study-care .care-screen>small{grid-column:1;grid-row:3;align-self:end;max-width:16ch;margin-top:7px;font-size:8px;line-height:1.35;letter-spacing:.035em}
 .design-studies .study-care .care-options{grid-column:2;grid-row:2;align-self:center;align-content:center;gap:7px}
-.design-studies .study-care .care-options b,.design-studies .study-care .care-options b:first-child{min-height:32px;padding:7px 9px;border:1px solid rgba(112,82,64,.18);background:rgba(255,249,239,.94);font-size:clamp(9px,.75vw,11px);line-height:1.2}
+.design-studies .study-care .care-options b, .design-studies .study-care .care-options b:first-child{min-height:32px;padding:7px 9px;border:1px solid rgba(112,82,64,.18);background:rgba(255,249,239,.94);font-size:clamp(9px,.75vw,11px);line-height:1.2}
 
 @media(max-width:760px){
  .design-studies .study-professional .professional-main h3{font-size:clamp(1rem,4.2vw,1.35rem)}
@@ -363,7 +363,7 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-professional .professional-side{position:relative;left:auto;top:auto;grid-column:1;grid-row:1;width:auto;height:auto;min-width:0;padding:12% 4% 10% 0;display:flex;flex-direction:column;justify-content:space-between;gap:12px;font-size:clamp(7px,.65vw,9px)}
 .design-studies .study-professional .professional-side span{line-height:1.65;overflow-wrap:anywhere}
 .design-studies .study-professional .professional-main{position:relative;grid-column:2;grid-row:1;min-width:0;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;align-content:stretch;gap:clamp(4px,.65vw,8px);padding:8% 0 5% 2%!important}
-.design-studies .study-professional .professional-main h3,.design-studies .study-professional .professional-main p,.design-studies .study-professional .professional-links,.design-studies .study-professional .professional-main>b{position:static;inset:auto;width:auto;min-width:0;margin:0}
+.design-studies .study-professional .professional-main h3, .design-studies .study-professional .professional-main p, .design-studies .study-professional .professional-links, .design-studies .study-professional .professional-main>b{position:static;inset:auto;width:auto;min-width:0;margin:0}
 .design-studies .study-professional .professional-main h3{align-self:end;font-size:clamp(1rem,2vw,1.5rem);line-height:1.02;letter-spacing:-.02em;overflow-wrap:anywhere}
 .design-studies .study-professional .professional-main p{font-size:clamp(8px,.72vw,10px);line-height:1.25;color:#d2c8c3}
 .design-studies .study-professional .professional-links{align-self:end;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(3px,.6vw,7px)}
@@ -373,7 +373,7 @@ body{background:#edf2f6;color:#0b1b28}
 
 
 .design-studies .study-culture .culture-event{left:62%;right:7%;top:25%;gap:clamp(6px,.9vw,10px);min-width:0}
-.design-studies .study-culture .culture-event strong,.design-studies .study-culture .culture-event span{min-width:0;line-height:1.25;overflow-wrap:anywhere}
+.design-studies .study-culture .culture-event strong, .design-studies .study-culture .culture-event span{min-width:0;line-height:1.25;overflow-wrap:anywhere}
 .design-studies .study-culture .culture-index{writing-mode:vertical-rl;right:7%;bottom:8%}
 
 .design-studies[data-mode="showcase"] .study:not([data-active])>p{visibility:hidden;opacity:0}
@@ -435,14 +435,14 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies[data-mode="showcase"] .study[data-active] .study-screen{border-color:rgba(206,231,252,.72);box-shadow:0 38px 100px rgba(0,0,0,.58),0 0 40px rgba(90,159,220,.17),0 1px 0 rgba(255,255,255,.22) inset}
 .design-studies[data-mode="showcase"] .study>p{visibility:hidden;opacity:0;position:relative;margin:14px auto 0;max-width:92%;min-height:1.4em;color:#d8e7f4;text-align:center;font-size:.88rem;line-height:1.35;letter-spacing:.025em;text-shadow:0 2px 18px #07131d;transition:opacity .25s}
 .design-studies[data-mode="showcase"] .study[data-active]>p{visibility:visible;opacity:1}
-.design-studies[data-mode="showcase"] .study[data-position="-1"]>p,.design-studies[data-mode="showcase"] .study[data-position="1"]>p,.design-studies[data-mode="showcase"] .study[data-position="-2"]>p,.design-studies[data-mode="showcase"] .study[data-position="2"]>p{visibility:hidden;opacity:0}
+.design-studies[data-mode="showcase"] .study[data-position="-1"]>p, .design-studies[data-mode="showcase"] .study[data-position="1"]>p, .design-studies[data-mode="showcase"] .study[data-position="-2"]>p, .design-studies[data-mode="showcase"] .study[data-position="2"]>p{visibility:hidden;opacity:0}
 .design-studies[data-mode="showcase"] .study{cursor:pointer}
 .design-studies[data-mode="showcase"] .study[data-active]{cursor:grab}
 .design-studies[data-mode="showcase"] .studies-grid:focus-visible{outline:2px solid #a9d2ff;outline-offset:5px}
 .design-studies[data-mode="showcase"] .study[role="button"]:focus-visible{outline:2px solid #a9d2ff;outline-offset:8px;border-radius:6px}
-.design-studies[data-mode="showcase"] .studies-tools button:focus-visible,.design-studies[data-mode="showcase"] .studies-grid:focus-visible{outline:2px solid #a9d2ff;outline-offset:4px}
+.design-studies[data-mode="showcase"] .studies-tools button:focus-visible, .design-studies[data-mode="showcase"] .studies-grid:focus-visible{outline:2px solid #a9d2ff;outline-offset:4px}
 .design-studies[data-mode="grid"] .studies-grid{position:static;height:auto;min-height:0;touch-action:auto;perspective:none;mask-image:none}
-.design-studies[data-mode="grid"] .studies-grid::before,.design-studies[data-mode="grid"] .studies-grid::after{display:none}
+.design-studies[data-mode="grid"] .studies-grid::before, .design-studies[data-mode="grid"] .studies-grid::after{display:none}
 .design-studies[data-mode="grid"] .study{position:relative;left:auto;top:auto;width:auto;visibility:visible;opacity:1;pointer-events:auto;padding:0;transform:none;filter:none;cursor:auto}
 .design-studies[data-mode="grid"] .study::before{display:none}
 .design-studies[data-mode="grid"] .study>p{visibility:visible;opacity:1}
@@ -462,7 +462,7 @@ body{background:#edf2f6;color:#0b1b28}
  .design-studies[data-mode="showcase"] .study>p{margin-top:10px;font-size:.73rem}
 }
 @media(prefers-reduced-motion:reduce){
- .design-studies[data-mode="showcase"] .study,.design-studies[data-mode="showcase"] .study>p,.design-studies[data-mode="showcase"] .studies-tools button{transition:none!important}
+ .design-studies[data-mode="showcase"] .study, .design-studies[data-mode="showcase"] .study>p, .design-studies[data-mode="showcase"] .studies-tools button{transition:none!important}
  .design-studies[data-mode="showcase"] .study-screen{animation:none!important}
 }
 
@@ -477,7 +477,7 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-calm .calm-copy h3{position:static;margin:0;font:400 clamp(1.35rem,2.6vw,2.05rem)/.96 "DM Serif Display",Georgia,serif;letter-spacing:-.035em;color:#26382f}
 .design-studies .study-calm .calm-copy p{position:static;margin:8px 0 0;color:#68766c;font-size:clamp(9px,.8vw,11px);line-height:1.25}
 .design-studies .study-calm .calm-orbit{right:9%;top:30%;width:22%;aspect-ratio:1;border:1px solid rgba(67,111,86,.4);border-radius:50%;box-shadow:inset 0 0 0 9px rgba(255,255,255,.2),0 0 0 8px rgba(67,111,86,.06)}
-.design-studies .study-calm .calm-orbit::before,.design-studies .study-calm .calm-orbit::after{content:"";position:absolute;inset:17%;border:1px solid rgba(67,111,86,.22);border-radius:50%}
+.design-studies .study-calm .calm-orbit::before, .design-studies .study-calm .calm-orbit::after{content:"";position:absolute;inset:17%;border:1px solid rgba(67,111,86,.22);border-radius:50%}
 .design-studies .study-calm .calm-orbit::after{inset:37%;background:#c98e73;border:0;box-shadow:0 0 22px rgba(201,142,115,.26)}
 .design-studies .study-calm .calm-orbit i{position:absolute;right:17%;top:18%;width:7px;height:7px;border-radius:50%;background:#778f73}
 .design-studies .study-calm .calm-task{left:7%;right:7%;top:auto;bottom:23%;grid-template-columns:22px minmax(0,1fr) 14px;gap:8px;padding:10px 11px;border:1px solid rgba(81,105,88,.17);border-radius:9px;background:rgba(255,255,255,.65);box-shadow:0 8px 24px rgba(53,70,58,.06);font-size:clamp(9px,.9vw,12px)}
@@ -581,7 +581,7 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-product .study-screen>*{z-index:1}
 .design-studies .study-product .study-nav{left:7%;top:8%;color:#b8d1da;letter-spacing:.12em}
 .design-studies .study-product .product-ring{position:absolute;right:20%;top:25%;width:30%;aspect-ratio:1;border:1px dashed rgba(118,220,237,.48);border-radius:50%;box-shadow:0 0 32px rgba(70,171,201,.08)}
-.design-studies .study-product .product-ring::before,.design-studies .study-product .product-ring::after{content:"";position:absolute;inset:18%;border:1px solid rgba(118,220,237,.22);border-radius:50%}
+.design-studies .study-product .product-ring::before, .design-studies .study-product .product-ring::after{content:"";position:absolute;inset:18%;border:1px solid rgba(118,220,237,.22);border-radius:50%}
 .design-studies .study-product .product-ring::after{inset:43%;background:#7ef1be;border:0;box-shadow:0 0 16px rgba(126,241,190,.65)}
 .design-studies .study-product .study-metric{left:8%;top:29%;width:35%;padding:11px 12px 10px;border:1px solid rgba(184,220,237,.17);border-radius:6px;background:rgba(9,25,36,.75);box-shadow:0 12px 28px rgba(0,0,0,.2)}
 .design-studies .study-product .study-metric b{font-size:clamp(2.4rem,4.5vw,4.1rem);line-height:.92}
@@ -602,25 +602,25 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-accessible .study-screen::before{top:17%;right:8%;width:22%;height:17%;aspect-ratio:1.45;border:1px solid rgba(23,131,139,.34);border-radius:14px 14px 14px 4px;background:rgba(255,255,255,.72);box-shadow:0 6px 14px rgba(23,78,91,.08);content:""}
 .design-studies .study-accessible .study-screen::after{content:"•••";position:absolute;z-index:1;right:12.3%;top:19.5%;color:#6caaa2;font:700 clamp(13px,2.6cqi,18px)/1 "IBM Plex Sans",sans-serif;letter-spacing:.12em}
 
-.design-studies .study-space .space-screen{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 61% 45%,rgba(52,111,174,.22),transparent 39%),linear-gradient(145deg,#050d19,#0c1a2b 66%,#08111d);color:#eaf3ff}
-.design-studies .study-space .space-screen::before{content:"";position:absolute;inset:0;z-index:0;opacity:.36;background-image:radial-gradient(circle at 18% 31%,#d7eaff 0 1px,transparent 1.6px),radial-gradient(circle at 38% 78%,#a8d8ff 0 1px,transparent 1.5px),radial-gradient(circle at 80% 22%,#fff 0 1px,transparent 1.6px),linear-gradient(rgba(91,145,197,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(91,145,197,.09) 1px,transparent 1px);background-size:117px 91px,139px 103px,163px 127px,28px 28px,28px 28px;mask-image:radial-gradient(ellipse at 65% 46%,#000,transparent 83%)}
-.design-studies .study-space .space-screen>*{z-index:1}
-.design-studies .study-space .space-header,.design-studies .study-dinosaur .dinosaur-header{position:absolute;left:7%;right:7%;top:8%;display:flex;justify-content:space-between;color:#bed4e9;font:500 8px "IBM Plex Mono",monospace;letter-spacing:.12em}
-.design-studies .study-space .space-header span:last-child{color:#74d5e8}
-.design-studies .study-space .space-map{position:absolute;left:39%;top:15%;width:58%;height:58%;border-radius:50%;transform:rotate(-17deg)}
-.design-studies .study-space .space-orbit{position:absolute;left:50%;top:50%;width:100%;height:48%;border:1px solid rgba(135,197,236,.46);border-radius:50%;transform:translate(-50%,-50%) rotate(28deg)}
-.design-studies .study-space .orbit-two{width:100%;height:74%;transform:translate(-50%,-50%) rotate(-36deg);border-color:rgba(117,170,225,.32)}
-.design-studies .study-space .orbit-three{width:76%;height:100%;transform:translate(-50%,-50%) rotate(67deg);border-color:rgba(117,170,225,.23)}
-.design-studies .study-space .space-sun{position:absolute;left:50%;top:50%;width:15%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle at 38% 35%,#fff4c6,#e69e64 55%,#ad5f56);box-shadow:0 0 32px rgba(235,164,102,.34)}
-.design-studies .study-space .space-planet{position:absolute;border-radius:50%;box-shadow:0 0 12px rgba(128,210,245,.5)}
-.design-studies .study-space .planet-earth{left:11%;top:31%;width:9px;height:9px;background:#76d6d2}
-.design-studies .study-space .planet-jupiter{right:5%;top:63%;width:18px;height:18px;background:linear-gradient(0deg,#d58c61 0 27%,#f0c294 28% 45%,#a96554 46% 70%,#edd0a7 71%)}
 
-.design-studies .study-space .space-focus small{color:#93bfd9;font:500 8px "IBM Plex Mono",monospace;letter-spacing:.12em}
-.design-studies .study-space .space-focus h3{margin:8px 0 3px;color:#f2f5f4;font:400 clamp(1.5rem,3vw,2.5rem)/.95 "DM Serif Display",Georgia,serif;letter-spacing:-.04em}
-.design-studies .study-space .space-focus span{color:#acc1d0;font-size:9px}
-.design-studies .study-space .space-rail{position:absolute;left:7%;right:7%;bottom:8%;display:flex;justify-content:space-between;gap:4px;padding-top:8px;border-top:1px solid rgba(164,204,230,.22);color:#91a7b9;font:7px "IBM Plex Mono",monospace}
-.design-studies .study-space .space-rail b{color:#f4c69d;font-weight:600}
+
+
+.design-studies .study-dinosaur .dinosaur-header{position:absolute;left:7%;right:7%;top:8%;display:flex;justify-content:space-between;color:#bed4e9;font:500 8px "IBM Plex Mono",monospace;letter-spacing:.12em}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .design-studies .study-dinosaur .dinosaur-screen{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 76% 47%,rgba(140,116,65,.24),transparent 38%),linear-gradient(145deg,#141d20,#1f2a28 62%,#101719);color:#f2eee2}
 .design-studies .study-dinosaur .dinosaur-screen::before{content:"";position:absolute;inset:0;z-index:0;opacity:.36;background:repeating-radial-gradient(ellipse at 76% 51%,transparent 0 15px,rgba(217,190,120,.16) 16px 17px,transparent 18px 30px),linear-gradient(rgba(215,197,151,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(215,197,151,.07) 1px,transparent 1px);background-size:auto,24px 24px,24px 24px;mask-image:linear-gradient(90deg,transparent 22%,#000)}
@@ -628,7 +628,7 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-dinosaur .dinosaur-header{color:#d5cfb6}
 .design-studies .study-dinosaur .dinosaur-header span:last-child{color:#c6df85}
 .design-studies .study-dinosaur .dinosaur-scan{position:absolute;right:8%;top:21%;width:37%;height:44%;border:1px solid rgba(204,185,132,.45);background:linear-gradient(rgba(203,190,154,.11) 1px,transparent 1px),linear-gradient(90deg,rgba(203,190,154,.11) 1px,transparent 1px);background-size:14px 14px;clip-path:polygon(8% 0,100% 0,92% 100%,0 87%)}
-.design-studies .study-dinosaur .dinosaur-scan::before,.design-studies .study-dinosaur .dinosaur-scan::after{content:"";position:absolute;inset:18%;border:1px solid rgba(221,203,154,.43);border-radius:50%;transform:rotate(-22deg)}
+.design-studies .study-dinosaur .dinosaur-scan::before, .design-studies .study-dinosaur .dinosaur-scan::after{content:"";position:absolute;inset:18%;border:1px solid rgba(221,203,154,.43);border-radius:50%;transform:rotate(-22deg)}
 .design-studies .study-dinosaur .dinosaur-scan::after{inset:30% 8%;border-radius:0;border-color:rgba(198,223,133,.65);transform:rotate(18deg)}
 .design-studies .study-dinosaur .dinosaur-scan i{position:absolute;left:50%;top:12%;bottom:12%;border-left:1px dashed rgba(233,222,191,.48)}
 .design-studies .study-dinosaur .dinosaur-scan b{position:absolute;left:12%;right:12%;top:50%;border-top:1px dashed rgba(233,222,191,.48)}
@@ -662,8 +662,8 @@ body{background:#edf2f6;color:#0b1b28}
  .design-studies .study-accessible .study-actions{gap:6px}
  .design-studies .study-accessible .study-actions b{min-height:38px;padding:7px;font-size:9px}
 
- .design-studies .study-space .space-focus h3{font-size:clamp(1.4rem,6vw,2rem)}
- .design-studies .study-space .space-rail{gap:3px;font-size:6px}
+ 
+ 
  .design-studies .study-dinosaur .dinosaur-focus{top:33%;width:47%}
  .design-studies .study-dinosaur .dinosaur-focus h3{font-size:clamp(1.12rem,4.8vw,1.65rem)}
  .design-studies .study-dinosaur .dinosaur-species{top:70%;font-size:6px}
@@ -768,23 +768,23 @@ body{background:#edf2f6;color:#0b1b28}
 
 /* Planet scale rail: one orbital bead, stem, and label per planet. */
 
-.design-studies .study-space .space-focus h3{margin-top:4px}
-.design-studies .study-space .planet-jupiter{width:clamp(27px,3.7vw,42px);height:clamp(27px,3.7vw,42px);overflow:hidden;border:1px solid rgba(242,219,177,.72);background:repeating-linear-gradient(0deg,#c47e58 0 4px,#e5c39b 4px 7px,#a85f4d 7px 9px,#e6c9a7 9px 12px,#c99066 12px 16px);box-shadow:inset -8px -3px 12px rgba(53,33,34,.46),inset 5px 2px 9px rgba(255,243,210,.6),0 0 0 5px rgba(230,183,139,.08),0 0 24px rgba(244,185,132,.32)}
-.design-studies .study-space .planet-jupiter i{position:absolute;left:49%;top:52%;width:22%;height:12%;border-radius:50%;background:#b75243;box-shadow:inset 0 1px 2px rgba(54,27,35,.34)}
-.design-studies .study-space .space-rail{left:6%;right:6%;bottom:5%;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));align-items:end;gap:2px;padding:0;border:0}
-.design-studies .study-space .planet-scale{position:relative;display:flex;min-width:0;align-items:center;flex-direction:column;justify-content:flex-end;gap:3px;color:#a5b8c4;font:6px/1.1 "IBM Plex Mono",monospace;text-align:center}
 
-.design-studies .study-space .planet-scale i{display:block;flex:none;width:var(--diameter);height:var(--diameter);margin-bottom:8px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#d6e9e6,#628e9d 60%,#263f59);box-shadow:inset -4px -2px 5px rgba(0,0,0,.6)}
-.design-studies .study-space .planet-scale b{display:block;white-space:nowrap;font-weight:500}
-.design-studies .study-space .planet-mercury{--diameter:4px}.design-studies .study-space .planet-mercury i{background:#8c837a}
-.design-studies .study-space .planet-venus{--diameter:5px}.design-studies .study-space .planet-venus i{background:#d6b77f}
-.design-studies .study-space .planet-earth{--diameter:6px}.design-studies .study-space .planet-earth i{background:radial-gradient(circle at 32% 27%,#9ee5d2,#4292ad 54%,#253d70 58%)}
-.design-studies .study-space .planet-mars{--diameter:4px}.design-studies .study-space .planet-mars i{background:#ca765a}
-.design-studies .study-space .planet-jupiter{--diameter:24px;gap:3px;color:#fff0d3}
-.design-studies .study-space .planet-jupiter i{width:var(--diameter);height:var(--diameter);margin-bottom:8px;background:repeating-linear-gradient(0deg,#c47e58 0 4px,#e5c39b 4px 7px,#a85f4d 7px 9px,#e6c9a7 9px 12px,#c99066 12px 16px);box-shadow:inset -6px -3px 9px rgba(34,25,29,.55),0 0 0 4px rgba(237,175,127,.13),0 0 18px rgba(244,185,132,.45)}
-.design-studies .study-space .planet-saturn{--diameter:20px}.design-studies .study-space .planet-saturn i{background:linear-gradient(155deg,transparent 40%,rgba(226,203,154,.75) 42% 47%,transparent 49%),radial-gradient(circle at 32% 28%,#e0c9a0,#877458 62%,#3b3542)}
-.design-studies .study-space .planet-uranus{--diameter:10px}.design-studies .study-space .planet-uranus i{background:#88d4d3}
-.design-studies .study-space .planet-neptune{--diameter:10px}.design-studies .study-space .planet-neptune i{background:#648ce4}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Dinosaur viewer: Pangaea reference beside a rotatable 3D specimen. */
 .design-studies .study-dinosaur .dinosaur-screen{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 74% 47%,rgba(52,107,111,.28),transparent 43%),linear-gradient(145deg,#0d171c,#1c292d 58%,#111a20);color:#e8ebdb}
@@ -844,10 +844,10 @@ body{background:#edf2f6;color:#0b1b28}
  .design-studies .study-professional .professional-links span{padding:5px 6px;font-size:6px}
  .design-studies .study-professional .professional-main>b{left:7%;top:77%;font-size:6px}
 
- .design-studies .study-space .space-rail{left:4%;right:4%;gap:1px}
+ 
 
- .design-studies .study-space .planet-jupiter{width:30px;height:30px}
- .design-studies .study-space .planet-jupiter i{width:19px;height:19px}
+ 
+ 
  .design-studies .study-dinosaur .pangaea-panel{left:5%;top:24%;width:29%;height:38%;padding:4px}
  .design-studies .study-dinosaur .dinosaur-focus{left:5%;top:66%;width:38%}
  .design-studies .study-dinosaur .raptor-viewport{right:4%;top:20%;width:59%;height:64%}
@@ -865,16 +865,16 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-system .system-toolbar{position:absolute;z-index:8;right:5%;top:42%;display:grid;grid-template-columns:repeat(2,25px);gap:4px}
 .design-studies .study-system .system-toolbar button{display:grid;place-items:center;min-width:0;width:25px;height:23px;padding:0;border:1px solid rgba(131,206,222,.35);border-radius:4px;background:rgba(7,22,32,.9);color:#d9f6f3;font:500 13px/1 "IBM Plex Sans",sans-serif;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.18)}
 .design-studies .study-system .system-toolbar button[data-system-action="expand"]{grid-column:1 / -1;width:100%;color:#8ceec7}
-.design-studies .study-system .system-toolbar button:hover,.design-studies .study-system .system-toolbar button:focus-visible{border-color:#9ae8e2;background:#153243;outline:2px solid rgba(129,224,219,.28);outline-offset:1px}
+.design-studies .study-system .system-toolbar button:hover, .design-studies .study-system .system-toolbar button:focus-visible{border-color:#9ae8e2;background:#153243;outline:2px solid rgba(129,224,219,.28);outline-offset:1px}
 .design-studies .study-system .system-node-custom{z-index:3;padding:5px 6px;border-color:#86d9d9;background:#123544;color:#bff5e9;font-size:6px;box-shadow:0 0 12px rgba(82,208,220,.18)}
 .design-studies .study-system .system-added-link{fill:none;stroke:#8ceec7;stroke-width:.4;stroke-dasharray:1.2 1.2;opacity:.88;vector-effect:non-scaling-stroke}
 .design-studies .study-system .system-screen[data-expanded="true"] .system-network{transform:scale(1.2)}
 .design-studies .study-system .system-screen[data-expanded="true"] .system-toolbar{right:4%;top:39%}
-.design-studies .study-space .space-rail .planet-scale{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:auto;height:auto;overflow:visible;border:0;border-radius:0;background:transparent;box-shadow:none}
-.design-studies .study-space .space-rail .planet-scale.planet-jupiter{width:auto;height:auto;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible}
 
-.design-studies .study-space .space-rail .planet-scale i{position:relative;left:auto;right:auto;top:auto;bottom:auto;border:0;border-radius:50%;box-shadow:inset -4px -2px 5px rgba(0,0,0,.6)}
-.design-studies .study-space .space-rail .planet-scale.planet-jupiter i{width:var(--diameter);height:var(--diameter);border:0;border-radius:50%;background:repeating-linear-gradient(0deg,#c47e58 0 4px,#e5c39b 4px 7px,#a85f4d 7px 9px,#e6c9a7 9px 12px,#c99066 12px 16px);box-shadow:inset -6px -3px 9px rgba(34,25,29,.55),0 0 0 4px rgba(237,175,127,.13),0 0 18px rgba(244,185,132,.45)}
+
+
+
+
 @media(max-width:760px){
  .design-studies .study-system .system-toolbar{right:4%;top:43%;grid-template-columns:repeat(2,22px);gap:3px}
  .design-studies .study-system .system-toolbar button{width:22px;height:21px}
@@ -898,7 +898,7 @@ body{background:#edf2f6;color:#0b1b28}
 }
 @media(max-width:560px){
  .service-row{grid-template-columns:minmax(0,1fr);gap:10px;padding:22px 0}
- .service-row h3,.service-row p,.service-row>span{grid-column:auto;grid-row:auto}
+ .service-row h3, .service-row p, .service-row>span{grid-column:auto;grid-row:auto}
  .service-row h3{font-size:clamp(1.75rem,8vw,2.2rem)}
  .service-row>span{margin-top:2px}
 }
@@ -932,7 +932,7 @@ body{background:#edf2f6;color:#0b1b28}
   border-color:rgba(32,76,120,.22);
   background:repeating-radial-gradient(circle,transparent 0 18%,rgba(42,86,132,.09) 18% 18.4%);
 }
-.service-map::before,.service-map::after{border-color:rgba(32,76,120,.16)}
+.service-map::before, .service-map::after{border-color:rgba(32,76,120,.16)}
 .service-map b{color:#10263a}
 .map-label{color:#496883}
 .map-point{background:#407fbd;box-shadow:0 0 14px 3px rgba(58,134,255,.22)}
@@ -1014,7 +1014,7 @@ body{background:#edf2f6;color:#0b1b28}
   background:radial-gradient(ellipse at 74% 38%,rgba(86,139,189,.08),transparent 58%),linear-gradient(90deg,transparent,rgba(94,151,199,.018));
 }
 .home .capabilities .capability-blueprint{opacity:.12}
-.home .capabilities .capability-blueprint::before,.home .capabilities .capability-blueprint::after{border-color:rgba(53,103,150,.13)}
+.home .capabilities .capability-blueprint::before, .home .capabilities .capability-blueprint::after{border-color:rgba(53,103,150,.13)}
 .home .capabilities .capability-blueprint span{background:rgba(53,103,150,.14)}
 .home .capabilities .capability-blueprint i{background:#5a91c3;box-shadow:0 0 14px 4px rgba(87,143,192,.18)}
 .home .capabilities-heading .eyebrow{color:#496883}
@@ -1059,7 +1059,7 @@ body{background:#edf2f6;color:#0b1b28}
   border-color:rgba(160,199,241,.2);
   background:repeating-radial-gradient(circle,transparent 0 18%,rgba(145,186,231,.07) 18% 18.4%);
 }
-.service-map::before,.service-map::after{border-color:rgba(150,192,240,.13)}
+.service-map::before, .service-map::after{border-color:rgba(150,192,240,.13)}
 .service-map b{color:#fff}
 .map-label{color:#90afd0}
 .map-point{background:#8ebeff;box-shadow:0 0 17px 5px rgba(58,134,255,.35)}
@@ -1211,40 +1211,12 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 
 
 /* Interactive planet selector: tactile targets without changing the study's visual language. */
-.design-studies .study-space .space-rail[role="group"] .planet-scale{
-  appearance:none;
-  -webkit-appearance:none;
-  min-width:0;
-  min-height:38px;
-  padding:5px 1px 3px;
-  border:1px solid transparent;
-  border-radius:4px;
-  background:transparent;
-  color:#a5b8c4;
-  font:500 6px/1.1 "IBM Plex Mono",monospace;
-  cursor:pointer;
-  transition:color .18s ease,background .18s ease,border-color .18s ease,transform .18s ease;
-}
-.design-studies .study-space .space-rail[role="group"] .planet-scale:hover{
-  color:#f2f7fc;
-  background:rgba(99,161,205,.1);
-}
-.design-studies .study-space .space-rail[role="group"] .planet-scale[aria-pressed="true"]{
-  color:#f3fbff;
-  border-color:rgba(118,214,210,.34);
-  background:linear-gradient(180deg,rgba(94,182,197,.18),rgba(55,111,143,.06));
-}
-.design-studies .study-space .space-rail[role="group"] .planet-scale:focus-visible{
-  outline:2px solid #9ed9f0;
-  outline-offset:2px;
-}
-.design-studies .study-space .space-rail[role="group"] .planet-scale i{
-  transition:transform .18s ease,box-shadow .18s ease;
-}
-.design-studies .study-space .space-rail[role="group"] .planet-scale[aria-pressed="true"] i{
-  transform:scale(1.18);
-  box-shadow:0 0 0 3px rgba(123,216,221,.15),0 0 14px rgba(123,216,221,.6);
-}
+
+
+
+
+
+
 
 /* Keep the product graph in its own visual column, clear of the 87% metric. */
 .design-studies[data-mode] .study-product .study-metric{left:8%;top:30%;width:34%}
@@ -1326,14 +1298,12 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   line-height:.9;
   text-align:right;
 }
-.design-studies[data-mode] .study-diagonal .diagonal-nav,
-.design-studies[data-mode] .study-diagonal .diagonal-copy,
-.design-studies[data-mode] .study-diagonal .diagonal-index{z-index:3}
+.design-studies[data-mode] .study-diagonal .diagonal-nav, .design-studies[data-mode] .study-diagonal .diagonal-copy, .design-studies[data-mode] .study-diagonal .diagonal-index{z-index:3}
 .design-studies[data-mode] .study-diagonal .diagonal-copy{left:9%;bottom:17%;width:37%;font-size:clamp(8px,2.1cqw,10px);line-height:1.3}
 .design-studies[data-mode] .study-diagonal .diagonal-index{right:10.5%;bottom:9.5%;font-size:clamp(6px,1.65cqw,7px)}
 @media(prefers-reduced-motion:reduce){
   .design-studies[data-mode] .study-diagonal .motion-field{display:none}
-  .design-studies .study-space .space-rail .planet-scale{transition:none}
+  
 }
 
 
@@ -1454,8 +1424,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   background:rgba(18,28,27,.8);color:#e4e1d4;
   font:600 clamp(6px,1.35cqw,8px)/1 "IBM Plex Mono",monospace;letter-spacing:.08em;cursor:pointer;
 }
-.design-studies[data-mode] .study-spatial .spatial-controls button:hover,
-.design-studies[data-mode] .study-spatial .spatial-controls button:focus-visible{border-color:#d9cca8;background:#34413a;color:white}
+.design-studies[data-mode] .study-spatial .spatial-controls button:hover, .design-studies[data-mode] .study-spatial .spatial-controls button:focus-visible{border-color:#d9cca8;background:#34413a;color:white}
 .design-studies[data-mode] .study-spatial .spatial-controls button:focus-visible{outline:2px solid #d9cca8;outline-offset:3px}
 .design-studies[data-mode] .study-spatial .spatial-hint{
   position:absolute;left:7%;bottom:7%;color:rgba(229,225,207,.66);
@@ -1474,8 +1443,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .design-studies[data-mode] .study-spatial .spatial-copy{left:6%;width:35%;bottom:17%}
 }
 @media(prefers-reduced-motion:reduce){
-  .design-studies[data-mode] .study-spatial .spatial-model,
-  .design-studies[data-mode] .study-spatial .spatial-screen *{scroll-behavior:auto;transition:none}
+  .design-studies[data-mode] .study-spatial .spatial-model, .design-studies[data-mode] .study-spatial .spatial-screen *{scroll-behavior:auto;transition:none}
 }
 
 
@@ -1656,49 +1624,36 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 
 
 /* Focused interface-study refinements: orbit, room builder, and clean grid layouts. */
-.design-studies[data-mode] .study-space .space-screen{container-type:inline-size}
-.design-studies[data-mode] .study-space .space-screen::before{
-  animation:space-drift-a 72s linear infinite;
-  background-position:0 0,0 0,0 0,0 0,0 0;
-}
-.design-studies[data-mode] .study-space .space-screen::after{
-  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.38;
-  background-image:radial-gradient(circle at 24% 44%,rgba(210,235,255,.92) 0 1px,transparent 1.7px),radial-gradient(circle at 67% 72%,rgba(133,211,238,.8) 0 1px,transparent 1.7px),radial-gradient(circle at 83% 25%,rgba(255,255,255,.8) 0 1px,transparent 1.7px);
-  background-size:149px 123px,187px 161px,221px 177px;
-  animation:space-drift-b 110s linear infinite;
-}
+
+
+
 @keyframes space-drift-a{to{background-position:180px 95px,-140px 165px,230px -120px,0 0,0 0}}
 @keyframes space-drift-b{to{background-position:-170px 130px,220px -105px,-130px 180px}}
-.design-studies[data-mode] .study-space .space-map{border:0}
-.design-studies[data-mode] .study-space .planet-orbit{
-  position:absolute;left:50%;top:50%;width:var(--orbit-width);height:var(--orbit-height);
-  border:1px solid rgba(135,197,236,.28);border-radius:50%;transform:translate(-50%,-50%) rotate(var(--orbit-tilt,0deg));
-}
-.design-studies[data-mode] .study-space .orbit-mercury{--orbit-tilt:-26deg;border-color:rgba(207,190,165,.34)}
-.design-studies[data-mode] .study-space .orbit-venus{--orbit-tilt:16deg;border-color:rgba(215,167,127,.3)}
-.design-studies[data-mode] .study-space .orbit-earth{--orbit-tilt:-10deg;border-color:rgba(135,197,236,.45)}
-.design-studies[data-mode] .study-space .orbit-mars{--orbit-tilt:28deg;border-color:rgba(215,121,98,.3)}
-.design-studies[data-mode] .study-space .orbit-jupiter{--orbit-tilt:-18deg;border-color:rgba(117,170,225,.26)}
-.design-studies[data-mode] .study-space .orbit-saturn{--orbit-tilt:22deg;border-color:rgba(214,190,145,.46)}
-.design-studies[data-mode] .study-space .orbit-uranus{--orbit-tilt:-28deg;border-color:rgba(142,216,215,.32)}
-.design-studies[data-mode] .study-space .orbit-neptune{--orbit-tilt:12deg;border-color:rgba(113,153,237,.34)}
-.design-studies[data-mode] .study-space .planet-path{position:absolute;inset:0;display:block;border:0;border-radius:50%;animation:planet-orbit var(--orbit-time) linear infinite;animation-delay:calc(var(--orbit-time) * -.17)}
-.design-studies[data-mode] .study-space .space-planet{position:absolute;left:50%;top:0;display:block;width:clamp(4px,1.1cqw,8px);height:clamp(4px,1.1cqw,8px);transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 0 10px rgba(128,210,245,.55)}
-.design-studies[data-mode] .study-space .planet-mercury{background:#d6c8ac;width:4px;height:4px}
-.design-studies[data-mode] .study-space .planet-venus{background:#d7a77f;width:5px;height:5px}
-.design-studies[data-mode] .study-space .planet-earth{background:radial-gradient(circle at 35% 30%,#b9f0e4,#428ec1 72%);width:6px;height:6px}
-.design-studies[data-mode] .study-space .planet-mars{background:#d77962;width:5px;height:5px}
-.design-studies[data-mode] .study-space .planet-jupiter{background:linear-gradient(0deg,#d58c61 0 27%,#f0c294 28% 45%,#a96554 46% 70%,#edd0a7 71%);width:10px;height:10px}
-.design-studies[data-mode] .study-space .space-planet.planet-saturn{background:#d9bd89;width:8px;height:8px}
-.design-studies[data-mode] .study-space .space-planet.planet-saturn::after{content:"";position:absolute;z-index:1;left:50%;top:50%;width:220%;height:68%;border:1.25px solid rgba(255,232,184,.98);border-radius:50%;transform:translate(-50%,-50%) rotate(-24deg);box-shadow:0 0 5px rgba(238,211,160,.45);pointer-events:none}
-.design-studies[data-mode] .study-space .planet-uranus{background:#8ed8d7;width:7px;height:7px}
-.design-studies[data-mode] .study-space .planet-neptune{background:#7199ed;width:7px;height:7px}
-@keyframes planet-orbit{to{transform:rotate(360deg)}}
-.design-studies[data-mode] .study-space .space-focus{z-index:2}
-.design-studies[data-mode] .study-space .space-rail{z-index:2}
-@media(prefers-reduced-motion:reduce){
- .design-studies .study-space .space-screen::before,.design-studies .study-space .space-screen::after,.design-studies .study-space .planet-path{animation:none!important}
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .design-studies[data-mode] .study-system .system-head b{left:auto;right:7%;top:0}
 .design-studies[data-mode] .study-food .food-menu li i{margin-right:clamp(18px,3.4cqw,30px);transform:translateX(-5px)}
 /* Professional study gets a compact, predictable hierarchy in the grid. */
@@ -1758,8 +1713,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .design-studies[data-mode] .study-information .info-filter{left:51%;right:6%;top:23%}
 }
 /* Study controls remain clear and usable at thumbnail and showcase sizes. */
-.design-studies[data-mode] .study-learning .word-slots button,
-.design-studies[data-mode] .study-learning .letter-bank button{
+.design-studies[data-mode] .study-learning .word-slots button, .design-studies[data-mode] .study-learning .letter-bank button{
   display:grid;place-items:center;flex:0 0 auto;border:0;border-radius:4px;
   background:#fff8d6;color:#20324f;font:700 clamp(10px,2.1cqw,16px)/1 "IBM Plex Sans",sans-serif;
   box-shadow:0 3px 0 rgba(40,55,72,.16);cursor:pointer;touch-action:manipulation;
@@ -1797,12 +1751,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
  .design-studies[data-mode] .study-spatial .room-addition{transition:none}
 }
 
-.design-studies .study-space .space-screen::before,
-.design-studies .study-space .space-screen::after,
-.design-studies .study-space .planet-path{animation-play-state:paused}
-.design-studies .study-space .space-screen[data-orbit-visible="true"]::before,
-.design-studies .study-space .space-screen[data-orbit-visible="true"]::after,
-.design-studies .study-space .space-screen[data-orbit-visible="true"] .planet-path{animation-play-state:running}
+
+
 
 
 /* Quiet motion for the landing artwork and the blue MICA mark. */
@@ -1817,7 +1767,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   50%{transform:translateY(-1px);box-shadow:0 0 30px rgba(105,162,231,.3)}
 }
 @media(prefers-reduced-motion:reduce){
-  .home .poster-hero-image,.home .brand-mark{animation:none!important;transform:none!important}
+  .home .poster-hero-image, .home .brand-mark{animation:none!important;transform:none!important}
 }
 /* A slow 3D turn lets the existing Velociraptor model reveal its volume. */
 
@@ -1834,7 +1784,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies .study-wayfinding .wayfinding-options button:focus-visible{outline:2px solid #315d5c;outline-offset:2px}
 .design-studies .study-wayfinding .wayfinding-screen[data-layer="places"] .wayfinding-map{filter:saturate(.62)}
 .design-studies .study-wayfinding .wayfinding-screen[data-layer="places"] .wayfinding-map i{opacity:1;transform:scale(1.25)}
-.design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map::before,.design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map::after{opacity:.28}
+.design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map::before, .design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map::after{opacity:.28}
 .design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map i{opacity:.35}
 .design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map b{transform:scale(1.55)}
 /* A soft landscape sits behind the calm study's existing interface. */
@@ -1854,7 +1804,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 
 /* Bedding keeps its navigation together and the headline above the footer. */
 .design-studies[data-mode] .study-bedding .bedding-screen{isolation:isolate}
-.design-studies[data-mode] .study-bedding .bedding-menu{position:absolute;z-index:3;top:7%;left:7%;right:auto;display:flex;justify-content:flex-start;gap:clamp(5px,1.4cqw,12px);color:#243940;font:500 clamp(6px,1.7cqw,8px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.12em}
+.design-studies[data-mode] .study-bedding .bedding-menu{position:absolute;z-index:3;top:7%;left:auto;right:7%;width:max-content;max-width:86%;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:clamp(5px,1.4cqw,12px);color:#243940;font:500 clamp(6px,1.7cqw,8px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.12em}
 .design-studies[data-mode] .study-bedding .bedding-title{left:8%;right:auto;top:auto;bottom:15%;width:48%;height:auto;color:#fff;text-align:left;text-shadow:0 2px 14px rgba(17,24,28,.42)}
 .design-studies[data-mode] .study-bedding .bedding-title h3{position:static;margin:0;font:400 clamp(1.35rem,6.4cqi,2.15rem)/.9 Georgia,serif;letter-spacing:-.055em;color:#fff;text-shadow:0 2px 14px rgba(17,24,28,.42)}
 .design-studies[data-mode] .study-bedding .bedding-footer{left:8%;right:auto;bottom:8%;max-width:55%;font:500 clamp(5px,1.4cqw,7px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.07em;text-align:left;color:#fff;text-shadow:0 1px 8px rgba(14,23,28,.55)}
@@ -1862,10 +1812,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-system .system-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;max-width:none!important;width:100%;font-size:clamp(6px,1.55cqw,8px)}
 .design-studies[data-mode] .study-system .system-foot [data-link-count]{margin-left:auto;text-align:right;white-space:nowrap;color:#9cc9d6}
 /* A few neural nodes breathe in a staggered sequence instead of flashing together. */
-.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+1),
-.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+4){animation:neural-node-breathe 4.8s ease-in-out infinite}
-.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+2),
-.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+6){animation:neural-node-breathe 5.6s ease-in-out infinite 1.4s}
+.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+1), .design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+4){animation:neural-node-breathe 4.8s ease-in-out infinite}
+.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+2), .design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(7n+6){animation:neural-node-breathe 5.6s ease-in-out infinite 1.4s}
 @keyframes neural-node-breathe{0%,72%,100%{fill:#172c39;filter:none}78%,89%{fill:#9af2db;filter:drop-shadow(0 0 5px rgba(130,243,206,.9))}}
 @media(prefers-reduced-motion:reduce){.design-studies .study-neural .neural-nodes circle{animation:none!important}}
 
@@ -1915,7 +1863,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .home .editorial-intro div>p{margin:clamp(24px,3vw,40px) 0 0;max-width:62ch}
 @media(max-width:850px){
  .home .editorial-intro{grid-template-columns:minmax(0,1fr);gap:22px}
- .home .editorial-intro .section-number,.home .editorial-intro>div[data-reveal]{grid-column:1;grid-row:auto}
+ .home .editorial-intro .section-number, .home .editorial-intro>div[data-reveal]{grid-column:1;grid-row:auto}
 }
 .home .closing-cta.cosmic-echo{
  background:radial-gradient(ellipse at 78% 62%,rgba(53,116,182,.14),transparent 42%),linear-gradient(120deg,#04111e 0%,#071a2a 58%,#092038 100%);
@@ -1998,8 +1946,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .home .poster-hero .shooting-star{left:22%;top:47%;width:82px}
 }
 @media(prefers-reduced-motion:reduce){
-  .home .poster-hero .hero-starfield::before,.home .poster-hero .hero-starfield::after,
-  .home .poster-hero .shooting-star{animation:none!important}
+  .home .poster-hero .hero-starfield::before, .home .poster-hero .hero-starfield::after, .home .poster-hero .shooting-star{animation:none!important}
 }
 
 /* Three service-map points now travel on separate, precise orbits. */
@@ -2183,11 +2130,10 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   animation:object-whip var(--shape-speed,3.1s) cubic-bezier(.35,.04,.55,.98) infinite,object-warm-glint 8s ease-in-out infinite;
 }
 @keyframes object-warm-glint{0%,42%,100%{filter:brightness(1)}50%,60%{filter:brightness(1.34)}}
-.design-studies[data-mode] .study-space .space-screen::before,
-.design-studies[data-mode] .study-space .space-screen::after{display:none!important;animation:none!important}
 
 
-.design-studies[data-mode] .study-space .space-rail .planet-scale b{position:relative;top:0;line-height:1.1}
+
+
 @media(prefers-reduced-motion:reduce){
   .design-studies[data-mode] .study-diagonal .shape-three{animation:none!important}
 }
@@ -2239,8 +2185,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 
 /* 2026-10: round, slow star points and a meteor with its luminous head leading. */
 .home .poster-hero .hero-starfield{opacity:.62}
-.home .poster-hero .hero-starfield::before,
-.home .poster-hero .hero-starfield::after{
+.home .poster-hero .hero-starfield::before, .home .poster-hero .hero-starfield::after{
   background-size:250px 205px;
   background-image:
     radial-gradient(circle 1.5px at 31px 42px,rgba(221,239,255,.84) 0 1.35px,transparent 2px),
@@ -2296,9 +2241,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
  .home .poster-hero .space-event-comet{left:5%;top:30%;width:30px}
 }
 @media(prefers-reduced-motion:reduce){
- .home .poster-hero .hero-starfield::before,.home .poster-hero .hero-starfield::after,
- .home .poster-hero .shooting-star,.home .poster-hero .space-event{animation:none!important}
- .home .poster-hero .shooting-star,.home .poster-hero .space-event{display:none!important}
+ .home .poster-hero .hero-starfield::before, .home .poster-hero .hero-starfield::after, .home .poster-hero .shooting-star, .home .poster-hero .space-event{animation:none!important}
+ .home .poster-hero .shooting-star, .home .poster-hero .space-event{display:none!important}
 }
 
 /* One animated point moves rapidly and continuously through the model graph. */
@@ -2361,41 +2305,35 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode="grid"] .study-minimal .practice-copy{left:33%;top:32%}
 
 /* Distinguish planet identities and keep the counter below the orbit labels. */
-.design-studies[data-mode] .study-space .space-focus{top:50%!important;left:5%;width:34%;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;align-content:start;align-items:start;gap:4px;padding:4px 6px;border-radius:3px;background:linear-gradient(90deg,rgba(5,14,26,.94),rgba(5,14,26,.76),transparent)}
-.design-studies[data-mode] .study-space .space-focus h3{grid-column:1;grid-row:1;margin:0;color:#f2f5f4;font-size:clamp(1.05rem,5.6cqi,1.5rem);line-height:1}
-.design-studies[data-mode] .study-space .space-focus span{grid-column:1;grid-row:2;display:block;margin:0;text-align:left;color:#acc1d0;font-size:clamp(7px,1.9cqi,9px)}
-.design-studies[data-mode] .study-space .space-focus small{position:static;grid-column:1;grid-row:3;display:block;margin:0;color:#93bfd9;font-size:clamp(6px,1.55cqi,8px);line-height:1.2}
-.design-studies[data-mode] .study-space .space-planet.planet-saturn{background:radial-gradient(circle at 36% 30%,#fff0c5,#c6a46d 64%,#87664d);width:8px;height:8px}
-.design-studies[data-mode] .study-space .planet-uranus{background:radial-gradient(circle at 35% 32%,#e1ffff,#72c7cf 62%,#3e7483);width:7px;height:7px}
-.design-studies[data-mode] .study-space .planet-neptune{background:radial-gradient(circle at 35% 30%,#bdcffd,#547ce0 62%,#29396f);width:7px;height:7px}
-.design-studies[data-mode] .study-space .planet-mars{background:radial-gradient(circle at 32% 28%,#ffd1ad,#c85b45 65%,#75352c)}
-.design-studies[data-mode] .study-space .orbit-jupiter{left:50%;width:48%;height:62%}
-.design-studies[data-mode] .study-space .orbit-saturn{left:52%;width:70%;height:82%}
-.design-studies[data-mode] .study-space .orbit-uranus{left:54%;width:90%;height:102%}
-.design-studies[data-mode] .study-space .orbit-neptune{left:56%;width:112%;height:122%}
-.design-studies[data-mode] .study-space .planet-jupiter::after{
-  content:"";position:absolute;left:56%;top:60%;width:26%;height:11%;border-radius:50%;background:rgba(145,65,49,.85)
-}
-.design-studies[data-mode] .study-space .space-rail .planet-scale{width:100%;min-width:0;min-height:46px;padding:4px 1px 3px;gap:2px;color:#cfdfeb;font-size:clamp(7px,1.9cqi,8.5px);line-height:1.1;touch-action:manipulation}
-.design-studies[data-mode] .study-space .space-rail .planet-scale b{white-space:nowrap;font-size:inherit}
-.design-studies[data-mode] .study-space .space-rail .planet-scale i{width:clamp(7px,2cqi,10px);height:clamp(7px,2cqi,10px);margin:0 auto}
-.design-studies[data-mode] .study-space .space-rail .planet-saturn i{position:relative}
-.design-studies[data-mode] .study-space .space-rail .planet-saturn i::after{content:"";position:absolute;left:50%;top:50%;width:165%;height:65%;border:1px solid rgba(255,232,184,.88);border-radius:50%;transform:translate(-50%,-50%) rotate(-24deg);pointer-events:none}
-.design-studies[data-mode] .study-space .space-rail .planet-scale:focus-visible{outline:2px solid #9ed9f0;outline-offset:1px}
-.design-studies[data-mode] .study-space .space-rail .planet-scale i{
-  background:radial-gradient(circle at 35% 28%,var(--planet-highlight,#e5f3f0),var(--planet-base,#628e9d) 61%,var(--planet-shadow,#263f59))
-}
-.design-studies[data-mode] .study-space .space-rail .planet-mercury{--planet-highlight:#f1e2c7;--planet-base:#9d8a6c;--planet-shadow:#514537}
-.design-studies[data-mode] .study-space .space-rail .planet-venus{--planet-highlight:#ffdb9c;--planet-base:#d29658;--planet-shadow:#6a493c}
-.design-studies[data-mode] .study-space .space-rail .planet-earth{--planet-highlight:#b9f0e4;--planet-base:#428ec1;--planet-shadow:#203b5f}
-.design-studies[data-mode] .study-space .space-rail .planet-mars{--planet-highlight:#ffc09a;--planet-base:#c85b45;--planet-shadow:#592b27}
-.design-studies[data-mode] .study-space .space-rail .planet-jupiter{--planet-highlight:#f7d4a4;--planet-base:#c47e58;--planet-shadow:#563c3b}
-.design-studies[data-mode] .study-space .space-rail .planet-saturn{--planet-highlight:#fff1cb;--planet-base:#c6a46d;--planet-shadow:#5d4835}
-.design-studies[data-mode] .study-space .space-rail .planet-uranus{--planet-highlight:#e1ffff;--planet-base:#72c7cf;--planet-shadow:#285664}
-.design-studies[data-mode] .study-space .space-rail .planet-neptune{--planet-highlight:#bdcffd;--planet-base:#547ce0;--planet-shadow:#222e6b}
-@media(max-width:560px){
- .design-studies[data-mode] .study-space .space-focus{left:4%;width:35%}
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Slow orbital/mesh motion through the hero keeps the MICA atmosphere alive. */
 
@@ -2435,10 +2373,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .design-studies .study-dinosaur .raptor-controls button:hover:not(:disabled){
   background:#315754;color:#fff;
 }
-.site-live .design-studies .study-dinosaur .raptor-controls button:focus-visible,
-.site-live .design-studies .study-dinosaur .raptor-viewport:focus-visible,
-.site-live .study-dinosaur .raptor-notes summary:focus-visible,
-.site-live .study-dinosaur .raptor-notes a:focus-visible{
+.site-live .design-studies .study-dinosaur .raptor-controls button:focus-visible, .site-live .design-studies .study-dinosaur .raptor-viewport:focus-visible, .site-live .study-dinosaur .raptor-notes summary:focus-visible, .site-live .study-dinosaur .raptor-notes a:focus-visible{
   outline:2px solid #d8eaa2;outline-offset:2px;
 }
 .site-live .design-studies .study-dinosaur .raptor-controls button:disabled{
@@ -2546,8 +2481,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
     linear-gradient(118deg,#f6f3eb 0%,#f6f3eb 53%,#e7ede4 53%,#e7ede4 100%);
   color:#18362f;
 }
-.site-live .design-studies .study-care .care-screen::before,
-.site-live .design-studies .study-care .care-screen::after{display:none}
+.site-live .design-studies .study-care .care-screen::before, .site-live .design-studies .study-care .care-screen::after{display:none}
 .site-live .design-studies .study-care .care-screen>*{position:relative;z-index:1}
 .site-live .design-studies .study-care .care-top{
   grid-column:1;grid-row:1;display:flex;justify-content:space-between;align-items:center;gap:8px;
@@ -2563,7 +2497,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   margin:0;max-width:42ch;color:#3e5a51;font-size:clamp(9px,1.6cqw,12px);line-height:1.35
 }
 .site-live .design-studies .study-care .care-illustration{display:none}
-.site-live .design-studies .study-care .care-illustration i,.site-live .design-studies .study-care .care-illustration b,.site-live .design-studies .study-care .care-illustration em{position:absolute;bottom:0;display:block;width:1px;height:clamp(12px,2.2cqw,22px);background:#73937d;transform-origin:bottom}
+.site-live .design-studies .study-care .care-illustration i, .site-live .design-studies .study-care .care-illustration b, .site-live .design-studies .study-care .care-illustration em{position:absolute;bottom:0;display:block;width:1px;height:clamp(12px,2.2cqw,22px);background:#73937d;transform-origin:bottom}
 .site-live .design-studies .study-care .care-illustration i{left:25%;transform:rotate(-24deg)}
 .site-live .design-studies .study-care .care-illustration b{left:51%;height:clamp(17px,3.3cqw,34px)}
 .site-live .design-studies .study-care .care-illustration em{left:76%;transform:rotate(24deg)}
@@ -2578,7 +2512,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   font:inherit;cursor:pointer;transition:background-color .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease
 }
 .site-live .design-studies .study-care .care-option:hover{background:#fff;border-color:#577c69;box-shadow:0 3px 12px rgba(30,68,52,.08);transform:translateY(-1px)}
-.site-live .design-studies .study-care .care-option:focus-visible,.site-live .design-studies .study-care .care-back:focus-visible,.site-live .design-studies .study-care .care-action:focus-visible,.site-live .design-studies .study-care .care-source:focus-visible,.site-live .design-studies .study-care .care-crisis a:focus-visible{
+.site-live .design-studies .study-care .care-option:focus-visible, .site-live .design-studies .study-care .care-back:focus-visible, .site-live .design-studies .study-care .care-action:focus-visible, .site-live .design-studies .study-care .care-source:focus-visible, .site-live .design-studies .study-care .care-crisis a:focus-visible{
   outline:3px solid #245d46;outline-offset:3px
 }
 .site-live .design-studies .study-care .care-option[aria-pressed="true"]{border-color:#315f4e;background:#e3eee5;box-shadow:inset 3px 0 #315f4e}
@@ -2608,12 +2542,12 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .design-studies .study-care .care-result h4{margin:0 0 7px;color:#173a30;font:400 clamp(1.1rem,3cqw,1.8rem)/1.05 "DM Serif Display",Georgia,serif}
 .site-live .design-studies .study-care .care-result>p:not(.care-result-kicker){margin:0 0 10px;color:#36554a;font-size:clamp(9px,1.55cqw,13px);line-height:1.42}
 .site-live .design-studies .study-care .care-result-actions{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 8px}
-.site-live .design-studies .study-care .care-action,.site-live .design-studies .study-care .care-back{
+.site-live .design-studies .study-care .care-action, .site-live .design-studies .study-care .care-back{
   min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:8px 13px;border:1px solid #718e7d;border-radius:5px;
   background:#fffefa;color:#193d31;font:600 clamp(9px,1.5cqw,12px)/1.2 "IBM Plex Sans",sans-serif;text-decoration:none;cursor:pointer
 }
 .site-live .design-studies .study-care .care-action-primary{background:#285943;border-color:#285943;color:#fff}
-.site-live .design-studies .study-care .care-action:hover,.site-live .design-studies .study-care .care-back:hover{background:#e4eee5}
+.site-live .design-studies .study-care .care-action:hover, .site-live .design-studies .study-care .care-back:hover{background:#e4eee5}
 .site-live .design-studies .study-care .care-action-primary:hover{background:#1d4936;color:#fff}
 .site-live .design-studies .study-care .care-source{display:block;width:fit-content;max-width:100%;margin:2px 0 8px;color:#214f3c;font-size:clamp(8px,1.35cqw,11px);line-height:1.25;text-decoration:underline;text-underline-offset:2px}
 .site-live .design-studies .study-care .care-back{min-height:38px;padding:6px 11px}
@@ -2636,7 +2570,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .site-live .design-studies .study-care .care-response{padding:14px;align-content:start}
   .site-live .design-studies .study-care .care-result h4{font-size:1.35rem}
   .site-live .design-studies .study-care .care-result>p:not(.care-result-kicker){font-size:11px}
-  .site-live .design-studies .study-care .care-action,.site-live .design-studies .study-care .care-back{min-height:44px;font-size:11px}
+  .site-live .design-studies .study-care .care-action, .site-live .design-studies .study-care .care-back{min-height:44px;font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){
   .site-live .design-studies .study-care .care-option{transition:none}
@@ -2644,24 +2578,24 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 
 /* Test 6: interactive care and bedding studies. */
 .site-live .pet-screen{position:relative;isolation:isolate;}
-.site-live .pet-open,.site-live .bedding-launch{position:absolute;z-index:4;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:44px;padding:.65rem .9rem;border:1px solid rgba(255,255,255,.74);border-radius:2px;background:rgba(10,23,29,.84);color:#fff;font:600 .78rem/1.1 "IBM Plex Sans",sans-serif;letter-spacing:.02em;cursor:pointer;transition:background .18s ease,transform .18s ease;}
+.site-live .pet-open, .site-live .bedding-launch{position:absolute;z-index:4;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:44px;padding:.65rem .9rem;border:1px solid rgba(255,255,255,.74);border-radius:2px;background:rgba(10,23,29,.84);color:#fff;font:600 .78rem/1.1 "IBM Plex Sans",sans-serif;letter-spacing:.02em;cursor:pointer;transition:background .18s ease,transform .18s ease;}
 .site-live .pet-open{left:7%;bottom:3.5%;}
-.site-live .pet-open:hover,.site-live .bedding-launch:hover{background:#173a40;transform:translateY(-1px)}
-.site-live .pet-open:focus-visible,.site-live .pet-panel button:focus-visible,.site-live .bedding-screen button:focus-visible{outline:3px solid #f2c879;outline-offset:3px}
+.site-live .pet-open:hover, .site-live .bedding-launch:hover{background:#173a40;transform:translateY(-1px)}
+.site-live .pet-open:focus-visible, .site-live .pet-panel button:focus-visible, .site-live .bedding-screen button:focus-visible{outline:3px solid #f2c879;outline-offset:3px}
 .site-live .pet-panel{position:absolute;z-index:6;inset:0;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:clamp(8px,1.7cqw,14px);overflow:auto;padding:clamp(12px,3cqw,24px);background:#f2efe6;color:#1e302d;font:500 clamp(10px,1.8cqw,14px)/1.45 "IBM Plex Sans",sans-serif;}
-.site-live .pet-panel[hidden],.site-live .bedding-panel[hidden]{display:none!important}
-.site-live .pet-panel-head,.site-live .bedding-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.site-live .pet-kicker,.site-live .bedding-kicker,.site-live .pet-overline,.site-live .bedding-overline,.site-live .bedding-label{font:600 .68em/1.3 "IBM Plex Mono",monospace;letter-spacing:.1em;color:#536a63}
-.site-live .pet-panel h4,.site-live .bedding-panel h4{margin:.35em 0 0;font:500 clamp(1.25rem,4cqw,2rem)/1 "IBM Plex Sans",sans-serif;letter-spacing:-.04em;color:#1e302d}
-.site-live .pet-panel button,.site-live .bedding-panel button{font:600 .78em/1.15 "IBM Plex Sans",sans-serif;cursor:pointer}
-.site-live .pet-close,.site-live .bedding-close{min-height:44px;padding:.55em .7em;border:1px solid #9faea6;background:transparent;color:#1e302d}
-.site-live .pet-tabs,.site-live .bedding-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
-.site-live .pet-tabs [role=tab],.site-live .bedding-tabs [role=tab]{min-height:44px;padding:.55em .4em;border:1px solid #aab7af;background:transparent;color:#344a43}
-.site-live .pet-tabs [aria-selected=true],.site-live .bedding-tabs [aria-selected=true]{background:#25463d;border-color:#25463d;color:#fff}
-.site-live .pet-panel-copy,.site-live .bedding-panel-copy{min-height:0;overflow:auto;padding:.9em 1em;background:rgba(255,255,255,.62);border-left:2px solid #9baf9e;}
-.site-live .pet-panel-copy p,.site-live .bedding-panel-copy p{margin:.2em 0 .65em}
+.site-live .pet-panel[hidden], .site-live .bedding-panel[hidden]{display:none!important}
+.site-live .pet-panel-head, .site-live .bedding-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.site-live .pet-kicker, .site-live .bedding-kicker, .site-live .pet-overline, .site-live .bedding-overline, .site-live .bedding-label{font:600 .68em/1.3 "IBM Plex Mono",monospace;letter-spacing:.1em;color:#536a63}
+.site-live .pet-panel h4, .site-live .bedding-panel h4{margin:.35em 0 0;font:500 clamp(1.25rem,4cqw,2rem)/1 "IBM Plex Sans",sans-serif;letter-spacing:-.04em;color:#1e302d}
+.site-live .pet-panel button, .site-live .bedding-panel button{font:600 .78em/1.15 "IBM Plex Sans",sans-serif;cursor:pointer}
+.site-live .pet-close, .site-live .bedding-close{min-height:44px;padding:.55em .7em;border:1px solid #9faea6;background:transparent;color:#1e302d}
+.site-live .pet-tabs, .site-live .bedding-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.site-live .pet-tabs [role=tab], .site-live .bedding-tabs [role=tab]{min-height:44px;padding:.55em .4em;border:1px solid #aab7af;background:transparent;color:#344a43}
+.site-live .pet-tabs [aria-selected=true], .site-live .bedding-tabs [aria-selected=true]{background:#25463d;border-color:#25463d;color:#fff}
+.site-live .pet-panel-copy, .site-live .bedding-panel-copy{min-height:0;overflow:auto;padding:.9em 1em;background:rgba(255,255,255,.62);border-left:2px solid #9baf9e;}
+.site-live .pet-panel-copy p, .site-live .bedding-panel-copy p{margin:.2em 0 .65em}
 .site-live .pet-panel-copy p:not(.pet-overline){max-width:42ch;font-size:1.06em;line-height:1.48}
-.site-live .pet-panel-copy span,.site-live .pet-note,.site-live .bedding-fine,.site-live .bedding-disclaimer{font-size:.78em;color:#52645d}
+.site-live .pet-panel-copy span, .site-live .pet-note, .site-live .bedding-fine, .site-live .bedding-disclaimer{font-size:.78em;color:#52645d}
 .site-live .pet-note{margin:0}
 .site-live .bedding-screen{position:relative;isolation:isolate}
 .site-live .bedding-menu{align-items:center;gap:clamp(4px,1cqw,10px)}
@@ -2676,7 +2610,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .bedding-label{margin:.7em 0 .35em!important}
 .site-live .bedding-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
 .site-live .bedding-options button{min-height:48px;display:flex;align-items:center;justify-content:flex-start;gap:5px;padding:5px;border:1px solid #bdc5bc;background:#fff;color:#273a37;text-align:left}
-.site-live .bedding-options button[aria-pressed=true],.site-live .bedding-sizes button[aria-pressed=true]{outline:2px solid #445f53;outline-offset:1px;background:#edf2e9}
+.site-live .bedding-options button[aria-pressed=true], .site-live .bedding-sizes button[aria-pressed=true]{outline:2px solid #445f53;outline-offset:1px;background:#edf2e9}
 .site-live .fabric-swatch{flex:0 0 17px;width:17px;height:17px;border-radius:50%;border:1px solid rgba(23,36,31,.2)}
 .site-live .swatch-oat{background:#c9b99c}.site-live .swatch-cloud{background:#e9e8e1}.site-live .swatch-clay{background:#ab735d}
 .site-live .bedding-sizes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
@@ -2685,23 +2619,21 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .bedding-purchase-row>div:first-child{display:grid;gap:2px;font-size:.77em;color:#52645d}
 .site-live .bedding-purchase-row strong{font-size:1.4em;color:#253b3c}
 .site-live .bedding-quantity{display:flex;align-items:center;gap:8px}
-.site-live .bedding-quantity button,.site-live .bedding-bag button{width:40px;min-height:40px;border:1px solid #aab7af;background:#fff;color:#253b3c}
+.site-live .bedding-quantity button, .site-live .bedding-bag button{width:40px;min-height:40px;border:1px solid #aab7af;background:#fff;color:#253b3c}
 .site-live .bedding-quantity output{min-width:1ch;text-align:center;font-weight:700}
 .site-live .bedding-add{width:100%;min-height:44px;padding:.65em;border:1px solid #183a39;background:#183a39;color:#fff}
 .site-live .bedding-disclaimer{margin:.45em 0 0!important;font-size:.7em}
 .site-live .bedding-bag{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:.45em .65em;border-top:1px solid #c9d0c8;font-size:.78em}
 .site-live .bedding-bag[hidden]{display:none!important}.site-live .bedding-bag p{margin:0}
-@media(max-width:620px){.site-live .pet-panel,.site-live .bedding-panel{padding:10px;gap:7px}.site-live .pet-panel h4{font-size:1.28rem}.site-live .bedding-options button{font-size:.72em;gap:3px;padding:4px}.site-live .bedding-panel{font-size:10px}}
-@media(prefers-reduced-motion:reduce){.site-live .pet-open,.site-live .bedding-launch{transition:none}}
+@media(max-width:620px){.site-live .pet-panel, .site-live .bedding-panel{padding:10px;gap:7px}.site-live .pet-panel h4{font-size:1.28rem}.site-live .bedding-options button{font-size:.72em;gap:3px;padding:4px}.site-live .bedding-panel{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.site-live .pet-open, .site-live .bedding-launch{transition:none}}
 
 
 /* Arts & Culture: accessible miniature navigation and a complete, one-shot letter fall. */
 .design-studies .study-culture .culture-menu{
   z-index:4;left:5%;top:8%;gap:5px;min-width:clamp(62px,19cqi,84px)
 }
-.design-studies .study-culture .culture-menu button,
-.design-studies .study-culture .culture-replay,
-.design-studies .study-culture .culture-details-toggle{
+.design-studies .study-culture .culture-menu button, .design-studies .study-culture .culture-replay, .design-studies .study-culture .culture-details-toggle{
   min-height:30px;border:1px solid rgba(255,219,180,.42);border-radius:2px;
   padding:5px 7px;background:rgba(20,14,38,.46);color:#fff1df;
   font:600 clamp(8px,2.25cqi,10px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.06em;
@@ -2710,12 +2642,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies .study-culture .culture-menu button[aria-pressed="true"]{
   border-color:#f2d47c;background:rgba(242,212,124,.16);color:#ffe6a2
 }
-.design-studies .study-culture .culture-menu button:hover,
-.design-studies .study-culture .culture-replay:hover,
-.design-studies .study-culture .culture-details-toggle:hover{background:rgba(255,241,223,.18)}
-.design-studies .study-culture .culture-menu button:focus-visible,
-.design-studies .study-culture .culture-replay:focus-visible,
-.design-studies .study-culture .culture-details-toggle:focus-visible{
+.design-studies .study-culture .culture-menu button:hover, .design-studies .study-culture .culture-replay:hover, .design-studies .study-culture .culture-details-toggle:hover{background:rgba(255,241,223,.18)}
+.design-studies .study-culture .culture-menu button:focus-visible, .design-studies .study-culture .culture-replay:focus-visible, .design-studies .study-culture .culture-details-toggle:focus-visible{
   outline:2px solid #ffe6a2;outline-offset:2px
 }
 .design-studies .study-culture .culture-event{z-index:2}
@@ -2838,8 +2766,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   font:500 clamp(5px,.9cqw,7px)/1 "IBM Plex Mono",monospace;
   letter-spacing:.08em;
 }
-.site-live .design-studies[data-mode] .study-accessible .accessible-chat-in,
-.site-live .design-studies[data-mode] .study-accessible .accessible-chat-out{
+.site-live .design-studies[data-mode] .study-accessible .accessible-chat-in, .site-live .design-studies[data-mode] .study-accessible .accessible-chat-out{
   display:block;
   max-width:96%;
   padding:4px 6px;
@@ -2871,7 +2798,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .home .poster-hero .hero-frame-occlusion--lower{
   clip-path:polygon(66% 76%,100% 59%,100% 100%,67% 100%);
 }
-.home .poster-hero .poster-hero-actions,.home .poster-hero .poster-scroll{z-index:5}
+.home .poster-hero .poster-hero-actions, .home .poster-hero .poster-scroll{z-index:5}
 @media(max-width:720px){
   .home .poster-hero .hero-frame-occlusion{
     inset:0 0 auto;height:auto;aspect-ratio:1200/630;
@@ -2899,9 +2826,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   position:absolute;z-index:8;top:13%;left:5%;right:5%;width:auto;
   display:flex;justify-content:space-between;align-items:center;gap:6px
 }
-.design-studies[data-mode] .study-spatial .room-layout-actions,
-.design-studies[data-mode] .study-spatial .room-furniture-actions,
-.design-studies[data-mode] .study-spatial .room-view-actions{
+.design-studies[data-mode] .study-spatial .room-layout-actions, .design-studies[data-mode] .study-spatial .room-furniture-actions, .design-studies[data-mode] .study-spatial .room-view-actions{
   display:flex;align-items:center;gap:4px;min-width:0
 }
 .design-studies[data-mode] .study-spatial .room-controls button{
@@ -2910,9 +2835,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   color:#f1eadb;text-align:center;font:700 clamp(7px,1.75cqi,9px)/1.15 "IBM Plex Mono",monospace;
   letter-spacing:.035em;cursor:pointer;touch-action:manipulation
 }
-.design-studies[data-mode] .study-spatial .room-controls button:hover,
-.design-studies[data-mode] .study-spatial .room-controls button:focus-visible,
-.design-studies[data-mode] .study-spatial .room-controls button[aria-pressed="true"]{
+.design-studies[data-mode] .study-spatial .room-controls button:hover, .design-studies[data-mode] .study-spatial .room-controls button:focus-visible, .design-studies[data-mode] .study-spatial .room-controls button[aria-pressed="true"]{
   border-color:#e4c994;background:rgba(72,57,38,.96);color:#fff8e8
 }
 .design-studies[data-mode] .study-spatial .room-controls button:focus-visible{
@@ -2932,8 +2855,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .design-studies[data-mode] .study-spatial .room-model:active{cursor:grabbing}
 .design-studies[data-mode] .study-spatial .room-model:focus-visible{outline:2px solid rgba(238,219,178,.62);outline-offset:4px}
-.design-studies[data-mode] .study-spatial .room-main,
-.design-studies[data-mode] .study-spatial .room-addition{
+.design-studies[data-mode] .study-spatial .room-main, .design-studies[data-mode] .study-spatial .room-addition{
   position:absolute;top:0;height:100%;transform-style:preserve-3d;transition:left .32s cubic-bezier(.2,.75,.25,1),width .32s cubic-bezier(.2,.75,.25,1),opacity .22s ease
 }
 .design-studies[data-mode] .study-spatial .room-main{left:10%;width:80%;z-index:2}
@@ -2960,8 +2882,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   border:1px solid rgba(239,230,207,.72);background:linear-gradient(90deg,#d6c7a8,#c5b99e 56%,#a5a693);
   box-shadow:0 8px 14px rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.55)
 }
-.design-studies[data-mode] .study-spatial .room-left-wall,
-.design-studies[data-mode] .study-spatial .room-side-wall{
+.design-studies[data-mode] .study-spatial .room-left-wall, .design-studies[data-mode] .study-spatial .room-side-wall{
   position:absolute;top:42%;width:31%;height:54%;border:1px solid rgba(239,230,207,.68);
   background:linear-gradient(90deg,#a59d86,#778274 58%,#59665f);transform-style:preserve-3d;
   box-shadow:0 8px 12px rgba(0,0,0,.2)
@@ -2978,8 +2899,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   background:linear-gradient(145deg,#d8e6dc,#a9c1ae 65%,#758e83);
   box-shadow:0 0 18px rgba(255,211,144,.32),inset 0 0 0 1px rgba(52,65,54,.22)
 }
-.design-studies[data-mode] .study-spatial .room-window::before,
-.design-studies[data-mode] .study-spatial .room-window::after{
+.design-studies[data-mode] .study-spatial .room-window::before, .design-studies[data-mode] .study-spatial .room-window::after{
   content:"";position:absolute;background:rgba(246,238,216,.78)
 }
 .design-studies[data-mode] .study-spatial .room-window::before{left:50%;top:0;bottom:0;width:2px}
@@ -3034,30 +2954,20 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   box-shadow:0 8px 20px rgba(0,0,0,.32);transform:translate(-50%,-50%)
 }
 
-.design-studies[data-mode] .study-spatial .room-back-wall,
-.design-studies[data-mode] .study-spatial .room-left-wall,
-.design-studies[data-mode] .study-spatial .room-side-wall,
-.design-studies[data-mode] .study-spatial .room-floor,
-.design-studies[data-mode] .study-spatial .room-window{
+.design-studies[data-mode] .study-spatial .room-back-wall, .design-studies[data-mode] .study-spatial .room-left-wall, .design-studies[data-mode] .study-spatial .room-side-wall, .design-studies[data-mode] .study-spatial .room-floor, .design-studies[data-mode] .study-spatial .room-window{
   transition:background .3s ease,filter .3s ease,box-shadow .3s ease
 }
-.design-studies[data-mode] .study-spatial .room-back-wall,
-.design-studies[data-mode] .study-spatial .room-left-wall,
-.design-studies[data-mode] .study-spatial .room-side-wall{touch-action:pan-y}
+.design-studies[data-mode] .study-spatial .room-back-wall, .design-studies[data-mode] .study-spatial .room-left-wall, .design-studies[data-mode] .study-spatial .room-side-wall{touch-action:pan-y}
 .design-studies[data-mode] .study-spatial .room-screen[data-light="warm"]{
   background:radial-gradient(ellipse at 70% 46%,rgba(255,185,95,.22),transparent 52%),linear-gradient(135deg,#30271f,#151c1c 72%)
 }
 .design-studies[data-mode] .study-spatial .room-screen[data-light="cool"]{
   background:radial-gradient(ellipse at 70% 46%,rgba(94,202,255,.3),transparent 52%),linear-gradient(135deg,#172d3a,#101c25 72%)
 }
-.design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-back-wall,
-.design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-left-wall,
-.design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-side-wall{
+.design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-back-wall, .design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-left-wall, .design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-side-wall{
   background:linear-gradient(90deg,#efdbb5,#d4c39d 58%,#a9997b)
 }
-.design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-back-wall,
-.design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-left-wall,
-.design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-side-wall{
+.design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-back-wall, .design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-left-wall, .design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-side-wall{
   background:linear-gradient(90deg,#bed9e3,#91b2c1 58%,#647f91)
 }
 .design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-floor{
@@ -3078,30 +2988,197 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-window{
   border-color:#b9ecff;box-shadow:0 0 24px rgba(93,206,255,.5)
 }
-.design-studies[data-mode] .study-spatial .room-caption,
-.design-studies[data-mode] .study-spatial .spatial-hint{pointer-events:none}
+.design-studies[data-mode] .study-spatial .room-caption, .design-studies[data-mode] .study-spatial .spatial-hint{pointer-events:none}
 .design-studies[data-mode] .study-spatial [data-spatial-model][data-dragging="true"]{transition:none}
 @media(max-width:620px){
   .design-studies[data-mode] .study-spatial .room-controls{gap:3px}
-  .design-studies[data-mode] .study-spatial .room-layout-actions,
-  .design-studies[data-mode] .study-spatial .room-furniture-actions,
-  .design-studies[data-mode] .study-spatial .room-view-actions{gap:3px}
+  .design-studies[data-mode] .study-spatial .room-layout-actions, .design-studies[data-mode] .study-spatial .room-furniture-actions, .design-studies[data-mode] .study-spatial .room-view-actions{gap:3px}
   .design-studies[data-mode] .study-spatial .room-controls button{min-height:40px;padding-inline:5px;font-size:clamp(6.5px,1.9cqi,8px)}
   .design-studies[data-mode] .study-spatial .room-stage{inset:31% 4% 19%}
   .design-studies[data-mode] .study-spatial .room-caption{width:57%;bottom:4%}
   .design-studies[data-mode] .study-spatial .spatial-hint{max-width:37%;font-size:clamp(4px,.9cqi,5.5px)}
 }
 @media(prefers-reduced-motion:reduce){
-  .design-studies[data-mode] .study-spatial .room-model,
-  .design-studies[data-mode] .study-spatial .room-main,
-  .design-studies[data-mode] .study-spatial .room-addition,
-  .design-studies[data-mode] .study-spatial .room-piece,
-  .design-studies[data-mode] .study-spatial .room-window{transition:none!important;animation:none!important}
+  .design-studies[data-mode] .study-spatial .room-model, .design-studies[data-mode] .study-spatial .room-main, .design-studies[data-mode] .study-spatial .room-addition, .design-studies[data-mode] .study-spatial .room-piece, .design-studies[data-mode] .study-spatial .room-window{transition:none!important;animation:none!important}
 }
 
 
 /* When a second room is added, let both floor footprints meet at the shared edge. */
-.design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-floor,
-.design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-back-wall{
+.design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-floor, .design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-back-wall{
   width:100%;
 }
+
+
+/* Restored from the pre-revision Solar System study on b538a422. */
+.design-studies .study-space .space-screen{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 61% 45%,rgba(52,111,174,.22),transparent 39%),linear-gradient(145deg,#050d19,#0c1a2b 66%,#08111d);color:#eaf3ff}
+.design-studies .study-space .space-screen::before{content:"";position:absolute;inset:0;z-index:0;opacity:.36;background-image:radial-gradient(circle at 18% 31%,#d7eaff 0 1px,transparent 1.6px),radial-gradient(circle at 38% 78%,#a8d8ff 0 1px,transparent 1.5px),radial-gradient(circle at 80% 22%,#fff 0 1px,transparent 1.6px),linear-gradient(rgba(91,145,197,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(91,145,197,.09) 1px,transparent 1px);background-size:117px 91px,139px 103px,163px 127px,28px 28px,28px 28px;mask-image:radial-gradient(ellipse at 65% 46%,#000,transparent 83%)}
+.design-studies .study-space .space-screen>*{z-index:1}
+.design-studies .study-space .space-header{position:absolute;left:7%;right:7%;top:8%;display:flex;justify-content:space-between;color:#bed4e9;font:500 8px "IBM Plex Mono",monospace;letter-spacing:.12em}
+.design-studies .study-space .space-header span:last-child{color:#74d5e8}
+.design-studies .study-space .space-map{position:absolute;left:43%;top:13%;width:62%;height:68%;border-radius:50%;transform:rotate(-17deg)}
+.design-studies .study-space .space-orbit{position:absolute;left:50%;top:50%;width:100%;height:48%;border:1px solid rgba(135,197,236,.46);border-radius:50%;transform:translate(-50%,-50%) rotate(28deg)}
+.design-studies .study-space .orbit-two{width:100%;height:74%;transform:translate(-50%,-50%) rotate(-36deg);border-color:rgba(117,170,225,.32)}
+.design-studies .study-space .orbit-three{width:76%;height:100%;transform:translate(-50%,-50%) rotate(67deg);border-color:rgba(117,170,225,.23)}
+.design-studies .study-space .space-sun{position:absolute;left:50%;top:50%;width:15%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle at 38% 35%,#fff4c6,#e69e64 55%,#ad5f56);box-shadow:0 0 32px rgba(235,164,102,.34)}
+.design-studies .study-space .space-planet{position:absolute;border-radius:50%;box-shadow:0 0 12px rgba(128,210,245,.5)}
+.design-studies .study-space .planet-earth{left:11%;top:31%;width:9px;height:9px;background:#76d6d2}
+.design-studies .study-space .planet-jupiter{right:5%;top:63%;width:18px;height:18px;background:linear-gradient(0deg,#d58c61 0 27%,#f0c294 28% 45%,#a96554 46% 70%,#edd0a7 71%)}
+.design-studies .study-space .space-focus{position:absolute;left:7%;top:30%;width:39%}
+.design-studies .study-space .space-focus small{color:#93bfd9;font:500 8px "IBM Plex Mono",monospace;letter-spacing:.12em}
+.design-studies .study-space .space-focus h3{margin:8px 0 3px;color:#f2f5f4;font:400 clamp(1.5rem,3vw,2.5rem)/.95 "DM Serif Display",Georgia,serif;letter-spacing:-.04em}
+.design-studies .study-space .space-focus span{color:#acc1d0;font-size:9px}
+.design-studies .study-space .space-rail{position:absolute;left:7%;right:7%;bottom:8%;display:flex;justify-content:space-between;gap:4px;padding-top:8px;border-top:1px solid rgba(164,204,230,.22);color:#91a7b9;font:7px "IBM Plex Mono",monospace}
+.design-studies .study-space .space-rail b{color:#f4c69d;font-weight:600}
+@media(max-width:760px){.design-studies .study-space .space-focus{top:31%;width:43%}
+.design-studies .study-space .space-focus h3{font-size:clamp(1.4rem,6vw,2rem)}
+.design-studies .study-space .space-rail{gap:3px;font-size:6px}}
+.design-studies .study-space .space-focus{top:26%}
+.design-studies .study-space .space-focus h3{margin-top:4px}
+.design-studies .study-space .planet-jupiter{width:clamp(27px,3.7vw,42px);height:clamp(27px,3.7vw,42px);overflow:hidden;border:1px solid rgba(242,219,177,.72);background:repeating-linear-gradient(0deg,#c47e58 0 4px,#e5c39b 4px 7px,#a85f4d 7px 9px,#e6c9a7 9px 12px,#c99066 12px 16px);box-shadow:inset -8px -3px 12px rgba(53,33,34,.46),inset 5px 2px 9px rgba(255,243,210,.6),0 0 0 5px rgba(230,183,139,.08),0 0 24px rgba(244,185,132,.32)}
+.design-studies .study-space .planet-jupiter i{position:absolute;left:49%;top:52%;width:22%;height:12%;border-radius:50%;background:#b75243;box-shadow:inset 0 1px 2px rgba(54,27,35,.34)}
+.design-studies .study-space .space-rail{left:6%;right:6%;bottom:5%;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));align-items:end;gap:2px;padding:0;border:0}
+.design-studies .study-space .planet-scale{position:relative;display:flex;min-width:0;align-items:center;flex-direction:column;justify-content:flex-end;gap:3px;color:#a5b8c4;font:6px/1.1 "IBM Plex Mono",monospace;text-align:center}
+.design-studies .study-space .planet-scale::before{content:"";position:absolute;left:50%;bottom:12px;height:8px;border-left:1px solid rgba(149,190,215,.34)}
+.design-studies .study-space .planet-scale i{display:block;flex:none;width:var(--diameter);height:var(--diameter);margin-bottom:8px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#d6e9e6,#628e9d 60%,#263f59);box-shadow:inset -4px -2px 5px rgba(0,0,0,.6)}
+.design-studies .study-space .planet-scale b{display:block;white-space:nowrap;font-weight:500}
+.design-studies .study-space .planet-mercury{--diameter:4px}
+.design-studies .study-space .planet-mercury i{background:#8c837a}
+.design-studies .study-space .planet-venus{--diameter:5px}
+.design-studies .study-space .planet-venus i{background:#d6b77f}
+.design-studies .study-space .planet-earth{--diameter:6px}
+.design-studies .study-space .planet-earth i{background:radial-gradient(circle at 32% 27%,#9ee5d2,#4292ad 54%,#253d70 58%)}
+.design-studies .study-space .planet-mars{--diameter:4px}
+.design-studies .study-space .planet-mars i{background:#ca765a}
+.design-studies .study-space .planet-jupiter{--diameter:24px;gap:3px;color:#fff0d3}
+.design-studies .study-space .planet-jupiter i{width:var(--diameter);height:var(--diameter);margin-bottom:8px;background:repeating-linear-gradient(0deg,#c47e58 0 4px,#e5c39b 4px 7px,#a85f4d 7px 9px,#e6c9a7 9px 12px,#c99066 12px 16px);box-shadow:inset -6px -3px 9px rgba(34,25,29,.55),0 0 0 4px rgba(237,175,127,.13),0 0 18px rgba(244,185,132,.45)}
+.design-studies .study-space .planet-saturn{--diameter:20px}
+.design-studies .study-space .planet-saturn i{background:linear-gradient(155deg,transparent 40%,rgba(226,203,154,.75) 42% 47%,transparent 49%),radial-gradient(circle at 32% 28%,#e0c9a0,#877458 62%,#3b3542)}
+.design-studies .study-space .planet-uranus{--diameter:10px}
+.design-studies .study-space .planet-uranus i{background:#88d4d3}
+.design-studies .study-space .planet-neptune{--diameter:10px}
+.design-studies .study-space .planet-neptune i{background:#648ce4}
+@media(max-width:760px){.design-studies .study-space .space-focus{top:24%;width:37%}
+.design-studies .study-space .space-rail{left:4%;right:4%;gap:1px}
+.design-studies .study-space .planet-scale{font-size:5px}
+.design-studies .study-space .planet-jupiter{width:30px;height:30px}
+.design-studies .study-space .planet-jupiter i{width:19px;height:19px}}
+.design-studies .study-space .space-rail .planet-scale{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:auto;height:auto;overflow:visible;border:0;border-radius:0;background:transparent;box-shadow:none}
+.design-studies .study-space .space-rail .planet-scale.planet-jupiter{width:auto;height:auto;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible}
+.design-studies .study-space .space-rail .planet-scale::before{content:"";position:absolute;left:50%;bottom:12px;height:8px;border:0;border-left:1px solid rgba(149,190,215,.34);border-radius:0;background:transparent;box-shadow:none}
+.design-studies .study-space .space-rail .planet-scale i{position:relative;left:auto;right:auto;top:auto;bottom:auto;border:0;border-radius:50%;box-shadow:inset -4px -2px 5px rgba(0,0,0,.6)}
+.design-studies .study-space .space-rail .planet-scale.planet-jupiter i{width:var(--diameter);height:var(--diameter);border:0;border-radius:50%;background:repeating-linear-gradient(0deg,#c47e58 0 4px,#e5c39b 4px 7px,#a85f4d 7px 9px,#e6c9a7 9px 12px,#c99066 12px 16px);box-shadow:inset -6px -3px 9px rgba(34,25,29,.55),0 0 0 4px rgba(237,175,127,.13),0 0 18px rgba(244,185,132,.45)}
+.design-studies .study-space .space-rail[role="group"] .planet-scale{
+  appearance:none;
+  -webkit-appearance:none;
+  min-width:0;
+  min-height:38px;
+  padding:5px 1px 3px;
+  border:1px solid transparent;
+  border-radius:4px;
+  background:transparent;
+  color:#a5b8c4;
+  font:500 6px/1.1 "IBM Plex Mono",monospace;
+  cursor:pointer;
+  transition:color .18s ease,background .18s ease,border-color .18s ease,transform .18s ease;
+}
+.design-studies .study-space .space-rail[role="group"] .planet-scale:hover{
+  color:#f2f7fc;
+  background:rgba(99,161,205,.1);
+}
+.design-studies .study-space .space-rail[role="group"] .planet-scale[aria-pressed="true"]{
+  color:#f3fbff;
+  border-color:rgba(118,214,210,.34);
+  background:linear-gradient(180deg,rgba(94,182,197,.18),rgba(55,111,143,.06));
+}
+.design-studies .study-space .space-rail[role="group"] .planet-scale:focus-visible{
+  outline:2px solid #9ed9f0;
+  outline-offset:2px;
+}
+.design-studies .study-space .space-rail[role="group"] .planet-scale i{
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.design-studies .study-space .space-rail[role="group"] .planet-scale[aria-pressed="true"] i{
+  transform:scale(1.18);
+  box-shadow:0 0 0 3px rgba(123,216,221,.15),0 0 14px rgba(123,216,221,.6);
+}
+@media(prefers-reduced-motion:reduce){.design-studies .study-space .space-rail .planet-scale{transition:none}}
+.design-studies[data-mode] .study-space .space-screen{container-type:inline-size}
+.design-studies[data-mode] .study-space .space-screen::before{
+  animation:space-drift-a 72s linear infinite;
+  background-position:0 0,0 0,0 0,0 0,0 0;
+}
+.design-studies[data-mode] .study-space .space-screen::after{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.38;
+  background-image:radial-gradient(circle at 24% 44%,rgba(210,235,255,.92) 0 1px,transparent 1.7px),radial-gradient(circle at 67% 72%,rgba(133,211,238,.8) 0 1px,transparent 1.7px),radial-gradient(circle at 83% 25%,rgba(255,255,255,.8) 0 1px,transparent 1.7px);
+  background-size:149px 123px,187px 161px,221px 177px;
+  animation:space-drift-b 110s linear infinite;
+}
+.design-studies[data-mode] .study-space .space-map{border:0}
+.design-studies[data-mode] .study-space .planet-orbit{
+  position:absolute;left:50%;top:50%;width:var(--orbit-width);height:var(--orbit-height);
+  border:1px solid rgba(135,197,236,.28);border-radius:50%;transform:translate(-50%,-50%);
+}
+.design-studies[data-mode] .study-space .orbit-mercury{border-color:rgba(207,190,165,.34)}
+.design-studies[data-mode] .study-space .orbit-earth{border-color:rgba(135,197,236,.45)}
+.design-studies[data-mode] .study-space .orbit-jupiter,
+.design-studies[data-mode] .study-space .orbit-saturn{border-color:rgba(117,170,225,.26)}
+.design-studies[data-mode] .study-space .planet-path{position:absolute;inset:0;display:block;border:0;border-radius:50%;animation:planet-orbit var(--orbit-time) linear infinite}
+.design-studies[data-mode] .study-space .space-planet{position:absolute;left:50%;top:0;display:block;width:clamp(4px,1.1cqw,8px);height:clamp(4px,1.1cqw,8px);transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 0 10px rgba(128,210,245,.55)}
+.design-studies[data-mode] .study-space .planet-mercury{background:#d6c8ac;width:4px;height:4px}
+.design-studies[data-mode] .study-space .planet-venus{background:#d7a77f;width:5px;height:5px}
+.design-studies[data-mode] .study-space .planet-earth{background:radial-gradient(circle at 35% 30%,#b9f0e4,#428ec1 72%);width:6px;height:6px}
+.design-studies[data-mode] .study-space .planet-mars{background:#d77962;width:5px;height:5px}
+.design-studies[data-mode] .study-space .planet-jupiter{background:linear-gradient(0deg,#d58c61 0 27%,#f0c294 28% 45%,#a96554 46% 70%,#edd0a7 71%);width:10px;height:10px}
+.design-studies[data-mode] .study-space .planet-saturn{background:#d9bd89;width:8px;height:8px}
+.design-studies[data-mode] .study-space .planet-saturn::after{content:"";position:absolute;left:50%;top:50%;width:170%;height:55%;border:1px solid rgba(236,211,161,.9);border-radius:50%;transform:translate(-50%,-50%) rotate(-24deg)}
+.design-studies[data-mode] .study-space .planet-uranus{background:#8ed8d7;width:7px;height:7px}
+.design-studies[data-mode] .study-space .planet-neptune{background:#7199ed;width:7px;height:7px}
+@keyframes planet-orbit{to{transform:rotate(360deg)}}
+.design-studies[data-mode] .study-space .space-focus{z-index:2}
+.design-studies[data-mode] .study-space .space-rail{z-index:2}
+@media(prefers-reduced-motion:reduce){.design-studies .study-space .space-screen::before,
+.design-studies .study-space .space-screen::after,
+.design-studies .study-space .planet-path{animation:none!important}}
+.design-studies .study-space .space-screen::before,
+.design-studies .study-space .space-screen::after,
+.design-studies .study-space .planet-path{animation-play-state:paused}
+.design-studies .study-space .space-screen[data-orbit-visible="true"]::before,
+.design-studies .study-space .space-screen[data-orbit-visible="true"]::after,
+.design-studies .study-space .space-screen[data-orbit-visible="true"] .planet-path{animation-play-state:running}
+.design-studies[data-mode] .study-space .space-screen::before,
+.design-studies[data-mode] .study-space .space-screen::after{display:none!important;animation:none!important}
+.design-studies[data-mode] .study-space .space-galaxy-image{
+  position:absolute;z-index:1;left:7%;bottom:24%;width:26%;height:15%;object-fit:cover;object-position:50% 50%;
+  border:1px solid rgba(190,221,243,.55);border-radius:3px;opacity:.88;filter:saturate(.78) brightness(.84)
+}
+.design-studies[data-mode] .study-space .space-focus{top:29%;width:38%}
+.design-studies[data-mode] .study-space .space-rail .planet-scale::before{display:none!important}
+.design-studies[data-mode] .study-space .space-rail .planet-scale b{position:relative;top:0;line-height:1.1}
+@media(prefers-reduced-motion:reduce){.design-studies[data-mode] .study-space .space-galaxy-image{filter:none}}
+.design-studies[data-mode] .study-space .space-focus{top:34%}
+@media(max-width:560px){.design-studies[data-mode] .study-space .space-focus{top:34%;width:43%}}
+.design-studies[data-mode] .study-space .space-focus{top:41%!important}
+.design-studies[data-mode] .study-space .planet-saturn{background:radial-gradient(circle at 36% 30%,#fff0c5,#c6a46d 64%,#87664d);width:8px;height:8px}
+.design-studies[data-mode] .study-space .planet-uranus{background:radial-gradient(circle at 35% 32%,#e1ffff,#72c7cf 62%,#3e7483);width:7px;height:7px}
+.design-studies[data-mode] .study-space .planet-neptune{background:radial-gradient(circle at 35% 30%,#bdcffd,#547ce0 62%,#29396f);width:7px;height:7px}
+.design-studies[data-mode] .study-space .planet-mars{background:radial-gradient(circle at 32% 28%,#ffd1ad,#c85b45 65%,#75352c)}
+.design-studies[data-mode] .study-space .orbit-saturn{left:53%;width:70%;height:90%}
+.design-studies[data-mode] .study-space .orbit-uranus{left:54%;width:81%;height:104%}
+.design-studies[data-mode] .study-space .orbit-neptune{left:55%;width:94%;height:112%}
+.design-studies[data-mode] .study-space .planet-jupiter::after{
+  content:"";position:absolute;left:56%;top:60%;width:26%;height:11%;border-radius:50%;background:rgba(145,65,49,.85)
+}
+.design-studies[data-mode] .study-space .planet-saturn::after{width:220%;height:68%;border-width:1.25px;box-shadow:0 0 4px rgba(238,211,160,.3)}
+.design-studies[data-mode] .study-space .space-rail .planet-scale{color:#cfdfeb}
+.design-studies[data-mode] .study-space .space-rail .planet-scale i{
+  background:radial-gradient(circle at 35% 28%,var(--planet-highlight,#e5f3f0),var(--planet-base,#628e9d) 61%,var(--planet-shadow,#263f59))
+}
+.design-studies[data-mode] .study-space .space-rail .planet-mercury{--planet-highlight:#f1e2c7;--planet-base:#9d8a6c;--planet-shadow:#514537}
+.design-studies[data-mode] .study-space .space-rail .planet-venus{--planet-highlight:#ffdb9c;--planet-base:#d29658;--planet-shadow:#6a493c}
+.design-studies[data-mode] .study-space .space-rail .planet-earth{--planet-highlight:#b9f0e4;--planet-base:#428ec1;--planet-shadow:#203b5f}
+.design-studies[data-mode] .study-space .space-rail .planet-mars{--planet-highlight:#ffc09a;--planet-base:#c85b45;--planet-shadow:#592b27}
+.design-studies[data-mode] .study-space .space-rail .planet-jupiter{--planet-highlight:#f7d4a4;--planet-base:#c47e58;--planet-shadow:#563c3b}
+.design-studies[data-mode] .study-space .space-rail .planet-saturn{--planet-highlight:#fff1cb;--planet-base:#c6a46d;--planet-shadow:#5d4835}
+.design-studies[data-mode] .study-space .space-rail .planet-uranus{--planet-highlight:#e1ffff;--planet-base:#72c7cf;--planet-shadow:#285664}
+.design-studies[data-mode] .study-space .space-rail .planet-neptune{--planet-highlight:#bdcffd;--planet-base:#547ce0;--planet-shadow:#222e6b}
+@media(max-width:560px){.design-studies[data-mode] .study-space .space-focus{top:40%!important;width:43%}}
