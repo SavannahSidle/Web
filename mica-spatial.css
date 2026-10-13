@@ -2454,7 +2454,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-space .space-focus{top:50%!important;left:5%;width:34%;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;align-content:start;align-items:start;gap:4px;padding:4px 6px;border-radius:3px;background:linear-gradient(90deg,rgba(5,14,26,.94),rgba(5,14,26,.76),transparent)}
 .design-studies[data-mode] .study-space .space-focus h3{grid-column:1;grid-row:1;margin:0;color:#f2f5f4;font-size:clamp(1.05rem,5.6cqi,1.5rem);line-height:1}
 .design-studies[data-mode] .study-space .space-focus span{grid-column:1;grid-row:2;display:block;margin:0;text-align:left;color:#acc1d0;font-size:clamp(7px,1.9cqi,9px)}
-.design-studies[data-mode] .study-space .space-focus small{grid-column:1;grid-row:3;display:block;margin:0;color:#93bfd9;font-size:clamp(6px,1.55cqi,8px);line-height:1.2}
+.design-studies[data-mode] .study-space .space-focus small{position:static;grid-column:1;grid-row:3;display:block;margin:0;color:#93bfd9;font-size:clamp(6px,1.55cqi,8px);line-height:1.2}
 .design-studies[data-mode] .study-space .space-planet.planet-saturn{background:radial-gradient(circle at 36% 30%,#fff0c5,#c6a46d 64%,#87664d);width:8px;height:8px}
 .design-studies[data-mode] .study-space .planet-uranus{background:radial-gradient(circle at 35% 32%,#e1ffff,#72c7cf 62%,#3e7483);width:7px;height:7px}
 .design-studies[data-mode] .study-space .planet-neptune{background:radial-gradient(circle at 35% 30%,#bdcffd,#547ce0 62%,#29396f);width:7px;height:7px}
@@ -2466,7 +2466,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-space .planet-jupiter::after{
   content:"";position:absolute;left:56%;top:60%;width:26%;height:11%;border-radius:50%;background:rgba(145,65,49,.85)
 }
-.design-studies[data-mode] .study-space .space-rail .planet-scale{min-width:0;min-height:46px;padding:4px 1px 3px;gap:2px;color:#cfdfeb;font-size:clamp(7px,2cqi,9px);line-height:1.1;touch-action:manipulation}
+.design-studies[data-mode] .study-space .space-rail .planet-scale{width:100%;min-width:0;min-height:46px;padding:4px 1px 3px;gap:2px;color:#cfdfeb;font-size:clamp(7px,1.9cqi,8.5px);line-height:1.1;touch-action:manipulation}
 .design-studies[data-mode] .study-space .space-rail .planet-scale b{white-space:nowrap;font-size:inherit}
 .design-studies[data-mode] .study-space .space-rail .planet-scale i{width:clamp(7px,2cqi,10px);height:clamp(7px,2cqi,10px);margin:0 auto}
 .design-studies[data-mode] .study-space .space-rail .planet-saturn i{position:relative}
