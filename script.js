@@ -900,14 +900,18 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
       activeDrag = {button, action:button.dataset.roomAction, id:event.pointerId, x:event.clientX, y:event.clientY, moved:false};
     });
   });
-  window.addEventListener('pointermove', (event) => {
-    if (!activeDrag || event.pointerId !== activeDrag.id) return;
+  const trackFurnitureDrag = (event) => {
+    if (!activeDrag) return;
+    if (typeof event.pointerId === 'number' && event.pointerId !== activeDrag.id) return;
     if (!activeDrag.moved && Math.hypot(event.clientX-activeDrag.x,event.clientY-activeDrag.y) < 7) return;
     activeDrag.moved = true;
     moveGhost(event.clientX,event.clientY);
-  }, {passive:true});
-  window.addEventListener('pointerup', (event) => {
-    if (!activeDrag || event.pointerId !== activeDrag.id) return;
+  };
+  window.addEventListener('pointermove', trackFurnitureDrag, {passive:true});
+  window.addEventListener('mousemove', trackFurnitureDrag, {passive:true});
+  const finishFurnitureDrag = (event) => {
+    if (!activeDrag) return;
+    if (typeof event.pointerId === 'number' && event.pointerId !== activeDrag.id) return;
     const drag = activeDrag;
     activeDrag = null;
     clearGhost();
@@ -918,7 +922,9 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
     const inside = event.clientX >= bounds.left && event.clientX <= bounds.right && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
     if (inside) addFurniture(drag.action, {x:event.clientX,y:event.clientY});
     else announce(`Drop the ${drag.action} inside the room to place it.`);
-  });
+  };
+  window.addEventListener('pointerup', finishFurnitureDrag);
+  window.addEventListener('mouseup', finishFurnitureDrag);
   window.addEventListener('pointercancel', () => {
     activeDrag = null;
     clearGhost();
