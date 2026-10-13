@@ -2942,7 +2942,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-main{left:50%;width:50%}
 .design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-addition{
-  left:0;width:50%;opacity:1;visibility:visible
+  left:0;width:50%;opacity:1;visibility:visible;pointer-events:auto
 }
 .design-studies[data-mode] .study-spatial .room-floor{
   position:absolute;left:50%;top:70%;width:84%;height:58%;
@@ -2962,15 +2962,15 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .design-studies[data-mode] .study-spatial .room-left-wall,
 .design-studies[data-mode] .study-spatial .room-side-wall{
-  position:absolute;top:44%;width:23%;height:50%;border:1px solid rgba(239,230,207,.62);
+  position:absolute;top:42%;width:31%;height:54%;border:1px solid rgba(239,230,207,.68);
   background:linear-gradient(90deg,#a59d86,#778274 58%,#59665f);transform-style:preserve-3d;
   box-shadow:0 8px 12px rgba(0,0,0,.2)
 }
 .design-studies[data-mode] .study-spatial .room-left-wall{
-  left:11%;transform:translate(-50%,-50%) rotateY(-58deg) translateZ(-8px);transform-origin:right center
+  left:13%;transform:translate(-50%,-50%) rotateY(-42deg) translateZ(-8px);transform-origin:right center
 }
 .design-studies[data-mode] .study-spatial .room-side-wall{
-  left:89%;transform:translate(-50%,-50%) rotateY(58deg) translateZ(-8px);transform-origin:left center
+  left:87%;transform:translate(-50%,-50%) rotateY(42deg) translateZ(-8px);transform-origin:left center
 }
 .design-studies[data-mode] .study-spatial .room-window{
   position:absolute;z-index:3;left:49%;top:30%;width:27%;height:23%;
@@ -3097,4 +3097,11 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .design-studies[data-mode] .study-spatial .room-addition,
   .design-studies[data-mode] .study-spatial .room-piece,
   .design-studies[data-mode] .study-spatial .room-window{transition:none!important;animation:none!important}
+}
+
+
+/* When a second room is added, let both floor footprints meet at the shared edge. */
+.design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-floor,
+.design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-back-wall{
+  width:100%;
 }

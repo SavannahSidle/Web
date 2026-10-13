@@ -27,8 +27,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20261013mica-live6">
-  <link rel="stylesheet" href="mica-spatial.css?v=20261013mica-live7">
-  <script src="script.js?v=20261013mica-live7" defer></script>
+  <link rel="stylesheet" href="mica-spatial.css?v=20261013mica-live8">
+  <script src="script.js?v=20261013mica-live8" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -168,7 +168,8 @@
   <div class="room-stage">
     <div class="room-model" data-spatial-model data-room-drop-surface role="group" tabindex="0" aria-describedby="room-planner-instructions" aria-label="Interactive three-dimensional room. Drag a wall to rotate or use arrow keys.">
       <div class="room-addition" aria-hidden="true">
-        <div class="room-floor" data-room-floor="addition"></div><div class="room-back-wall"></div><div class="room-left-wall"></div><div class="room-side-wall"></div><div class="room-window"></div>
+        <div class="room-floor" data-room-floor="addition" aria-hidden="true"></div><div class="room-back-wall" aria-hidden="true"></div><div class="room-left-wall" aria-hidden="true"></div><div class="room-side-wall" aria-hidden="true"></div><div class="room-window" aria-hidden="true"></div>
+        <div class="room-furniture" data-room-furniture="addition" aria-live="polite"></div>
       </div>
       <div class="room-main">
         <div class="room-floor" data-room-floor="main" aria-hidden="true"></div>
@@ -176,8 +177,8 @@
         <div class="room-left-wall" aria-hidden="true"></div>
         <div class="room-side-wall" aria-hidden="true"></div>
         <div class="room-window" aria-hidden="true"></div>
+        <div class="room-furniture" data-room-furniture="main" aria-live="polite"></div>
       </div>
-      <div class="room-furniture" data-room-furniture aria-live="polite"></div>
     </div>
   </div>
   <div class="room-caption"><small>SPATIAL STUDY / 04</small><h3>Make room for living.</h3></div>

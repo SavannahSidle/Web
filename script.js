@@ -825,7 +825,7 @@ document.querySelectorAll('.study-neural').forEach((study) => {
 // Room planner: snap furniture to visible floor lines and keep room rotation separate from object selection.
 document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
   const model = screen.querySelector('[data-room-drop-surface]');
-  const furniture = screen.querySelector('[data-room-furniture]');
+  const furniture = model?.querySelector('.room-main [data-room-furniture]');
   const roomStatus = screen.querySelector('[data-room-status]');
   const roomLabel = screen.querySelector('[data-room-label]');
   const addRoomButton = screen.querySelector('[data-room-action="add-room"]');
@@ -848,7 +848,11 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
   const placeOnGrid = (piece, floor, column, row) => {
     if (!floor) return;
     const floorRect = floor.getBoundingClientRect();
-    const modelRect = model.getBoundingClientRect();
+    const roomUnit = floor.closest('.room-main,.room-addition');
+    const layer = roomUnit?.querySelector('[data-room-furniture]');
+    if (!roomUnit || !layer) return;
+    if (piece.parentElement !== layer) layer.append(piece);
+    const modelRect = roomUnit.getBoundingClientRect();
     const col = clamp(Math.round(column), 1, gridSteps - 1);
     const r = clamp(Math.round(row), 1, gridSteps - 1);
     const screenX = floorRect.left + floorRect.width * (col / gridSteps);
@@ -870,7 +874,7 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
   };
   const selectPiece = (piece) => {
     selectedPiece = piece;
-    furniture.querySelectorAll('[data-room-piece]').forEach((item) => {
+    model.querySelectorAll('[data-room-piece]').forEach((item) => {
       const active = item === piece;
       item.setAttribute('aria-pressed', String(active));
       item.dataset.selected = String(active);
@@ -879,7 +883,9 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
   };
   const addFurniture = (action, floor = floorByName('main'), point = null) => {
     if (!floor) return null;
-    const pieces = Array.from(furniture.querySelectorAll(`[data-room-piece="${action}"]`));
+    const roomUnit = floor?.closest('.room-main,.room-addition') || model.querySelector('.room-main');
+    const layer = roomUnit?.querySelector('[data-room-furniture]') || furniture;
+    const pieces = Array.from(layer.querySelectorAll(`[data-room-piece="${action}"]`));
     if (pieces.length >= 3) {
       announce(`Three ${action}s are already in the room.`);
       return null;
@@ -894,7 +900,7 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
       ? {column: Math.min(2 + pieces.length * 2, 6), row: 6}
       : {column: Math.min(5 + pieces.length, 7), row: 5};
     const cell = point ? gridPositionAt(floor, point.x, point.y) : defaultCell;
-    furniture.append(piece);
+    layer.append(piece);
     placeOnGrid(piece, floor, cell.column, cell.row);
     piece.addEventListener('pointerdown', (event) => {
       if (event.pointerType === 'mouse' && event.button !== 0) return;
@@ -948,9 +954,10 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
       } else if (event.key === 'Delete' || event.key === 'Backspace') {
         event.preventDefault();
         event.stopPropagation();
+        const parent = piece.parentElement;
         piece.remove();
         selectedPiece = null;
-        (furniture.querySelector('[data-room-piece]') || model).focus({preventScroll:true});
+        (parent.querySelector('[data-room-piece]') || model).focus({preventScroll:true});
         announce(`${action === 'chair' ? 'Chair' : 'Couch'} removed.`);
       } else if (event.key === 'Escape') {
         event.preventDefault();
@@ -968,6 +975,14 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
     floor.addEventListener('pointerdown', (event) => event.stopPropagation());
   });
   const setRoomAdded = (added) => {
+    if (!added) {
+      const mainFloor = floorByName('main');
+      model.querySelectorAll('.room-addition [data-room-piece]').forEach((piece) => {
+        placeOnGrid(piece, mainFloor, Number(piece.dataset.gridColumn), Number(piece.dataset.gridRow));
+      });
+    }
+    const addition = model.querySelector('.room-addition');
+    if (addition) addition.setAttribute('aria-hidden', String(!added));
     screen.dataset.roomAdded = String(added);
     if (addRoomButton) {
       addRoomButton.disabled = added;
