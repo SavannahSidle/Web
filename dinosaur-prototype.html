@@ -216,7 +216,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     ctx.clearRect(0, 0, width, height);
     ctx.save();
     ctx.fillStyle = 'rgba(2, 8, 11, .3)'; ctx.beginPath(); ctx.ellipse(width * .44, height * .975, width * .3, height * .035, 0, 0, Math.PI * 2); ctx.fill();
-    const camera = 6, scale = Math.min(width / 7.2, height / 2.45) * zoom;
+    const camera = 6, scale = Math.min(width / 8.0, height / 2.5) * zoom;
     const motionTime = reducedMotion ? 0 : performance.now() / 1000;
     const breath = Math.sin(motionTime * 1.35);
     const tailSway = Math.sin(motionTime * .82);
