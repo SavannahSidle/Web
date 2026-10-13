@@ -723,7 +723,7 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
   const model = screen.querySelector('[data-spatial-model]');
   if (!model) return;
   let yaw = -28;
-  let pitch = 15;
+  let pitch = 0;
   const paint = () => {
     model.style.setProperty('--spatial-yaw', `${yaw}deg`);
     model.style.setProperty('--spatial-pitch', `${pitch}deg`);
@@ -768,7 +768,7 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
       event.stopPropagation();
       if (button.dataset.spatialAction === 'reset') {
         yaw = -28;
-        pitch = 15;
+        pitch = 0;
         paint();
         model.focus({preventScroll:true});
       } else if (button.dataset.spatialAction === 'light') {
