@@ -82,7 +82,7 @@ if (studiesSection) {
     studyTrack.setAttribute('aria-label', 'Floating interface studies. Swipe, drag, or use the left and right arrow keys to browse.');
     studyTrack.tabIndex = 0;
 
-    let activeIndex = 0;
+    let activeIndex = Math.max(0, studyCards.findIndex((card) => card.classList.contains('study-dinosaur')));
     const paintShowcase = () => {
       studyCards.forEach((card, index) => {
         let offset = index - activeIndex;
@@ -270,7 +270,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   const motionRanges = { tailFan: null, sickleClaws: [] };
   addEllipsoid(-.15, -.01, 0, .8, .39, .37, body, 10, 14);
   addEllipsoid(-.69, -.04, 0, .42, .37, .39, flank, 8, 12);
-  addEllipsoid(.1, .02, 0, .36, .29, .33, flank, 8, 12);
+  addEllipsoid(.1, .02, 0, .34, .26, .28, flank, 8, 12);
   addTube([-.93, -.02, 0], [-3.62, -.36, 0], .28, .018, dark, 10);
   const tailFanStart = vertices.length;
   addTube([-.93, .04, 0], [-3.52, -.31, 0], .19, .012, feather, 9);
@@ -290,17 +290,16 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     addTube([tx, .835, -.12], [tx + .015, .8, -.12], .011, .001, bone, 5);
   }
   [-1, 1].forEach(side => {
-    addTube([-.04, .96, side * .19], [.18, .97, side * .18], .035, .018, dark, 7);
     addEllipsoid(.12, .89, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
     addEllipsoid(.135, .89, side * .228, .018, .02, .011, '#17221f', 5, 7);
   });
   // Two feathered forelimbs with hooked claws.
   [-.24, .24].forEach((z, i) => {
-    addEllipsoid(.46, .08, z, .16, .18, .14, i ? body : dark, 6, 9);
-    addTube([.49, .02, z], [.57, -.25, z * 1.2], .09, .065, body, 7);
-    addTube([.57, -.25, z * 1.2], [.82, -.34, z * 1.35], .065, .035, flank, 7);
-    addTube([.82, -.34, z * 1.35], [.9, -.42, z * 1.35], .035, .006, bone, 6);
-    for (let f = 0; f < 3; f++) addTube([.53 + f * .055, -.02, z * 1.13], [.64 + f * .06, -.12, z * 1.34], .035, .008, feather, 5);
+    addEllipsoid(.28, .08, z, .15, .17, .13, i ? body : dark, 6, 9);
+    addTube([.31, .02, z], [.39, -.25, z * 1.2], .085, .06, body, 7);
+    addTube([.39, -.25, z * 1.2], [.64, -.34, z * 1.35], .06, .033, flank, 7);
+    addTube([.64, -.34, z * 1.35], [.72, -.42, z * 1.35], .033, .006, bone, 6);
+    for (let f = 0; f < 3; f++) addTube([.35 + f * .055, -.02, z * 1.13], [.46 + f * .06, -.12, z * 1.34], .032, .008, feather, 5);
   });
   // Digitigrade hind limbs based on the documented V. mongoliensis proportions:
   // femur and tibia are close in length; metatarsus is shorter; toes stay compact.
@@ -308,26 +307,26 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   [
     {
       z: -.39, shade: dark,
-      hip: [-.63, -.19, -.39], knee: [-.31, -.52, -.39],
-      hock: [-.54, -.91, -.39], ankle: [-.37, -1.08, -.39],
+      hip: [-.63, -.19, -.39], knee: [-.31, -.55, -.39],
+      hock: [-.54, -.98, -.39], ankle: [-.37, -1.16, -.39],
     },
     {
       z: .39, shade: flank,
-      hip: [-.68, -.22, .39], knee: [-.39, -.55, .39],
-      hock: [-.63, -.92, .39], ankle: [-.47, -1.08, .39],
+      hip: [-.68, -.22, .39], knee: [-.39, -.58, .39],
+      hock: [-.63, -.99, .39], ankle: [-.47, -1.16, .39],
     }
   ].forEach((leg, legIndex) => {
     const { z, shade, hip, knee, hock, ankle } = leg;
     // Femur: powerful but tapered from the pelvis to the forward knee.
-    addEllipsoid(hip[0], hip[1], z, .19, .22, .14, shade, 7, 10);
-    addTube(hip, knee, .145, .105, body, 8);
-    addEllipsoid(knee[0], knee[1], z, .105, .11, .105, flank, 6, 8);
+    addEllipsoid(hip[0], hip[1], z, .22, .25, .16, shade, 7, 10);
+    addTube(hip, knee, .16, .115, body, 8);
+    addEllipsoid(knee[0], knee[1], z, .115, .12, .11, flank, 6, 8);
     // Tibia/fibula angle back toward the hock; the joint remains flexed.
-    addTube(knee, hock, .095, .065, shade, 8);
-    addEllipsoid(hock[0], hock[1], z, .075, .08, .075, dark, 6, 8);
+    addTube(knee, hock, .105, .07, shade, 8);
+    addEllipsoid(hock[0], hock[1], z, .08, .085, .08, dark, 6, 8);
     // Short metatarsus angles forward to the ankle. No oversized foot mass.
-    addTube(hock, ankle, .065, .052, body, 7);
-    addEllipsoid(ankle[0], ankle[1], z, .06, .045, .065, flank, 6, 8);
+    addTube(hock, ankle, .07, .055, body, 7);
+    addEllipsoid(ankle[0], ankle[1], z, .065, .05, .068, flank, 6, 8);
 
     // Three compact toes fan gently forward and plant at a shared ground line.
     const toeSpecs = [
@@ -336,18 +335,18 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       { endZ: z + .11, len: .17 }
     ];
     toeSpecs.forEach((toe, toeIndex) => {
-      const base = [ankle[0] + .025, -1.09, z];
-      const knuckle = [ankle[0] + toe.len * .54, -1.115, z + (toe.endZ - z) * .56];
-      const tip = [ankle[0] + toe.len, -1.12, toe.endZ];
+      const base = [ankle[0] + .025, -1.17, z];
+      const knuckle = [ankle[0] + toe.len * .54, -1.195, z + (toe.endZ - z) * .56];
+      const tip = [ankle[0] + toe.len, -1.20, toe.endZ];
       addTube(base, knuckle, .037, .027, shade, 6);
       addTube(knuckle, tip, .027, .012, flank, 6);
       // Small keratin tips; toe II carries the characteristic enlarged claw.
       if (toeIndex === 1) {
         const clawStart = vertices.length;
-        addTube(tip, [tip[0] - .025, -1.035, tip[2] + .018], .026, .002, bone, 7);
+        addTube(tip, [tip[0] - .025, -1.115, tip[2] + .018], .026, .002, bone, 7);
         motionRanges.sickleClaws.push([clawStart, vertices.length]);
       } else {
-        addTube(tip, [tip[0] + .035, -1.105, tip[2] + (toeIndex === 0 ? -.012 : .012)], .016, .001, bone, 5);
+        addTube(tip, [tip[0] + .035, -1.185, tip[2] + (toeIndex === 0 ? -.012 : .012)], .016, .001, bone, 5);
       }
     });
     // Sparse thigh feathers follow the leg instead of masking its joints.
@@ -373,6 +372,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     if (!width || !height) return;
     ctx.clearRect(0, 0, width, height);
     ctx.save();
+    ctx.translate(-width * .035, 0);
     ctx.fillStyle = 'rgba(2, 8, 11, .3)'; ctx.beginPath(); ctx.ellipse(width * .52, height * .95, width * .3, height * .035, 0, 0, Math.PI * 2); ctx.fill();
     const camera = 6, scale = Math.min(width / 4.95, height / 2.45) * zoom;
     const motionTime = reducedMotion ? 0 : performance.now() / 1000;
@@ -416,9 +416,9 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
           y += Math.sin(motionTime * .9 + baseZ * 2) * .006;
         }
         // 8. Hind legs share a restrained, planted weight shift.
-        if (x > -.98 && x < -.2 && y < -.2 && y > -1.05) y += weightShift * (z > 0 ? 1 : -1);
+        if (x > -.98 && x < -.2 && y < -.2 && y > -1.2) y += weightShift * (z > 0 ? 1 : -1);
         // 9. The small forearms flex close to the chest.
-        if (x > .45 && x < .94 && y > -.44 && y < .16) {
+        if (x > .27 && x < .76 && y > -.44 && y < .16) {
           z += Math.sin(motionTime * 1.05 + (z > 0 ? 0 : Math.PI)) * .006;
           y += Math.sin(motionTime * 1.05 + (z > 0 ? 0 : Math.PI)) * .004;
         }

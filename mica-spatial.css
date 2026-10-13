@@ -189,9 +189,10 @@ body{background:#edf2f6;color:#0b1b28}
 .capabilities-heading h2{grid-column:1;grid-row:2;font-size:clamp(3.4rem,7vw,6.8rem);color:#f2f6fa;letter-spacing:-.075em}
 .capabilities-heading .text-link{grid-column:2;grid-row:2;justify-self:end;margin-bottom:8px;color:#d5e6f4;border-bottom-color:rgba(213,230,244,.55)}
 .service-ledger{counter-reset:service;border-top:1px solid rgba(186,210,233,.24)}
-.service-row{counter-increment:service;position:relative;grid-template-columns:42px minmax(210px,.9fr) minmax(250px,1.25fr) minmax(155px,.7fr);gap:clamp(16px,3vw,42px);align-items:center;min-height:136px;padding:28px 0;border-bottom-color:rgba(186,210,233,.2);transition:padding .25s,background .25s}
+.service-row{counter-increment:service;position:relative;grid-template-columns:42px minmax(210px,.9fr) minmax(250px,1.25fr) minmax(155px,.7fr);gap:clamp(16px,3vw,42px);align-items:center;min-height:136px;padding:28px 0;border-bottom-color:rgba(186,210,233,.2);transition:background-color .2s ease}
 .service-row::before{content:"0" counter(service);align-self:start;margin-top:8px;color:#80b8e3;font:500 11px/1.4 "IBM Plex Mono",monospace;letter-spacing:.1em}
-.service-row:hover{padding-inline:14px;background:linear-gradient(90deg,rgba(93,157,211,.12),rgba(93,157,211,.025) 66%,transparent)}
+.service-row:hover{background:linear-gradient(90deg,rgba(93,157,211,.12),rgba(93,157,211,.025) 66%,transparent)}
+.home .service-row h3 a:focus-visible{outline:2px solid #3978ad;outline-offset:4px;border-radius:2px}
 .service-row h3{font-size:clamp(1.7rem,3vw,3rem);line-height:1;letter-spacing:-.055em;color:#f4f7fb}
 .service-row p{margin:0;max-width:430px;color:#b7c8d7;font-size:.96rem;line-height:1.55}
 .service-row>span{margin:0;color:#8ea8be;font-size:9px;letter-spacing:.1em}
@@ -310,13 +311,12 @@ body{background:#edf2f6;color:#0b1b28}
 
 .design-studies .study-wayfinding .wayfinding-screen{position:relative;isolation:isolate;overflow:hidden;background:#e8e5d9;color:#14292c}
 .wayfinding-top{position:absolute;z-index:3;left:7%;right:7%;top:8%;display:flex;justify-content:space-between;font:8px "IBM Plex Mono",monospace;letter-spacing:.08em}
-.wayfinding-map{position:absolute;inset:0 0 0 35%;overflow:hidden;background:linear-gradient(153deg,transparent 0 28%,#d17853 28.2% 28.8%,transparent 29%),linear-gradient(29deg,transparent 0 46%,rgba(25,76,80,.86) 46.2% 47%,transparent 47.2%),linear-gradient(145deg,transparent 0 62%,rgba(25,76,80,.86) 62.2% 63%,transparent 63.2%),repeating-linear-gradient(0deg,transparent 0 29px,rgba(21,57,57,.11) 29px 30px),repeating-linear-gradient(90deg,transparent 0 29px,rgba(21,57,57,.11) 29px 30px),#d7dfd5;clip-path:polygon(22% 0,100% 0,100% 100%,0 100%)}
+.wayfinding-map{position:absolute;inset:0 0 0 8%;overflow:hidden;background:linear-gradient(153deg,transparent 0 28%,#d17853 28.2% 28.8%,transparent 29%),linear-gradient(29deg,transparent 0 46%,rgba(25,76,80,.86) 46.2% 47%,transparent 47.2%),linear-gradient(145deg,transparent 0 62%,rgba(25,76,80,.86) 62.2% 63%,transparent 63.2%),repeating-linear-gradient(0deg,transparent 0 29px,rgba(21,57,57,.11) 29px 30px),repeating-linear-gradient(90deg,transparent 0 29px,rgba(21,57,57,.11) 29px 30px),#d7dfd5;clip-path:polygon(9% 0,100% 0,100% 100%,0 100%)}
 .wayfinding-map::before,.wayfinding-map::after{content:"";position:absolute;inset:-25% 25%;border:1px solid rgba(24,66,65,.28);transform:rotate(32deg) skewX(-12deg)}
 .wayfinding-map::after{inset:-20% 48%;transform:rotate(-28deg) skewX(10deg);border-color:rgba(24,66,65,.19)}
 .wayfinding-map i{position:absolute;width:7px;height:7px;border:1px solid #fff;border-radius:50%;background:#b95037;box-shadow:0 0 0 5px rgba(185,80,55,.17)}
 .wayfinding-map i:nth-child(1){left:31%;top:27%}.wayfinding-map i:nth-child(2){right:22%;top:49%;background:#174e55}.wayfinding-map i:nth-child(3){left:48%;bottom:17%;background:#174e55}
 .wayfinding-map b{position:absolute;left:32%;top:29%;width:39%;height:34%;border-top:2px solid #b95037;border-right:2px solid #b95037;transform:skew(-28deg) rotate(14deg)}
-.wayfinding-map span{position:absolute;right:13%;bottom:13%;width:23%;height:22%;background:rgba(243,240,220,.65);border:1px solid rgba(24,66,65,.2);transform:skewY(-27deg)}
 .wayfinding-title{position:absolute;z-index:3;left:8%;top:34%;width:40%}
 .wayfinding-title small{font:8px "IBM Plex Mono",monospace;color:#a75239}
 .wayfinding-title h3{margin:8px 0 0;font:400 clamp(1.55rem,3vw,2.6rem)/.9 "DM Serif Display",Georgia,serif;letter-spacing:-.03em}
@@ -338,7 +338,7 @@ body{background:#edf2f6;color:#0b1b28}
  .design-studies .study-information .information-screen::before{width:31%}
  .design-studies .study-information .info-results div{padding:5px 20px 5px 7px}
  .wayfinding-title h3{font-size:clamp(1.35rem,5vw,1.8rem)}
- .wayfinding-map{left:30%}
+.wayfinding-map{left:8%}
 }
 
 /* Interface Studies: contain the card mockups and keep the nine-panel wheel legible. */
@@ -594,18 +594,20 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-accessible .study-screen::before{content:"";position:absolute;z-index:0;right:7%;top:17%;width:24%;aspect-ratio:1;border:1px solid rgba(23,131,139,.24);border-radius:50%;box-shadow:0 0 0 10px rgba(23,131,139,.045),0 0 0 22px rgba(23,131,139,.025)}
 .design-studies .study-accessible .study-screen>*{z-index:1}
 .design-studies .study-accessible .study-nav{left:7%;top:8%;color:#31716f;letter-spacing:.14em}
-.design-studies .study-accessible .study-screen>strong{left:7%;top:26%;max-width:58%;font:400 clamp(1.65rem,3vw,2.45rem)/.91 "DM Serif Display",Georgia,serif;letter-spacing:-.04em;color:#173547}
+.design-studies .study-accessible .study-screen>strong{left:7%;top:27%;max-width:64%;font:400 clamp(1.1rem,6cqw,1.55rem)/1.06 "DM Serif Display",Georgia,serif;letter-spacing:-.025em;color:#173547}
 .design-studies .study-accessible .study-actions{left:7%;right:7%;bottom:9%;display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .design-studies .study-accessible .study-actions b{position:relative;display:flex;align-items:center;min-height:42px;padding:9px 10px;border:1px solid rgba(18,71,88,.18);border-radius:6px;background:#174e65;color:#fff;font-size:clamp(9px,.85vw,12px);font-weight:600;box-shadow:0 7px 16px rgba(22,64,77,.12)}
 .design-studies .study-accessible .study-actions b::before{content:"";flex:0 0 auto;width:13px;height:13px;margin-right:8px;border:1.5px solid currentColor;border-radius:4px;opacity:.85}
 .design-studies .study-accessible .study-actions b:last-child{background:#c65c48;border-color:#b84d3d}
+.design-studies .study-accessible .study-screen::before{top:17%;right:8%;width:22%;height:17%;aspect-ratio:1.45;border:1px solid rgba(23,131,139,.34);border-radius:14px 14px 14px 4px;background:rgba(255,255,255,.72);box-shadow:0 6px 14px rgba(23,78,91,.08);content:""}
+.design-studies .study-accessible .study-screen::after{content:"•••";position:absolute;z-index:1;right:12.3%;top:19.5%;color:#6caaa2;font:700 clamp(13px,2.6cqi,18px)/1 "IBM Plex Sans",sans-serif;letter-spacing:.12em}
 
 .design-studies .study-space .space-screen{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 61% 45%,rgba(52,111,174,.22),transparent 39%),linear-gradient(145deg,#050d19,#0c1a2b 66%,#08111d);color:#eaf3ff}
 .design-studies .study-space .space-screen::before{content:"";position:absolute;inset:0;z-index:0;opacity:.36;background-image:radial-gradient(circle at 18% 31%,#d7eaff 0 1px,transparent 1.6px),radial-gradient(circle at 38% 78%,#a8d8ff 0 1px,transparent 1.5px),radial-gradient(circle at 80% 22%,#fff 0 1px,transparent 1.6px),linear-gradient(rgba(91,145,197,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(91,145,197,.09) 1px,transparent 1px);background-size:117px 91px,139px 103px,163px 127px,28px 28px,28px 28px;mask-image:radial-gradient(ellipse at 65% 46%,#000,transparent 83%)}
 .design-studies .study-space .space-screen>*{z-index:1}
 .design-studies .study-space .space-header,.design-studies .study-dinosaur .dinosaur-header{position:absolute;left:7%;right:7%;top:8%;display:flex;justify-content:space-between;color:#bed4e9;font:500 8px "IBM Plex Mono",monospace;letter-spacing:.12em}
 .design-studies .study-space .space-header span:last-child{color:#74d5e8}
-.design-studies .study-space .space-map{position:absolute;left:43%;top:13%;width:62%;height:68%;border-radius:50%;transform:rotate(-17deg)}
+.design-studies .study-space .space-map{position:absolute;left:39%;top:15%;width:58%;height:58%;border-radius:50%;transform:rotate(-17deg)}
 .design-studies .study-space .space-orbit{position:absolute;left:50%;top:50%;width:100%;height:48%;border:1px solid rgba(135,197,236,.46);border-radius:50%;transform:translate(-50%,-50%) rotate(28deg)}
 .design-studies .study-space .orbit-two{width:100%;height:74%;transform:translate(-50%,-50%) rotate(-36deg);border-color:rgba(117,170,225,.32)}
 .design-studies .study-space .orbit-three{width:76%;height:100%;transform:translate(-50%,-50%) rotate(67deg);border-color:rgba(117,170,225,.23)}
@@ -662,7 +664,7 @@ body{background:#edf2f6;color:#0b1b28}
 
  .design-studies .study-space .space-focus h3{font-size:clamp(1.4rem,6vw,2rem)}
  .design-studies .study-space .space-rail{gap:3px;font-size:6px}
- .design-studies .study-dinosaur .dinosaur-focus{top:31%;width:47%}
+ .design-studies .study-dinosaur .dinosaur-focus{top:33%;width:47%}
  .design-studies .study-dinosaur .dinosaur-focus h3{font-size:clamp(1.12rem,4.8vw,1.65rem)}
  .design-studies .study-dinosaur .dinosaur-species{top:70%;font-size:6px}
  .design-studies .study-dinosaur .dinosaur-periods{font-size:6px;gap:4px}
@@ -796,7 +798,7 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-dinosaur .pangaea-map .pangaea-rift{fill:none;stroke:#647d70;stroke-width:2.2;stroke-dasharray:3 3}
 .design-studies .study-dinosaur .pangaea-panel small{display:block;color:#95afa3;font:6px/1.2 "IBM Plex Mono",monospace;letter-spacing:.1em}
 .design-studies .study-dinosaur .pangaea-panel strong{display:block;color:#f0eddb;font:400 clamp(10px,1.1vw,14px)/1 "DM Serif Display",Georgia,serif}
-.design-studies .study-dinosaur .dinosaur-focus{left:7%;top:68%;width:34%}
+.design-studies .study-dinosaur .dinosaur-focus{left:7%;top:70%;width:34%}
 .design-studies .study-dinosaur .dinosaur-focus small{color:#b9ce87;font-size:6px}
 .design-studies .study-dinosaur .dinosaur-focus h3{margin:5px 0 2px;font:500 clamp(1.05rem,1.85vw,1.55rem)/.92 "IBM Plex Sans",sans-serif;letter-spacing:-.06em;color:#f5f1df}
 .design-studies .study-dinosaur .dinosaur-focus span{color:#afc2b9;font-size:7px}
@@ -1080,8 +1082,8 @@ body{background:#edf2f6;color:#0b1b28}
   line-height:1.3;
 }
 .design-studies[data-mode="grid"] .study-diagonal .diagonal-index{
-  right:9%;
-  bottom:15%;
+  right:10.5%;
+  bottom:9.5%;
   font-size:clamp(6px,1.8cqw,7px);
 }
 
@@ -1111,42 +1113,6 @@ body{background:#edf2f6;color:#0b1b28}
 
 .design-studies[data-mode="grid"] .study-bedding .bedding-screen::after{
   background:linear-gradient(90deg,rgba(245,244,235,.18),transparent 64%),linear-gradient(0deg,rgba(247,246,238,.3),transparent 48%);
-}
-.design-studies[data-mode="grid"] .study-bedding .bedding-title{
-  left:auto;
-  right:7%;
-  top:8%;
-  width:54%;
-  height:84%;
-  color:#1b303a;
-  text-align:right;
-}
-.design-studies[data-mode="grid"] .study-bedding .bedding-title span{
-  display:block;
-  white-space:nowrap;
-  color:#344b53;
-  font:400 clamp(9px,2.5cqw,12px)/1.2 "DM Serif Display",Georgia,serif;
-  letter-spacing:.035em;
-}
-.design-studies[data-mode="grid"] .study-bedding .bedding-title h3{
-  position:absolute;
-  right:0;
-  bottom:4%;
-  max-width:100%;
-  margin:0;
-  color:#172b34;
-  font:500 clamp(1.5rem,7.2cqw,2.4rem)/.92 "IBM Plex Sans",sans-serif;
-  letter-spacing:-.065em;
-  text-shadow:0 1px 12px rgba(255,255,255,.78);
-}
-.design-studies[data-mode="grid"] .study-bedding .bedding-footer{
-  left:7%;
-  right:46%;
-  bottom:8%;
-  color:#fff;
-  font-size:clamp(6px,1.65cqw,7px);
-  line-height:1.3;
-  text-shadow:0 1px 7px rgba(14,23,28,.55);
 }
 
 .design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel{
@@ -1337,11 +1303,11 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-diagonal .shape-one{--shape-top:20%;--shape-width:29px;--shape-height:12px;--shape-speed:3.6s;--shape-delay:-1.1s;--shape-lift:-12cqw;--shape-end-y:4cqw;--shape-fill:rgba(171,197,252,.43)}
 .design-studies[data-mode] .study-diagonal .shape-two{--shape-top:33%;--shape-width:13px;--shape-height:13px;--shape-radius:50%;--shape-speed:4.4s;--shape-delay:-3.2s;--shape-lift:8cqw;--shape-end-y:-3cqw;--shape-fill:rgba(246,155,139,.66);--shape-glow:rgba(246,155,139,.4)}
 .design-studies[data-mode] .study-diagonal .shape-three{--shape-top:47%;--shape-width:43px;--shape-height:5px;--shape-speed:3.1s;--shape-delay:-2.5s;--shape-lift:-5cqw;--shape-end-y:8cqw;--shape-fill:rgba(244,210,156,.52)}
-.design-studies[data-mode] .study-diagonal .shape-four{--shape-top:62%;--shape-width:20px;--shape-height:20px;--shape-radius:2px;--shape-speed:5s;--shape-delay:-.8s;--shape-lift:11cqw;--shape-end-y:-7cqw;--shape-fill:rgba(166,228,219,.48)}
+.design-studies[data-mode] .study-diagonal .shape-four{--shape-top:62%;--shape-width:14px;--shape-height:13px;--shape-radius:0;--shape-speed:5s;--shape-delay:-.8s;--shape-lift:11cqw;--shape-end-y:-7cqw;--shape-fill:rgba(255,122,55,.96);--shape-glow:rgba(255,116,48,.62);clip-path:polygon(50% 0,0 100%,100% 100%)}
 .design-studies[data-mode] .study-diagonal .shape-five{--shape-top:76%;--shape-width:38px;--shape-height:8px;--shape-speed:3.8s;--shape-delay:-4s;--shape-lift:-10cqw;--shape-end-y:2cqw;--shape-fill:rgba(191,170,245,.52)}
 .design-studies[data-mode] .study-diagonal .shape-six{--shape-top:27%;--shape-width:8px;--shape-height:28px;--shape-speed:5.4s;--shape-delay:-3.7s;--shape-lift:7cqw;--shape-end-y:-6cqw;--shape-fill:rgba(247,180,148,.5)}
 .design-studies[data-mode] .study-diagonal .shape-seven{--shape-top:54%;--shape-width:17px;--shape-height:9px;--shape-radius:50%;--shape-speed:3.4s;--shape-delay:-1.8s;--shape-lift:-8cqw;--shape-end-y:5cqw;--shape-fill:rgba(144,199,245,.62)}
-.design-studies[data-mode] .study-diagonal .shape-eight{--shape-top:85%;--shape-width:12px;--shape-height:12px;--shape-radius:50%;--shape-speed:4.8s;--shape-delay:-2.7s;--shape-lift:6cqw;--shape-end-y:-10cqw;--shape-fill:rgba(241,190,216,.55)}
+.design-studies[data-mode] .study-diagonal .shape-eight{--shape-top:85%;--shape-width:10px;--shape-height:10px;--shape-radius:0;--shape-speed:4.8s;--shape-delay:-2.7s;--shape-lift:6cqw;--shape-end-y:-10cqw;--shape-fill:rgba(255,151,75,.92);--shape-glow:rgba(255,126,56,.48);clip-path:polygon(50% 0,0 100%,100% 100%)}
 @keyframes object-whip{
   0%{transform:translate3d(calc(-100cqw - 40px),0,0) rotate(-16deg) scale(.72);opacity:0}
   12%{opacity:.9}
@@ -1352,7 +1318,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-diagonal .diagonal-screen h3{
   z-index:3;
   left:auto;
-  right:8%;
+  right:10%;
   top:28%;
   width:46%;
   max-width:46%;
@@ -1364,7 +1330,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-diagonal .diagonal-copy,
 .design-studies[data-mode] .study-diagonal .diagonal-index{z-index:3}
 .design-studies[data-mode] .study-diagonal .diagonal-copy{left:9%;bottom:17%;width:37%;font-size:clamp(8px,2.1cqw,10px);line-height:1.3}
-.design-studies[data-mode] .study-diagonal .diagonal-index{right:9%;bottom:8%;font-size:clamp(6px,1.65cqw,7px)}
+.design-studies[data-mode] .study-diagonal .diagonal-index{right:10.5%;bottom:9.5%;font-size:clamp(6px,1.65cqw,7px)}
 @media(prefers-reduced-motion:reduce){
   .design-studies[data-mode] .study-diagonal .motion-field{display:none}
   .design-studies .study-space .space-rail .planet-scale{transition:none}
@@ -1619,7 +1585,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .design-studies[data-mode] .study-product .study-metric b{display:block;font-size:clamp(1.7rem,10cqw,2.6rem);letter-spacing:-.07em}
 .design-studies[data-mode] .study-product .study-metric i{width:100%;height:2px;margin-top:5px}
-.design-studies[data-mode] .study-product .study-metric small{display:block;margin-top:4px;color:#8dd9c6;font:500 clamp(5px,1.2cqw,7px)/1 "IBM Plex Mono",monospace}
+.design-studies[data-mode] .study-product .study-metric small{position:static;display:block;inset:auto;transform:none;margin:6px 0 0;color:#8dd9c6;font:500 clamp(6px,1.4cqw,8px)/1.25 "IBM Plex Mono",monospace;white-space:nowrap}
 .design-studies[data-mode] .study-product .product-readouts{
   position:absolute;left:45%;right:7%;top:25%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3%;
 }
@@ -1948,6 +1914,8 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 /* The map layers are controls, not decorative labels. */
 .design-studies .study-wayfinding .wayfinding-options button{appearance:none;font:inherit;cursor:pointer;color:inherit}
 .design-studies .study-wayfinding .wayfinding-options button[aria-pressed="true"]{background:#fff;border-color:#315d5c;box-shadow:0 2px 8px rgba(23,50,50,.12)}
+.design-studies .study-wayfinding .wayfinding-options button{min-height:34px;padding:5px 8px;border:1px solid rgba(20,59,58,.28);background:rgba(249,247,235,.94);font:500 8px/1.1 "IBM Plex Mono",monospace}
+.design-studies .study-wayfinding .wayfinding-options button:focus-visible{outline:2px solid #315d5c;outline-offset:2px}
 .design-studies .study-wayfinding .wayfinding-screen[data-layer="places"] .wayfinding-map{filter:saturate(.62)}
 .design-studies .study-wayfinding .wayfinding-screen[data-layer="places"] .wayfinding-map i{opacity:1;transform:scale(1.25)}
 .design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map::before,.design-studies .study-wayfinding .wayfinding-screen[data-layer="services"] .wayfinding-map::after{opacity:.28}
@@ -1968,12 +1936,12 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
  .design-studies .study-culture .culture-focal{opacity:.65}
 }
 
-/* The bedding concept uses a crisp collection menu and a new editorial text position. */
+/* Bedding keeps its navigation together and the headline above the footer. */
 .design-studies[data-mode] .study-bedding .bedding-screen{isolation:isolate}
-.design-studies[data-mode] .study-bedding .bedding-menu{position:absolute;z-index:3;top:7%;left:7%;right:7%;display:flex;justify-content:space-between;gap:10px;color:#243940;font:500 clamp(6px,1.7cqw,8px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.14em}
-.design-studies[data-mode] .study-bedding .bedding-title{left:7%;right:auto;top:auto;bottom:9%;width:52%;height:auto;color:#172b34;text-align:left}
-.design-studies[data-mode] .study-bedding .bedding-title h3{position:static;margin:0;font:500 clamp(1.35rem,3.9cqw,2.6rem)/.88 "IBM Plex Sans",sans-serif;letter-spacing:-.065em}
-.design-studies[data-mode] .study-bedding .bedding-footer{left:auto;right:7%;bottom:10%;font:500 clamp(5px,1.4cqw,7px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.07em;text-align:right}
+.design-studies[data-mode] .study-bedding .bedding-menu{position:absolute;z-index:3;top:7%;left:7%;right:auto;display:flex;justify-content:flex-start;gap:clamp(5px,1.4cqw,12px);color:#243940;font:500 clamp(6px,1.7cqw,8px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.12em}
+.design-studies[data-mode] .study-bedding .bedding-title{left:8%;right:auto;top:auto;bottom:15%;width:48%;height:auto;color:#fff;text-align:left;text-shadow:0 2px 14px rgba(17,24,28,.42)}
+.design-studies[data-mode] .study-bedding .bedding-title h3{position:static;margin:0;font:400 clamp(1.35rem,6.4cqi,2.15rem)/.9 Georgia,serif;letter-spacing:-.055em;color:#fff;text-shadow:0 2px 14px rgba(17,24,28,.42)}
+.design-studies[data-mode] .study-bedding .bedding-footer{left:8%;right:auto;bottom:8%;max-width:55%;font:500 clamp(5px,1.4cqw,7px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.07em;text-align:left;color:#fff;text-shadow:0 1px 8px rgba(14,23,28,.55)}
 /* Keep the live architecture count on the left and its activity count on the right. */
 .design-studies[data-mode] .study-system .system-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;max-width:none!important;width:100%;font-size:clamp(6px,1.55cqw,8px)}
 .design-studies[data-mode] .study-system .system-foot [data-link-count]{margin-left:auto;text-align:right;white-space:nowrap;color:#9cc9d6}
@@ -2130,30 +2098,16 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 @keyframes service-map-orbit{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.services-page .service-map .map-point{animation:none!important}}
 
-/* Restore the calm bedding study's original image-led, serif title treatment. */
-.design-studies[data-mode] .study-bedding .bedding-screen{isolation:isolate}
-.design-studies[data-mode] .study-bedding .bedding-menu{
-  position:absolute;z-index:3;top:7%;left:7%;right:7%;display:flex;justify-content:space-between;gap:8px;
-  color:#263b42;font:500 clamp(6px,1.7cqi,8px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.12em
-}
-.design-studies[data-mode] .study-bedding .bedding-title{
-  left:8%;right:auto;top:12%;bottom:auto;width:60%;height:auto;color:#fff;text-align:left;text-shadow:0 2px 14px rgba(17,24,28,.42)
-}
-.design-studies[data-mode] .study-bedding .bedding-title h3{
-  position:static;margin:0;font:400 clamp(2rem,7cqi,3.4rem)/.84 Georgia,serif;letter-spacing:-.06em;color:#fff;
-  text-shadow:0 2px 14px rgba(17,24,28,.42)
-}
-.design-studies[data-mode] .study-bedding .bedding-footer{
-  left:8%;right:auto;bottom:9%;font:500 clamp(5px,1.5cqi,8px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.09em;text-align:left;color:#fff
-}
-
 /* Common Ground keeps the approved vertical composition and type scale in both modes. */
 .design-studies[data-mode] .study-culture .culture-type{
-  left:24%;top:4%;width:30%;height:91%;writing-mode:vertical-rl;transform:rotate(180deg);
+  left:24%;top:4%;width:30%;height:91%;z-index:1;writing-mode:vertical-rl;transform:rotate(180deg);
   font-size:clamp(1.35rem,8.5cqi,2.45rem);line-height:.78;letter-spacing:-.075em
 }
 .design-studies[data-mode] .study-culture .culture-type i{display:inline;font-size:inherit;line-height:inherit}
-.design-studies[data-mode] .study-culture .falling-d::after{display:none}
+.design-studies[data-mode] .study-culture .falling-d{
+  display:inline-block;font-size:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit;
+  transform:none;transform-origin:0 52%;will-change:transform
+}
 .design-studies[data-mode] .study-culture .culture-event{
   left:57%;right:4%;top:20%;width:39%;max-width:none;gap:0
 }
@@ -2286,15 +2240,25 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   left:8%;top:59%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(3px,1.2cqi,6px);width:47%
 }
 .design-studies[data-mode] .study-learning .word-slots button{
-  width:clamp(25px,7cqi,34px);height:clamp(27px,7cqi,36px);touch-action:none;user-select:none;-webkit-user-select:none
+  width:clamp(27px,7cqi,34px);height:clamp(29px,7cqi,36px);border-radius:2px;touch-action:none;user-select:none;-webkit-user-select:none
 }
 .design-studies[data-mode] .study-learning .letter-bank{
-  left:auto;right:8%;top:53%;display:grid;grid-template-columns:repeat(3,minmax(25px,1fr));gap:clamp(3px,1cqi,5px);
-  width:clamp(84px,26cqi,152px);touch-action:none
+  left:auto;right:8%;top:50%;display:grid;grid-template-columns:repeat(3,minmax(30px,1fr));gap:3px;
+  width:clamp(105px,28cqi,152px);touch-action:none
 }
 .design-studies[data-mode] .study-learning .letter-bank button{
-  width:clamp(24px,6.2cqi,30px);height:clamp(24px,6.2cqi,30px);min-width:24px;min-height:24px;touch-action:none;user-select:none;-webkit-user-select:none
+  width:clamp(28px,7cqi,32px);height:clamp(28px,7cqi,32px);min-width:28px;min-height:28px;touch-action:none;user-select:none;-webkit-user-select:none
 }
+.design-studies[data-mode] .study-learning .word-slots button[data-word-slot="0"]{background:#c7def0}
+.design-studies[data-mode] .study-learning .word-slots button[data-word-slot="1"]{background:#eee1f6}
+.design-studies[data-mode] .study-learning .letter-bank button[data-letter-tile="t"]{background:#c8def0;color:#263a53}
+.design-studies[data-mode] .study-learning .letter-bank button[data-letter-tile="m"]{background:#f1c8c4;color:#4b3239}
+.design-studies[data-mode] .study-learning .letter-bank button[data-letter-tile="p"]{background:#f2dfa7;color:#4a3d27}
+.design-studies[data-mode] .study-learning .letter-bank button[data-letter-tile="r"]{background:#c2e2d4;color:#29443a}
+.design-studies[data-mode] .study-learning .letter-bank button[data-letter-tile="s"]{background:#dfd2f2;color:#403853}
+.design-studies[data-mode] .study-learning .letter-bank button[data-letter-tile="d"]{background:#f2cba7;color:#4e3a2a}
+.design-studies[data-mode] .study-learning .letter-bank button[data-letter-tile="x"]{background:#cad9f0;color:#2f3b56}
+.design-studies[data-mode] .study-learning .letter-bank button[data-learning-reset]{background:#fff8d6;color:#20324f}
 .design-studies[data-mode] .study-learning .learning-help{
   left:8%;right:8%;bottom:6%;max-width:none;font-size:clamp(7px,1.7cqi,9px);line-height:1.2;text-align:left
 }
@@ -2304,25 +2268,18 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 
 /* Small, specific study corrections requested for both preview modes. */
 .design-studies[data-mode] .study-future .readout-c{left:auto;right:7%;top:auto;bottom:13%;text-align:right}
-.design-studies[data-mode] .study-diagonal .diagonal-screen h3{right:calc(8% + 2px)}
 .design-studies[data-mode] .study-diagonal .shape-three{
   --shape-fill:rgba(255,224,125,.55);--shape-glow:rgba(255,224,125,.34);
   animation:object-whip var(--shape-speed,3.1s) cubic-bezier(.35,.04,.55,.98) infinite,object-warm-glint 8s ease-in-out infinite;
 }
 @keyframes object-warm-glint{0%,42%,100%{filter:brightness(1)}50%,60%{filter:brightness(1.34)}}
-.design-studies[data-mode] .study-wayfinding .wayfinding-title{top:31%}
 .design-studies[data-mode] .study-space .space-screen::before,
 .design-studies[data-mode] .study-space .space-screen::after{display:none!important;animation:none!important}
-.design-studies[data-mode] .study-space .space-galaxy-image{
-  position:absolute;z-index:1;left:7%;bottom:24%;width:26%;height:15%;object-fit:cover;object-position:50% 50%;
-  border:1px solid rgba(190,221,243,.55);border-radius:3px;opacity:.88;filter:saturate(.78) brightness(.84)
-}
 
 
 .design-studies[data-mode] .study-space .space-rail .planet-scale b{position:relative;top:0;line-height:1.1}
 @media(prefers-reduced-motion:reduce){
   .design-studies[data-mode] .study-diagonal .shape-three{animation:none!important}
-  .design-studies[data-mode] .study-space .space-galaxy-image{filter:none}
 }
 
 /* Grid correction: keep the community filter in the left column below its title. */
@@ -2494,22 +2451,27 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode="grid"] .study-minimal .practice-copy{left:33%;top:32%}
 
 /* Distinguish planet identities and keep the counter below the orbit labels. */
-.design-studies[data-mode] .study-space .space-focus{top:39%!important;left:6%;width:36%;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;align-content:start;align-items:baseline;column-gap:8px;row-gap:6px;padding:clamp(5px,1.4cqw,10px);border-radius:3px;background:linear-gradient(90deg,rgba(5,14,26,.9),rgba(5,14,26,.63),transparent)}
-.design-studies[data-mode] .study-space .space-focus h3{grid-column:1/-1;grid-row:1;margin:0;line-height:1}
-.design-studies[data-mode] .study-space .space-focus small{grid-column:1;grid-row:2;display:block;margin:0}
-.design-studies[data-mode] .study-space .space-focus span{grid-column:2;grid-row:2;display:block;margin:0;text-align:right}
+.design-studies[data-mode] .study-space .space-focus{top:50%!important;left:5%;width:34%;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;align-content:start;align-items:start;gap:4px;padding:4px 6px;border-radius:3px;background:linear-gradient(90deg,rgba(5,14,26,.94),rgba(5,14,26,.76),transparent)}
+.design-studies[data-mode] .study-space .space-focus h3{grid-column:1;grid-row:1;margin:0;color:#f2f5f4;font-size:clamp(1.05rem,5.6cqi,1.5rem);line-height:1}
+.design-studies[data-mode] .study-space .space-focus span{grid-column:1;grid-row:2;display:block;margin:0;text-align:left;color:#acc1d0;font-size:clamp(7px,1.9cqi,9px)}
+.design-studies[data-mode] .study-space .space-focus small{grid-column:1;grid-row:3;display:block;margin:0;color:#93bfd9;font-size:clamp(6px,1.55cqi,8px);line-height:1.2}
 .design-studies[data-mode] .study-space .space-planet.planet-saturn{background:radial-gradient(circle at 36% 30%,#fff0c5,#c6a46d 64%,#87664d);width:8px;height:8px}
 .design-studies[data-mode] .study-space .planet-uranus{background:radial-gradient(circle at 35% 32%,#e1ffff,#72c7cf 62%,#3e7483);width:7px;height:7px}
 .design-studies[data-mode] .study-space .planet-neptune{background:radial-gradient(circle at 35% 30%,#bdcffd,#547ce0 62%,#29396f);width:7px;height:7px}
 .design-studies[data-mode] .study-space .planet-mars{background:radial-gradient(circle at 32% 28%,#ffd1ad,#c85b45 65%,#75352c)}
-.design-studies[data-mode] .study-space .orbit-jupiter{width:48%;height:68%}
-.design-studies[data-mode] .study-space .orbit-saturn{left:50%;width:70%;height:90%}
-.design-studies[data-mode] .study-space .orbit-uranus{left:50%;width:88%;height:110%}
-.design-studies[data-mode] .study-space .orbit-neptune{left:50%;width:106%;height:130%}
+.design-studies[data-mode] .study-space .orbit-jupiter{left:50%;width:48%;height:62%}
+.design-studies[data-mode] .study-space .orbit-saturn{left:52%;width:70%;height:82%}
+.design-studies[data-mode] .study-space .orbit-uranus{left:54%;width:90%;height:102%}
+.design-studies[data-mode] .study-space .orbit-neptune{left:56%;width:112%;height:122%}
 .design-studies[data-mode] .study-space .planet-jupiter::after{
   content:"";position:absolute;left:56%;top:60%;width:26%;height:11%;border-radius:50%;background:rgba(145,65,49,.85)
 }
-.design-studies[data-mode] .study-space .space-rail .planet-scale{min-height:44px;color:#cfdfeb;font-size:7px}
+.design-studies[data-mode] .study-space .space-rail .planet-scale{min-width:0;min-height:46px;padding:4px 1px 3px;gap:2px;color:#cfdfeb;font-size:clamp(7px,2cqi,9px);line-height:1.1;touch-action:manipulation}
+.design-studies[data-mode] .study-space .space-rail .planet-scale b{white-space:nowrap;font-size:inherit}
+.design-studies[data-mode] .study-space .space-rail .planet-scale i{width:clamp(7px,2cqi,10px);height:clamp(7px,2cqi,10px);margin:0 auto}
+.design-studies[data-mode] .study-space .space-rail .planet-saturn i{position:relative}
+.design-studies[data-mode] .study-space .space-rail .planet-saturn i::after{content:"";position:absolute;left:50%;top:50%;width:165%;height:65%;border:1px solid rgba(255,232,184,.88);border-radius:50%;transform:translate(-50%,-50%) rotate(-24deg);pointer-events:none}
+.design-studies[data-mode] .study-space .space-rail .planet-scale:focus-visible{outline:2px solid #9ed9f0;outline-offset:1px}
 .design-studies[data-mode] .study-space .space-rail .planet-scale i{
   background:radial-gradient(circle at 35% 28%,var(--planet-highlight,#e5f3f0),var(--planet-base,#628e9d) 61%,var(--planet-shadow,#263f59))
 }
@@ -2522,7 +2484,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-space .space-rail .planet-uranus{--planet-highlight:#e1ffff;--planet-base:#72c7cf;--planet-shadow:#285664}
 .design-studies[data-mode] .study-space .space-rail .planet-neptune{--planet-highlight:#bdcffd;--planet-base:#547ce0;--planet-shadow:#222e6b}
 @media(max-width:560px){
- .design-studies[data-mode] .study-space .space-focus{left:5%;width:37%}
+ .design-studies[data-mode] .study-space .space-focus{left:4%;width:35%}
 }
 
 /* Slow orbital/mesh motion through the hero keeps the MICA atmosphere alive. */
@@ -2624,7 +2586,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   left:5%;top:23%;width:25%;height:31%;padding:5px;gap:2px;
 }
 .site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-map{height:58%}
-.site-live .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus{left:5%;top:61%;width:35%}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus{left:5%;top:63%;width:35%}
 .site-live .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus h3{
   margin:5px 0 2px;font-size:clamp(1rem,5.2cqw,1.4rem);line-height:1;
 }
@@ -2649,11 +2611,6 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .site-live .design-studies .study-dinosaur .raptor-controls button{width:22px;height:22px}
 }
 
-.site-live .design-studies .study-dinosaur .pangaea-panel div span{
-  display:block;margin-top:2px;color:#b8c8b4;
-  font:500 clamp(6px,1.35cqw,8px)/1.2 "IBM Plex Mono",monospace;
-  letter-spacing:.06em;text-transform:uppercase;
-}
 .site-live .design-studies .study-dinosaur .dinosaur-periods{
   font-size:clamp(6px,1.3cqw,8px);letter-spacing:.045em;
 }
@@ -2665,13 +2622,13 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 
 
-/* Test 6: mental health support study, with clear pathways and compact, usable controls. */
+/* Mental health support fits the card with calm type and direct choices. */
 .site-live .design-studies .study-care{container-type:inline-size}
 .site-live .design-studies .study-care .care-screen{
   position:relative;display:grid;isolation:isolate;overflow:hidden;aspect-ratio:4 / 3;
-  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
-  grid-template-rows:auto minmax(0,1fr) auto auto;gap:clamp(7px,1.25cqw,14px);
-  align-content:stretch;padding:clamp(13px,4.2cqw,34px)!important;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:auto auto auto auto auto;gap:clamp(5px,1.1cqw,9px);
+  align-content:stretch;padding:clamp(10px,3.2cqw,24px)!important;
   border:1px solid rgba(54,76,63,.2);border-left:5px solid #527568;
   border-radius:4px;
   background:
@@ -2683,17 +2640,17 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .design-studies .study-care .care-screen::after{display:none}
 .site-live .design-studies .study-care .care-screen>*{position:relative;z-index:1}
 .site-live .design-studies .study-care .care-top{
-  grid-column:1/-1;grid-row:1;display:flex;justify-content:space-between;align-items:center;gap:8px;
+  grid-column:1;grid-row:1;display:flex;justify-content:space-between;align-items:center;gap:8px;
   color:#38584e;font:600 clamp(7px,1.15cqw,10px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.12em
 }
 .site-live .design-studies .study-care .care-location{color:#537365;white-space:nowrap}
-.site-live .design-studies .study-care .care-intro{grid-column:1;grid-row:2;align-self:center;max-width:29ch}
+.site-live .design-studies .study-care .care-intro{grid-column:1;grid-row:2;align-self:start;max-width:none}
 .site-live .design-studies .study-care .care-intro h3{
-  position:static;margin:0 0 clamp(7px,1.2cqw,12px);max-width:12ch;
-  color:#18362f;font:400 clamp(1.05rem,4.25cqw,2.15rem)/.99 "DM Serif Display",Georgia,serif;letter-spacing:-.025em
+  position:static;margin:0 0 4px;max-width:22ch;
+  color:#18362f;font:400 clamp(1.05rem,5.8cqw,1.55rem)/1.04 "DM Serif Display",Georgia,serif;letter-spacing:-.02em
 }
 .site-live .design-studies .study-care .care-intro>p{
-  margin:0;max-width:26ch;color:#3e5a51;font-size:clamp(9px,1.9cqw,14px);line-height:1.45
+  margin:0;max-width:42ch;color:#3e5a51;font-size:clamp(9px,1.6cqw,12px);line-height:1.35
 }
 .site-live .design-studies .study-care .care-illustration{display:none}
 .site-live .design-studies .study-care .care-illustration i,.site-live .design-studies .study-care .care-illustration b,.site-live .design-studies .study-care .care-illustration em{position:absolute;bottom:0;display:block;width:1px;height:clamp(12px,2.2cqw,22px);background:#73937d;transform-origin:bottom}
@@ -2701,12 +2658,12 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .design-studies .study-care .care-illustration b{left:51%;height:clamp(17px,3.3cqw,34px)}
 .site-live .design-studies .study-care .care-illustration em{left:76%;transform:rotate(24deg)}
 .site-live .design-studies .study-care .care-options{
-  position:static;left:auto;right:auto;top:auto;grid-column:2;grid-row:2;align-self:center;
-  display:grid;gap:clamp(4px,.8cqw,8px);margin:0;min-width:0
+  position:static;left:auto;right:auto;top:auto;grid-column:1;grid-row:3;align-self:stretch;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(5px,1.1cqw,9px);margin:0;min-width:0
 }
 .site-live .design-studies .study-care .care-option{
-  appearance:none;width:100%;min-width:0;min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:8px;
-  padding:clamp(5px,1.1cqw,11px) clamp(8px,1.45cqw,15px);
+  appearance:none;width:100%;min-width:0;min-height:54px;display:flex;align-items:center;justify-content:space-between;gap:5px;
+  padding:clamp(6px,1.2cqw,10px) clamp(6px,1.3cqw,11px);
   border:1px solid #b8c8ba;border-radius:5px;background:rgba(255,255,252,.88);color:#18362f;text-align:left;
   font:inherit;cursor:pointer;transition:background-color .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease
 }
@@ -2716,16 +2673,16 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .site-live .design-studies .study-care .care-option[aria-pressed="true"]{border-color:#315f4e;background:#e3eee5;box-shadow:inset 3px 0 #315f4e}
 .site-live .design-studies .study-care .care-option>span:first-child{min-width:0;display:grid;gap:2px}
-.site-live .design-studies .study-care .care-option strong{font-size:clamp(9px,1.75cqw,13px);font-weight:600;line-height:1.18}
-.site-live .design-studies .study-care .care-option small{position:static;left:auto;bottom:auto;color:#526c61;font-size:clamp(8px,1.3cqw,10px);line-height:1.2}
+.site-live .design-studies .study-care .care-option strong{font-size:clamp(9px,1.55cqw,12px);font-weight:600;line-height:1.15;text-transform:none;letter-spacing:0}
+.site-live .design-studies .study-care .care-option small{position:static;left:auto;bottom:auto;color:#526c61;font:400 clamp(8px,1.25cqw,10px)/1.2 "IBM Plex Sans",sans-serif;text-transform:none;letter-spacing:0}
 .site-live .design-studies .study-care .care-arrow{flex:0 0 auto;color:#315f4e;font-size:clamp(12px,2cqw,17px)}
 .site-live .design-studies .study-care .care-crisis{
-  grid-column:1/-1;grid-row:3;margin:0;padding-top:clamp(5px,.8cqw,9px);border-top:1px solid rgba(61,94,75,.22);
-  color:#334e44;font-size:clamp(8px,1.45cqw,11px);line-height:1.35
+  grid-column:1;grid-row:4;margin:0;padding-top:clamp(5px,.8cqw,8px);border-top:1px solid rgba(61,94,75,.22);
+  color:#334e44;font-size:clamp(8px,1.35cqw,10px);line-height:1.35
 }
 .site-live .design-studies .study-care .care-crisis strong{font-weight:700}
 .site-live .design-studies .study-care .care-crisis a{color:#214f3c;text-decoration:underline;text-underline-offset:2px;font-weight:700}
-.site-live .design-studies .study-care .care-privacy{position:static;grid-column:1/-1;grid-row:4;z-index:2;margin:0;color:#557064;font-size:clamp(7px,1.1cqw,9px);line-height:1.2}
+.site-live .design-studies .study-care .care-privacy{position:static;grid-column:1;grid-row:5;z-index:2;margin:0;color:#557064;font-size:clamp(7px,1.1cqw,9px);line-height:1.2}
 .site-live .design-studies .study-care .care-response[hidden]{display:none}
 .site-live .design-studies .study-care .care-response{
   position:absolute;z-index:5;inset:0;overflow:auto;display:grid;align-content:center;
@@ -2748,13 +2705,13 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .design-studies .study-care .care-back{min-height:38px;padding:6px 11px}
 .site-live .design-studies .study-care .care-response[hidden]+template{display:none}
 .site-live .design-studies .study-care [inert]{pointer-events:none}
-@container (max-width:370px){
-  .site-live .design-studies .study-care .care-screen{aspect-ratio:auto;min-height:355px;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto auto;padding:14px!important;gap:8px}
+@container (max-width:300px){
+  .site-live .design-studies .study-care .care-screen{aspect-ratio:auto;min-height:310px;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto auto;padding:12px!important;gap:7px}
   .site-live .design-studies .study-care .care-top{font-size:8px}
   .site-live .design-studies .study-care .care-intro{grid-column:1;grid-row:2;max-width:none}
   .site-live .design-studies .study-care .care-intro h3{max-width:15ch;font-size:1.4rem}
   .site-live .design-studies .study-care .care-intro>p{font-size:12px}
-  .site-live .design-studies .study-care .care-options{grid-column:1;grid-row:3;gap:6px}
+  .site-live .design-studies .study-care .care-options{grid-column:1;grid-row:3;grid-template-columns:minmax(0,1fr);gap:6px}
   .site-live .design-studies .study-care .care-option{min-height:44px;padding:6px 9px}
   .site-live .design-studies .study-care .care-option strong{font-size:12px}
   .site-live .design-studies .study-care .care-option small{font-size:10px}
@@ -2768,7 +2725,6 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 @media(prefers-reduced-motion:reduce){
   .site-live .design-studies .study-care .care-option{transition:none}
 }
-
 
 /* Test 6: interactive care and bedding studies. */
 .site-live .pet-screen{position:relative;isolation:isolate;}
@@ -2855,25 +2811,21 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   position:absolute;z-index:4;left:5%;bottom:7%;min-height:32px;display:inline-flex;align-items:center;gap:5px;
   color:#ffe6a2
 }
-.design-studies .study-culture .culture-type{z-index:1}
-.design-studies .study-culture .falling-d{
-  display:inline-block!important;font-size:1em!important;font-weight:inherit;line-height:inherit!important;
-  letter-spacing:inherit;animation:none!important;transform-origin:0 52%;will-change:transform
-}
 .design-studies .study-culture .culture-screen.is-d-motion .falling-d{
-  animation:culture-d-tumble 4.8s cubic-bezier(.32,.02,.24,1) both!important
+  animation:culture-d-tumble 4.8s cubic-bezier(.24,.58,.22,1) both
 }
 @keyframes culture-d-tumble{
-  0%,32%{transform:translate(0,0) rotate(0)}
-  42%{transform:translate(0,1px) rotate(16deg)}
-  50%{transform:translate(-3px,-8px) rotate(-8deg)}
-  62%{transform:translate(-13px,-24px) rotate(-42deg)}
-  74%{transform:translate(-24px,-44px) rotate(-76deg)}
-  84%{transform:translate(-34px,-60px) rotate(-108deg)}
-  89%{transform:translate(-40px,-68px) rotate(-122deg)}
-  92%{transform:translate(-41px,-60px) rotate(-110deg)}
-  96%{transform:translate(-43px,-66px) rotate(-94deg)}
-  98%,100%{transform:translate(-43px,-71px) rotate(-90deg)}
+  0%,28%{transform:none}
+  36%{transform:translate(0,.2em) rotate(9deg)}
+  43%{transform:translate(-.08em,.23em) rotate(24deg)}
+  54%{transform:translate(-.32em,-.03em) rotate(6deg)}
+  66%{transform:translate(-.62em,-.48em) rotate(-32deg)}
+  77%{transform:translate(-.88em,-1.05em) rotate(-68deg)}
+  87%{transform:translate(-1.05em,-1.55em) rotate(-91deg)}
+  91%{transform:translate(-1.1em,-1.76em) rotate(-102deg)}
+  94%{transform:translate(-1.1em,-1.52em) rotate(-88deg)}
+  97%{transform:translate(-1.1em,-1.74em) rotate(-92deg)}
+  100%{transform:translate(-1.1em,-1.68em) rotate(-90deg)}
 }
 .design-studies .study-culture [hidden]{display:none!important}
 @media(max-width:560px){
@@ -2883,7 +2835,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 @media(prefers-reduced-motion:reduce){
   .design-studies .study-culture .culture-burst{animation:none!important;opacity:0}
-  .design-studies .study-culture .culture-screen.is-d-motion .falling-d{animation:none!important;transform:none!important}
+  .design-studies .study-culture .culture-screen.is-d-motion .falling-d{animation:none;transform:none}
   .design-studies .study-culture .culture-replay{display:none!important}
 }
 
@@ -2897,6 +2849,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .home .poster-hero .shooting-star--secondary::after{width:4px;height:4px;box-shadow:0 0 5px 1.5px rgba(214,232,255,.86),0 0 10px 3px rgba(143,190,255,.35)}
 .home .poster-hero .shooting-star--tertiary::after{width:3px;height:3px;box-shadow:0 0 4px 1px rgba(214,232,255,.78),0 0 8px 2px rgba(143,190,255,.28)}
+
 
 
 /* Oct 13: clearer, buildable room planner. */
@@ -3046,7 +2999,6 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   border-color:rgba(243,235,208,.82);
   box-shadow:0 19px 24px rgba(0,0,0,.34);
 }
-
 
 /* User review pass: soften care labels, clear the wayfinding title, and turn the right-side circle into a live-chat motif. */
 .site-live .design-studies[data-mode] .study-care .care-option small{
