@@ -3098,17 +3098,21 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .site-live .design-studies .study-dinosaur .dinosaur-focus{transform:translateY(4px)}
 
-/* Let the poster's foreground panels sit above the animated meteors. */
-@media(min-width:721px){
+/* Keep animated meteors behind the artwork's foreground panels at every width. */
+.home .poster-hero .hero-frame-occlusion{
+  position:absolute;inset:0;z-index:4;pointer-events:none;
+  background:url("assets/mica-digital-social.jpg") center/contain no-repeat;
+}
+.home .poster-hero .hero-frame-occlusion--upper{
+  clip-path:polygon(76.8% 0,100% 0,100% 23.5%,79.2% 30%);
+}
+.home .poster-hero .hero-frame-occlusion--lower{
+  clip-path:polygon(66% 76%,100% 59%,100% 100%,67% 100%);
+}
+.home .poster-hero .poster-hero-actions,.home .poster-hero .poster-scroll{z-index:5}
+@media(max-width:720px){
   .home .poster-hero .hero-frame-occlusion{
-    position:absolute;inset:0;z-index:3;pointer-events:none;
-    background:url("assets/mica-digital-social.jpg") center/cover no-repeat;
+    inset:0 0 auto;height:auto;aspect-ratio:1200/630;
+    background-size:100% 100%;
   }
-  .home .poster-hero .hero-frame-occlusion--upper{
-    clip-path:polygon(76.8% 0,100% 0,100% 23.5%,79.2% 30%);
-  }
-  .home .poster-hero .hero-frame-occlusion--lower{
-    clip-path:polygon(66% 76%,100% 59%,100% 100%,67% 100%);
-  }
-  .home .poster-hero .poster-hero-actions,.home .poster-hero .poster-scroll{z-index:4}
 }
