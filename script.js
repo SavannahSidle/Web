@@ -822,39 +822,108 @@ document.querySelectorAll('.study-neural').forEach((study) => {
 });
 
 
-// Room planner controls: add an adjoining room and compact furniture pieces.
+// Room planner controls: square primary room, attached second room, visible lighting, and drag-to-place furniture.
 document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
+  const model = screen.querySelector('[data-room-drop-surface]');
   const furniture = screen.querySelector('[data-room-furniture]');
   const roomStatus = screen.querySelector('[data-room-status]');
   const roomLabel = screen.querySelector('[data-room-label]');
-  if (!furniture) return;
-  screen.querySelectorAll('[data-room-action]').forEach((button) => {
+  const roomButton = screen.querySelector('[data-room-action="room"]');
+  if (!model || !furniture) return;
+
+  const announce = (message) => { if (roomStatus) roomStatus.textContent = message; };
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  const addFurniture = (action, point = null) => {
+    const pieces = Array.from(furniture.querySelectorAll(`.room-${action}`));
+    if (pieces.length >= 3) {
+      announce(`Three ${action}s are already in the room.`);
+      return false;
+    }
+    const piece = document.createElement('div');
+    piece.className = `room-${action}`;
+    piece.setAttribute('aria-hidden', 'true');
+    const bounds = model.getBoundingClientRect();
+    const left = point ? clamp(((point.x - bounds.left) / bounds.width) * 100, 12, 88) : (action === 'chair' ? 39 : 62);
+    const top = point ? clamp(((point.y - bounds.top) / bounds.height) * 100, 18, 83) : (action === 'chair' ? 65 : 60);
+    piece.style.left = `${left}%`;
+    piece.style.top = `${top}%`;
+    furniture.append(piece);
+    announce(`${action === 'chair' ? 'Chair' : 'Couch'} placed in the room.`);
+    return true;
+  };
+
+  roomButton?.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const added = screen.dataset.roomAdded !== 'true';
+    screen.dataset.roomAdded = String(added);
+    roomButton.setAttribute('aria-pressed', String(added));
+    roomButton.textContent = added ? 'REMOVE ROOM' : 'ADD ROOM';
+    if (roomLabel) roomLabel.textContent = added ? 'ROOM 01 + 02' : 'ROOM 01';
+    announce(added ? 'A full adjoining room was added.' : 'Showing the square main room.');
+  });
+
+  screen.querySelectorAll('[data-room-action="chair"],[data-room-action="couch"]').forEach((button) => {
+    const action = button.dataset.roomAction;
     button.addEventListener('click', (event) => {
       event.preventDefault();
       event.stopPropagation();
-      const action = button.dataset.roomAction;
-      if (action === 'room') {
-        const added = screen.dataset.roomAdded !== 'true';
-        screen.dataset.roomAdded = String(added);
-        button.setAttribute('aria-pressed', String(added));
-        roomLabel.textContent = added ? 'ROOM 01 + 02' : 'ROOM 01';
-        if (roomStatus) roomStatus.textContent = added ? 'A second connected room was added.' : 'Showing one room.';
+      if (button.dataset.skipNextClick === 'true') {
+        delete button.dataset.skipNextClick;
         return;
       }
-      const pieces = Array.from(furniture.querySelectorAll(`.room-${action}`));
-      if (pieces.length >= 3) {
-        if (roomStatus) roomStatus.textContent = `Three ${action}s are already in the room.`;
-        return;
-      }
-      const piece = document.createElement('div');
-      piece.className = `room-${action}`;
-      piece.setAttribute('aria-hidden', 'true');
-      furniture.append(piece);
-      if (roomStatus) roomStatus.textContent = `${action === 'chair' ? 'Chair' : 'Couch'} added to the room.`;
+      addFurniture(action);
     });
   });
-});
 
+  let activeDrag = null;
+  let ghost = null;
+  const moveGhost = (x, y) => {
+    if (!ghost) {
+      ghost = document.createElement('div');
+      ghost.className = 'room-drag-ghost';
+      ghost.setAttribute('aria-hidden', 'true');
+      document.body.append(ghost);
+    }
+    ghost.textContent = activeDrag.action === 'chair' ? 'CHAIR' : 'COUCH';
+    ghost.style.left = `${x}px`;
+    ghost.style.top = `${y}px`;
+  };
+  const clearGhost = () => {
+    ghost?.remove();
+    ghost = null;
+  };
+
+  screen.querySelectorAll('[data-room-action="chair"],[data-room-action="couch"]').forEach((button) => {
+    button.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      activeDrag = {button, action:button.dataset.roomAction, id:event.pointerId, x:event.clientX, y:event.clientY, moved:false};
+    });
+  });
+  window.addEventListener('pointermove', (event) => {
+    if (!activeDrag || event.pointerId !== activeDrag.id) return;
+    if (!activeDrag.moved && Math.hypot(event.clientX-activeDrag.x,event.clientY-activeDrag.y) < 7) return;
+    activeDrag.moved = true;
+    moveGhost(event.clientX,event.clientY);
+  }, {passive:true});
+  window.addEventListener('pointerup', (event) => {
+    if (!activeDrag || event.pointerId !== activeDrag.id) return;
+    const drag = activeDrag;
+    activeDrag = null;
+    clearGhost();
+    if (!drag.moved) return;
+    drag.button.dataset.skipNextClick = 'true';
+    window.setTimeout(() => { delete drag.button.dataset.skipNextClick; }, 0);
+    const bounds = model.getBoundingClientRect();
+    const inside = event.clientX >= bounds.left && event.clientX <= bounds.right && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
+    if (inside) addFurniture(drag.action, {x:event.clientX,y:event.clientY});
+    else announce(`Drop the ${drag.action} inside the room to place it.`);
+  });
+  window.addEventListener('pointercancel', () => {
+    activeDrag = null;
+    clearGhost();
+  });
+});
 // Playable word slots: click a tile then a blank slot, drag between them, or use keyboard activation.
 document.querySelectorAll('.learning-screen').forEach((screen) => {
   const slots = Array.from(screen.querySelectorAll('[data-word-slot]'));
