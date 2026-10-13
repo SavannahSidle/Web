@@ -797,3 +797,6 @@
 .design-studies[data-mode] .study-culture .culture-index{display:none!important;}
 .design-studies[data-mode] .study-space .space-focus{top:32%!important;}
 .design-studies[data-mode] .study-space[data-selected-planet="Venus"] .space-focus{top:25%!important;}
+
+/* Keep support choices comfortably tappable after showcase scaling. */
+.site-live .design-studies .study-care .care-option{min-height:54px;}
