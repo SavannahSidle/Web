@@ -914,7 +914,7 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
     if (!drag.moved) return;
     drag.button.dataset.skipNextClick = 'true';
     window.setTimeout(() => { delete drag.button.dataset.skipNextClick; }, 0);
-    const bounds = model.getBoundingClientRect();
+    const bounds = (screen.querySelector('.room-stage') || model).getBoundingClientRect();
     const inside = event.clientX >= bounds.left && event.clientX <= bounds.right && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
     if (inside) addFurniture(drag.action, {x:event.clientX,y:event.clientY});
     else announce(`Drop the ${drag.action} inside the room to place it.`);
