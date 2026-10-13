@@ -3139,3 +3139,18 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   color:#fff;
 }
 .site-live .design-studies .study-dinosaur .dinosaur-focus{transform:translateY(4px)}
+
+/* Let the poster's foreground panels sit above the animated meteors. */
+@media(min-width:721px){
+  .home .poster-hero .hero-frame-occlusion{
+    position:absolute;inset:0;z-index:3;pointer-events:none;
+    background:url("assets/mica-digital-social.jpg") center/cover no-repeat;
+  }
+  .home .poster-hero .hero-frame-occlusion--upper{
+    clip-path:polygon(76.8% 0,100% 0,100% 23.5%,79.2% 30%);
+  }
+  .home .poster-hero .hero-frame-occlusion--lower{
+    clip-path:polygon(66% 76%,100% 59%,100% 100%,67% 100%);
+  }
+  .home .poster-hero .poster-hero-actions,.home .poster-hero .poster-scroll{z-index:4}
+}
