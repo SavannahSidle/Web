@@ -2635,16 +2635,16 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 @keyframes culture-d-tumble{
   0%,28%{transform:translate(0,0) rotate(0)}
-  34%{transform:translate(-.18em,-.45em) rotate(-18deg)}
-  43%{transform:translate(-.08em,-.16em) rotate(-34deg)}
-  55%{transform:translate(.35em,.5em) rotate(12deg)}
-  68%{transform:translate(1.15em,1.9em) rotate(48deg)}
-  80%{transform:translate(2.2em,4.4em) rotate(82deg)}
-  87%{transform:translate(3.4em,7.55em) rotate(96deg)}
-  91%{transform:translate(3.7em,8.05em) rotate(102deg)}
-  95%{transform:translate(3.35em,7.55em) rotate(88deg)}
-  98%{transform:translate(3.55em,7.9em) rotate(92deg)}
-  100%{transform:translate(3.5em,7.8em) rotate(90deg)}
+  34%{transform:translate(-.18em,.45em) rotate(-18deg)}
+  43%{transform:translate(-.25em,.2em) rotate(-34deg)}
+  55%{transform:translate(-.35em,-.45em) rotate(12deg)}
+  68%{transform:translate(-.5em,-1.4em) rotate(48deg)}
+  80%{transform:translate(-.4em,-2.8em) rotate(82deg)}
+  87%{transform:translate(-.5em,-3.15em) rotate(96deg)}
+  91%{transform:translate(-.55em,-3.4em) rotate(102deg)}
+  95%{transform:translate(-.48em,-3.2em) rotate(88deg)}
+  98%{transform:translate(-.52em,-3.35em) rotate(92deg)}
+  100%{transform:translate(-.5em,-3.3em) rotate(90deg)}
 }
 .design-studies .study-culture [hidden]{display:none!important}
 @media(max-width:560px){
