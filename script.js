@@ -1113,18 +1113,40 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     tiles.forEach((candidate) => candidate.dataset.selected = String(candidate === tile));
     if (selectedLetter) announce(`Letter ${selectedLetter} selected. Choose an empty slot.`);
   };
-  const place = (slot, letter) => {
+  const wordList = new Set(['camp','cams','cads','caps','card','carp','cars','cart','cash','cast','cats']);
+  const tilePalette = {t:['#c8def0','#263a53'],m:['#f1c8c4','#4b3239'],p:['#f2dfa7','#4a3d27'],r:['#c2e2d4','#29443a'],s:['#dfd2f2','#403853'],d:['#f2cba7','#4e3a2a'],x:['#cad9f0','#2f3b56']};
+  const currentWord = () => slots.map((item) => item.textContent.trim()).filter((value) => value !== '_').join('').toLowerCase();
+  const reportWord = () => {
+    const word = currentWord();
+    if (word.length < 4) return announce(word ? `Current word: ${word.toUpperCase()}. Complete all four letters.` : 'Choose letters to make a word.');
+    if (wordList.has(word)) announce(`Great! ${word.toUpperCase()} is an English word in this level.`, true);
+    else announce(`${word.toUpperCase()} is not in this level’s English word list. Try another combination.`);
+  };
+  const clearSlot = (slot) => {
+    if (!slot) return;
+    slot.textContent = '_';
+    slot.dataset.filled = 'false';
+    slot.style.removeProperty('background-color');
+    slot.style.removeProperty('color');
+    slot.style.removeProperty('border-color');
+    const ordinal = ['first','second','third','fourth'][slots.indexOf(slot)] || 'next';
+    slot.setAttribute('aria-label', `${ordinal} letter, empty`);
+  };
+  const place = (slot, letter, sourceTile = tiles.find((tile) => tile.dataset.letterTile === letter)) => {
     if (!slot || !letter || slot.dataset.filled === 'true') return;
     slot.textContent = letter;
     slot.dataset.filled = 'true';
+    if (sourceTile) {
+      const [tileColor, textColor] = tilePalette[sourceTile.dataset.letterTile] || ['#fff8d6','#20324f'];
+      slot.style.backgroundColor = tileColor;
+      slot.style.color = textColor;
+    }
     const slotNumber = slots.indexOf(slot) + 1;
     const ordinal = ['first','second','third','fourth'][slotNumber - 1] || `${slotNumber}th`;
     slot.setAttribute('aria-label', `${ordinal} letter, ${letter}`);
     selectedLetter = '';
     tiles.forEach((tile) => tile.dataset.selected = 'false');
-    const word = slots.map((item) => item.textContent.trim()).filter((value) => value !== '_').join('').toLowerCase();
-    if (word.length >= 3) announce(`Great! You spelled ${word.toUpperCase()}.`, true);
-    else announce(word ? `Current word: ${word.toUpperCase()}` : 'Choose letters to make a word.');
+    reportWord();
   };
 
   tiles.forEach((tile) => {
@@ -1210,12 +1232,8 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
       event.stopPropagation();
       if (selectedLetter) place(slot, selectedLetter);
       else if (slot.dataset.filled === 'true') {
-        slot.textContent = '_';
-        slot.dataset.filled = 'false';
-        const ordinal = ['first','second','third','fourth'][slots.indexOf(slot)] || 'next';
-        slot.setAttribute('aria-label', `${ordinal} letter, empty`);
-        const word = slots.map((item) => item.textContent.trim()).filter((value) => value !== '_').join('').toLowerCase();
-        announce(word.length >= 3 ? `Great! You spelled ${word.toUpperCase()}.` : 'Letter cleared. Choose another when ready.', word.length >= 3);
+        clearSlot(slot);
+        reportWord('Letter cleared.');
       }
     });
     slot.addEventListener('dragover', (event) => event.preventDefault());
@@ -1229,17 +1247,14 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
   screen.querySelector('[data-learning-reset]')?.addEventListener('click', (event) => {
     event.preventDefault();
     event.stopPropagation();
-    slots.slice(2).forEach((slot, index) => {
-      slot.textContent = '_';
-      slot.dataset.filled = 'false';
-      slot.setAttribute('aria-label', `${['third','fourth'][index] || 'next'} letter, empty`);
-    });
+    const lastAdded = slots.slice(2).filter((slot) => slot.dataset.filled === 'true').pop();
+    if (lastAdded) clearSlot(lastAdded);
     selectedLetter = '';
     tiles.forEach((tile) => {
       tile.dataset.selected = 'false';
       tile.dataset.dragging = 'false';
     });
-    announce('Choose letters to make a word.');
+    announce(lastAdded ? 'Last letter undone.' : 'No added letters to undo.');
   });
 });
 
