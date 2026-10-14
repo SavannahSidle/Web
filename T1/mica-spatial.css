@@ -3777,3 +3777,27 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 @media(prefers-reduced-motion:reduce){
  .design-studies[data-mode] .study-space .space-screen::after{background-position:center}
 }
+
+/* Make the open-front room read as a 3D box at showcase and grid size. */
+.design-studies[data-mode] .study-spatial .room-model{--spatial-yaw:-14deg;--spatial-pitch:0deg}
+.design-studies[data-mode] .study-spatial .room-left-wall,
+.design-studies[data-mode] .study-spatial .room-side-wall{
+  top:41%;width:34%;height:54%;
+}
+.design-studies[data-mode] .study-spatial .room-left-wall{
+  left:11%;transform:translate(-50%,-50%) rotateY(-50deg) translateZ(-12px);transform-origin:right center
+}
+.design-studies[data-mode] .study-spatial .room-side-wall{
+  left:89%;transform:translate(-50%,-50%) rotateY(50deg) translateZ(-12px);transform-origin:left center
+}
+.design-studies[data-mode] .study-spatial .room-floor{
+  top:70%;height:58%;transform:translate(-50%,-50%) rotateX(26deg);transform-origin:50% 50%
+}
+.design-studies[data-mode] .study-spatial .room-furniture{transform:rotateX(26deg);transform-origin:50% 50%}
+.design-studies[data-mode] .study-culture .culture-type .culture-end-d{display:inline-block;transform:rotate(180deg);transform-origin:50% 50%}
+@media(max-width:620px){
+  .design-studies[data-mode] .study-spatial .room-left-wall,
+  .design-studies[data-mode] .study-spatial .room-side-wall{width:32%;height:53%}
+  .design-studies[data-mode] .study-spatial .room-left-wall{left:12%}
+  .design-studies[data-mode] .study-spatial .room-side-wall{left:88%}
+}
