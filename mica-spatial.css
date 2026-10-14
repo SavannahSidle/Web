@@ -3297,7 +3297,9 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .design-studies .study-dinosaur .dinosaur-focus{
   left:5%;top:63%;width:42%;text-align:left;transform:none
 }
-.site-live .design-studies .study-dinosaur .dinosaur-focus small{display:block;margin:0 0 3px;text-align:left;white-space:nowrap}
+.site-live .design-studies .study-dinosaur .dinosaur-focus small{
+  position:static;inset:auto;left:auto;right:auto;display:block;width:auto;margin:0 0 3px;text-align:left;white-space:nowrap
+}
 .site-live .design-studies .study-dinosaur .dinosaur-focus h3{margin:3px 0 2px;text-align:left}
 .site-live .design-studies .study-dinosaur .raptor-controls{
   display:grid;grid-template-columns:repeat(4,22px);gap:2px;padding:3px;border:1px solid rgba(194,219,209,.25);
