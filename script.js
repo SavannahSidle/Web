@@ -1231,4 +1231,440 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     event.stopPropagation();
     slots.slice(2).forEach((slot, index) => {
       slot.textContent = '_';
-      slot.dat
+      slot.dataset.filled = 'false';
+      slot.setAttribute('aria-label', `${['third','fourth'][index] || 'next'} letter, empty`);
+    });
+    selectedLetter = '';
+    tiles.forEach((tile) => {
+      tile.dataset.selected = 'false';
+      tile.dataset.dragging = 'false';
+    });
+    announce('Choose letters to make a word.');
+  });
+});
+
+// Map-layer controls make the wayfinding concept legible and selectable.
+document.querySelectorAll('.wayfinding-screen').forEach((screen) => {
+  const controls = Array.from(screen.querySelectorAll('[data-wayfinding-layer]'));
+  controls.forEach((control) => control.addEventListener('click', (event) => {
+    event.preventDefault();event.stopPropagation();
+    const layer = control.dataset.wayfindingLayer;
+    screen.dataset.layer = layer;
+    const modeLabel = screen.querySelector('.wayfinding-top span:last-child');
+    if (modeLabel) modeLabel.textContent = `${layer.toUpperCase()} MAP`;
+    controls.forEach((item) => item.setAttribute('aria-pressed', String(item === control)));
+  }));
+});
+
+// Run orbit and star motion only while the solar-system study is on screen.
+const orbitalScreens = document.querySelectorAll('.study-space .space-screen');
+if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window) {
+  const orbitalObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => entry.target.dataset.orbitVisible = String(entry.isIntersecting));
+  }, { threshold: 0.08 });
+  orbitalScreens.forEach((screen) => orbitalObserver.observe(screen));
+}
+
+
+/* Test 6 mental health study: selectable, keyboard-friendly support routes. */
+(() => {
+  document.querySelectorAll('[data-care-widget]').forEach((widget) => {
+    const choices = Array.from(widget.querySelectorAll('[data-care-choice]'));
+    const response = widget.querySelector('.care-response');
+    const templates = new Map(Array.from(widget.querySelectorAll('template[data-care-template]'), (template) => [template.dataset.careTemplate, template]));
+    const baseContent = Array.from(widget.querySelectorAll('.care-top,.care-intro,.care-options,.care-crisis'));
+    let returnFocus = null;
+    if (!choices.length || !response) return;
+
+    const closeResponse = (restoreFocus = true) => {
+      response.hidden = true;
+      response.replaceChildren();
+      widget.classList.remove('care-response-open');
+      baseContent.forEach((element) => { element.inert = false; });
+      choices.forEach((choice) => choice.setAttribute('aria-pressed', 'false'));
+      if (restoreFocus && returnFocus) returnFocus.focus();
+    };
+
+    choices.forEach((choice) => {
+      choice.addEventListener('click', () => {
+        const template = templates.get(choice.dataset.careChoice);
+        if (!template) return;
+        returnFocus = choice;
+        choices.forEach((item) => item.setAttribute('aria-pressed', String(item === choice)));
+        response.replaceChildren(template.content.cloneNode(true));
+        response.hidden = false;
+        widget.classList.add('care-response-open');
+        baseContent.forEach((element) => { element.inert = true; });
+        const heading = response.querySelector('h4');
+        if (heading) {
+          heading.tabIndex = -1;
+          heading.focus();
+        }
+        response.querySelector('[data-care-back]')?.addEventListener('click', () => closeResponse(true));
+      });
+    });
+
+    widget.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !response.hidden) {
+        event.preventDefault();
+        closeResponse(true);
+      }
+    });
+  });
+})();
+
+/* Accessible information study: restore working schedule/help actions and keep the text preview. */
+(() => {
+  const content = {
+    schedule: {
+      kicker: 'SAMPLE DAY · PREVIEW ONLY',
+      title: 'A little structure, with room to change.',
+      copy: 'A real schedule would show the next useful steps here. This sample is illustrative; it is not connected to a personal calendar.',
+      note: 'Choose one task, add a break, and change the plan whenever you need.'
+    },
+    help: {
+      kicker: 'HELP WHEN YOU NEED IT',
+      title: 'Start with what would help.',
+      copy: 'You can ask someone to listen, help with one next step, or find a local service. This preview does not connect you to a live support person.',
+      note: 'Immediate danger? Call 9-1-1.\nSuicide crisis? Call or text 9-8-8.'
+    }
+  };
+  document.querySelectorAll('.study-accessible').forEach((study) => {
+    const screen = study.querySelector('.study-screen');
+    const popup = study.querySelector('[data-accessible-popup]');
+    const actions = [...study.querySelectorAll('[data-accessible-action]')];
+    const close = study.querySelector('[data-accessible-close]');
+    const kicker = study.querySelector('[data-accessible-kicker]');
+    const title = study.querySelector('[data-accessible-title]');
+    const copy = study.querySelector('[data-accessible-copy]');
+    const note = study.querySelector('[data-accessible-note]');
+    if (!screen || !popup || !actions.length || !close) return;
+    let returnFocus = null;
+    let backgroundInertState = [];
+    const focusableInPopup = () => [...popup.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')];
+    const closePopup = (restoreFocus = true) => {
+      popup.hidden = true;
+      actions.forEach((button) => button.setAttribute('aria-expanded', 'false'));
+      backgroundInertState.forEach(([element, wasInert]) => { element.inert = wasInert; });
+      backgroundInertState = [];
+      if (restoreFocus && returnFocus) returnFocus.focus();
+    };
+    actions.forEach((button) => button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const selected = content[button.dataset.accessibleAction];
+      if (!selected) return;
+      returnFocus = button;
+      kicker.textContent = selected.kicker;
+      title.textContent = selected.title;
+      copy.textContent = selected.copy;
+      note.textContent = selected.note;
+      actions.forEach((item) => item.setAttribute('aria-expanded', String(item === button)));
+      backgroundInertState = [...screen.children]
+        .filter((element) => element !== popup)
+        .map((element) => [element, element.inert]);
+      backgroundInertState.forEach(([element]) => { element.inert = true; });
+      popup.hidden = false;
+      title.focus();
+    }));
+    close.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      closePopup(true);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Tab' && !popup.hidden) {
+        const stops = focusableInPopup();
+        if (!stops.length) {
+          event.preventDefault();
+          title.focus();
+          return;
+        }
+        const first = stops[0];
+        const last = stops[stops.length - 1];
+        const focusIsOutsidePopup = !popup.contains(document.activeElement) && document.activeElement !== title;
+        if (focusIsOutsidePopup) {
+          event.preventDefault();
+          (event.shiftKey ? last : first).focus();
+        } else if (event.shiftKey && (document.activeElement === first || document.activeElement === title)) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && (document.activeElement === last || document.activeElement === title)) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+      if (event.key === 'Escape' && !popup.hidden) {
+        event.preventDefault();
+        closePopup(true);
+      }
+    }, true);
+  });
+})();
+
+
+/* Test 6 care and bedding preview interactions. */
+(() => {
+  const petCopy = {
+    companions: ['MEET THE COMPANIONS', 'Portraits, everyday routines, and the small details that make each companion their own.', 'Sample editorial content'],
+    care: ['CARE, AT A GLANCE', 'Browse routine grooming, feeding, and activity checklists. For individual health concerns, speak with a veterinary professional.', 'General information only; not veterinary advice'],
+    notes: ['FIELD NOTES', 'Short stories about training, companionship, and the everyday moments worth remembering.', 'Sample editorial content']
+  };
+  document.querySelectorAll('[data-pet-study]').forEach((study) => {
+    const open = study.querySelector('.pet-open');
+    const panel = study.querySelector('.pet-panel');
+    const heading = study.querySelector('[data-pet-heading]');
+    const copy = study.querySelector('[data-pet-copy]');
+    const status = study.querySelector('[data-pet-status]');
+    const tabs = [...study.querySelectorAll('[data-pet-topic]')];
+    const close = study.querySelector('.pet-close');
+    if (!open || !panel || !copy) return;
+    const select = (name, moveFocus = false) => {
+      const tab = tabs.find((item) => item.dataset.petTopic === name);
+      const entry = petCopy[name];
+      if (!tab || !entry) return;
+      tabs.forEach((item) => {
+        const selected = item === tab;
+        item.setAttribute('aria-selected', String(selected));
+        item.tabIndex = selected ? 0 : -1;
+      });
+      copy.setAttribute('aria-labelledby', tab.id);
+      copy.innerHTML = '<p class="pet-overline"></p><p></p><span></span>';
+      const lines = copy.querySelectorAll('p, span');
+      lines[0].textContent = entry[0];
+      lines[1].textContent = entry[1];
+      lines[2].textContent = entry[2];
+      status.textContent = entry[0] + '. ' + entry[1];
+      if (moveFocus) tab.focus();
+    };
+    const closePanel = (restore = true) => {
+      panel.hidden = true;
+      open.setAttribute('aria-expanded', 'false');
+      if (restore) open.focus();
+    };
+    open.addEventListener('click', () => {
+      panel.hidden = false;
+      open.setAttribute('aria-expanded', 'true');
+      heading.focus();
+    });
+    close?.addEventListener('click', () => closePanel(true));
+    tabs.forEach((tab, index) => tab.addEventListener('click', () => select(tab.dataset.petTopic)));
+    study.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !panel.hidden) {
+        event.preventDefault();
+        closePanel(true);
+        return;
+      }
+      const current = event.target.closest('[data-pet-topic]');
+      if (!current) return;
+      const index = tabs.indexOf(current);
+      let next = index;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      select(tabs[next].dataset.petTopic, true);
+    });
+  });
+
+  const fabricPrices = { 'Washed linen': 148, 'Cotton percale': 118, 'Textured hemp': 168 };
+  document.querySelectorAll('[data-bedding-study]').forEach((study) => {
+    const panel = study.querySelector('.bedding-panel');
+    const heading = study.querySelector('[data-bedding-heading]');
+    const openers = [...study.querySelectorAll('[data-bedding-open]')];
+    const tabs = [...study.querySelectorAll('.bedding-tabs [data-bedding-tab]')];
+    const copy = study.querySelector('[data-bedding-copy]');
+    const status = study.querySelector('[data-bedding-status]');
+    const fabricButtons = [...study.querySelectorAll('[data-bedding-fabric]')];
+    const sizeButtons = [...study.querySelectorAll('[data-bedding-size]')];
+    const countOutput = study.querySelector('[data-bedding-count]');
+    const price = study.querySelector('[data-bedding-price]');
+    const bag = study.querySelector('.bedding-bag');
+    const bagStatus = study.querySelector('[data-bedding-bag-status]');
+    let selectedFabric = 'Washed linen';
+    let selectedSize = 'Queen';
+    let quantity = 1;
+    const viewName = (view) => view.charAt(0).toUpperCase() + view.slice(1);
+    const selectTab = (name, focus = false) => {
+      const tab = tabs.find((item) => item.dataset.beddingTab === name);
+      if (!tab || !copy) return;
+      tabs.forEach((item) => {
+        const active = item === tab;
+        item.setAttribute('aria-selected', String(active));
+        item.tabIndex = active ? 0 : -1;
+      });
+      copy.setAttribute('aria-labelledby', tab.id);
+      copy.querySelectorAll('[data-bedding-view]').forEach((view) => { view.hidden = view.dataset.beddingView !== name; });
+      if (heading) heading.textContent = name === 'linen' ? 'Choose your linen' : name === 'bedroom' ? 'A room to unwind' : 'Care notes';
+      if (focus) tab.focus();
+      status.textContent = viewName(name) + ' details opened.';
+    };
+    const closePanel = (restore = true) => {
+      panel.hidden = true;
+      if (restore) lastOpener?.focus();
+    };
+    let lastOpener = null;
+    openers.forEach((button) => button.addEventListener('click', () => {
+      lastOpener = button;
+      panel.hidden = false;
+      selectTab(button.dataset.beddingTab || 'linen');
+      heading?.focus();
+    }));
+    study.querySelector('.bedding-close')?.addEventListener('click', () => closePanel(true));
+    tabs.forEach((tab, index) => tab.addEventListener('click', () => selectTab(tab.dataset.beddingTab)));
+    study.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !panel.hidden) {
+        event.preventDefault();
+        closePanel(true);
+        return;
+      }
+      const current = event.target.closest('.bedding-tabs [data-bedding-tab]');
+      if (!current) return;
+      const index = tabs.indexOf(current);
+      let next = index;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      selectTab(tabs[next].dataset.beddingTab, true);
+    });
+    const updatePrice = () => {
+      const each = fabricPrices[selectedFabric];
+      if (price) price.textContent = 'CA$' + Math.round(each * (selectedSize === 'King' ? 1.18 : selectedSize === 'Twin' ? .82 : 1));
+    };
+    fabricButtons.forEach((button) => button.addEventListener('click', () => {
+      selectedFabric = button.dataset.beddingFabric;
+      fabricButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      updatePrice();
+      status.textContent = selectedFabric + ' selected.';
+    }));
+    sizeButtons.forEach((button) => button.addEventListener('click', () => {
+      selectedSize = button.dataset.beddingSize;
+      sizeButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      updatePrice();
+      status.textContent = selectedSize + ' size selected.';
+    }));
+    study.querySelectorAll('[data-bedding-quantity]').forEach((button) => button.addEventListener('click', () => {
+      quantity = Math.max(1, Math.min(9, quantity + Number(button.dataset.beddingQuantity)));
+      countOutput.value = String(quantity);
+      countOutput.textContent = String(quantity);
+      status.textContent = 'Quantity ' + quantity + '.';
+    }));
+    study.querySelector('[data-bedding-add]')?.addEventListener('click', () => {
+      bag.hidden = false;
+      bagStatus.textContent = quantity + ' ' + selectedSize + ' ' + selectedFabric.toLowerCase() + (quantity === 1 ? ' set' : ' sets') + ' in your concept bag. Checkout is not available in this preview.';
+      status.textContent = bagStatus.textContent;
+      bagStatus.focus?.();
+    });
+    study.querySelector('[data-bedding-remove]')?.addEventListener('click', () => {
+      bag.hidden = true;
+      status.textContent = 'Sample removed from the concept bag.';
+      study.querySelector('[data-bedding-add]')?.focus();
+    });
+    updatePrice();
+  });
+})();
+
+
+/* Arts & Culture / Common Ground: usable concept navigation, honest event details, and replayable motion. */
+(() => {
+  document.querySelectorAll(".study-culture").forEach((study) => {
+    const screen = study.querySelector(".culture-screen");
+    const viewButtons = [...study.querySelectorAll("[data-culture-view]")];
+    const panels = [...study.querySelectorAll("[data-culture-panel]")];
+    const replay = study.querySelector("[data-culture-replay]");
+    const detailToggle = study.querySelector(".culture-details-toggle");
+    const detailText = study.querySelector("[data-culture-details]");
+    if (!screen) return;
+
+    viewButtons.forEach((button) => button.addEventListener("click", () => {
+      const selected = button.dataset.cultureView;
+      viewButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+      panels.forEach((panel) => { panel.hidden = panel.dataset.culturePanel !== selected; });
+    }));
+
+    detailToggle?.addEventListener("click", () => {
+      const expanded = detailToggle.getAttribute("aria-expanded") !== "true";
+      detailToggle.setAttribute("aria-expanded", String(expanded));
+      detailText.hidden = !expanded;
+      detailToggle.textContent = expanded ? "Hide event details" : "Event details";
+    });
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const play = () => {
+      if (reducedMotion.matches) return;
+      screen.classList.remove("is-d-motion");
+      void screen.offsetWidth;
+      screen.classList.add("is-d-motion");
+    };
+    replay?.addEventListener("click", play);
+    if (!reducedMotion.matches) {
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          play();
+          observer.disconnect();
+        }, { threshold: 0.25 });
+        observer.observe(screen);
+      } else {
+        play();
+      }
+    }
+  });
+})();
+
+
+/* Community directory: each option opens useful information in place. */
+(() => {
+  const details = {
+    housing: ["Housing help", "Browse rent, utility, shelter, and housing-stability support."],
+    food: ["Food nearby", "Find meal programs, community fridges, markets, and food-access support."],
+    health: ["Health access", "Explore community clinics, primary-care access, and local health services."],
+    family: ["Family services", "Find childcare, parenting programs, and support for families."],
+    legal: ["Legal guidance", "Understand common legal questions and find community legal information or referrals."]
+  };
+
+  document.querySelectorAll(".study-information").forEach((study) => {
+    const buttons = [...study.querySelectorAll("[data-info-service]")];
+    const panel = study.querySelector("[data-info-detail]");
+    const title = study.querySelector("[data-info-detail-title]");
+    const copy = study.querySelector("[data-info-detail-copy]");
+    const close = study.querySelector("[data-info-close]");
+    let trigger = null;
+    if (!buttons.length || !panel || !title || !copy) return;
+
+    const dismiss = (returnFocus = false) => {
+      panel.hidden = true;
+      buttons.forEach((button) => button.setAttribute("aria-expanded", "false"));
+      if (returnFocus) trigger?.focus();
+    };
+
+    buttons.forEach((button) => button.addEventListener("click", () => {
+      const sameOption = trigger === button && !panel.hidden;
+      if (sameOption) {
+        dismiss();
+        trigger = null;
+        return;
+      }
+      trigger = button;
+      const [label, description] = details[button.dataset.infoService] || [button.textContent.trim(), "More information will be added by local partners."];
+      title.textContent = label;
+      copy.textContent = description;
+      buttons.forEach((item) => item.setAttribute("aria-expanded", String(item === button)));
+      panel.hidden = false;
+      close?.focus();
+    }));
+
+    close?.addEventListener("click", () => dismiss(true));
+    study.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !panel.hidden) {
+        event.preventDefault();
+        dismiss(true);
+      }
+    });
+  });
+})();
