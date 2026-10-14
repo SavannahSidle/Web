@@ -1335,9 +1335,13 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
     const note = study.querySelector('[data-accessible-note]');
     if (!screen || !popup || !actions.length || !close) return;
     let returnFocus = null;
+    let backgroundInertState = [];
+    const focusableInPopup = () => [...popup.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')];
     const closePopup = (restoreFocus = true) => {
       popup.hidden = true;
       actions.forEach((button) => button.setAttribute('aria-expanded', 'false'));
+      backgroundInertState.forEach(([element, wasInert]) => { element.inert = wasInert; });
+      backgroundInertState = [];
       if (restoreFocus && returnFocus) returnFocus.focus();
     };
     actions.forEach((button) => button.addEventListener('click', (event) => {
@@ -1351,6 +1355,10 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
       copy.textContent = selected.copy;
       note.textContent = selected.note;
       actions.forEach((item) => item.setAttribute('aria-expanded', String(item === button)));
+      backgroundInertState = [...screen.children]
+        .filter((element) => element !== popup)
+        .map((element) => [element, element.inert]);
+      backgroundInertState.forEach(([element]) => { element.inert = true; });
       popup.hidden = false;
       title.focus();
     }));
@@ -1360,6 +1368,23 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
       closePopup(true);
     });
     screen.addEventListener('keydown', (event) => {
+      if (event.key === 'Tab' && !popup.hidden) {
+        const stops = focusableInPopup();
+        if (!stops.length) {
+          event.preventDefault();
+          title.focus();
+          return;
+        }
+        const first = stops[0];
+        const last = stops[stops.length - 1];
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === title)) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && (document.activeElement === last || document.activeElement === title)) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
       if (event.key === 'Escape' && !popup.hidden) {
         event.preventDefault();
         closePopup(true);
