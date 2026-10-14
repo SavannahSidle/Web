@@ -117,6 +117,7 @@ if (studiesSection) {
     let suppressCardClicksUntil = 0;
     studyTrack.addEventListener('pointerdown', (event) => {
       if (event.pointerType === 'mouse' && event.button !== 0) return;
+      if (event.target.closest('button,a,input,select,textarea,[role="button"],[data-spatial-screen],[data-raptor-view],[data-bedding-study]')) return;
       pointerStart = { x: event.clientX, y: event.clientY };
     });
     studyTrack.addEventListener('pointerup', (event) => {
@@ -360,7 +361,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   });
   addEllipsoid(.68, .87, .045, .022, .012, .014, '#53644e', 5, 6);
   addEllipsoid(.68, .87, -.045, .022, .012, .014, '#53644e', 5, 6);
-  let yaw = -.3, pitch = .08, zoom = 1, drag = null, width = 0, height = 0;
+  let yaw = -.3, pitch = .08, zoom = .8, drag = null, width = 0, height = 0;
   let gazeX = 0, gazeY = 0;
   const resize = () => {
     const rect = stage.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -426,7 +427,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       const rx = x * Math.cos(yaw) + z * Math.sin(yaw), rz = -x * Math.sin(yaw) + z * Math.cos(yaw);
       const ry = y * Math.cos(pitch) - rz * Math.sin(pitch), rz2 = y * Math.sin(pitch) + rz * Math.cos(pitch);
       const perspective = camera / (camera + rz2);
-      return { x: width * .53 + (rx + .4) * scale * perspective, y: height * .49 - ry * scale * perspective, z: rz2 };
+      return { x: width * .49 + (rx + .4) * scale * perspective, y: height * .49 - ry * scale * perspective, z: rz2 };
     });
     const rendered = faces.map(face => {
       const a = projected[face.a], b = projected[face.b], c = projected[face.c];
@@ -450,7 +451,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   const announce = (message) => { if (modelStatus) modelStatus.textContent = message; };
   const syncControls = () => {
     if (zoomIn) zoomIn.disabled = zoom >= 1.5;
-    if (zoomOut) zoomOut.disabled = zoom <= .72;
+    if (zoomOut) zoomOut.disabled = zoom <= .55;
     const autoButton = stage.querySelector('[data-raptor-action="autoplay"]');
     if (autoButton) {
       autoButton.setAttribute('aria-pressed', String(!userPaused));
@@ -502,14 +503,14 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     if (!stage.matches(':focus-within')) startAutomaticTurn();
   }));
   const setZoom = (next, announceChange = true) => {
-    zoom = Math.max(.72, Math.min(1.5, next));
+    zoom = Math.max(.55, Math.min(1.5, next));
     syncControls();
     draw();
     if (announceChange) announce(`Zoom ${Math.round(zoom * 100)} percent.`);
   };
   const resetView = () => {
-    yaw = -.3; pitch = .08; setZoom(1, false);
-    announce('Model view reset to the starting angle and 100 percent zoom.');
+    yaw = -.3; pitch = .08; setZoom(.8, false);
+    announce('Model view reset to the starting angle and 80 percent zoom.');
   };
   const describeOrientation = () => {
     const direction = ['front three-quarter', 'side', 'rear three-quarter', 'rear', 'front three-quarter'][
@@ -579,8 +580,6 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     if (!button) return;
     event.preventDefault(); event.stopPropagation();
     const action = button.dataset.raptorAction;
-    if (action === 'rotate-left') { yaw -= .22; draw(); describeOrientation(); }
-    if (action === 'rotate-right') { yaw += .22; draw(); describeOrientation(); }
     if (action === 'zoom-in') setZoom(zoom + .12);
     if (action === 'zoom-out') setZoom(zoom - .12);
     if (action === 'reset') resetView();
@@ -752,6 +751,7 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
   model.addEventListener('pointercancel', finish);
   model.addEventListener('lostpointercapture', finish);
   model.addEventListener('keydown', (event) => {
+    if (event.target !== model) return;
     const step = event.shiftKey ? 18 : 10;
     if (event.key === 'ArrowLeft') yaw -= step;
     else if (event.key === 'ArrowRight') yaw += step;
@@ -771,7 +771,7 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
         pitch = 0;
         paint();
         model.focus({preventScroll:true});
-      } else if (button.dataset.spatialAction === 'light') {
+      } else if (button.dataset.spatialAction === 'light' && button.hasAttribute('data-room-target')) {
         const target = button.dataset.roomTarget === 'addition' ? 'addition' : 'main';
         const unit = model.querySelector(`.room-${target}`);
         if (!unit) return;
@@ -828,35 +828,34 @@ document.querySelectorAll('.study-neural').forEach((study) => {
 });
 
 
-// Room planner: snap furniture to visible floor lines and keep room rotation separate from object selection.
+// Room planner: move pieces freely under the pointer, then settle them on each room's own floor grid.
 document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
   const model = screen.querySelector('[data-room-drop-surface]');
-  const furniture = model?.querySelector('.room-main [data-room-furniture]');
   const roomStatus = screen.querySelector('[data-room-status]');
   const roomLabel = screen.querySelector('[data-room-label]');
   const addRoomButton = screen.querySelector('[data-room-action="add-room"]');
   const removeRoomButton = screen.querySelector('[data-room-action="remove-room"]');
-  const additionLightButton = screen.querySelector('[data-room-target="addition"]');
-  if (!model || !furniture) return;
+  const lightButton = screen.querySelector('[data-room-light-toggle]');
+  if (!model || !roomLabel) return;
 
   const gridSteps = 8;
+  let activeRoom = 'main';
   let selectedPiece = null;
   let toolDrag = null;
   let ghost = null;
   const announce = (message) => { if (roomStatus) roomStatus.textContent = message; };
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
-  const floorByName = (name) => model.querySelector(`[data-room-floor="${name}"]`) || model.querySelector('[data-room-floor]');
+  const floorByName = (name) => model.querySelector(`[data-room-floor="${name}"]`);
   const floorsAtPoint = (x, y) => {
     if (typeof document.elementsFromPoint !== 'function') return [];
     return document.elementsFromPoint(x, y)
       .map((element) => element.closest?.('[data-room-floor]'))
       .filter((floor, index, all) => floor && screen.contains(floor) && all.indexOf(floor) === index);
   };
+  const floorLayer = (floor) => floor?.closest('.room-main,.room-addition')?.querySelector('[data-room-furniture]');
   const placeOnGrid = (piece, floor, column, row) => {
-    if (!floor) return;
-    const roomUnit = floor.closest('.room-main,.room-addition');
-    const layer = roomUnit?.querySelector('[data-room-furniture]');
-    if (!roomUnit || !layer) return;
+    const layer = floorLayer(floor);
+    if (!layer) return;
     if (piece.parentElement !== layer) layer.append(piece);
     const col = clamp(Math.round(column), 1, gridSteps - 1);
     const r = clamp(Math.round(row), 1, gridSteps - 1);
@@ -864,11 +863,19 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
     piece.style.top = `${(r / gridSteps) * 100}%`;
     piece.dataset.gridColumn = String(col);
     piece.dataset.gridRow = String(r);
-    piece.dataset.roomFloor = floor.dataset.roomFloor || 'main';
+    piece.dataset.roomFloor = floor.dataset.roomFloor;
     const type = piece.dataset.roomPiece === 'chair' ? 'Chair' : 'Couch';
     piece.setAttribute('aria-label', `${type}, grid column ${col}, row ${r}. Selected. Drag to move or use arrow keys.`);
   };
-  const gridPositionAt = (floor, x, y, previous = null) => {
+  const placeDuringDrag = (piece, floor, column, row) => {
+    const layer = floorLayer(floor);
+    if (!layer) return;
+    if (piece.parentElement !== layer) layer.append(piece);
+    piece.style.left = `${(clamp(column,1,gridSteps-1) / gridSteps) * 100}%`;
+    piece.style.top = `${(clamp(row,1,gridSteps-1) / gridSteps) * 100}%`;
+    piece.dataset.roomFloor = floor.dataset.roomFloor;
+  };
+  const gridPositionAt = (floor, x, y) => {
     const quad = floor.getBoxQuads?.()[0];
     const cornerPoints = ['tl','tr','br','bl'].map((corner) => {
       const marker = floor.querySelector(`[data-grid-corner="${corner}"]`);
@@ -876,16 +883,14 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
       const rect = marker.getBoundingClientRect();
       return {x:rect.left,y:rect.top};
     });
-    const shape = quad || (cornerPoints.every(Boolean) ? {
-      p1:cornerPoints[0],p2:cornerPoints[1],p3:cornerPoints[2],p4:cornerPoints[3]
-    } : null);
+    const shape = quad || (cornerPoints.every(Boolean) ? {p1:cornerPoints[0],p2:cornerPoints[1],p3:cornerPoints[2],p4:cornerPoints[3]} : null);
     let u, v;
     if (shape) {
-      const {p1, p2, p3, p4} = shape;
+      const {p1,p2,p3,p4} = shape;
       const dx1=p2.x-p3.x, dx2=p4.x-p3.x, dx3=p1.x-p2.x+p3.x-p4.x;
       const dy1=p2.y-p3.y, dy2=p4.y-p3.y, dy3=p1.y-p2.y+p3.y-p4.y;
       const denominator=dx1*dy2-dx2*dy1;
-      if (Math.abs(denominator) > .0001) {
+      if (Math.abs(denominator)>.0001) {
         const g=(dx3*dy2-dx2*dy3)/denominator, h=(dx1*dy3-dx3*dy1)/denominator;
         const a=p2.x-p1.x+g*p2.x, b=p4.x-p1.x+h*p4.x, c=p1.x;
         const d=p2.y-p1.y+g*p2.y, e=p4.y-p1.y+h*p4.y, f=p1.y;
@@ -896,7 +901,7 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
           const xu=(a*w-g*(a*u+b*v+c))/(w*w), xv=(b*w-h*(a*u+b*v+c))/(w*w);
           const yu=(d*w-g*(d*u+e*v+f))/(w*w), yv=(e*w-h*(d*u+e*v+f))/(w*w);
           const jacobian=xu*yv-xv*yu;
-          if (Math.abs(jacobian) < .0001) break;
+          if (Math.abs(jacobian)<.0001) break;
           u+=(rx*yv-xv*ry)/jacobian;
           v+=(xu*ry-rx*yu)/jacobian;
         }
@@ -904,14 +909,28 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
     }
     if (!Number.isFinite(u) || !Number.isFinite(v)) {
       const rect=floor.getBoundingClientRect();
-      u=(x-rect.left)/Math.max(rect.width,1); v=(y-rect.top)/Math.max(rect.height,1);
+      u=(x-rect.left)/Math.max(rect.width,1);
+      v=(y-rect.top)/Math.max(rect.height,1);
     }
-    const rawColumn=u*gridSteps, rawRow=v*gridSteps;
-    const nextColumn=clamp(Math.round(rawColumn),1,gridSteps-1);
-    const nextRow=clamp(Math.round(rawRow),1,gridSteps-1);
-    const column=previous && nextColumn!==previous.column && Math.abs(rawColumn-previous.column)<.68 ? previous.column : nextColumn;
-    const row=previous && nextRow!==previous.row && Math.abs(rawRow-previous.row)<.68 ? previous.row : nextRow;
-    return {column,row};
+    return {column:clamp(u*gridSteps,1,gridSteps-1),row:clamp(v*gridSteps,1,gridSteps-1)};
+  };
+  const setActiveRoom = (name, shouldAnnounce = true) => {
+    const room = name === 'addition' ? 'addition' : 'main';
+    if (room === 'addition' && screen.dataset.roomAdded !== 'true') return;
+    activeRoom = room;
+    model.querySelectorAll('.room-main,.room-addition').forEach((unit) => {
+      unit.dataset.active = String(unit.classList.contains(`room-${room}`));
+    });
+    const number = room === 'main' ? '01' : '02';
+    const unit = model.querySelector(`.room-${room}`);
+    roomLabel.textContent = `ROOM ${number}`;
+    if (lightButton && unit) {
+      const cool = unit.dataset.light === 'cool';
+      lightButton.textContent = `${number} · ${cool ? 'COOL' : 'WARM'}`;
+      lightButton.setAttribute('aria-pressed', String(cool));
+      lightButton.setAttribute('aria-label', `Switch Room ${number} to ${cool ? 'warm' : 'cool'} lighting`);
+    }
+    if (shouldAnnounce) announce(`Room ${number} selected. Choose warm or cool lighting.`);
   };
   const selectPiece = (piece) => {
     selectedPiece = piece;
@@ -920,12 +939,12 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
       item.setAttribute('aria-pressed', String(active));
       item.dataset.selected = String(active);
     });
-    if (piece) announce(`${piece.dataset.roomPiece === 'chair' ? 'Chair' : 'Couch'} selected. Drag to move or use the arrow keys.`);
+    if (piece) setActiveRoom(piece.dataset.roomFloor === 'addition' ? 'addition' : 'main',false);
   };
-  const addFurniture = (action, floor = floorByName('main'), point = null) => {
+  const addFurniture = (action, floor = floorByName(activeRoom), point = null) => {
     if (!floor) return null;
-    const roomUnit = floor?.closest('.room-main,.room-addition') || model.querySelector('.room-main');
-    const layer = roomUnit?.querySelector('[data-room-furniture]') || furniture;
+    const layer = floorLayer(floor);
+    if (!layer) return null;
     const pieces = Array.from(layer.querySelectorAll(`[data-room-piece="${action}"]`));
     if (pieces.length >= 3) {
       announce(`Three ${action}s are already in the room.`);
@@ -936,183 +955,139 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
     piece.className = `room-piece room-${action}`;
     piece.dataset.roomPiece = action;
     piece.dataset.selected = 'false';
-    piece.setAttribute('aria-pressed', 'false');
-    const defaultCell = action === 'chair'
-      ? {column: Math.min(2 + pieces.length * 2, 6), row: 6}
-      : {column: Math.min(5 + pieces.length, 7), row: 5};
-    const cell = point ? gridPositionAt(floor, point.x, point.y) : defaultCell;
+    piece.setAttribute('aria-pressed','false');
+    const cell = point ? gridPositionAt(floor,point.x,point.y) : action === 'chair'
+      ? {column:Math.min(2+pieces.length*2,6),row:6}
+      : {column:Math.min(5+pieces.length,7),row:5};
     layer.append(piece);
-    placeOnGrid(piece, floor, cell.column, cell.row);
-    piece.addEventListener('pointerdown', (event) => {
+    placeOnGrid(piece,floor,cell.column,cell.row);
+    piece.addEventListener('pointerdown',(event) => {
       if (event.pointerType === 'mouse' && event.button !== 0) return;
-      event.preventDefault();
-      event.stopPropagation();
-      selectPiece(piece);
+      event.preventDefault(); event.stopPropagation();
+      selectPiece(piece); piece.focus({preventScroll:true});
       piece.dataset.dragging = 'true';
-      piece._roomPointer = {id:event.pointerId, moved:false};
+      piece._roomPointer = {id:event.pointerId,moved:false,floor};
       try { piece.setPointerCapture(event.pointerId); } catch {}
     });
-    piece.addEventListener('pointermove', (event) => {
-      const pointer = piece._roomPointer;
-      if (!pointer || pointer.id !== event.pointerId) return;
-      const surfaces = floorsAtPoint(event.clientX, event.clientY);
-      const targetFloor = surfaces[0] || floorByName(piece.dataset.roomFloor);
+    piece.addEventListener('pointermove',(event) => {
+      const pointer=piece._roomPointer;
+      if (!pointer || pointer.id!==event.pointerId) return;
+      const targetFloor=floorsAtPoint(event.clientX,event.clientY)[0] || floorByName(piece.dataset.roomFloor);
       if (!targetFloor) return;
-      const next = gridPositionAt(targetFloor, event.clientX, event.clientY, {
-        column:Number(piece.dataset.gridColumn), row:Number(piece.dataset.gridRow)
-      });
-      if (next.column===Number(piece.dataset.gridColumn) && next.row===Number(piece.dataset.gridRow)) return;
-      pointer.moved = true;
-      placeOnGrid(piece, targetFloor, next.column, next.row);
+      const next=gridPositionAt(targetFloor,event.clientX,event.clientY);
+      pointer.moved=true; pointer.floor=targetFloor; pointer.column=next.column; pointer.row=next.row;
+      placeDuringDrag(piece,targetFloor,next.column,next.row);
     });
-    const finishPieceDrag = (event) => {
-      if (piece._roomPointer?.id !== event.pointerId) return;
-      piece._roomPointer = null;
-      delete piece.dataset.dragging;
-      const type = action === 'chair' ? 'Chair' : 'Couch';
+    const finish = (event) => {
+      const pointer=piece._roomPointer;
+      if (!pointer || pointer.id!==event.pointerId) return;
+      piece._roomPointer=null; delete piece.dataset.dragging;
+      if (pointer.moved) {
+        const targetFloor=floorsAtPoint(event.clientX,event.clientY)[0];
+        if (targetFloor) {
+          const next=gridPositionAt(targetFloor,event.clientX,event.clientY);
+          placeOnGrid(piece,targetFloor,next.column,next.row);
+        } else placeOnGrid(piece,pointer.floor,pointer.column,pointer.row);
+      }
+      const type=action==='chair'?'Chair':'Couch';
       announce(`${type} on column ${piece.dataset.gridColumn}, row ${piece.dataset.gridRow}.`);
     };
-    piece.addEventListener('pointerup', finishPieceDrag);
-    piece.addEventListener('pointercancel', finishPieceDrag);
-    piece.addEventListener('lostpointercapture', () => {
-      piece._roomPointer = null;
-      delete piece.dataset.dragging;
+    piece.addEventListener('pointerup',finish);
+    piece.addEventListener('pointercancel',finish);
+    piece.addEventListener('lostpointercapture',(event) => {
+      if (piece._roomPointer) finish(event);
     });
-    piece.addEventListener('click', (event) => {
-      event.stopPropagation();
-      selectPiece(piece);
-    });
-    piece.addEventListener('keydown', (event) => {
-      const deltas = {ArrowLeft:[-1,0], ArrowRight:[1,0], ArrowUp:[0,-1], ArrowDown:[0,1]};
+    piece.addEventListener('click',(event) => { event.stopPropagation(); selectPiece(piece); });
+    piece.addEventListener('keydown',(event) => {
+      const deltas={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]};
       if (deltas[event.key]) {
-        event.preventDefault();
-        event.stopPropagation();
-        const multiplier = event.shiftKey ? 2 : 1;
-        const [dx, dy] = deltas[event.key];
-        const nextFloor = floorByName(piece.dataset.roomFloor);
-        placeOnGrid(piece, nextFloor,
-          Number(piece.dataset.gridColumn) + dx * multiplier,
-          Number(piece.dataset.gridRow) + dy * multiplier);
-        selectPiece(piece);
-        announce(`${action === 'chair' ? 'Chair' : 'Couch'} moved to column ${piece.dataset.gridColumn}, row ${piece.dataset.gridRow}.`);
-      } else if (event.key === 'Delete' || event.key === 'Backspace') {
-        event.preventDefault();
-        event.stopPropagation();
-        const parent = piece.parentElement;
-        piece.remove();
-        selectedPiece = null;
+        event.preventDefault(); event.stopPropagation();
+        const mult=event.shiftKey?2:1, [dx,dy]=deltas[event.key];
+        const nextFloor=floorByName(piece.dataset.roomFloor);
+        placeOnGrid(piece,nextFloor,Number(piece.dataset.gridColumn)+dx*mult,Number(piece.dataset.gridRow)+dy*mult);
+        selectPiece(piece); announce(`${action==='chair'?'Chair':'Couch'} moved to column ${piece.dataset.gridColumn}, row ${piece.dataset.gridRow}.`);
+      } else if (event.key==='Delete' || event.key==='Backspace') {
+        event.preventDefault(); event.stopPropagation();
+        const parent=piece.parentElement; piece.remove(); selectedPiece=null;
         (parent.querySelector('[data-room-piece]') || model).focus({preventScroll:true});
-        announce(`${action === 'chair' ? 'Chair' : 'Couch'} removed.`);
-      } else if (event.key === 'Escape') {
-        event.preventDefault();
-        event.stopPropagation();
-        selectPiece(null);
+        announce(`${action==='chair'?'Chair':'Couch'} removed.`);
+      } else if (event.key==='Escape') {
+        event.preventDefault(); event.stopPropagation(); selectPiece(null);
       }
     });
-    piece.focus({preventScroll:true});
-    selectPiece(piece);
-    announce(`${action === 'chair' ? 'Chair' : 'Couch'} placed on the floor grid.`);
+    piece.focus({preventScroll:true}); selectPiece(piece);
+    announce(`${action==='chair'?'Chair':'Couch'} placed on the floor grid.`);
     return piece;
   };
 
   model.querySelectorAll('[data-room-floor]').forEach((floor) => {
-    floor.addEventListener('pointerdown', (event) => event.stopPropagation());
+    floor.addEventListener('pointerdown',(event) => event.stopPropagation());
+    floor.addEventListener('click',(event) => { event.stopPropagation(); setActiveRoom(floor.dataset.roomFloor); });
+    floor.addEventListener('keydown',(event) => {
+      if (event.key!=='Enter' && event.key!==' ') return;
+      event.preventDefault(); event.stopPropagation(); setActiveRoom(floor.dataset.roomFloor);
+    });
   });
   const setRoomAdded = (added) => {
+    const addition=model.querySelector('.room-addition');
     if (!added) {
-      const mainFloor = floorByName('main');
       model.querySelectorAll('.room-addition [data-room-piece]').forEach((piece) => {
-        placeOnGrid(piece, mainFloor, Number(piece.dataset.gridColumn), Number(piece.dataset.gridRow));
+        placeOnGrid(piece,floorByName('main'),Number(piece.dataset.gridColumn),Number(piece.dataset.gridRow));
       });
-    }
-    const addition = model.querySelector('.room-addition');
-    if (addition) addition.setAttribute('aria-hidden', String(!added));
-    if (additionLightButton) {
-      additionLightButton.hidden = !added;
-      if (!added && addition) {
-        addition.dataset.light = 'warm';
-        additionLightButton.setAttribute('aria-pressed', 'false');
-        additionLightButton.textContent = '02 · WARM';
-        additionLightButton.setAttribute('aria-label', 'Switch Room 02 to cool lighting');
-      }
-    }
-    screen.dataset.roomAdded = String(added);
-    if (addRoomButton) {
-      addRoomButton.disabled = added;
-    }
-    if (removeRoomButton) {
-      removeRoomButton.disabled = !added;
-    }
-    if (roomLabel) roomLabel.textContent = added ? 'ROOM 01 + 02' : 'ROOM 01';
-    announce(added ? 'A second room was added beside the first.' : 'Second room removed.');
+      if (addition) addition.setAttribute('aria-hidden','true');
+      if (activeRoom==='addition') activeRoom='main';
+    } else if (addition) addition.setAttribute('aria-hidden','false');
+    screen.dataset.roomAdded=String(added);
+    if (addRoomButton) addRoomButton.disabled=added;
+    if (removeRoomButton) removeRoomButton.disabled=!added;
+    setActiveRoom(activeRoom,false);
+    announce(added?'A second room was added beside the first.':'Second room removed.');
   };
-  addRoomButton?.addEventListener('click', (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setRoomAdded(true);
-  });
-  removeRoomButton?.addEventListener('click', (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setRoomAdded(false);
+  addRoomButton?.addEventListener('click',(event) => { event.preventDefault(); event.stopPropagation(); setRoomAdded(true); });
+  removeRoomButton?.addEventListener('click',(event) => { event.preventDefault(); event.stopPropagation(); setRoomAdded(false); });
+  lightButton?.addEventListener('click',(event) => {
+    event.preventDefault(); event.stopPropagation();
+    const unit=model.querySelector(`.room-${activeRoom}`);
+    if (!unit) return;
+    unit.dataset.light=unit.dataset.light==='cool'?'warm':'cool';
+    setActiveRoom(activeRoom,false);
+    announce(`Room ${activeRoom==='main'?'01':'02'} ${unit.dataset.light} lighting selected.`);
   });
 
-  const moveGhost = (x, y, action) => {
-    if (!ghost) {
-      ghost = document.createElement('div');
-      ghost.className = 'room-drag-ghost';
-      ghost.setAttribute('aria-hidden', 'true');
-      document.body.append(ghost);
-    }
-    ghost.textContent = action === 'chair' ? 'CHAIR' : 'COUCH';
-    ghost.style.left = `${x}px`;
-    ghost.style.top = `${y}px`;
+  const moveGhost = (x,y,action) => {
+    if (!ghost) { ghost=document.createElement('div'); ghost.className='room-drag-ghost'; ghost.setAttribute('aria-hidden','true'); document.body.append(ghost); }
+    ghost.textContent=action==='chair'?'CHAIR':'COUCH'; ghost.style.left=`${x}px`; ghost.style.top=`${y}px`;
   };
-  const clearGhost = () => {
-    ghost?.remove();
-    ghost = null;
-  };
+  const clearGhost = () => { ghost?.remove(); ghost=null; };
   screen.querySelectorAll('[data-room-action="chair"],[data-room-action="couch"]').forEach((button) => {
-    const action = button.dataset.roomAction;
-    button.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      if (button.dataset.skipNextClick === 'true') {
-        delete button.dataset.skipNextClick;
-        return;
-      }
-      addFurniture(action);
+    const action=button.dataset.roomAction;
+    button.addEventListener('click',(event) => {
+      event.preventDefault(); event.stopPropagation();
+      if (button.dataset.skipNextClick==='true') { delete button.dataset.skipNextClick; return; }
+      addFurniture(action,floorByName(activeRoom));
     });
-    button.addEventListener('pointerdown', (event) => {
-      if (event.pointerType === 'mouse' && event.button !== 0) return;
-      toolDrag = {button, action, id:event.pointerId, x:event.clientX, y:event.clientY, moved:false};
+    button.addEventListener('pointerdown',(event) => {
+      if (event.pointerType==='mouse' && event.button!==0) return;
+      toolDrag={button,action,id:event.pointerId,x:event.clientX,y:event.clientY,moved:false};
+      try { button.setPointerCapture(event.pointerId); } catch {}
     });
   });
-  window.addEventListener('pointermove', (event) => {
-    if (!toolDrag || toolDrag.id !== event.pointerId) return;
-    if (!toolDrag.moved && Math.hypot(event.clientX-toolDrag.x,event.clientY-toolDrag.y) < 7) return;
-    toolDrag.moved = true;
-    moveGhost(event.clientX,event.clientY,toolDrag.action);
-  }, {passive:true});
-  window.addEventListener('pointerup', (event) => {
-    if (!toolDrag || toolDrag.id !== event.pointerId) return;
-    const drag = toolDrag;
-    toolDrag = null;
-    clearGhost();
+  window.addEventListener('pointermove',(event) => {
+    if (!toolDrag || toolDrag.id!==event.pointerId) return;
+    if (!toolDrag.moved && Math.hypot(event.clientX-toolDrag.x,event.clientY-toolDrag.y)<7) return;
+    toolDrag.moved=true; moveGhost(event.clientX,event.clientY,toolDrag.action);
+  },{passive:true});
+  window.addEventListener('pointerup',(event) => {
+    if (!toolDrag || toolDrag.id!==event.pointerId) return;
+    const drag=toolDrag; toolDrag=null; clearGhost();
     if (!drag.moved) return;
-    drag.button.dataset.skipNextClick = 'true';
-    window.setTimeout(() => { delete drag.button.dataset.skipNextClick; }, 400);
-    const floor = floorsAtPoint(event.clientX,event.clientY)[0];
-    if (floor) {
-      addFurniture(drag.action,floor,{x:event.clientX,y:event.clientY});
-    } else {
-      announce('Drop the furniture inside a room on the floor grid.');
-    }
+    drag.button.dataset.skipNextClick='true'; window.setTimeout(()=>{delete drag.button.dataset.skipNextClick;},400);
+    const floor=floorsAtPoint(event.clientX,event.clientY)[0];
+    if (floor) addFurniture(drag.action,floor,{x:event.clientX,y:event.clientY});
+    else announce('Drop the furniture inside a room on its floor grid.');
   });
-  window.addEventListener('pointercancel', () => {
-    toolDrag = null;
-    clearGhost();
-  });
+  window.addEventListener('pointercancel',() => { toolDrag=null; clearGhost(); });
+  setActiveRoom('main',false);
 });
 // Playable word slots: click a tile then a blank slot, drag between them, or use keyboard activation.
 document.querySelectorAll('.learning-screen').forEach((screen) => {
@@ -1155,7 +1130,7 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     tile.addEventListener('pointerdown', (event) => {
       if (event.button !== undefined && event.button !== 0) return;
       event.stopPropagation();
-      activePointer = {id:event.pointerId, tile, x:event.clientX, y:event.clientY, moved:false};
+      activePointer = {id:event.pointerId, tile, x:event.clientX, y:event.clientY, moved:false, ghost:null};
       selectedLetter = tile.dataset.letterTile || '';
       tile.dataset.dragging = 'false';
       try { tile.setPointerCapture(event.pointerId); } catch {}
@@ -1183,6 +1158,27 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     if (distance > 6) {
       activePointer.moved = true;
       activePointer.tile.dataset.dragging = 'true';
+      if (!activePointer.ghost) {
+        const tile = activePointer.tile;
+        const style = getComputedStyle(tile);
+        const rect = tile.getBoundingClientRect();
+        const ghost = tile.cloneNode(true);
+        ghost.removeAttribute('id');
+        ghost.setAttribute('aria-hidden','true');
+        ghost.tabIndex = -1;
+        Object.assign(ghost.style, {
+          position:'fixed', left:`${event.clientX}px`, top:`${event.clientY}px`,
+          width:`${rect.width}px`, height:`${rect.height}px`, margin:'0', zIndex:'9999',
+          pointerEvents:'none', transform:'translate(-50%,-50%) scale(1.12)',
+          display:'grid', placeItems:'center', color:style.color, background:style.background,
+          border:style.border, borderRadius:style.borderRadius, font:style.font,
+          boxShadow:'0 8px 22px rgba(17,38,48,.3)', opacity:'.96'
+        });
+        document.body.append(ghost);
+        activePointer.ghost = ghost;
+      }
+      activePointer.ghost.style.left = `${event.clientX}px`;
+      activePointer.ghost.style.top = `${event.clientY}px`;
     }
   }, {passive:true});
 
@@ -1192,12 +1188,19 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     const target = document.elementFromPoint(event.clientX, event.clientY);
     const slot = target?.closest?.('[data-word-slot]');
     tile.dataset.dragging = 'false';
+    activePointer.ghost?.remove();
     tile.dataset.ignoreClick = 'true';
     if (moved && slot && screen.contains(slot)) place(slot, tile.dataset.letterTile || '');
     else if (moved) announce('Drop the letter into an empty space.');
     else selectTile(tile);
     activePointer = null;
     window.setTimeout(() => { tile.dataset.ignoreClick = 'false'; }, 0);
+  });
+  window.addEventListener('pointercancel', (event) => {
+    if (!activePointer || event.pointerId !== activePointer.id) return;
+    activePointer.ghost?.remove();
+    activePointer.tile.dataset.dragging = 'false';
+    activePointer = null;
   });
 
   slots.forEach((slot) => {
@@ -1321,7 +1324,7 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
       kicker: 'HELP WHEN YOU NEED IT',
       title: 'Start with what would help.',
       copy: 'You can ask someone to listen, help with one next step, or find a local service. This preview does not connect you to a live support person.',
-      note: 'Immediate danger: call 9-1-1. In Canada, call or text 9-8-8 for suicide crisis support.'
+      note: 'Immediate danger? Call 9-1-1.\nSuicide crisis? Call or text 9-8-8.'
     }
   };
   document.querySelectorAll('.study-accessible').forEach((study) => {
@@ -1609,5 +1612,57 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
         play();
       }
     }
+  });
+})();
+
+
+/* Community directory: each option opens useful information in place. */
+(() => {
+  const details = {
+    housing: ["Housing help", "Browse rent, utility, shelter, and housing-stability support."],
+    food: ["Food nearby", "Find meal programs, community fridges, markets, and food-access support."],
+    health: ["Health access", "Explore community clinics, primary-care access, and local health services."],
+    family: ["Family services", "Find childcare, parenting programs, and support for families."],
+    legal: ["Legal guidance", "Understand common legal questions and find community legal information or referrals."]
+  };
+
+  document.querySelectorAll(".study-information").forEach((study) => {
+    const buttons = [...study.querySelectorAll("[data-info-service]")];
+    const panel = study.querySelector("[data-info-detail]");
+    const title = study.querySelector("[data-info-detail-title]");
+    const copy = study.querySelector("[data-info-detail-copy]");
+    const close = study.querySelector("[data-info-close]");
+    let trigger = null;
+    if (!buttons.length || !panel || !title || !copy) return;
+
+    const dismiss = (returnFocus = false) => {
+      panel.hidden = true;
+      buttons.forEach((button) => button.setAttribute("aria-expanded", "false"));
+      if (returnFocus) trigger?.focus();
+    };
+
+    buttons.forEach((button) => button.addEventListener("click", () => {
+      const sameOption = trigger === button && !panel.hidden;
+      if (sameOption) {
+        dismiss();
+        trigger = null;
+        return;
+      }
+      trigger = button;
+      const [label, description] = details[button.dataset.infoService] || [button.textContent.trim(), "More information will be added by local partners."];
+      title.textContent = label;
+      copy.textContent = description;
+      buttons.forEach((item) => item.setAttribute("aria-expanded", String(item === button)));
+      panel.hidden = false;
+      close?.focus();
+    }));
+
+    close?.addEventListener("click", () => dismiss(true));
+    study.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !panel.hidden) {
+        event.preventDefault();
+        dismiss(true);
+      }
+    });
   });
 })();

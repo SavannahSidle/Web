@@ -2633,19 +2633,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies .study-culture .culture-screen.is-d-motion .falling-d{
   animation:culture-d-tumble 4.8s cubic-bezier(.24,.58,.22,1) both
 }
-@keyframes culture-d-tumble{
-  0%,28%{transform:translate(0,0) rotate(0)}
-  34%{transform:translate(-.18em,.45em) rotate(-18deg)}
-  43%{transform:translate(-.25em,.2em) rotate(-34deg)}
-  55%{transform:translate(-.35em,-.45em) rotate(12deg)}
-  68%{transform:translate(-.5em,-1.4em) rotate(48deg)}
-  80%{transform:translate(-.4em,-2.8em) rotate(82deg)}
-  87%{transform:translate(-.5em,-3.15em) rotate(96deg)}
-  91%{transform:translate(-.55em,-3.4em) rotate(102deg)}
-  95%{transform:translate(-.48em,-3.2em) rotate(88deg)}
-  98%{transform:translate(-.52em,-3.35em) rotate(92deg)}
-  100%{transform:translate(-.5em,-3.3em) rotate(90deg)}
-}
+
 .design-studies .study-culture [hidden]{display:none!important}
 @media(max-width:560px){
   .design-studies .study-culture .culture-menu{left:4%;top:7%;min-width:58px;gap:3px}
@@ -3148,20 +3136,13 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   position:absolute;z-index:1;left:7%;bottom:24%;width:26%;height:15%;object-fit:cover;object-position:50% 50%;
   border:1px solid rgba(190,221,243,.55);border-radius:3px;opacity:.88;filter:saturate(.78) brightness(.84)
 }
-.design-studies[data-mode] .study-space .space-focus{top:29%;width:38%}
 .design-studies[data-mode] .study-space .space-rail .planet-scale::before{display:none!important}
 .design-studies[data-mode] .study-space .space-rail .planet-scale b{position:relative;top:0;line-height:1.1}
 @media(prefers-reduced-motion:reduce){.design-studies[data-mode] .study-space .space-galaxy-image{filter:none}}
-.design-studies[data-mode] .study-space .space-focus{top:34%}
-@media(max-width:560px){.design-studies[data-mode] .study-space .space-focus{top:34%;width:43%}}
-.design-studies[data-mode] .study-space .space-focus{top:41%!important}
 .design-studies[data-mode] .study-space .planet-saturn{background:radial-gradient(circle at 36% 30%,#fff0c5,#c6a46d 64%,#87664d);width:8px;height:8px}
 .design-studies[data-mode] .study-space .planet-uranus{background:radial-gradient(circle at 35% 32%,#e1ffff,#72c7cf 62%,#3e7483);width:7px;height:7px}
 .design-studies[data-mode] .study-space .planet-neptune{background:radial-gradient(circle at 35% 30%,#bdcffd,#547ce0 62%,#29396f);width:7px;height:7px}
 .design-studies[data-mode] .study-space .planet-mars{background:radial-gradient(circle at 32% 28%,#ffd1ad,#c85b45 65%,#75352c)}
-.design-studies[data-mode] .study-space .orbit-saturn{left:53%;width:70%;height:90%}
-.design-studies[data-mode] .study-space .orbit-uranus{left:54%;width:81%;height:104%}
-.design-studies[data-mode] .study-space .orbit-neptune{left:55%;width:94%;height:112%}
 .design-studies[data-mode] .study-space .planet-jupiter::after{
   content:"";position:absolute;left:56%;top:60%;width:26%;height:11%;border-radius:50%;background:rgba(145,65,49,.85)
 }
@@ -3178,4 +3159,270 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-space .space-rail .planet-saturn{--planet-highlight:#fff1cb;--planet-base:#c6a46d;--planet-shadow:#5d4835}
 .design-studies[data-mode] .study-space .space-rail .planet-uranus{--planet-highlight:#e1ffff;--planet-base:#72c7cf;--planet-shadow:#285664}
 .design-studies[data-mode] .study-space .space-rail .planet-neptune{--planet-highlight:#bdcffd;--planet-base:#547ce0;--planet-shadow:#222e6b}
-@media(max-width:560px){.design-studies[data-mode] .study-space .space-focus{top:40%!important;width:43%}}
+
+/* Current review pass: make the shared studies clear at both showcase and grid sizes. */
+.home .poster-hero .shooting-star{
+  transform-origin:0 50%;
+  animation-name:mica-meteor-review;
+}
+@keyframes mica-meteor-review{
+  0%,64%,100%{opacity:0;transform:translate3d(-14vw,-4vh,0) rotate(24deg)}
+  65%{opacity:0;transform:translate3d(-9vw,-4vh,0) rotate(24deg)}
+  66%{opacity:.9;transform:translate3d(-2vw,-4vh,0) rotate(24deg)}
+  73%{opacity:.9;transform:translate3d(35vw,-4vh,0) rotate(24deg)}
+  77%{opacity:0;transform:translate3d(44vw,-4vh,0) rotate(24deg)}
+}
+.home .poster-hero .hero-frame-occlusion--middle{
+  clip-path:polygon(86% 25%,100% 22%,100% 61%,78% 75%,80% 47%);
+}
+
+/* Leave a quiet image behind the accessible-study headline; keep chat above it. */
+.site-live .design-studies[data-mode] .study-accessible .accessible-calm-image{
+  position:absolute;z-index:0;top:18%;right:3%;width:54%;height:52%;object-fit:cover;object-position:52% 48%;
+  border-radius:38% 42% 4px 4px;opacity:.24;filter:saturate(.62) contrast(.9);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 24%,#000 78%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 24%,#000 78%,transparent 100%);
+  pointer-events:none
+}
+.site-live .design-studies[data-mode] .study-accessible .study-screen>strong{z-index:2;top:28%;max-width:55%;line-height:.88}
+.site-live .design-studies[data-mode] .study-accessible .accessible-chat{
+  top:4%;right:7%;width:31%;gap:2px;z-index:3;font-size:clamp(5.5px,1cqi,7.5px)
+}
+.site-live .design-studies[data-mode] .study-accessible .accessible-chat-in,
+.site-live .design-studies[data-mode] .study-accessible .accessible-chat-out{padding:3px 5px}
+.site-live .design-studies[data-mode] .study-accessible .study-actions{z-index:3}
+.site-live .design-studies[data-mode] .study-accessible .accessible-info-popup .accessible-popup-note{white-space:pre-line}
+.site-live .design-studies[data-mode] .study-accessible .accessible-calm-image ~ .accessible-info-popup{z-index:6}
+@media(max-width:560px){
+  .site-live .design-studies[data-mode] .study-accessible .accessible-chat{top:4%;right:5%;width:33%}
+  .site-live .design-studies[data-mode] .study-accessible .study-screen>strong{top:29%;max-width:58%}
+  .site-live .design-studies[data-mode] .study-accessible .accessible-calm-image{top:20%;height:48%;width:58%}
+}
+
+/* Separate the two room shells at the shared edge and keep each floor level. */
+.design-studies[data-mode] .study-spatial .room-controls{top:12%;left:3%;right:3%;gap:3px}
+.design-studies[data-mode] .study-spatial .room-layout-actions,
+.design-studies[data-mode] .study-spatial .room-furniture-actions,
+.design-studies[data-mode] .study-spatial .room-view-actions{gap:3px}
+.design-studies[data-mode] .study-spatial .room-controls button{
+  min-height:clamp(26px,7cqi,34px);padding-inline:clamp(4px,1.1cqi,7px);
+  font-size:clamp(5.5px,1.4cqi,7.5px);letter-spacing:.015em
+}
+.design-studies[data-mode] .study-spatial .room-stage{inset:28% 4% 20%;perspective-origin:50% 52%}
+.design-studies[data-mode] .study-spatial .room-model{width:98%;height:100%}
+.design-studies[data-mode] .study-spatial .room-floor{
+  top:70%;height:58%;transform:translate(-50%,-50%);transform-origin:50% 50%;
+  background-size:12.5% 12.5%,12.5% 12.5%,100% 100%
+}
+.design-studies[data-mode] .study-spatial .room-furniture{transform:rotateX(0deg);transform-origin:50% 50%}
+.design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-addition .room-side-wall,
+.design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-main .room-left-wall{display:none!important}
+.design-studies[data-mode] .study-spatial .room-main[data-active="true"] .room-floor,
+.design-studies[data-mode] .study-spatial .room-addition[data-active="true"] .room-floor{
+  border-color:rgba(255,231,180,.94);box-shadow:0 0 0 1px rgba(239,205,142,.28),0 12px 18px rgba(0,0,0,.28),inset 0 0 0 1px rgba(255,255,255,.16)
+}
+.design-studies[data-mode] .study-spatial .room-floor[role="button"]:focus-visible{outline:2px solid #fff0ce;outline-offset:3px}
+.design-studies[data-mode] .study-spatial .room-piece{
+  min-width:34px;min-height:34px;transition:left .12s ease-out,top .12s ease-out,box-shadow .15s ease,border-color .15s ease
+}
+.design-studies[data-mode] .study-spatial .room-piece.room-couch{
+  width:22%;height:20%;min-width:50px;min-height:38px;border:0;border-radius:5px;
+  background:
+    linear-gradient(#695441,#695441) 20% 70%/7% 27% no-repeat,
+    linear-gradient(#695441,#695441) 73% 70%/7% 27% no-repeat,
+    linear-gradient(90deg,#766047 0 13%,transparent 13% 87%,#766047 87% 100%),
+    linear-gradient(180deg,#8f7256 0 38%,#bda986 39% 100%);
+  box-shadow:0 4px 7px rgba(25,20,14,.32)
+}
+.design-studies[data-mode] .study-spatial .room-piece.room-couch::before{
+  inset:8% 16% 49%;border:1px solid rgba(246,229,197,.74);border-radius:4px 4px 2px 2px;
+  background:linear-gradient(90deg,#a48d6b 0 48%,#927a5d 49% 100%);box-shadow:inset 0 -2px rgba(61,47,34,.12)
+}
+.design-studies[data-mode] .study-spatial .room-piece.room-couch::after{
+  left:18%;right:18%;top:auto;bottom:20%;height:24%;border:1px solid rgba(99,75,52,.56);
+  border-radius:3px;background:linear-gradient(145deg,#d2c19e,#ae9975)
+}
+.design-studies[data-mode] .study-spatial .room-piece.room-chair{
+  width:14%;height:22%;min-width:34px;min-height:40px;border:0;border-radius:2px;
+  background:
+    linear-gradient(#64472e,#64472e) 23% 57%/6% 43% no-repeat,
+    linear-gradient(#64472e,#64472e) 71% 57%/6% 43% no-repeat,
+    linear-gradient(#845a37,#845a37) 18% 42%/7% 22% no-repeat,
+    linear-gradient(#845a37,#845a37) 75% 42%/7% 22% no-repeat,
+    transparent;
+  box-shadow:none
+}
+.design-studies[data-mode] .study-spatial .room-piece.room-chair::before{
+  inset:4% 20% 54%;border:1px solid #e4c292;border-radius:2px 2px 1px 1px;
+  background:repeating-linear-gradient(90deg,#9c6d42 0 5px,#d0a16c 5px 7px,#9c6d42 7px 9px);
+  box-shadow:inset 0 0 0 2px rgba(76,51,31,.32)
+}
+.design-studies[data-mode] .study-spatial .room-piece.room-chair::after{
+  left:12%;right:12%;top:43%;height:17%;border:1px solid #e4c292;border-radius:2px;
+  background:linear-gradient(145deg,#c18c59,#93633c);box-shadow:0 2px 3px rgba(37,28,18,.24)
+}
+.design-studies[data-mode] .study-spatial .room-piece[data-dragging="true"]{transition:none!important}
+.design-studies[data-mode] .study-spatial [data-room-action="chair"],
+.design-studies[data-mode] .study-spatial [data-room-action="couch"]{touch-action:none}
+@media(max-width:620px){
+  .design-studies[data-mode] .study-spatial .room-controls{left:2%;right:2%;gap:2px}
+  .design-studies[data-mode] .study-spatial .room-controls button{min-height:30px;padding-inline:3px;font-size:clamp(5px,1.55cqi,7px)}
+  .design-studies[data-mode] .study-spatial .room-stage{inset:30% 3% 20%}
+}
+
+/* Reapply the last edited Solar System layout, with its larger outer orbits and low left label. */
+.design-studies[data-mode] .study-space .space-focus{
+  top:50%!important;left:5%;width:34%;display:grid;grid-template-columns:minmax(0,1fr);
+  grid-template-rows:auto auto auto;align-content:start;align-items:start;gap:4px;padding:4px 6px;
+  border-radius:3px;background:linear-gradient(90deg,rgba(5,14,26,.94),rgba(5,14,26,.76),transparent)
+}
+.design-studies[data-mode] .study-space .space-focus h3{
+  grid-column:1;grid-row:1;margin:0;color:#f2f5f4;font-size:clamp(1.05rem,5.6cqi,1.5rem);line-height:1
+}
+.design-studies[data-mode] .study-space .space-focus span{
+  grid-column:1;grid-row:2;display:block;margin:0;text-align:left;color:#acc1d0;font-size:clamp(7px,1.9cqi,9px)
+}
+.design-studies[data-mode] .study-space .space-focus small{
+  position:static;grid-column:1;grid-row:3;display:block;margin:0;color:#93bfd9;font-size:clamp(6px,1.55cqi,8px);line-height:1.2
+}
+.design-studies[data-mode] .study-space .orbit-jupiter{left:50%;width:48%;height:62%}
+.design-studies[data-mode] .study-space .orbit-saturn{left:52%;width:70%;height:82%}
+.design-studies[data-mode] .study-space .orbit-uranus{left:54%;width:90%;height:102%}
+.design-studies[data-mode] .study-space .orbit-neptune{left:56%;width:112%;height:122%}
+@media(max-width:560px){
+  .design-studies[data-mode] .study-space .space-focus{left:4%;width:35%}
+}
+
+/* Four small model controls; rotation remains available by drag and arrow keys. */
+.site-live .design-studies .study-dinosaur .dinosaur-focus{
+  left:5%;top:63%;width:42%;text-align:left;transform:none
+}
+.site-live .design-studies .study-dinosaur .dinosaur-focus small{display:block;margin:0 0 3px;text-align:left;white-space:nowrap}
+.site-live .design-studies .study-dinosaur .dinosaur-focus h3{margin:3px 0 2px;text-align:left}
+.site-live .design-studies .study-dinosaur .raptor-controls{
+  display:grid;grid-template-columns:repeat(4,22px);gap:2px;padding:3px;border:1px solid rgba(194,219,209,.25);
+  border-radius:5px;background:rgba(8,20,23,.66)
+}
+.site-live .design-studies .study-dinosaur .raptor-controls button{width:22px;height:22px;font-size:13px}
+.site-live .design-studies .study-dinosaur .raptor-hint{max-width:92%;font-size:5.5px;letter-spacing:.035em}
+@media(max-width:620px){
+  .site-live .design-studies .study-dinosaur .raptor-controls{grid-template-columns:repeat(4,20px);gap:1px;padding:2px}
+  .site-live .design-studies .study-dinosaur .raptor-controls button{width:20px;height:20px}
+  .site-live .design-studies .study-dinosaur .dinosaur-focus{left:4%;width:45%}
+}
+
+.learning-drag-ghost{cursor:grabbing}
+.learning-screen [data-letter-tile][data-dragging="true"]{opacity:.2}
+
+@media(prefers-reduced-motion:reduce){
+  .home .poster-hero .hero-starfield,.home .poster-hero .shooting-star,.home .poster-hero .space-event,
+  .design-studies .study-culture .falling-d{animation:none!important}
+  .design-studies[data-mode] .study-space .planet-path{animation:none!important}
+  .design-studies[data-mode] .study-spatial .room-piece{transition:none!important}
+  .learning-drag-ghost{transition:none!important}
+}
+
+/* Review corrections: compact support copy, restore in-place directory actions, and finish the editorial controls. */
+.site-live .design-studies .study-care .care-top,
+.site-live .design-studies .study-care .care-intro,
+.site-live .design-studies .study-care .care-options,
+.site-live .design-studies .study-care .care-crisis,
+.site-live .design-studies .study-care .care-privacy{transform:translateY(5px)}
+.site-live .design-studies .study-care .care-crisis{
+  display:block;white-space:nowrap;font-size:clamp(7px,2cqi,9px);line-height:1.2;letter-spacing:-.025em
+}
+.site-live .design-studies .study-care .care-crisis a{
+  display:inline;margin:0;padding:0;min-height:0;border:0;border-radius:0;background:transparent;
+  color:#214f3c;font-size:inherit;line-height:inherit;text-decoration:underline;text-underline-offset:2px
+}
+
+.design-studies[data-mode] .study-information .info-results .info-service{
+  position:relative;width:100%;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) auto;
+  gap:2px 4px;padding:7px 24px 7px 9px;border:1px solid rgba(42,87,74,.15);border-radius:5px;
+  background:rgba(250,249,241,.83);box-shadow:0 4px 11px rgba(34,72,61,.06);
+  color:#26483f;text-align:left;font:inherit;cursor:pointer
+}
+.design-studies[data-mode] .study-information .info-results .info-service b{grid-column:1;grid-row:1;font-size:clamp(8px,.78vw,10px);color:#26483f}
+.design-studies[data-mode] .study-information .info-results .info-service span{grid-column:1;grid-row:2;font-size:clamp(7px,.66vw,9px);line-height:1.2;color:#61756d}
+.design-studies[data-mode] .study-information .info-results .info-service i{position:static;inset:auto;grid-column:2;grid-row:1/3;align-self:center;color:#b66b4c;font-style:normal}
+.design-studies[data-mode] .study-information .info-results .info-service:hover,
+.design-studies[data-mode] .study-information .info-results .info-service[aria-expanded="true"]{border-color:#547c6b;background:#fff}
+.design-studies[data-mode] .study-information .info-results .info-service:focus-visible,
+.design-studies[data-mode] .study-information .info-service-detail button:focus-visible{outline:2px solid #2c6d5a;outline-offset:2px}
+.design-studies[data-mode] .study-information .info-service-detail{
+  position:absolute;z-index:5;left:40%;right:5%;bottom:8%;min-height:28%;padding:10px 26px 10px 11px;
+  border:1px solid rgba(36,78,66,.28);border-radius:5px;background:#f8f6ed;color:#26483f;
+  box-shadow:0 10px 24px rgba(28,61,51,.2)
+}
+.design-studies[data-mode] .study-information .info-service-detail[hidden]{display:none!important}
+.design-studies[data-mode] .study-information .info-service-detail>b{display:block;margin:0 0 4px;font-size:clamp(9px,2.2cqi,12px)}
+.design-studies[data-mode] .study-information .info-service-detail>p{margin:0;font-size:clamp(8px,1.9cqi,10px);line-height:1.3}
+.design-studies[data-mode] .study-information .info-service-detail>button{
+  position:absolute;right:3px;top:3px;width:24px;height:24px;border:0;background:transparent;color:#26483f;font-size:17px;cursor:pointer
+}
+@media(max-width:560px){
+  .design-studies[data-mode] .study-information .info-results .info-service{padding:5px 18px 5px 7px}
+  .design-studies[data-mode] .study-information .info-service-detail{left:39%;right:4%;bottom:8%;padding:8px 25px 8px 8px}
+}
+
+/* Keep the playful study scrollable so the continuation panel is reachable. */
+.design-studies[data-mode] .study-playful .study-screen{
+  overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#342744 rgba(255,255,255,.35)
+}
+.design-studies[data-mode] .study-playful .study-screen::-webkit-scrollbar{width:8px}
+.design-studies[data-mode] .study-playful .study-screen::-webkit-scrollbar-track{background:rgba(255,255,255,.28)}
+.design-studies[data-mode] .study-playful .study-screen::-webkit-scrollbar-thumb{border:2px solid #ec4f8d;border-radius:999px;background:#342744}
+.design-studies[data-mode] .study-playful .play-scroll{display:none}
+.design-studies[data-mode] .study-playful .play-scroll-continuation{
+  position:absolute;z-index:3;top:109%;left:7%;right:16%;min-height:78%;display:flex;flex-direction:column;justify-content:center;gap:clamp(5px,1.4cqi,10px);
+  padding:clamp(12px,4cqi,24px);border:1px solid rgba(42,29,52,.46);border-radius:4px;
+  background:linear-gradient(140deg,#ffe36e 0 46%,#79ddcb 46% 100%);color:#24162d;
+  box-shadow:0 12px 24px rgba(40,21,46,.2)
+}
+.design-studies[data-mode] .study-playful .play-scroll-continuation>span{font:600 clamp(7px,1.7cqi,9px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.08em}
+.design-studies[data-mode] .study-playful .play-scroll-continuation>strong{font:700 clamp(1.2rem,5.5cqi,2rem)/.94 "Trebuchet MS",sans-serif;letter-spacing:-.06em}
+.design-studies[data-mode] .study-playful .play-scroll-continuation>p{max-width:28ch;margin:0;font-size:clamp(9px,2.2cqi,12px);line-height:1.3}
+
+/* The product index is horizontal, raised slightly, and ruled only across its own wordmark. */
+.design-studies[data-mode] .study-diagonal .diagonal-index{
+  right:10.5%;bottom:11.5%;display:grid;width:max-content;justify-items:start;gap:3px;padding:0;border:0;
+  writing-mode:horizontal-tb;text-align:left;font:600 clamp(7px,1.9cqi,9px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.1em
+}
+.design-studies[data-mode] .study-diagonal .diagonal-index>span{display:block;white-space:nowrap}
+.design-studies[data-mode] .study-diagonal .diagonal-index>small{
+  display:block;width:100%;padding-top:3px;padding-bottom:3px;border-bottom:1px solid rgba(255,245,232,.66);
+  color:rgba(255,245,232,.84);font:500 clamp(6px,1.6cqi,8px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.16em
+}
+
+/* Remove the stray top stroke on the diagonal local-service panel. */
+.design-studies[data-mode] .study-local .local-screen{border-top-color:transparent}
+
+/* The local-energy concept now tells visitors what the service helps them do. */
+.design-studies[data-mode] .study-local-mini .local-energy-context{
+  position:absolute;z-index:2;left:8%;top:59%;width:58%;margin:0;
+  color:#3c3824;font:500 clamp(7px,1.8cqi,9px)/1.28 "IBM Plex Sans",sans-serif
+}
+
+/* Smooth the fall across its full path instead of accelerating into the landing turn. */
+
+
+/* Common Ground: pivot at the D's straight edge, tumble down-right, and settle on the curved side. */
+@keyframes culture-d-tumble{
+  0%,24%{transform:translate(0,0) rotate(0)}
+  31%{transform:translate(.06em,-.16em) rotate(-9deg)}
+  40%{transform:translate(.16em,.5em) rotate(18deg)}
+  52%{transform:translate(.34em,1.2em) rotate(48deg)}
+  65%{transform:translate(.55em,1.9em) rotate(106deg)}
+  77%{transform:translate(.72em,2.55em) rotate(224deg)}
+  86%{transform:translate(.82em,2.9em) rotate(450deg)}
+  90%{transform:translate(.82em,3.08em) rotate(456deg)}
+  94%{transform:translate(.82em,2.94em) rotate(448deg)}
+  97%{transform:translate(.82em,3.02em) rotate(452deg)}
+  100%{transform:translate(.82em,2.98em) rotate(450deg)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .design-studies[data-mode] .study-playful .study-screen{scroll-behavior:auto}
+  .design-studies[data-mode] .study-information .info-service,
+  .design-studies[data-mode] .study-information .info-service-detail{transition:none!important}
+}
