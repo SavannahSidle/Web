@@ -3661,3 +3661,119 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .t1-banner strong{font:600 10px/1 "IBM Plex Mono",monospace;letter-spacing:.16em;color:#2558a8}
 .t1-banner a{color:#143d74;text-decoration:underline;text-underline-offset:3px;font-weight:700}
 @media(max-width:520px){.t1-banner{gap:6px 10px;padding:9px 12px;font-size:11px}}
+
+
+/* T1 finishing pass: explicit final rules resolve earlier study overrides. */
+.design-studies[data-mode] .study-system .system-head{justify-content:center;gap:12px}
+.design-studies[data-mode] .study-system .system-head>span:first-child{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center}
+.design-studies[data-mode] .study-system .system-head>b{margin-left:auto}
+.design-studies[data-mode] .study-calm .calm-screen{background-color:#e6ece5;background-image:radial-gradient(ellipse at 18% 76%,rgba(151,180,151,.24),transparent 36%),radial-gradient(ellipse at 84% 22%,rgba(230,220,190,.3),transparent 34%),linear-gradient(140deg,#f2f0e8,#e1e9e1 72%,#d5e1d7)}
+.design-studies[data-mode] .study-calm .calm-screen::before{right:-12%;top:8%;width:52%;height:74%;aspect-ratio:auto;border:0;border-radius:47% 53% 60% 40% / 35% 45% 55% 65%;background:radial-gradient(ellipse at 48% 40%,rgba(125,155,121,.18),transparent 68%);filter:blur(6px);box-shadow:none}
+.design-studies[data-mode] .study-calm .calm-screen::after{content:"";position:absolute;z-index:0;left:38%;bottom:12%;width:30%;height:20%;border-radius:56% 44% 62% 38% / 61% 42% 58% 39%;background:rgba(176,195,166,.14);filter:blur(10px);pointer-events:none}
+.design-studies[data-mode] .study-calm .calm-orbit{display:none!important}
+.design-studies[data-mode] .study-editorial .editorial-image{width:72%!important;left:12%;bottom:7%;height:19%}
+.design-studies[data-mode] .study-food .food-menu li i{margin-right:clamp(16px,2.5cqw,22px)!important;transform:translateX(-2px)}
+.design-studies[data-mode] .study-professional .professional-side{padding-top:18%!important}
+.design-studies[data-mode] .study-professional .professional-main{padding-top:12%!important}
+.design-studies[data-mode] .study-professional .professional-main h3{font-size:clamp(17px,5.1cqi,29px)!important}
+.design-studies[data-mode] .study-accessible .study-screen>strong{top:32%!important}
+.design-studies[data-mode] .study-accessible .accessible-chat{top:3%!important;right:7%!important}
+.design-studies[data-mode] .study-space .space-focus{top:17%!important}
+.design-studies[data-mode] .study-space .space-focus small{margin-bottom:2px!important}
+.design-studies[data-mode] .study-space .space-focus h3{margin:0 0 3px!important}
+.design-studies[data-mode] .study-space .space-screen::before,.design-studies[data-mode] .study-space .space-screen::after{display:block!important;pointer-events:none}
+.design-studies[data-mode] .study-space .space-screen::before{opacity:.5!important;animation:space-drift-a 94s linear infinite}
+.design-studies[data-mode] .study-space .space-screen::after{opacity:.38!important;animation:space-drift-b 142s linear infinite,space-star-twinkle 13s ease-in-out infinite}
+.design-studies[data-mode] .study-playful .study-screen{overflow-y:scroll!important;scrollbar-width:auto;scrollbar-color:#ffe680 #342744}
+.design-studies[data-mode] .study-neural .neural-screen{background:radial-gradient(ellipse at 73% 52%,rgba(31,255,187,.18),transparent 34%),linear-gradient(132deg,#071311 0%,#10241d 54%,#081410 100%)!important;color:#effff8}
+.design-studies[data-mode] .study-neural .neural-screen::before{opacity:.42;background-image:linear-gradient(rgba(76,240,171,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(76,240,171,.13) 1px,transparent 1px),radial-gradient(circle,rgba(225,255,111,.95) 0 1px,transparent 1.7px);background-size:22px 22px,22px 22px,59px 53px;mask-image:linear-gradient(90deg,transparent,#000 24%,#000)}
+.design-studies[data-mode] .study-neural .neural-header span:last-child{color:#dbff59}
+.design-studies[data-mode] .study-neural .neural-actions button[aria-pressed="true"]{border-color:#baff50;background:rgba(142,196,40,.26);color:#f3ffd5;box-shadow:0 0 15px rgba(186,255,80,.2)}
+.design-studies[data-mode] .study-neural .neural-links{stroke:rgba(79,247,192,.68);stroke-width:1.15}
+.design-studies[data-mode] .study-neural .neural-nodes circle{fill:#123c31!important;stroke:#4ff7c0;stroke-width:1.35}
+.design-studies[data-mode] .study-neural .neural-nodes circle:nth-child(4n + 1){fill:#416525!important;stroke:#d7ff59}
+.design-studies[data-mode] .study-neural .neural-nodes circle.is-lit{fill:#e0ff58!important;stroke:#f4ffe1!important;filter:drop-shadow(0 0 7px rgba(221,255,88,.95))!important}
+
+/* The room reads as an open-front, three-wall rectangular shell; both room grids stay coplanar. */
+.design-studies[data-mode] .study-spatial .room-model{--spatial-yaw:-7deg;--spatial-pitch:0deg}
+.design-studies[data-mode] .study-spatial .room-back-wall{left:50%;top:34%;width:84%;height:46%;transform:translate(-50%,-50%) translateZ(-14px);border-color:rgba(244,234,210,.7);background:linear-gradient(180deg,#d9ceb2 0%,#c7bea6 100%);box-shadow:0 7px 14px rgba(0,0,0,.19),inset 0 1px rgba(255,255,255,.45)}
+.design-studies[data-mode] .study-spatial .room-left-wall,.design-studies[data-mode] .study-spatial .room-side-wall{top:42%;width:22%;height:52%;background:linear-gradient(180deg,#c7c0a8,#8f927f);border-color:rgba(244,234,210,.62);box-shadow:0 7px 11px rgba(0,0,0,.16)}
+.design-studies[data-mode] .study-spatial .room-left-wall{left:9%;transform:translate(-50%,-50%) rotateY(-66deg) translateZ(-12px);transform-origin:right center}
+.design-studies[data-mode] .study-spatial .room-side-wall{left:91%;transform:translate(-50%,-50%) rotateY(66deg) translateZ(-12px);transform-origin:left center}
+.design-studies[data-mode] .study-spatial .room-floor{top:70%;height:58%;transform:translate(-50%,-50%) rotateX(12deg);background-size:12.5% 12.5%,12.5% 12.5%,100% 100%;box-shadow:0 12px 18px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.16)}
+.design-studies[data-mode] .study-spatial .room-furniture{top:41%;height:58%;transform:rotateX(12deg);pointer-events:none}
+.design-studies[data-mode] .study-spatial .room-piece.room-chair{width:13%;height:21%;min-width:34px;min-height:40px;border-radius:2px;background:linear-gradient(90deg,transparent 0 16%,#573d28 16% 21%,transparent 21% 79%,#573d28 79% 84%,transparent 84%),linear-gradient(180deg,transparent 0 56%,#573d28 56% 62%,transparent 62%),linear-gradient(145deg,#b77e48,#875831);box-shadow:none}
+.design-studies[data-mode] .study-spatial .room-piece.room-chair::before{inset:3% 20% 56%;border:2px solid #6d492d;border-radius:2px 2px 0 0;background:repeating-linear-gradient(90deg,#a87848 0 4px,#c4915c 4px 6px,#81542f 6px 8px)}
+.design-studies[data-mode] .study-spatial .room-piece.room-chair::after{left:14%;right:14%;top:42%;height:13%;border:2px solid #6d492d;border-radius:1px;background:#b7804d}
+.design-studies[data-mode] .study-spatial .room-piece.room-couch{width:24%;height:19%;min-width:58px;min-height:35px;border-radius:6px;background:linear-gradient(90deg,#725943 0 9%,transparent 9% 91%,#725943 91% 100%),linear-gradient(180deg,#907b60 0 34%,#c8b89a 34% 100%)}
+.design-studies[data-mode] .study-spatial .room-piece.room-couch::before{inset:13% 17% 49%;border:1px solid #e4d4b8;border-radius:4px 4px 2px 2px;background:linear-gradient(90deg,#d0c2a6 0 32%,#b6a181 33% 66%,#d0c2a6 67% 100%)}
+.design-studies[data-mode] .study-spatial .room-piece.room-couch::after{left:12%;right:12%;top:auto;bottom:17%;height:25%;border:1px solid #7c674e;border-radius:2px 2px 4px 4px;background:#b09a79}
+.design-studies[data-mode] .study-spatial .room-piece[data-dragging="true"]{transition:none!important}
+.design-studies[data-mode] .study-spatial [data-room-action="chair"],.design-studies[data-mode] .study-spatial [data-room-action="couch"]{touch-action:none}
+@media(max-width:620px){
+  .design-studies[data-mode] .study-spatial .room-controls{top:12%;left:2%;right:2%;gap:2px}
+  .design-studies[data-mode] .study-spatial .room-controls button{min-height:28px;padding-inline:3px;font-size:clamp(5px,1.5cqi,6.5px)}
+  .design-studies[data-mode] .study-spatial .room-stage{inset:29% 2% 20%}
+  .design-studies[data-mode] .study-spatial .room-model{width:100%}
+}
+
+/* Make the falling stars clearly diagonal and keep every pass behind the three right-hand frames. */
+.home .poster-hero .hero-starfield{z-index:2;opacity:.72;mask-image:linear-gradient(180deg,transparent 1%,#000 14%,#000 86%,transparent 100%)}
+.home .poster-hero .shooting-star{z-index:1;width:clamp(88px,9vw,124px);height:2px;transform-origin:0 50%;animation-name:mica-meteor-diagonal;animation-duration:26s;animation-timing-function:linear}
+.home .poster-hero .shooting-star--secondary{top:39%;width:82px;animation-delay:-8.7s}
+.home .poster-hero .shooting-star--tertiary{top:58%;width:61px;animation-delay:-17.3s;opacity:.68}
+@keyframes mica-meteor-diagonal{
+  0%,64%,100%{opacity:0;transform:translate3d(-14vw,-17vh,0) rotate(26deg)}
+  65%{opacity:0;transform:translate3d(-11vw,-15vh,0) rotate(26deg)}
+  66%{opacity:.92;transform:translate3d(-7vw,-12vh,0) rotate(26deg)}
+  73%{opacity:.92;transform:translate3d(30vw,8vh,0) rotate(26deg)}
+  75%{opacity:0;transform:translate3d(40vw,14vh,0) rotate(26deg)}
+}
+.home .poster-hero .hero-frame-occlusion{z-index:4;pointer-events:none}
+.home .poster-hero .poster-hero-actions,.home .poster-hero .poster-scroll{z-index:5}
+
+/* The accessible prompt sits below the live-chat preview without covering either. */
+.site-live .design-studies[data-mode] .study-accessible .study-screen>strong{top:32%!important}
+.site-live .design-studies[data-mode] .study-accessible .accessible-chat{top:3%!important}
+.site-live .design-studies[data-mode] .study-accessible .study-actions{bottom:6%;z-index:3}
+.site-live .design-studies[data-mode] .study-accessible .accessible-info-popup{z-index:6}
+
+/* Small, unambiguous control for the optional interpretive feather layer. */
+.site-live .study-dinosaur .raptor-feather-toggle{position:absolute;z-index:4;right:7px;top:45px;min-height:24px;padding:3px 6px;border:1px solid rgba(194,219,209,.28);border-radius:4px;background:rgba(5,15,18,.9);color:#eff0dc;font:600 clamp(5px,1.2cqi,7px)/1.1 "IBM Plex Mono",monospace;letter-spacing:.04em;cursor:pointer}
+.site-live .study-dinosaur .raptor-feather-toggle[aria-pressed="false"]{color:#b6c2ba;background:rgba(5,15,18,.62)}
+.site-live .study-dinosaur .raptor-feather-toggle:focus-visible{outline:2px solid #d8eaa2;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){
+ .design-studies[data-mode] .study-space .space-screen::before,.design-studies[data-mode] .study-space .space-screen::after,.design-studies[data-mode] .study-space .space-map::after,.design-studies[data-mode] .study-space .planet-path,.design-studies[data-mode] .study-neural .neural-links,.design-studies[data-mode] .study-neural .neural-nodes circle,.design-studies[data-mode] .study-playful .shape-a,.design-studies[data-mode] .study-playful .shape-b,.home .poster-hero .shooting-star{animation:none!important;transition:none!important}
+ .design-studies[data-mode] .study-playful .study-screen{scroll-behavior:auto}
+}
+
+/* Restore Quiet Material's prior restrained layout and object image. */
+.design-studies[data-mode] .study-luxury-mini .quiet-material-index{display:none!important}
+.design-studies[data-mode] .study-luxury-mini .study-screen>strong{left:8%!important;right:auto!important;top:30%!important;max-width:55%!important;display:block!important;gap:normal!important;font:400 clamp(1.45rem,3vw,2.55rem)/.9 Georgia,serif!important;letter-spacing:normal!important;text-transform:none!important;color:#29241f!important}
+.design-studies[data-mode] .study-luxury-mini .study-screen>strong span{font:inherit!important;letter-spacing:inherit!important;color:inherit!important}
+.design-studies[data-mode] .study-luxury-mini .study-screen>strong em{font-style:inherit!important;font-weight:inherit!important;letter-spacing:inherit!important}
+
+/* Keep an always-visible scroll cue as well as the native scrollbar. */
+.design-studies[data-mode] .study-playful .play-scroll{display:block!important;z-index:7;right:4%;top:15%;bottom:auto;height:47%;width:8px;pointer-events:none}
+.design-studies[data-mode] .study-playful .play-scroll i{top:10%;height:25%;background:#ffe36e;border-color:#342744;box-shadow:0 0 0 2px rgba(52,39,68,.18)}
+
+/* Keep the Studio Goods index fully on the diagonal panel while raising and shifting it right. */
+.design-studies[data-mode] .study-diagonal .diagonal-index{right:2.5%!important;bottom:23%!important}
+
+/* Deep nebulae and sparse stars stay behind the untouched planetary artwork. */
+.design-studies[data-mode] .study-space .space-screen::after{
+  background-image:
+    radial-gradient(ellipse at 77% 24%,rgba(239,161,132,.13),transparent 19%),
+    radial-gradient(ellipse at 26% 73%,rgba(118,169,221,.14),transparent 24%),
+    radial-gradient(circle at 77% 24%,rgba(255,220,196,.2) 0 1px,rgba(229,135,125,.08) 1.5% 3%,transparent 10%),
+    radial-gradient(circle at 26% 73%,rgba(204,227,255,.16) 0 1px,rgba(116,175,229,.08) 1.5% 3%,transparent 10%),
+    radial-gradient(circle at 13% 19%,rgba(229,241,255,.9) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 31% 82%,rgba(168,205,255,.75) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 57% 14%,rgba(255,255,255,.88) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 86% 71%,rgba(193,224,255,.82) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 91% 34%,rgba(255,255,255,.72) 0 1px,transparent 1.8px);
+  background-size:100% 100%,100% 100%,100% 100%,100% 100%,127px 101px,173px 139px,197px 157px,151px 127px,223px 181px
+}
+@media(prefers-reduced-motion:reduce){
+ .design-studies[data-mode] .study-space .space-screen::after{background-position:center}
+}
