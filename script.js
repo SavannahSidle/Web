@@ -268,9 +268,9 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   };
   const body = '#8b9b71', flank = '#a7a37a', dark = '#5c705b', feather = '#c4b98e', bone = '#d8c9a6';
   const motionRanges = { tailFan: null, sickleClaws: [] };
-  addEllipsoid(-.15, -.01, 0, .8, .39, .37, body, 10, 14);
-  addEllipsoid(-.69, -.04, 0, .42, .37, .39, flank, 8, 12);
-  addEllipsoid(.1, .02, 0, .34, .26, .28, flank, 8, 12);
+  addEllipsoid(-.18, -.015, 0, .61, .34, .31, body, 10, 14);
+  addEllipsoid(-.65, -.04, 0, .34, .31, .33, flank, 8, 12);
+  addEllipsoid(.08, .015, 0, .25, .22, .24, flank, 8, 12);
   addTube([-.93, -.02, 0], [-3.62, -.36, 0], .28, .018, dark, 10);
   const tailFanStart = vertices.length;
   addTube([-.93, .04, 0], [-3.52, -.31, 0], .19, .012, feather, 9);
@@ -374,7 +374,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     ctx.save();
     ctx.translate(-width * .035, 0);
     ctx.fillStyle = 'rgba(2, 8, 11, .3)'; ctx.beginPath(); ctx.ellipse(width * .52, height * .95, width * .3, height * .035, 0, 0, Math.PI * 2); ctx.fill();
-    const camera = 6, scale = Math.min(width / 4.95, height / 2.45) * zoom;
+    const camera = 6, scale = Math.min(width / 4.95, height / 2.45) * zoom * .86;
     const motionTime = reducedMotion ? 0 : performance.now() / 1000;
     const breath = Math.sin(motionTime * 1.35);
     const tailSway = Math.sin(motionTime * .82);
@@ -772,11 +772,17 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
         paint();
         model.focus({preventScroll:true});
       } else if (button.dataset.spatialAction === 'light') {
-        const cool = screen.dataset.light !== 'cool';
-        screen.dataset.light = cool ? 'cool' : 'warm';
+        const target = button.dataset.roomTarget === 'addition' ? 'addition' : 'main';
+        const unit = model.querySelector(`.room-${target}`);
+        if (!unit) return;
+        const cool = unit.dataset.light !== 'cool';
+        const roomNumber = target === 'main' ? '01' : '02';
+        unit.dataset.light = cool ? 'cool' : 'warm';
         button.setAttribute('aria-pressed', String(cool));
-        button.textContent = cool ? 'COOL LIGHT' : 'WARM LIGHT';
-        button.setAttribute('aria-label', cool ? 'Switch to warm model lighting' : 'Switch to cool model lighting');
+        button.textContent = `${roomNumber} · ${cool ? 'COOL' : 'WARM'}`;
+        button.setAttribute('aria-label', `Switch Room ${roomNumber} to ${cool ? 'warm' : 'cool'} lighting`);
+        const status = screen.querySelector('[data-room-status]');
+        if (status) status.textContent = `Room ${roomNumber} ${cool ? 'cool' : 'warm'} lighting selected.`;
       }
     });
   });
@@ -830,6 +836,7 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
   const roomLabel = screen.querySelector('[data-room-label]');
   const addRoomButton = screen.querySelector('[data-room-action="add-room"]');
   const removeRoomButton = screen.querySelector('[data-room-action="remove-room"]');
+  const additionLightButton = screen.querySelector('[data-room-target="addition"]');
   if (!model || !furniture) return;
 
   const gridSteps = 8;
@@ -847,30 +854,64 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
   };
   const placeOnGrid = (piece, floor, column, row) => {
     if (!floor) return;
-    const floorRect = floor.getBoundingClientRect();
     const roomUnit = floor.closest('.room-main,.room-addition');
     const layer = roomUnit?.querySelector('[data-room-furniture]');
     if (!roomUnit || !layer) return;
     if (piece.parentElement !== layer) layer.append(piece);
-    const modelRect = roomUnit.getBoundingClientRect();
     const col = clamp(Math.round(column), 1, gridSteps - 1);
     const r = clamp(Math.round(row), 1, gridSteps - 1);
-    const screenX = floorRect.left + floorRect.width * (col / gridSteps);
-    const screenY = floorRect.top + floorRect.height * (r / gridSteps);
-    piece.style.left = `${((screenX - modelRect.left) / modelRect.width) * 100}%`;
-    piece.style.top = `${((screenY - modelRect.top) / modelRect.height) * 100}%`;
+    piece.style.left = `${(col / gridSteps) * 100}%`;
+    piece.style.top = `${(r / gridSteps) * 100}%`;
     piece.dataset.gridColumn = String(col);
     piece.dataset.gridRow = String(r);
     piece.dataset.roomFloor = floor.dataset.roomFloor || 'main';
     const type = piece.dataset.roomPiece === 'chair' ? 'Chair' : 'Couch';
     piece.setAttribute('aria-label', `${type}, grid column ${col}, row ${r}. Selected. Drag to move or use arrow keys.`);
   };
-  const gridPositionAt = (floor, x, y) => {
-    const rect = floor.getBoundingClientRect();
-    return {
-      column: clamp(Math.round(((x - rect.left) / Math.max(rect.width, 1)) * gridSteps), 1, gridSteps - 1),
-      row: clamp(Math.round(((y - rect.top) / Math.max(rect.height, 1)) * gridSteps), 1, gridSteps - 1)
-    };
+  const gridPositionAt = (floor, x, y, previous = null) => {
+    const quad = floor.getBoxQuads?.()[0];
+    const cornerPoints = ['tl','tr','br','bl'].map((corner) => {
+      const marker = floor.querySelector(`[data-grid-corner="${corner}"]`);
+      if (!marker) return null;
+      const rect = marker.getBoundingClientRect();
+      return {x:rect.left,y:rect.top};
+    });
+    const shape = quad || (cornerPoints.every(Boolean) ? {
+      p1:cornerPoints[0],p2:cornerPoints[1],p3:cornerPoints[2],p4:cornerPoints[3]
+    } : null);
+    let u, v;
+    if (shape) {
+      const {p1, p2, p3, p4} = shape;
+      const dx1=p2.x-p3.x, dx2=p4.x-p3.x, dx3=p1.x-p2.x+p3.x-p4.x;
+      const dy1=p2.y-p3.y, dy2=p4.y-p3.y, dy3=p1.y-p2.y+p3.y-p4.y;
+      const denominator=dx1*dy2-dx2*dy1;
+      if (Math.abs(denominator) > .0001) {
+        const g=(dx3*dy2-dx2*dy3)/denominator, h=(dx1*dy3-dx3*dy1)/denominator;
+        const a=p2.x-p1.x+g*p2.x, b=p4.x-p1.x+h*p4.x, c=p1.x;
+        const d=p2.y-p1.y+g*p2.y, e=p4.y-p1.y+h*p4.y, f=p1.y;
+        u=.5; v=.5;
+        for (let i=0;i<8;i++) {
+          const w=g*u+h*v+1, px=(a*u+b*v+c)/w, py=(d*u+e*v+f)/w;
+          const rx=x-px, ry=y-py;
+          const xu=(a*w-g*(a*u+b*v+c))/(w*w), xv=(b*w-h*(a*u+b*v+c))/(w*w);
+          const yu=(d*w-g*(d*u+e*v+f))/(w*w), yv=(e*w-h*(d*u+e*v+f))/(w*w);
+          const jacobian=xu*yv-xv*yu;
+          if (Math.abs(jacobian) < .0001) break;
+          u+=(rx*yv-xv*ry)/jacobian;
+          v+=(xu*ry-rx*yu)/jacobian;
+        }
+      }
+    }
+    if (!Number.isFinite(u) || !Number.isFinite(v)) {
+      const rect=floor.getBoundingClientRect();
+      u=(x-rect.left)/Math.max(rect.width,1); v=(y-rect.top)/Math.max(rect.height,1);
+    }
+    const rawColumn=u*gridSteps, rawRow=v*gridSteps;
+    const nextColumn=clamp(Math.round(rawColumn),1,gridSteps-1);
+    const nextRow=clamp(Math.round(rawRow),1,gridSteps-1);
+    const column=previous && nextColumn!==previous.column && Math.abs(rawColumn-previous.column)<.68 ? previous.column : nextColumn;
+    const row=previous && nextRow!==previous.row && Math.abs(rawRow-previous.row)<.68 ? previous.row : nextRow;
+    return {column,row};
   };
   const selectPiece = (piece) => {
     selectedPiece = piece;
@@ -917,7 +958,10 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
       const surfaces = floorsAtPoint(event.clientX, event.clientY);
       const targetFloor = surfaces[0] || floorByName(piece.dataset.roomFloor);
       if (!targetFloor) return;
-      const next = gridPositionAt(targetFloor, event.clientX, event.clientY);
+      const next = gridPositionAt(targetFloor, event.clientX, event.clientY, {
+        column:Number(piece.dataset.gridColumn), row:Number(piece.dataset.gridRow)
+      });
+      if (next.column===Number(piece.dataset.gridColumn) && next.row===Number(piece.dataset.gridRow)) return;
       pointer.moved = true;
       placeOnGrid(piece, targetFloor, next.column, next.row);
     });
@@ -983,6 +1027,15 @@ document.querySelectorAll('[data-spatial-screen]').forEach((screen) => {
     }
     const addition = model.querySelector('.room-addition');
     if (addition) addition.setAttribute('aria-hidden', String(!added));
+    if (additionLightButton) {
+      additionLightButton.hidden = !added;
+      if (!added && addition) {
+        addition.dataset.light = 'warm';
+        additionLightButton.setAttribute('aria-pressed', 'false');
+        additionLightButton.textContent = '02 · WARM';
+        additionLightButton.setAttribute('aria-label', 'Switch Room 02 to cool lighting');
+      }
+    }
     screen.dataset.roomAdded = String(added);
     if (addRoomButton) {
       addRoomButton.disabled = added;
@@ -1250,6 +1303,66 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
       if (event.key === 'Escape' && !response.hidden) {
         event.preventDefault();
         closeResponse(true);
+      }
+    });
+  });
+})();
+
+/* Accessible information study: restore working schedule/help actions and keep the text preview. */
+(() => {
+  const content = {
+    schedule: {
+      kicker: 'SAMPLE DAY · PREVIEW ONLY',
+      title: 'A little structure, with room to change.',
+      copy: 'A real schedule would show the next useful steps here. This sample is illustrative; it is not connected to a personal calendar.',
+      note: 'Choose one task, add a break, and change the plan whenever you need.'
+    },
+    help: {
+      kicker: 'HELP WHEN YOU NEED IT',
+      title: 'Start with what would help.',
+      copy: 'You can ask someone to listen, help with one next step, or find a local service. This preview does not connect you to a live support person.',
+      note: 'Immediate danger: call 9-1-1. In Canada, call or text 9-8-8 for suicide crisis support.'
+    }
+  };
+  document.querySelectorAll('.study-accessible').forEach((study) => {
+    const screen = study.querySelector('.study-screen');
+    const popup = study.querySelector('[data-accessible-popup]');
+    const actions = [...study.querySelectorAll('[data-accessible-action]')];
+    const close = study.querySelector('[data-accessible-close]');
+    const kicker = study.querySelector('[data-accessible-kicker]');
+    const title = study.querySelector('[data-accessible-title]');
+    const copy = study.querySelector('[data-accessible-copy]');
+    const note = study.querySelector('[data-accessible-note]');
+    if (!screen || !popup || !actions.length || !close) return;
+    let returnFocus = null;
+    const closePopup = (restoreFocus = true) => {
+      popup.hidden = true;
+      actions.forEach((button) => button.setAttribute('aria-expanded', 'false'));
+      if (restoreFocus && returnFocus) returnFocus.focus();
+    };
+    actions.forEach((button) => button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const selected = content[button.dataset.accessibleAction];
+      if (!selected) return;
+      returnFocus = button;
+      kicker.textContent = selected.kicker;
+      title.textContent = selected.title;
+      copy.textContent = selected.copy;
+      note.textContent = selected.note;
+      actions.forEach((item) => item.setAttribute('aria-expanded', String(item === button)));
+      popup.hidden = false;
+      title.focus();
+    }));
+    close.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      closePopup(true);
+    });
+    screen.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !popup.hidden) {
+        event.preventDefault();
+        closePopup(true);
       }
     });
   });

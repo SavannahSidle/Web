@@ -374,7 +374,6 @@ body{background:#edf2f6;color:#0b1b28}
 
 .design-studies .study-culture .culture-event{left:62%;right:7%;top:25%;gap:clamp(6px,.9vw,10px);min-width:0}
 .design-studies .study-culture .culture-event strong, .design-studies .study-culture .culture-event span{min-width:0;line-height:1.25;overflow-wrap:anywhere}
-.design-studies .study-culture .culture-index{writing-mode:vertical-rl;right:7%;bottom:8%}
 
 .design-studies[data-mode="showcase"] .study:not([data-active])>p{visibility:hidden;opacity:0}
 .design-studies[data-mode="showcase"] .study>p{max-width:100%;line-height:1.25}
@@ -396,7 +395,6 @@ body{background:#edf2f6;color:#0b1b28}
  .design-studies .study-professional .professional-links span{font-size:6.5px;line-height:1.15}
  .design-studies .study-professional .professional-main>b{font-size:7px;padding:5px 6px}
 
- .design-studies .study-culture .culture-index{font-size:7px}
 }
 .design-studies[data-mode="showcase"]{padding-top:42px;padding-bottom:60px}
 .design-studies[data-mode="showcase"] .studies-grid{height:clamp(370px,32vw,440px)}
@@ -596,9 +594,11 @@ body{background:#edf2f6;color:#0b1b28}
 .design-studies .study-accessible .study-nav{left:7%;top:8%;color:#31716f;letter-spacing:.14em}
 .design-studies .study-accessible .study-screen>strong{left:7%;top:27%;max-width:64%;font:400 clamp(1.1rem,6cqw,1.55rem)/1.06 "DM Serif Display",Georgia,serif;letter-spacing:-.025em;color:#173547}
 .design-studies .study-accessible .study-actions{left:7%;right:7%;bottom:9%;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.design-studies .study-accessible .study-actions b{position:relative;display:flex;align-items:center;min-height:42px;padding:9px 10px;border:1px solid rgba(18,71,88,.18);border-radius:6px;background:#174e65;color:#fff;font-size:clamp(9px,.85vw,12px);font-weight:600;box-shadow:0 7px 16px rgba(22,64,77,.12)}
-.design-studies .study-accessible .study-actions b::before{content:"";flex:0 0 auto;width:13px;height:13px;margin-right:8px;border:1.5px solid currentColor;border-radius:4px;opacity:.85}
-.design-studies .study-accessible .study-actions b:last-child{background:#c65c48;border-color:#b84d3d}
+.design-studies .study-accessible .study-actions button{position:relative;display:flex;align-items:center;min-width:0;min-height:42px;padding:9px 10px;border:1px solid rgba(18,71,88,.18);border-radius:6px;background:#174e65;color:#fff;font:600 clamp(9px,.85vw,12px)/1.2 "IBM Plex Sans",sans-serif;text-align:left;cursor:pointer;box-shadow:0 7px 16px rgba(22,64,77,.12);touch-action:manipulation}
+.design-studies .study-accessible .study-actions button::before{content:"";flex:0 0 auto;width:13px;height:13px;margin-right:8px;border:1.5px solid currentColor;border-radius:4px;opacity:.85}
+.design-studies .study-accessible .study-actions button:last-child{background:#c65c48;border-color:#b84d3d}
+.design-studies .study-accessible .study-actions button:hover{filter:brightness(1.08)}
+.design-studies .study-accessible .study-actions button:focus-visible{outline:3px solid #153f55;outline-offset:3px}
 .design-studies .study-accessible .study-screen::before{top:17%;right:8%;width:22%;height:17%;aspect-ratio:1.45;border:1px solid rgba(23,131,139,.34);border-radius:14px 14px 14px 4px;background:rgba(255,255,255,.72);box-shadow:0 6px 14px rgba(23,78,91,.08);content:""}
 .design-studies .study-accessible .study-screen::after{content:"•••";position:absolute;z-index:1;right:12.3%;top:19.5%;color:#6caaa2;font:700 clamp(13px,2.6cqi,18px)/1 "IBM Plex Sans",sans-serif;letter-spacing:.12em}
 
@@ -660,7 +660,7 @@ body{background:#edf2f6;color:#0b1b28}
  .design-studies .study-playful .study-screen>strong{top:25%;font-size:clamp(2rem,8vw,2.9rem)}
  .design-studies .study-accessible .study-screen>strong{font-size:clamp(1.35rem,5.6vw,1.8rem)}
  .design-studies .study-accessible .study-actions{gap:6px}
- .design-studies .study-accessible .study-actions b{min-height:38px;padding:7px;font-size:9px}
+ .design-studies .study-accessible .study-actions button{min-height:42px;padding:7px;font-size:9px}
 
  
  
@@ -1432,12 +1432,6 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .design-studies[data-mode] .study-spatial [data-spatial-model]:focus-visible{outline:2px solid rgba(219,207,177,.6);outline-offset:5px}
 .design-studies[data-mode] .study-spatial [data-spatial-model][data-dragging="true"]{transition:none}
-.design-studies[data-mode] .study-spatial .spatial-screen[data-light="cool"]{
-  background:radial-gradient(ellipse at 73% 42%,rgba(112,173,188,.2),transparent 35%),linear-gradient(138deg,#111e21 0%,#17292c 54%,#0c171a 100%);
-}
-.design-studies[data-mode] .study-spatial .spatial-screen[data-light="cool"] .spatial-light{
-  background:radial-gradient(circle,rgba(152,231,236,.66),rgba(102,190,211,.14) 36%,transparent 71%);
-}
 @media(max-width:720px){
   .design-studies[data-mode] .study-spatial .spatial-scene{inset:13% 1% 7% 40%}
   .design-studies[data-mode] .study-spatial .spatial-copy{left:6%;width:35%;bottom:17%}
@@ -1875,18 +1869,6 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 
 /* Keep the poster art pixel-identical; animate only the atmospheric layer behind it. */
 .home .poster-hero .hero-starfield{opacity:.7}
-.home .poster-hero .shooting-star{
- position:absolute;z-index:1;top:18%;left:-14%;width:92px;height:1px;
- background:linear-gradient(90deg,transparent,rgba(211,232,255,.8),transparent);
- filter:drop-shadow(0 0 4px rgba(174,211,255,.45));
- opacity:0;transform:rotate(-17deg);animation:mica-shoot 21s ease-in-out infinite;
-}
-@keyframes mica-shoot{
- 0%,68%,100%{opacity:0;transform:translate3d(0,0,0) rotate(-17deg)}
- 70%{opacity:.72}
- 74%{opacity:0;transform:translate3d(115vw,35vh,0) rotate(-17deg)}
-}
-@media(prefers-reduced-motion:reduce){.home .poster-hero .shooting-star{animation:none!important;display:none}}
 
 /* Consistent landscape preview frames; adapt internal compositions to the frame. */
 .design-studies .study-screen{container-type:inline-size;overflow:hidden}
@@ -1929,24 +1911,13 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .home .poster-hero .hero-starfield{opacity:.92}
 .home .poster-hero .hero-starfield::before{animation-duration:32s}
 .home .poster-hero .hero-starfield::after{animation-duration:48s;opacity:.68}
-.home .poster-hero .shooting-star{
-  top:43%;left:30%;width:clamp(92px,14vw,156px);height:2px;
-  animation:mica-shoot-center 13s linear infinite;
-  filter:drop-shadow(0 0 6px rgba(174,211,255,.72));
-}
-@keyframes mica-shoot-center{
-  0%,48%,100%{opacity:0;transform:translate3d(0,0,0) rotate(-15deg)}
-  50%{opacity:.95}
-  57%{opacity:0;transform:translate3d(48vw,13vh,0) rotate(-15deg)}
-}
 @media(max-width:720px){
   .home .poster-hero .hero-starfield{opacity:.62}
   .home .poster-hero .hero-starfield::before{animation-duration:40s}
   .home .poster-hero .hero-starfield::after{animation-duration:58s}
-  .home .poster-hero .shooting-star{left:22%;top:47%;width:82px}
 }
 @media(prefers-reduced-motion:reduce){
-  .home .poster-hero .hero-starfield::before, .home .poster-hero .hero-starfield::after, .home .poster-hero .shooting-star{animation:none!important}
+  .home .poster-hero .hero-starfield::before, .home .poster-hero .hero-starfield::after{animation:none!important}
 }
 
 /* Three service-map points now travel on separate, precise orbits. */
@@ -1987,7 +1958,6 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-culture .culture-event span{font-size:clamp(8px,1.9cqi,9px);line-height:1.35}
 .design-studies[data-mode] .study-culture .culture-event small{font-size:clamp(7px,1.6cqi,8px);line-height:1.3}
 .design-studies[data-mode] .study-culture .culture-event .culture-details-toggle{min-height:30px}
-.design-studies[data-mode] .study-culture .culture-index{right:7%;bottom:7%;writing-mode:vertical-rl}
 
 /* Give the editorial study enough type scale in both gallery modes. */
 .design-studies[data-mode] .study-editorial .editorial-screen h3{
@@ -2183,7 +2153,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .design-studies .study-editorial .editorial-screen h3 em span{animation:none!important}
 }
 
-/* 2026-10: round, slow star points and a meteor with its luminous head leading. */
+/* Hero meteors travel in straight, fixed-height passes beneath the foreground artwork. */
 .home .poster-hero .hero-starfield{opacity:.62}
 .home .poster-hero .hero-starfield::before, .home .poster-hero .hero-starfield::after{
   background-size:250px 205px;
@@ -2195,36 +2165,40 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 .home .poster-hero .hero-starfield::after{background-size:340px 278px;animation-duration:122s;opacity:.45}
 .home .poster-hero .shooting-star{
-  left:27%;top:58%;width:clamp(88px,9vw,116px);height:2px;border-radius:50%;
+  position:absolute;z-index:1;left:24%;top:58%;width:clamp(88px,9vw,116px);height:2px;border-radius:50%;
+  opacity:0;transform:translate3d(-12vw,0,0);
   background:linear-gradient(90deg,transparent 0%,rgba(197,220,255,.05) 8%,rgba(197,220,255,.2) 52%,rgba(230,241,255,.82) 88%,#fff 100%);
-  filter:drop-shadow(0 0 6px rgba(174,211,255,.65));
-  animation:mica-meteor-cross 22s linear infinite;
+  filter:drop-shadow(0 0 6px rgba(174,211,255,.65));animation:mica-meteor-straight 24s linear infinite
 }
 .home .poster-hero .shooting-star::after{
   content:"";position:absolute;right:-1px;top:50%;width:6px;height:6px;border-radius:50%;
   transform:translateY(-50%);background:#fff;box-shadow:0 0 6px 2px rgba(214,232,255,.92),0 0 14px 4px rgba(143,190,255,.42)
 }
-@keyframes mica-meteor-cross{
-  0%,64%,100%{opacity:0;transform:translate3d(-14vw,-4vh,0) rotate(15deg)}
-  65%{opacity:0;transform:translate3d(-9vw,-2vh,0) rotate(15deg)}
-  66%{opacity:.9;transform:translate3d(-2vw,0,0) rotate(15deg)}
-  73%{opacity:.9;transform:translate3d(35vw,7vh,0) rotate(15deg)}
-  77%{opacity:0;transform:translate3d(44vw,10vh,0) rotate(15deg)}
+@keyframes mica-meteor-straight{
+  0%,63%,100%{opacity:0;transform:translate3d(-12vw,0,0)}
+  64%{opacity:0;transform:translate3d(-12vw,0,0)}
+  65%{opacity:.88;transform:translate3d(-11vw,0,0)}
+  73%{opacity:.88;transform:translate3d(43vw,0,0)}
+  75%{opacity:0;transform:translate3d(52vw,0,0)}
 }
+.home .poster-hero .shooting-star--secondary{top:39%;width:68px;height:1.5px;animation-delay:-8s}
+.home .poster-hero .shooting-star--tertiary{top:70%;width:48px;height:1px;opacity:.76;animation-delay:-15s}
+.home .poster-hero .shooting-star--secondary::after{width:4px;height:4px;box-shadow:0 0 5px 1.5px rgba(214,232,255,.86),0 0 10px 3px rgba(143,190,255,.35)}
+.home .poster-hero .shooting-star--tertiary::after{width:3px;height:3px;box-shadow:0 0 4px 1px rgba(214,232,255,.78),0 0 8px 2px rgba(143,190,255,.28)}
 .home .poster-hero .space-event{position:absolute;z-index:1;pointer-events:none;opacity:0}
 .home .poster-hero .space-event-comet{
   left:10%;top:27%;width:42px;height:1px;border-radius:50%;
   background:linear-gradient(90deg,transparent,rgba(192,222,255,.12),rgba(229,241,255,.66));
-  animation:mica-comet-drift 29s ease-in-out infinite 7s
+  animation:mica-comet-drift 29s linear infinite 7s
 }
 .home .poster-hero .space-event-comet::after{
   content:"";position:absolute;right:0;top:50%;width:3px;height:3px;border-radius:50%;transform:translateY(-50%);
   background:#fff;box-shadow:0 0 8px 2px rgba(183,218,255,.65)
 }
 @keyframes mica-comet-drift{
-  0%,52%,100%{opacity:0;transform:translate3d(-7vw,0,0) rotate(19deg)}
+  0%,52%,100%{opacity:0;transform:translate3d(-7vw,0,0)}
   54%{opacity:.48}
-  61%{opacity:0;transform:translate3d(26vw,10vh,0) rotate(19deg)}
+  61%{opacity:0;transform:translate3d(26vw,0,0)}
 }
 .home .poster-hero .space-event-glint{
   left:73%;top:66%;width:3px;height:3px;border-radius:50%;background:#d9eaff;
@@ -2236,13 +2210,15 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   50%{opacity:.68;transform:translate3d(-9px,-5px,0)}
 }
 @media(max-width:720px){
- .home .poster-hero .hero-starfield{opacity:.54}
- .home .poster-hero .shooting-star{left:18%;top:45%;width:84px}
- .home .poster-hero .space-event-comet{left:5%;top:30%;width:30px}
+  .home .poster-hero .hero-starfield{opacity:.54}
+  .home .poster-hero .shooting-star{left:18%;top:45%;width:84px}
+  .home .poster-hero .shooting-star--secondary{top:34%;width:60px}
+  .home .poster-hero .shooting-star--tertiary{top:62%;width:44px}
+  .home .poster-hero .space-event-comet{left:5%;top:30%;width:30px}
 }
 @media(prefers-reduced-motion:reduce){
- .home .poster-hero .hero-starfield::before, .home .poster-hero .hero-starfield::after, .home .poster-hero .shooting-star, .home .poster-hero .space-event{animation:none!important}
- .home .poster-hero .shooting-star, .home .poster-hero .space-event{display:none!important}
+  .home .poster-hero .hero-starfield::before, .home .poster-hero .hero-starfield::after, .home .poster-hero .shooting-star, .home .poster-hero .space-event{animation:none!important}
+  .home .poster-hero .shooting-star, .home .poster-hero .space-event{display:none!important}
 }
 
 /* One animated point moves rapidly and continuously through the model graph. */
@@ -2684,18 +2660,6 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 }
 
 
-/* Two smaller, staggered meteors keep the homepage sky active between the main passes. */
-.home .poster-hero .shooting-star--secondary{
-  top:39%;width:68px;height:1.5px;animation-delay:-7s
-}
-.home .poster-hero .shooting-star--tertiary{
-  top:70%;width:48px;height:1px;opacity:.76;animation-delay:-14s
-}
-.home .poster-hero .shooting-star--secondary::after{width:4px;height:4px;box-shadow:0 0 5px 1.5px rgba(214,232,255,.86),0 0 10px 3px rgba(143,190,255,.35)}
-.home .poster-hero .shooting-star--tertiary::after{width:3px;height:3px;box-shadow:0 0 4px 1px rgba(214,232,255,.78),0 0 8px 2px rgba(143,190,255,.28)}
-
-
-
 /* User review pass: soften care labels, clear the wayfinding title, and turn the right-side circle into a live-chat motif. */
 .site-live .design-studies[data-mode] .study-care .care-option small{
   color:#526c61;
@@ -2785,6 +2749,24 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   background:#174e65;
   color:#fff;
 }
+.site-live .design-studies[data-mode] .study-accessible .accessible-info-popup{
+  position:absolute;inset:7% 5% 7%;z-index:6;display:grid;align-content:start;gap:clamp(6px,1.6cqi,10px);
+  overflow:auto;padding:clamp(12px,3cqi,18px);border:1px solid rgba(19,77,90,.2);border-radius:10px;
+  background:rgba(255,255,252,.98);color:#18394a;box-shadow:0 12px 32px rgba(17,52,65,.25)
+}
+.site-live .design-studies[data-mode] .study-accessible .accessible-info-popup[hidden]{display:none!important}
+.site-live .design-studies[data-mode] .study-accessible .accessible-popup-close{
+  position:absolute;top:7px;right:7px;display:grid;place-items:center;width:42px;height:42px;padding:0;
+  border:1px solid rgba(23,78,101,.24);border-radius:50%;background:#f0f5f4;color:#174e65;
+  font:400 26px/1 "IBM Plex Sans",sans-serif;cursor:pointer
+}
+.site-live .design-studies[data-mode] .study-accessible .accessible-popup-close:focus-visible{outline:3px solid #174e65;outline-offset:2px}
+.site-live .design-studies[data-mode] .study-accessible .accessible-popup-kicker{padding-right:42px;color:#28717a;font:600 clamp(6px,1.7cqi,8px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.12em}
+.site-live .design-studies[data-mode] .study-accessible .accessible-info-popup h4{max-width:22ch;margin:0;color:#18394a;font:500 clamp(16px,4.1cqi,23px)/1.05 "DM Serif Display",Georgia,serif}
+.site-live .design-studies[data-mode] .study-accessible .accessible-info-popup p{max-width:54ch;margin:0;color:#294d56;font:400 clamp(9px,2.15cqi,12px)/1.35 "IBM Plex Sans",sans-serif}
+.site-live .design-studies[data-mode] .study-accessible .accessible-info-popup .accessible-popup-note{margin-top:auto;padding-top:6px;border-top:1px solid rgba(23,78,101,.14);font-size:clamp(8px,1.9cqi,10px)}
+.site-live .design-studies[data-mode] .study-accessible .study-actions button[aria-expanded="true"]{outline:2px solid #173f55;outline-offset:2px}
+.site-live .design-studies[data-mode] .study-accessible .study-screen:focus-within .accessible-info-popup{scrollbar-width:thin}
 .site-live .design-studies .study-dinosaur .dinosaur-focus{transform:translateY(4px)}
 
 /* Keep animated meteors behind the artwork's foreground panels at every width. */
@@ -2877,6 +2859,14 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   background-size:12.5% 12.5%,12.5% 12.5%,100% 100%;
   box-shadow:0 12px 18px rgba(0,0,0,.28),inset 0 0 0 1px rgba(255,255,255,.16)
 }
+.design-studies[data-mode] .study-spatial .room-screen[data-room-added="true"] .room-furniture{
+  left:0;width:100%
+}
+.design-studies[data-mode] .study-spatial .room-grid-corner{position:absolute;z-index:0;width:0;height:0;pointer-events:none}
+.design-studies[data-mode] .study-spatial .room-grid-corner[data-grid-corner="tl"]{left:0;top:0}
+.design-studies[data-mode] .study-spatial .room-grid-corner[data-grid-corner="tr"]{right:0;top:0}
+.design-studies[data-mode] .study-spatial .room-grid-corner[data-grid-corner="br"]{right:0;bottom:0}
+.design-studies[data-mode] .study-spatial .room-grid-corner[data-grid-corner="bl"]{left:0;bottom:0}
 .design-studies[data-mode] .study-spatial .room-back-wall{
   position:absolute;left:50%;top:35%;width:84%;height:49%;transform:translate(-50%,-50%) translateZ(-15px);
   border:1px solid rgba(239,230,207,.72);background:linear-gradient(90deg,#d6c7a8,#c5b99e 56%,#a5a693);
@@ -2893,19 +2883,9 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies[data-mode] .study-spatial .room-side-wall{
   left:87%;transform:translate(-50%,-50%) rotateY(42deg) translateZ(-8px);transform-origin:left center
 }
-.design-studies[data-mode] .study-spatial .room-window{
-  position:absolute;z-index:3;left:49%;top:30%;width:27%;height:23%;
-  transform:translate(-50%,-50%) translateZ(5px);border:clamp(3px,1.1cqi,6px) solid #eee0c3;
-  background:linear-gradient(145deg,#d8e6dc,#a9c1ae 65%,#758e83);
-  box-shadow:0 0 18px rgba(255,211,144,.32),inset 0 0 0 1px rgba(52,65,54,.22)
-}
-.design-studies[data-mode] .study-spatial .room-window::before, .design-studies[data-mode] .study-spatial .room-window::after{
-  content:"";position:absolute;background:rgba(246,238,216,.78)
-}
-.design-studies[data-mode] .study-spatial .room-window::before{left:50%;top:0;bottom:0;width:2px}
-.design-studies[data-mode] .study-spatial .room-window::after{top:50%;left:0;right:0;height:2px}
 .design-studies[data-mode] .study-spatial .room-furniture{
-  position:absolute;inset:0;z-index:5;transform-style:preserve-3d;pointer-events:none
+  position:absolute;left:8%;top:41%;width:84%;height:58%;z-index:5;
+  transform:rotateX(18deg);transform-origin:50% 50%;transform-style:preserve-3d;pointer-events:none
 }
 .design-studies[data-mode] .study-spatial .room-piece{
   position:absolute;z-index:1;display:grid;place-items:center;min-width:44px;min-height:44px;
@@ -2923,10 +2903,28 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   content:"";position:absolute;left:22%;right:22%;top:50%;height:1px;background:rgba(59,45,31,.36);pointer-events:none
 }
 .design-studies[data-mode] .study-spatial .room-piece.room-couch{
-  width:26%;height:24%;border-radius:9px;background:linear-gradient(145deg,#d8c8a8,#a59173)
+  width:29%;height:24%;border:1px solid rgba(247,232,198,.88);border-radius:9px;
+  background:linear-gradient(90deg,#846d55 0 12%,transparent 12% 88%,#846d55 88% 100%),linear-gradient(180deg,#927a5d 0 30%,#d8c8a8 30% 100%)
 }
 .design-studies[data-mode] .study-spatial .room-piece.room-chair{
-  width:19%;height:22%;border-radius:7px;background:linear-gradient(145deg,#c08d5d,#906443)
+  width:19%;height:24%;border:1px solid rgba(247,232,198,.88);border-radius:6px;
+  background:linear-gradient(90deg,transparent 0 18%,#5e4630 19% 23%,transparent 24% 76%,#5e4630 77% 81%,transparent 82%),linear-gradient(180deg,transparent 0 57%,#5e4630 58% 64%,transparent 65%),linear-gradient(145deg,#c08d5d,#906443)
+}
+.design-studies[data-mode] .study-spatial .room-piece.room-couch::before{
+  inset:12% 15% 44%;border:1px solid rgba(255,239,207,.84);border-radius:6px 6px 2px 2px;
+  background:linear-gradient(90deg,#cbb99b 0 48%,#b6a181 49% 100%);box-shadow:0 2px 3px rgba(47,36,24,.2)
+}
+.design-studies[data-mode] .study-spatial .room-piece.room-couch::after{
+  left:17%;right:17%;top:auto;bottom:18%;height:24%;border:1px solid rgba(101,76,50,.55);
+  border-radius:4px;background:linear-gradient(145deg,#ddcfb4,#b6a181)
+}
+.design-studies[data-mode] .study-spatial .room-piece.room-chair::before{
+  inset:5% 19% 61%;border:1px solid rgba(255,235,194,.85);border-radius:5px 5px 2px 2px;
+  background:linear-gradient(145deg,#d4a477,#996b49);box-shadow:0 2px 3px rgba(47,36,24,.2)
+}
+.design-studies[data-mode] .study-spatial .room-piece.room-chair::after{
+  left:20%;right:20%;top:39%;height:28%;border:1px solid rgba(255,235,194,.82);
+  border-radius:4px;background:linear-gradient(145deg,#c18d5d,#956344)
 }
 .design-studies[data-mode] .study-spatial .room-piece[data-selected="true"]{
   border-color:#fff0ce;box-shadow:0 0 0 2px rgba(249,227,185,.4),0 5px 9px rgba(25,20,14,.3)
@@ -2954,39 +2952,39 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   box-shadow:0 8px 20px rgba(0,0,0,.32);transform:translate(-50%,-50%)
 }
 
-.design-studies[data-mode] .study-spatial .room-back-wall, .design-studies[data-mode] .study-spatial .room-left-wall, .design-studies[data-mode] .study-spatial .room-side-wall, .design-studies[data-mode] .study-spatial .room-floor, .design-studies[data-mode] .study-spatial .room-window{
+.design-studies[data-mode] .study-spatial .room-back-wall, .design-studies[data-mode] .study-spatial .room-left-wall, .design-studies[data-mode] .study-spatial .room-side-wall, .design-studies[data-mode] .study-spatial .room-floor{
   transition:background .3s ease,filter .3s ease,box-shadow .3s ease
 }
 .design-studies[data-mode] .study-spatial .room-back-wall, .design-studies[data-mode] .study-spatial .room-left-wall, .design-studies[data-mode] .study-spatial .room-side-wall{touch-action:pan-y}
-.design-studies[data-mode] .study-spatial .room-screen[data-light="warm"]{
-  background:radial-gradient(ellipse at 70% 46%,rgba(255,185,95,.22),transparent 52%),linear-gradient(135deg,#30271f,#151c1c 72%)
+.design-studies[data-mode] .study-spatial .room-addition .room-light-addition{
+  position:absolute;z-index:9;left:5%;top:5%;min-width:44px;min-height:40px;padding:5px 7px;
+  border:1px solid rgba(238,225,196,.68);border-radius:3px;background:rgba(12,19,20,.88);color:#f1eadb;
+  font:700 clamp(6px,1.35cqi,8px)/1.15 "IBM Plex Mono",monospace;cursor:pointer;touch-action:manipulation
 }
-.design-studies[data-mode] .study-spatial .room-screen[data-light="cool"]{
-  background:radial-gradient(ellipse at 70% 46%,rgba(94,202,255,.3),transparent 52%),linear-gradient(135deg,#172d3a,#101c25 72%)
+.design-studies[data-mode] .study-spatial .room-addition .room-light-addition[hidden]{display:none!important}
+.design-studies[data-mode] .study-spatial .room-addition .room-light-addition:hover,
+.design-studies[data-mode] .study-spatial .room-addition .room-light-addition:focus-visible,
+.design-studies[data-mode] .study-spatial .room-addition .room-light-addition[aria-pressed="true"]{
+  border-color:#e4c994;background:rgba(72,57,38,.96);color:#fff8e8
 }
-.design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-back-wall, .design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-left-wall, .design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-side-wall{
+.design-studies[data-mode] .study-spatial .room-addition .room-light-addition:focus-visible{outline:2px solid #f2dfb7;outline-offset:2px}
+.design-studies[data-mode] .study-spatial .room-main[data-light="warm"] .room-back-wall, .design-studies[data-mode] .study-spatial .room-main[data-light="warm"] .room-left-wall, .design-studies[data-mode] .study-spatial .room-main[data-light="warm"] .room-side-wall, .design-studies[data-mode] .study-spatial .room-addition[data-light="warm"] .room-back-wall, .design-studies[data-mode] .study-spatial .room-addition[data-light="warm"] .room-left-wall, .design-studies[data-mode] .study-spatial .room-addition[data-light="warm"] .room-side-wall{
   background:linear-gradient(90deg,#efdbb5,#d4c39d 58%,#a9997b)
 }
-.design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-back-wall, .design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-left-wall, .design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-side-wall{
+.design-studies[data-mode] .study-spatial .room-main[data-light="cool"] .room-back-wall, .design-studies[data-mode] .study-spatial .room-main[data-light="cool"] .room-left-wall, .design-studies[data-mode] .study-spatial .room-main[data-light="cool"] .room-side-wall, .design-studies[data-mode] .study-spatial .room-addition[data-light="cool"] .room-back-wall, .design-studies[data-mode] .study-spatial .room-addition[data-light="cool"] .room-left-wall, .design-studies[data-mode] .study-spatial .room-addition[data-light="cool"] .room-side-wall{
   background:linear-gradient(90deg,#bed9e3,#91b2c1 58%,#647f91)
 }
-.design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-floor{
+.design-studies[data-mode] .study-spatial .room-main[data-light="warm"] .room-floor, .design-studies[data-mode] .study-spatial .room-addition[data-light="warm"] .room-floor{
   background-image:
     linear-gradient(to right,rgba(255,245,213,.38) 1px,transparent 1px),
     linear-gradient(to bottom,rgba(255,245,213,.38) 1px,transparent 1px),
     linear-gradient(145deg,#c39e6c,#8b7453 60%,#594d3c)
 }
-.design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-floor{
+.design-studies[data-mode] .study-spatial .room-main[data-light="cool"] .room-floor, .design-studies[data-mode] .study-spatial .room-addition[data-light="cool"] .room-floor{
   background-image:
     linear-gradient(to right,rgba(209,241,255,.34) 1px,transparent 1px),
     linear-gradient(to bottom,rgba(209,241,255,.34) 1px,transparent 1px),
     linear-gradient(145deg,#7295a4,#465f71 60%,#263b4b)
-}
-.design-studies[data-mode] .study-spatial .room-screen[data-light="warm"] .room-window{
-  border-color:#ffe2ac;box-shadow:0 0 24px rgba(255,185,91,.48)
-}
-.design-studies[data-mode] .study-spatial .room-screen[data-light="cool"] .room-window{
-  border-color:#b9ecff;box-shadow:0 0 24px rgba(93,206,255,.5)
 }
 .design-studies[data-mode] .study-spatial .room-caption, .design-studies[data-mode] .study-spatial .spatial-hint{pointer-events:none}
 .design-studies[data-mode] .study-spatial [data-spatial-model][data-dragging="true"]{transition:none}
@@ -2999,7 +2997,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .design-studies[data-mode] .study-spatial .spatial-hint{max-width:37%;font-size:clamp(4px,.9cqi,5.5px)}
 }
 @media(prefers-reduced-motion:reduce){
-  .design-studies[data-mode] .study-spatial .room-model, .design-studies[data-mode] .study-spatial .room-main, .design-studies[data-mode] .study-spatial .room-addition, .design-studies[data-mode] .study-spatial .room-piece, .design-studies[data-mode] .study-spatial .room-window{transition:none!important;animation:none!important}
+  .design-studies[data-mode] .study-spatial .room-model, .design-studies[data-mode] .study-spatial .room-main, .design-studies[data-mode] .study-spatial .room-addition, .design-studies[data-mode] .study-spatial .room-piece{transition:none!important;animation:none!important}
 }
 
 
