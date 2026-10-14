@@ -1367,7 +1367,7 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
       event.stopPropagation();
       closePopup(true);
     });
-    screen.addEventListener('keydown', (event) => {
+    document.addEventListener('keydown', (event) => {
       if (event.key === 'Tab' && !popup.hidden) {
         const stops = focusableInPopup();
         if (!stops.length) {
@@ -1377,7 +1377,11 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
         }
         const first = stops[0];
         const last = stops[stops.length - 1];
-        if (event.shiftKey && (document.activeElement === first || document.activeElement === title)) {
+        const focusIsOutsidePopup = !popup.contains(document.activeElement) && document.activeElement !== title;
+        if (focusIsOutsidePopup) {
+          event.preventDefault();
+          (event.shiftKey ? last : first).focus();
+        } else if (event.shiftKey && (document.activeElement === first || document.activeElement === title)) {
           event.preventDefault();
           last.focus();
         } else if (!event.shiftKey && (document.activeElement === last || document.activeElement === title)) {
@@ -1389,7 +1393,7 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
         event.preventDefault();
         closePopup(true);
       }
-    });
+    }, true);
   });
 })();
 
