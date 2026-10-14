@@ -267,40 +267,42 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       addTriangle(a, b, c, color); addTriangle(b, d, c, color);
     }
   };
-  const body = '#8b9b71', flank = '#a7a37a', dark = '#5c705b', feather = '#c4b98e', bone = '#d8c9a6';
+  const body = '#65716d', flank = '#89939a', dark = '#3b4647', feather = '#aab2b3', bone = '#d6c7a8', blue = '#426b7d';
   const motionRanges = { tailFan: null, sickleClaws: [] };
-  addEllipsoid(-.18, -.015, 0, .61, .34, .31, body, 10, 14);
-  addEllipsoid(-.65, -.04, 0, .34, .31, .33, flank, 8, 12);
-  addEllipsoid(.08, .015, 0, .25, .22, .24, flank, 8, 12);
-  addTube([-.93, -.02, 0], [-3.62, -.36, 0], .28, .018, dark, 10);
+  addEllipsoid(-.22, -.015, 0, .53, .27, .26, body, 10, 14);
+  addEllipsoid(-.66, -.035, 0, .3, .24, .28, flank, 8, 12);
+  addEllipsoid(.08, .025, 0, .21, .18, .2, flank, 8, 12);
+  addTube([-.88, -.025, 0], [-3.7, -.3, 0], .22, .012, dark, 10);
+  addTube([-.42, .19, 0], [-3.38, -.11, 0], .028, .003, blue, 7);
+  addTube([-.57, .14, .02], [-.92, .12, .02], .035, .015, blue, 7);
   const tailFanStart = vertices.length;
-  addTube([-.93, .04, 0], [-3.52, -.31, 0], .19, .012, feather, 9);
+  addTube([-.89, .055, 0], [-3.55, -.25, 0], .13, .008, feather, 9);
   motionRanges.tailFan = [tailFanStart, vertices.length];
-  // A compact, backwards-swept neck and blunt muzzle give the head a watchful profile.
-  addTube([.1, .12, 0], [.02, .43, 0], .22, .18, body, 10);
-  addTube([.02, .43, 0], [.08, .72, 0], .18, .14, body, 10);
-  addTube([.1, .02, 0], [.05, .54, 0], .09, .06, flank, 8);
-  addEllipsoid(.08, .84, 0, .31, .22, .24, flank, 9, 14);
-  // Short, broad muzzle with a distinct jaw and a small, visible mouth line.
-  addTube([.28, .88, 0], [.66, .86, 0], .145, .105, body, 10);
-  addTube([.29, .76, 0], [.62, .77, 0], .075, .05, dark, 9);
-  addTube([.28, .82, 0], [.64, .82, 0], .025, .018, dark, 7);
-  for (let tooth = 0; tooth < 5; tooth++) {
-    const tx = .34 + tooth * .055;
-    addTube([tx, .835, .12], [tx + .015, .8, .12], .011, .001, bone, 5);
-    addTube([tx, .835, -.12], [tx + .015, .8, -.12], .011, .001, bone, 5);
+  // A slim, gently arched neck and narrow, toothed skull follow the fossil profile.
+  addTube([.12, .12, 0], [.27, .39, 0], .15, .12, body, 10);
+  addTube([.27, .39, 0], [.25, .67, 0], .12, .09, flank, 10);
+  addTube([.15, .03, 0], [.23, .59, 0], .055, .035, blue, 7);
+  addEllipsoid(.23, .755, 0, .255, .145, .19, flank, 9, 14);
+  addTube([.39, .79, 0], [.91, .75, 0], .09, .042, body, 10);
+  addTube([.41, .68, 0], [.86, .68, 0], .042, .022, dark, 9);
+  addTube([.4, .735, 0], [.89, .72, 0], .018, .012, dark, 7);
+  for (let tooth = 0; tooth < 8; tooth++) {
+    const tx = .49 + tooth * .047;
+    const toothY = .733 - (tx - .4) * .03;
+    addTube([tx, toothY, .105], [tx + .012, toothY - .035, .105], .008, .001, bone, 5);
+    addTube([tx, toothY, -.105], [tx + .012, toothY - .035, -.105], .008, .001, bone, 5);
   }
   [-1, 1].forEach(side => {
-    addEllipsoid(.12, .89, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
-    addEllipsoid(.135, .89, side * .228, .018, .02, .011, '#17221f', 5, 7);
+    addEllipsoid(.2, .785, side * .17, .037, .031, .023, '#d7a65b', 6, 9);
+    addEllipsoid(.214, .785, side * .19, .014, .018, .01, '#17221f', 5, 7);
   });
-  // Two feathered forelimbs with hooked claws.
+  // Compact feathered forelimbs tuck below the chest, hands angled inward.
   [-.24, .24].forEach((z, i) => {
-    addEllipsoid(.28, .08, z, .15, .17, .13, i ? body : dark, 6, 9);
-    addTube([.31, .02, z], [.39, -.25, z * 1.2], .085, .06, body, 7);
-    addTube([.39, -.25, z * 1.2], [.64, -.34, z * 1.35], .06, .033, flank, 7);
-    addTube([.64, -.34, z * 1.35], [.72, -.42, z * 1.35], .033, .006, bone, 6);
-    for (let f = 0; f < 3; f++) addTube([.35 + f * .055, -.02, z * 1.13], [.46 + f * .06, -.12, z * 1.34], .032, .008, feather, 5);
+    addEllipsoid(.14, .015, z, .105, .12, .1, i ? body : dark, 6, 9);
+    addTube([.2, -.035, z], [.38, -.21, z * 1.18], .06, .042, body, 7);
+    addTube([.38, -.21, z * 1.18], [.53, -.26, z * 1.27], .04, .025, flank, 7);
+    addTube([.53, -.26, z * 1.27], [.61, -.34, z * 1.3], .025, .004, bone, 6);
+    for (let f = 0; f < 4; f++) addTube([.22 + f * .04, .035, z * 1.13], [.39 + f * .048, -.17 - f * .018, z * 1.34], .025, .003, feather, 5);
   });
   // Digitigrade hind limbs based on the documented V. mongoliensis proportions:
   // femur and tibia are close in length; metatarsus is shorter; toes stay compact.
@@ -319,15 +321,15 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   ].forEach((leg, legIndex) => {
     const { z, shade, hip, knee, hock, ankle } = leg;
     // Femur: powerful but tapered from the pelvis to the forward knee.
-    addEllipsoid(hip[0], hip[1], z, .22, .25, .16, shade, 7, 10);
-    addTube(hip, knee, .16, .115, body, 8);
-    addEllipsoid(knee[0], knee[1], z, .115, .12, .11, flank, 6, 8);
+    addEllipsoid(hip[0], hip[1], z, .18, .21, .14, shade, 7, 10);
+    addTube(hip, knee, .135, .095, body, 8);
+    addEllipsoid(knee[0], knee[1], z, .095, .1, .09, flank, 6, 8);
     // Tibia/fibula angle back toward the hock; the joint remains flexed.
-    addTube(knee, hock, .105, .07, shade, 8);
-    addEllipsoid(hock[0], hock[1], z, .08, .085, .08, dark, 6, 8);
+    addTube(knee, hock, .09, .06, shade, 8);
+    addEllipsoid(hock[0], hock[1], z, .065, .07, .07, dark, 6, 8);
     // Short metatarsus angles forward to the ankle. No oversized foot mass.
-    addTube(hock, ankle, .07, .055, body, 7);
-    addEllipsoid(ankle[0], ankle[1], z, .065, .05, .068, flank, 6, 8);
+    addTube(hock, ankle, .06, .046, body, 7);
+    addEllipsoid(ankle[0], ankle[1], z, .054, .045, .058, flank, 6, 8);
 
     // Three compact toes fan gently forward and plant at a shared ground line.
     const toeSpecs = [
@@ -373,9 +375,9 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     if (!width || !height) return;
     ctx.clearRect(0, 0, width, height);
     ctx.save();
-    ctx.translate(-width * .035, 0);
+    ctx.translate(-width * .07, 0);
     ctx.fillStyle = 'rgba(2, 8, 11, .3)'; ctx.beginPath(); ctx.ellipse(width * .52, height * .95, width * .3, height * .035, 0, 0, Math.PI * 2); ctx.fill();
-    const camera = 6, scale = Math.min(width / 4.95, height / 2.45) * zoom * .86;
+    const camera = 6, scale = Math.min(width / 4.95, height / 2.45) * zoom * .76;
     const motionTime = reducedMotion ? 0 : performance.now() / 1000;
     const breath = Math.sin(motionTime * 1.35);
     const tailSway = Math.sin(motionTime * .82);
@@ -403,11 +405,11 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
           z += (Math.sin(motionTime * .36) * .026 + gazeX * .045) * headWeight;
         }
         // 4. A quick, occasional blink.
-        if (x > .075 && x < .175 && y > .85 && y < .93 && Math.abs(Math.abs(z) - .205) < .035) {
-          y = .89 + (y - .89) * (1 - blink * .86);
+        if (x > .16 && x < .25 && y > .75 && y < .82 && Math.abs(Math.abs(z) - .17) < .04) {
+          y = .785 + (y - .785) * (1 - blink * .86);
         }
         // 5. The lower jaw loosens slightly between breaths.
-        if (x > .28 && x < .65 && y < .79 && Math.abs(z) < .1) y -= jawFlex * Math.max(0, (x - .28) / .37);
+        if (x > .4 && x < .9 && y < .73 && Math.abs(z) < .1) y -= jawFlex * Math.max(0, (x - .4) / .5);
         // 6. Fine tail-feather ripple.
         if (motionRanges.tailFan && vertexIndex >= motionRanges.tailFan[0] && vertexIndex < motionRanges.tailFan[1]) {
           y += Math.sin(motionTime * 2.7 + x * 1.8) * .009;
@@ -824,7 +826,7 @@ document.querySelectorAll('.study-neural').forEach((study) => {
     if (document.hidden || !visible) return;
     currentNode = (currentNode + 1) % nodes.length;
     setLitNode();
-  }, 420);
+  }, 1100);
 });
 
 
@@ -1229,440 +1231,4 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     event.stopPropagation();
     slots.slice(2).forEach((slot, index) => {
       slot.textContent = '_';
-      slot.dataset.filled = 'false';
-      slot.setAttribute('aria-label', `${['third','fourth'][index] || 'next'} letter, empty`);
-    });
-    selectedLetter = '';
-    tiles.forEach((tile) => {
-      tile.dataset.selected = 'false';
-      tile.dataset.dragging = 'false';
-    });
-    announce('Choose letters to make a word.');
-  });
-});
-
-// Map-layer controls make the wayfinding concept legible and selectable.
-document.querySelectorAll('.wayfinding-screen').forEach((screen) => {
-  const controls = Array.from(screen.querySelectorAll('[data-wayfinding-layer]'));
-  controls.forEach((control) => control.addEventListener('click', (event) => {
-    event.preventDefault();event.stopPropagation();
-    const layer = control.dataset.wayfindingLayer;
-    screen.dataset.layer = layer;
-    const modeLabel = screen.querySelector('.wayfinding-top span:last-child');
-    if (modeLabel) modeLabel.textContent = `${layer.toUpperCase()} MAP`;
-    controls.forEach((item) => item.setAttribute('aria-pressed', String(item === control)));
-  }));
-});
-
-// Run orbit and star motion only while the solar-system study is on screen.
-const orbitalScreens = document.querySelectorAll('.study-space .space-screen');
-if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window) {
-  const orbitalObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => entry.target.dataset.orbitVisible = String(entry.isIntersecting));
-  }, { threshold: 0.08 });
-  orbitalScreens.forEach((screen) => orbitalObserver.observe(screen));
-}
-
-
-/* Test 6 mental health study: selectable, keyboard-friendly support routes. */
-(() => {
-  document.querySelectorAll('[data-care-widget]').forEach((widget) => {
-    const choices = Array.from(widget.querySelectorAll('[data-care-choice]'));
-    const response = widget.querySelector('.care-response');
-    const templates = new Map(Array.from(widget.querySelectorAll('template[data-care-template]'), (template) => [template.dataset.careTemplate, template]));
-    const baseContent = Array.from(widget.querySelectorAll('.care-top,.care-intro,.care-options,.care-crisis'));
-    let returnFocus = null;
-    if (!choices.length || !response) return;
-
-    const closeResponse = (restoreFocus = true) => {
-      response.hidden = true;
-      response.replaceChildren();
-      widget.classList.remove('care-response-open');
-      baseContent.forEach((element) => { element.inert = false; });
-      choices.forEach((choice) => choice.setAttribute('aria-pressed', 'false'));
-      if (restoreFocus && returnFocus) returnFocus.focus();
-    };
-
-    choices.forEach((choice) => {
-      choice.addEventListener('click', () => {
-        const template = templates.get(choice.dataset.careChoice);
-        if (!template) return;
-        returnFocus = choice;
-        choices.forEach((item) => item.setAttribute('aria-pressed', String(item === choice)));
-        response.replaceChildren(template.content.cloneNode(true));
-        response.hidden = false;
-        widget.classList.add('care-response-open');
-        baseContent.forEach((element) => { element.inert = true; });
-        const heading = response.querySelector('h4');
-        if (heading) {
-          heading.tabIndex = -1;
-          heading.focus();
-        }
-        response.querySelector('[data-care-back]')?.addEventListener('click', () => closeResponse(true));
-      });
-    });
-
-    widget.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && !response.hidden) {
-        event.preventDefault();
-        closeResponse(true);
-      }
-    });
-  });
-})();
-
-/* Accessible information study: restore working schedule/help actions and keep the text preview. */
-(() => {
-  const content = {
-    schedule: {
-      kicker: 'SAMPLE DAY · PREVIEW ONLY',
-      title: 'A little structure, with room to change.',
-      copy: 'A real schedule would show the next useful steps here. This sample is illustrative; it is not connected to a personal calendar.',
-      note: 'Choose one task, add a break, and change the plan whenever you need.'
-    },
-    help: {
-      kicker: 'HELP WHEN YOU NEED IT',
-      title: 'Start with what would help.',
-      copy: 'You can ask someone to listen, help with one next step, or find a local service. This preview does not connect you to a live support person.',
-      note: 'Immediate danger? Call 9-1-1.\nSuicide crisis? Call or text 9-8-8.'
-    }
-  };
-  document.querySelectorAll('.study-accessible').forEach((study) => {
-    const screen = study.querySelector('.study-screen');
-    const popup = study.querySelector('[data-accessible-popup]');
-    const actions = [...study.querySelectorAll('[data-accessible-action]')];
-    const close = study.querySelector('[data-accessible-close]');
-    const kicker = study.querySelector('[data-accessible-kicker]');
-    const title = study.querySelector('[data-accessible-title]');
-    const copy = study.querySelector('[data-accessible-copy]');
-    const note = study.querySelector('[data-accessible-note]');
-    if (!screen || !popup || !actions.length || !close) return;
-    let returnFocus = null;
-    let backgroundInertState = [];
-    const focusableInPopup = () => [...popup.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')];
-    const closePopup = (restoreFocus = true) => {
-      popup.hidden = true;
-      actions.forEach((button) => button.setAttribute('aria-expanded', 'false'));
-      backgroundInertState.forEach(([element, wasInert]) => { element.inert = wasInert; });
-      backgroundInertState = [];
-      if (restoreFocus && returnFocus) returnFocus.focus();
-    };
-    actions.forEach((button) => button.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      const selected = content[button.dataset.accessibleAction];
-      if (!selected) return;
-      returnFocus = button;
-      kicker.textContent = selected.kicker;
-      title.textContent = selected.title;
-      copy.textContent = selected.copy;
-      note.textContent = selected.note;
-      actions.forEach((item) => item.setAttribute('aria-expanded', String(item === button)));
-      backgroundInertState = [...screen.children]
-        .filter((element) => element !== popup)
-        .map((element) => [element, element.inert]);
-      backgroundInertState.forEach(([element]) => { element.inert = true; });
-      popup.hidden = false;
-      title.focus();
-    }));
-    close.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      closePopup(true);
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Tab' && !popup.hidden) {
-        const stops = focusableInPopup();
-        if (!stops.length) {
-          event.preventDefault();
-          title.focus();
-          return;
-        }
-        const first = stops[0];
-        const last = stops[stops.length - 1];
-        const focusIsOutsidePopup = !popup.contains(document.activeElement) && document.activeElement !== title;
-        if (focusIsOutsidePopup) {
-          event.preventDefault();
-          (event.shiftKey ? last : first).focus();
-        } else if (event.shiftKey && (document.activeElement === first || document.activeElement === title)) {
-          event.preventDefault();
-          last.focus();
-        } else if (!event.shiftKey && (document.activeElement === last || document.activeElement === title)) {
-          event.preventDefault();
-          first.focus();
-        }
-      }
-      if (event.key === 'Escape' && !popup.hidden) {
-        event.preventDefault();
-        closePopup(true);
-      }
-    }, true);
-  });
-})();
-
-
-/* Test 6 care and bedding preview interactions. */
-(() => {
-  const petCopy = {
-    companions: ['MEET THE COMPANIONS', 'Portraits, everyday routines, and the small details that make each companion their own.', 'Sample editorial content'],
-    care: ['CARE, AT A GLANCE', 'Browse routine grooming, feeding, and activity checklists. For individual health concerns, speak with a veterinary professional.', 'General information only; not veterinary advice'],
-    notes: ['FIELD NOTES', 'Short stories about training, companionship, and the everyday moments worth remembering.', 'Sample editorial content']
-  };
-  document.querySelectorAll('[data-pet-study]').forEach((study) => {
-    const open = study.querySelector('.pet-open');
-    const panel = study.querySelector('.pet-panel');
-    const heading = study.querySelector('[data-pet-heading]');
-    const copy = study.querySelector('[data-pet-copy]');
-    const status = study.querySelector('[data-pet-status]');
-    const tabs = [...study.querySelectorAll('[data-pet-topic]')];
-    const close = study.querySelector('.pet-close');
-    if (!open || !panel || !copy) return;
-    const select = (name, moveFocus = false) => {
-      const tab = tabs.find((item) => item.dataset.petTopic === name);
-      const entry = petCopy[name];
-      if (!tab || !entry) return;
-      tabs.forEach((item) => {
-        const selected = item === tab;
-        item.setAttribute('aria-selected', String(selected));
-        item.tabIndex = selected ? 0 : -1;
-      });
-      copy.setAttribute('aria-labelledby', tab.id);
-      copy.innerHTML = '<p class="pet-overline"></p><p></p><span></span>';
-      const lines = copy.querySelectorAll('p, span');
-      lines[0].textContent = entry[0];
-      lines[1].textContent = entry[1];
-      lines[2].textContent = entry[2];
-      status.textContent = entry[0] + '. ' + entry[1];
-      if (moveFocus) tab.focus();
-    };
-    const closePanel = (restore = true) => {
-      panel.hidden = true;
-      open.setAttribute('aria-expanded', 'false');
-      if (restore) open.focus();
-    };
-    open.addEventListener('click', () => {
-      panel.hidden = false;
-      open.setAttribute('aria-expanded', 'true');
-      heading.focus();
-    });
-    close?.addEventListener('click', () => closePanel(true));
-    tabs.forEach((tab, index) => tab.addEventListener('click', () => select(tab.dataset.petTopic)));
-    study.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && !panel.hidden) {
-        event.preventDefault();
-        closePanel(true);
-        return;
-      }
-      const current = event.target.closest('[data-pet-topic]');
-      if (!current) return;
-      const index = tabs.indexOf(current);
-      let next = index;
-      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
-      else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
-      else if (event.key === 'Home') next = 0;
-      else if (event.key === 'End') next = tabs.length - 1;
-      else return;
-      event.preventDefault();
-      select(tabs[next].dataset.petTopic, true);
-    });
-  });
-
-  const fabricPrices = { 'Washed linen': 148, 'Cotton percale': 118, 'Textured hemp': 168 };
-  document.querySelectorAll('[data-bedding-study]').forEach((study) => {
-    const panel = study.querySelector('.bedding-panel');
-    const heading = study.querySelector('[data-bedding-heading]');
-    const openers = [...study.querySelectorAll('[data-bedding-open]')];
-    const tabs = [...study.querySelectorAll('.bedding-tabs [data-bedding-tab]')];
-    const copy = study.querySelector('[data-bedding-copy]');
-    const status = study.querySelector('[data-bedding-status]');
-    const fabricButtons = [...study.querySelectorAll('[data-bedding-fabric]')];
-    const sizeButtons = [...study.querySelectorAll('[data-bedding-size]')];
-    const countOutput = study.querySelector('[data-bedding-count]');
-    const price = study.querySelector('[data-bedding-price]');
-    const bag = study.querySelector('.bedding-bag');
-    const bagStatus = study.querySelector('[data-bedding-bag-status]');
-    let selectedFabric = 'Washed linen';
-    let selectedSize = 'Queen';
-    let quantity = 1;
-    const viewName = (view) => view.charAt(0).toUpperCase() + view.slice(1);
-    const selectTab = (name, focus = false) => {
-      const tab = tabs.find((item) => item.dataset.beddingTab === name);
-      if (!tab || !copy) return;
-      tabs.forEach((item) => {
-        const active = item === tab;
-        item.setAttribute('aria-selected', String(active));
-        item.tabIndex = active ? 0 : -1;
-      });
-      copy.setAttribute('aria-labelledby', tab.id);
-      copy.querySelectorAll('[data-bedding-view]').forEach((view) => { view.hidden = view.dataset.beddingView !== name; });
-      if (heading) heading.textContent = name === 'linen' ? 'Choose your linen' : name === 'bedroom' ? 'A room to unwind' : 'Care notes';
-      if (focus) tab.focus();
-      status.textContent = viewName(name) + ' details opened.';
-    };
-    const closePanel = (restore = true) => {
-      panel.hidden = true;
-      if (restore) lastOpener?.focus();
-    };
-    let lastOpener = null;
-    openers.forEach((button) => button.addEventListener('click', () => {
-      lastOpener = button;
-      panel.hidden = false;
-      selectTab(button.dataset.beddingTab || 'linen');
-      heading?.focus();
-    }));
-    study.querySelector('.bedding-close')?.addEventListener('click', () => closePanel(true));
-    tabs.forEach((tab, index) => tab.addEventListener('click', () => selectTab(tab.dataset.beddingTab)));
-    study.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && !panel.hidden) {
-        event.preventDefault();
-        closePanel(true);
-        return;
-      }
-      const current = event.target.closest('.bedding-tabs [data-bedding-tab]');
-      if (!current) return;
-      const index = tabs.indexOf(current);
-      let next = index;
-      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
-      else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
-      else if (event.key === 'Home') next = 0;
-      else if (event.key === 'End') next = tabs.length - 1;
-      else return;
-      event.preventDefault();
-      selectTab(tabs[next].dataset.beddingTab, true);
-    });
-    const updatePrice = () => {
-      const each = fabricPrices[selectedFabric];
-      if (price) price.textContent = 'CA$' + Math.round(each * (selectedSize === 'King' ? 1.18 : selectedSize === 'Twin' ? .82 : 1));
-    };
-    fabricButtons.forEach((button) => button.addEventListener('click', () => {
-      selectedFabric = button.dataset.beddingFabric;
-      fabricButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-      updatePrice();
-      status.textContent = selectedFabric + ' selected.';
-    }));
-    sizeButtons.forEach((button) => button.addEventListener('click', () => {
-      selectedSize = button.dataset.beddingSize;
-      sizeButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-      updatePrice();
-      status.textContent = selectedSize + ' size selected.';
-    }));
-    study.querySelectorAll('[data-bedding-quantity]').forEach((button) => button.addEventListener('click', () => {
-      quantity = Math.max(1, Math.min(9, quantity + Number(button.dataset.beddingQuantity)));
-      countOutput.value = String(quantity);
-      countOutput.textContent = String(quantity);
-      status.textContent = 'Quantity ' + quantity + '.';
-    }));
-    study.querySelector('[data-bedding-add]')?.addEventListener('click', () => {
-      bag.hidden = false;
-      bagStatus.textContent = quantity + ' ' + selectedSize + ' ' + selectedFabric.toLowerCase() + (quantity === 1 ? ' set' : ' sets') + ' in your concept bag. Checkout is not available in this preview.';
-      status.textContent = bagStatus.textContent;
-      bagStatus.focus?.();
-    });
-    study.querySelector('[data-bedding-remove]')?.addEventListener('click', () => {
-      bag.hidden = true;
-      status.textContent = 'Sample removed from the concept bag.';
-      study.querySelector('[data-bedding-add]')?.focus();
-    });
-    updatePrice();
-  });
-})();
-
-
-/* Arts & Culture / Common Ground: usable concept navigation, honest event details, and replayable motion. */
-(() => {
-  document.querySelectorAll(".study-culture").forEach((study) => {
-    const screen = study.querySelector(".culture-screen");
-    const viewButtons = [...study.querySelectorAll("[data-culture-view]")];
-    const panels = [...study.querySelectorAll("[data-culture-panel]")];
-    const replay = study.querySelector("[data-culture-replay]");
-    const detailToggle = study.querySelector(".culture-details-toggle");
-    const detailText = study.querySelector("[data-culture-details]");
-    if (!screen) return;
-
-    viewButtons.forEach((button) => button.addEventListener("click", () => {
-      const selected = button.dataset.cultureView;
-      viewButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
-      panels.forEach((panel) => { panel.hidden = panel.dataset.culturePanel !== selected; });
-    }));
-
-    detailToggle?.addEventListener("click", () => {
-      const expanded = detailToggle.getAttribute("aria-expanded") !== "true";
-      detailToggle.setAttribute("aria-expanded", String(expanded));
-      detailText.hidden = !expanded;
-      detailToggle.textContent = expanded ? "Hide event details" : "Event details";
-    });
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const play = () => {
-      if (reducedMotion.matches) return;
-      screen.classList.remove("is-d-motion");
-      void screen.offsetWidth;
-      screen.classList.add("is-d-motion");
-    };
-    replay?.addEventListener("click", play);
-    if (!reducedMotion.matches) {
-      if ("IntersectionObserver" in window) {
-        const observer = new IntersectionObserver((entries) => {
-          if (!entries.some((entry) => entry.isIntersecting)) return;
-          play();
-          observer.disconnect();
-        }, { threshold: 0.25 });
-        observer.observe(screen);
-      } else {
-        play();
-      }
-    }
-  });
-})();
-
-
-/* Community directory: each option opens useful information in place. */
-(() => {
-  const details = {
-    housing: ["Housing help", "Browse rent, utility, shelter, and housing-stability support."],
-    food: ["Food nearby", "Find meal programs, community fridges, markets, and food-access support."],
-    health: ["Health access", "Explore community clinics, primary-care access, and local health services."],
-    family: ["Family services", "Find childcare, parenting programs, and support for families."],
-    legal: ["Legal guidance", "Understand common legal questions and find community legal information or referrals."]
-  };
-
-  document.querySelectorAll(".study-information").forEach((study) => {
-    const buttons = [...study.querySelectorAll("[data-info-service]")];
-    const panel = study.querySelector("[data-info-detail]");
-    const title = study.querySelector("[data-info-detail-title]");
-    const copy = study.querySelector("[data-info-detail-copy]");
-    const close = study.querySelector("[data-info-close]");
-    let trigger = null;
-    if (!buttons.length || !panel || !title || !copy) return;
-
-    const dismiss = (returnFocus = false) => {
-      panel.hidden = true;
-      buttons.forEach((button) => button.setAttribute("aria-expanded", "false"));
-      if (returnFocus) trigger?.focus();
-    };
-
-    buttons.forEach((button) => button.addEventListener("click", () => {
-      const sameOption = trigger === button && !panel.hidden;
-      if (sameOption) {
-        dismiss();
-        trigger = null;
-        return;
-      }
-      trigger = button;
-      const [label, description] = details[button.dataset.infoService] || [button.textContent.trim(), "More information will be added by local partners."];
-      title.textContent = label;
-      copy.textContent = description;
-      buttons.forEach((item) => item.setAttribute("aria-expanded", String(item === button)));
-      panel.hidden = false;
-      close?.focus();
-    }));
-
-    close?.addEventListener("click", () => dismiss(true));
-    study.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && !panel.hidden) {
-        event.preventDefault();
-        dismiss(true);
-      }
-    });
-  });
-})();
+      slot.dat
