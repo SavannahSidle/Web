@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#07131e">
 <title>Velociraptor Model Prototype | MICA Digital</title>
+<script>if(new URLSearchParams(location.search).has('embed'))document.documentElement.classList.add('embed-mode')</script>
 <style>
 :root{color-scheme:dark;--ink:#e7edf1;--muted:#a8b8c4;--line:rgba(210,228,246,.17);--accent:#83b5ff}
 *{box-sizing:border-box}
@@ -36,6 +37,11 @@ button:focus-visible,a:focus-visible{outline:2px solid #a5cbf6;outline-offset:3p
 footer{margin-top:28px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
 @media(max-width:680px){header{height:62px}.tag{max-width:170px;text-align:right;font-size:9px}main{margin-top:34px}.stage{height:430px;min-height:430px}.controls{top:12px;right:12px;gap:4px;padding:6px}.controls button{min-width:34px;padding:0 8px}.prototype-label{top:auto;bottom:16px;left:16px}.model-status{left:16px;bottom:42px}.notes{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html.embed-mode,html.embed-mode body{height:100%;overflow:hidden}
+html.embed-mode body{background:#07131e}
+html.embed-mode header,html.embed-mode .kicker,html.embed-mode main>h1,html.embed-mode .intro,html.embed-mode .notes,html.embed-mode footer,html.embed-mode .prototype-label{display:none}
+html.embed-mode main{width:100%;height:100%;margin:0}
+html.embed-mode .stage{width:100%;height:100%;min-height:0;border:0;border-radius:0;box-shadow:none}
 </style>
 </head>
 <body>
@@ -133,16 +139,15 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   }
   [-1, 1].forEach(side => {
     
-    addEllipsoid(.12, .89, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
-    addEllipsoid(.135, .89, side * .228, .018, .02, .011, '#17221f', 5, 7);
+    addEllipsoid(.145, .91, side * .205, .044, .04, .025, '#e3c36d', 6, 9);
+    addEllipsoid(.16, .91, side * .228, .018, .02, .011, '#17221f', 5, 7);
   });
-  // Two feathered forelimbs with hooked claws.
+  // Bare forelimbs with hooked claws.
   [-.24, .24].forEach((z, i) => {
     addEllipsoid(.26, .08, z, .16, .18, .14, i ? body : dark, 6, 9);
     addTube([.29, .02, z], [.37, -.25, z * 1.2], .09, .065, body, 7);
     addTube([.37, -.25, z * 1.2], [.62, -.34, z * 1.35], .065, .035, flank, 7);
     addTube([.62, -.34, z * 1.35], [.7, -.42, z * 1.35], .035, .006, bone, 6);
-    for (let f = 0; f < 3; f++) addTube([.33 + f * .055, -.02, z * 1.13], [.44 + f * .06, -.12, z * 1.34], .035, .008, feather, 5);
   });
   // Digitigrade hind limbs based on the documented V. mongoliensis proportions:
   // femur and tibia are close in length; metatarsus is shorter; toes stay compact.

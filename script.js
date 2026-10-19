@@ -231,7 +231,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   if (!canvas || !ctx) return;
   const vertices = [];
   const faces = [];
-  const addTriangle = (a, b, c, color) => faces.push({ a, b, c, color });
+  const addTriangle = (a, b, c, color, feather = false) => faces.push({ a, b, c, color, feather });
   const addEllipsoid = (cx, cy, cz, rx, ry, rz, color, rings = 8, sides = 12) => {
     const start = vertices.length;
     for (let r = 0; r <= rings; r++) {
@@ -247,7 +247,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       addTriangle(a, c, b, color); addTriangle(b, c, d, color);
     }
   };
-  const addTube = (from, to, r0, r1, color, sides = 8) => {
+  const addTube = (from, to, r0, r1, color, sides = 8, isFeather = false) => {
     const axis = [to[0] - from[0], to[1] - from[1], to[2] - from[2]];
     const length = Math.hypot(...axis) || 1;
     const w = axis.map(v => v / length);
@@ -264,7 +264,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     });
     for (let i = 0; i < sides; i++) {
       const a = start + i, b = start + (i + 1) % sides, c = start + sides + i, d = start + sides + (i + 1) % sides;
-      addTriangle(a, b, c, color); addTriangle(b, d, c, color);
+      addTriangle(a, b, c, color, isFeather); addTriangle(b, d, c, color, isFeather);
     }
   };
   const body = '#65716d', flank = '#89939a', dark = '#3b4647', feather = '#aab2b3', bone = '#d6c7a8', blue = '#426b7d';
@@ -276,7 +276,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   addTube([-.42, .19, 0], [-3.38, -.11, 0], .028, .003, blue, 7);
   addTube([-.57, .14, .02], [-.92, .12, .02], .035, .015, blue, 7);
   const tailFanStart = vertices.length;
-  addTube([-.89, .055, 0], [-3.55, -.25, 0], .13, .008, feather, 9);
+  addTube([-.89, .055, 0], [-3.55, -.25, 0], .13, .008, feather, 9, true);
   motionRanges.tailFan = [tailFanStart, vertices.length];
   // A slim, gently arched neck and narrow, toothed skull follow the fossil profile.
   addTube([.12, .12, 0], [.27, .39, 0], .15, .12, body, 10);
@@ -293,16 +293,15 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     addTube([tx, toothY, -.105], [tx + .012, toothY - .035, -.105], .008, .001, bone, 5);
   }
   [-1, 1].forEach(side => {
-    addEllipsoid(.2, .785, side * .17, .037, .031, .023, '#d7a65b', 6, 9);
-    addEllipsoid(.214, .785, side * .19, .014, .018, .01, '#17221f', 5, 7);
+    addEllipsoid(.27, .83, side * .17, .037, .031, .023, '#d7a65b', 6, 9);
+    addEllipsoid(.284, .83, side * .19, .014, .018, .01, '#17221f', 5, 7);
   });
-  // Compact feathered forelimbs tuck below the chest, hands angled inward.
+  // Compact bare forelimbs tuck below the chest, hands angled inward.
   [-.24, .24].forEach((z, i) => {
     addEllipsoid(.14, .015, z, .105, .12, .1, i ? body : dark, 6, 9);
     addTube([.2, -.035, z], [.38, -.21, z * 1.18], .06, .042, body, 7);
     addTube([.38, -.21, z * 1.18], [.53, -.26, z * 1.27], .04, .025, flank, 7);
     addTube([.53, -.26, z * 1.27], [.61, -.34, z * 1.3], .025, .004, bone, 6);
-    for (let f = 0; f < 4; f++) addTube([.22 + f * .04, .035, z * 1.13], [.39 + f * .048, -.17 - f * .018, z * 1.34], .025, .003, feather, 5);
   });
   // Digitigrade hind limbs based on the documented V. mongoliensis proportions:
   // femur and tibia are close in length; metatarsus is shorter; toes stay compact.
@@ -357,13 +356,14 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       addTube(
         [hip[0] + .02 + f * .085, hip[1] + .09 - f * .02, z + .095],
         [hip[0] - .075 + f * .085, hip[1] - .015 - f * .025, z + .13],
-        .032, .003, feather, 5
+        .032, .003, feather, 5, true
       );
     }
   });
   addEllipsoid(.68, .87, .045, .022, .012, .014, '#53644e', 5, 6);
   addEllipsoid(.68, .87, -.045, .022, .012, .014, '#53644e', 5, 6);
   let yaw = -.3, pitch = .08, zoom = .8, drag = null, width = 0, height = 0;
+  let feathersVisible = true;
   let gazeX = 0, gazeY = 0;
   const resize = () => {
     const rect = stage.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -405,8 +405,8 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
           z += (Math.sin(motionTime * .36) * .026 + gazeX * .045) * headWeight;
         }
         // 4. A quick, occasional blink.
-        if (x > .16 && x < .25 && y > .75 && y < .82 && Math.abs(Math.abs(z) - .17) < .04) {
-          y = .785 + (y - .785) * (1 - blink * .86);
+        if (x > .22 && x < .31 && y > .77 && y < .88 && Math.abs(Math.abs(z) - .17) < .04) {
+          y = .83 + (y - .83) * (1 - blink * .86);
         }
         // 5. The lower jaw loosens slightly between breaths.
         if (x > .4 && x < .9 && y < .73 && Math.abs(z) < .1) y -= jawFlex * Math.max(0, (x - .4) / .5);
@@ -431,7 +431,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       const perspective = camera / (camera + rz2);
       return { x: width * .49 + (rx + .4) * scale * perspective, y: height * .49 - ry * scale * perspective, z: rz2 };
     });
-    const rendered = faces.map(face => {
+    const rendered = faces.filter(face => feathersVisible || !face.feather).map(face => {
       const a = projected[face.a], b = projected[face.b], c = projected[face.c];
       const ab = [b.x-a.x,b.y-a.y,b.z-a.z], ac = [c.x-a.x,c.y-a.y,c.z-a.z];
       const normal = [ab[1]*ac[2]-ab[2]*ac[1],ab[2]*ac[0]-ab[0]*ac[2],ab[0]*ac[1]-ab[1]*ac[0]];
@@ -445,6 +445,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   const observer = new ResizeObserver(resize); observer.observe(stage); resize();
   const modelStatus = stage.querySelector('.raptor-status');
   const controls = stage.querySelector('.raptor-controls');
+  const featherToggle = stage.querySelector('[data-raptor-feathers]');
   const zoomIn = stage.querySelector('[data-raptor-action="zoom-in"]');
   const zoomOut = stage.querySelector('[data-raptor-action="zoom-out"]');
   let userPaused = reducedMotion;
@@ -520,6 +521,15 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     announce(`Model viewed from the ${direction} angle.`);
   };
   syncControls();
+  featherToggle?.addEventListener('click', (event) => {
+    event.preventDefault(); event.stopPropagation();
+    feathersVisible = !feathersVisible;
+    featherToggle.setAttribute('aria-pressed', String(feathersVisible));
+    featherToggle.setAttribute('aria-label', `${feathersVisible ? 'Hide' : 'Show'} interpretive body and tail feathers`);
+    featherToggle.textContent = `FEATHERS · ${feathersVisible ? 'ON' : 'OFF'}`;
+    draw();
+    announce(`Interpretive body and tail feathers ${feathersVisible ? 'shown' : 'hidden'}. Forelimbs stay bare.`);
+  });
   stage.addEventListener('pointerdown', event => {
     if (event.target.closest('button, a, summary')) return;
     activePointerId = event.pointerId;
@@ -1113,7 +1123,7 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     tiles.forEach((candidate) => candidate.dataset.selected = String(candidate === tile));
     if (selectedLetter) announce(`Letter ${selectedLetter} selected. Choose an empty slot.`);
   };
-  const wordList = new Set(['camp','cams','cads','caps','card','carp','cars','cart','cash','cast','cats']);
+  const wordList = new Set(['camp','cams','cads','caps','card','carp','cars','cart','cast','cats']);
   const tilePalette = {t:['#c8def0','#263a53'],m:['#f1c8c4','#4b3239'],p:['#f2dfa7','#4a3d27'],r:['#c2e2d4','#29443a'],s:['#dfd2f2','#403853'],d:['#f2cba7','#4e3a2a'],x:['#cad9f0','#2f3b56']};
   const currentWord = () => slots.map((item) => item.textContent.trim()).filter((value) => value !== '_').join('').toLowerCase();
   const reportWord = () => {
@@ -1138,8 +1148,9 @@ document.querySelectorAll('.learning-screen').forEach((screen) => {
     slot.dataset.filled = 'true';
     if (sourceTile) {
       const [tileColor, textColor] = tilePalette[sourceTile.dataset.letterTile] || ['#fff8d6','#20324f'];
-      slot.style.backgroundColor = tileColor;
-      slot.style.color = textColor;
+      slot.style.setProperty('background-color', tileColor, 'important');
+      slot.style.setProperty('color', textColor, 'important');
+      slot.style.setProperty('border-color', 'rgba(35,48,67,.28)', 'important');
     }
     const slotNumber = slots.indexOf(slot) + 1;
     const ordinal = ['first','second','third','fourth'][slotNumber - 1] || `${slotNumber}th`;
@@ -1387,6 +1398,7 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
       event.stopPropagation();
       closePopup(true);
     });
+
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Tab' && !popup.hidden) {
         const stops = focusableInPopup();
@@ -1416,6 +1428,23 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
     }, true);
   });
 })();
+
+/* Open the larger, interactive specimen in a same-page dialog. */
+document.querySelectorAll('[data-raptor-specimen-dialog]').forEach((dialog) => {
+  const open = document.querySelector(`[aria-controls="${dialog.id}"][data-raptor-specimen-open]`);
+  const close = dialog.querySelector('[data-raptor-specimen-close]');
+  const frame = dialog.querySelector('[data-raptor-specimen-frame]');
+  if (!open || !close || !frame || typeof dialog.showModal !== 'function') return;
+  open.addEventListener('click', () => {
+    frame.src = 'dinosaur-prototype.html?embed=1';
+    dialog.showModal();
+  });
+  close.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog.addEventListener('close', () => { frame.src = 'about:blank'; });
+});
 
 
 /* Test 6 care and bedding preview interactions. */
