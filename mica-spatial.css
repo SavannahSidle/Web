@@ -4389,3 +4389,6 @@ html body .design-studies .study-space:hover .solar-system-preview {
 
 /* Lift the Product Company supporting copy slightly so its last line clears the lower edge. */
 .design-studies[data-mode] .study-diagonal .diagonal-copy{bottom:16%!important}
+
+/* Center the collection number and its rule over STUDIO GOODS. */
+.design-studies[data-mode] .study-diagonal .diagonal-index small{text-align:center!important}
