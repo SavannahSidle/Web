@@ -4401,3 +4401,6 @@ html body .design-studies .study-space:hover .solar-system-preview {
 
 /* Raise the complete collection number, rule, and Studio Goods group together. */
 .design-studies[data-mode] .study-diagonal .diagonal-index{bottom:22%!important}
+
+/* Nudge the collection label left within the Product Company header. */
+.design-studies[data-mode] .study-diagonal .diagonal-nav span{transform:translateX(-2cqi)}
