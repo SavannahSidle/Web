@@ -4395,3 +4395,6 @@ html body .design-studies .study-space:hover .solar-system-preview {
 
 /* Move the collection number and rule toward the center of the right-hand panel. */
 .design-studies[data-mode] .study-diagonal .diagonal-index small{transform:translateX(-11cqi)}
+
+/* Center the Product Company title over the lower product label and rule. */
+.design-studies[data-mode] .study-diagonal .diagonal-screen h3{text-align:center!important}
