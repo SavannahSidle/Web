@@ -4319,3 +4319,64 @@ html body .design-studies .study-space:hover .solar-system-preview {
   .solar-system-preview .space-preview-rail .planet-jupiter { width: 20px; height: 20px; }
   .solar-system-preview .space-preview-rail .planet-saturn::after { width: 27px; height: 9px; }
 }
+
+
+/* Focused interface corrections: compact closing solar-system card and the three requested fixes. */
+.design-studies[data-mode="grid"] .study-space {
+  grid-column: span 2;
+}
+
+.design-studies .study-space .solar-system-preview .space-preview-stage {
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 1.91 / 1;
+}
+
+.design-studies .study-culture .culture-end-d {
+  display: inline;
+  font-size: 1em !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+  transform: none !important;
+  scale: 1 !important;
+  animation: none !important;
+}
+
+.design-studies .study-accessible .accessible-screen::before,
+.design-studies .study-accessible .accessible-screen::after {
+  content: none !important;
+  display: none !important;
+}
+
+.site-live .design-studies .study-care .care-screen {
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+  scrollbar-width: thin;
+  scrollbar-color: #70877a rgba(52, 82, 65, .08);
+}
+
+.site-live .design-studies .study-care .care-screen::-webkit-scrollbar {
+  width: 8px;
+}
+
+.site-live .design-studies .study-care .care-screen::-webkit-scrollbar-track {
+  background: rgba(52, 82, 65, .08);
+}
+
+.site-live .design-studies .study-care .care-screen::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #70877a;
+}
+
+@media (max-width: 760px) {
+  .design-studies .study-space .solar-system-preview .space-preview-stage {
+    aspect-ratio: 1.2 / 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .design-studies[data-mode="grid"] .study-space {
+    grid-column: auto;
+  }
+}
