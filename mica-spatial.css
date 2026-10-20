@@ -3905,3 +3905,39 @@ body.site-live .design-studies[data-mode] .study-space .space-shooting-star{posi
  body.site-live .design-studies[data-mode] .study-space .space-shooting-star,
  body.site-live .design-studies[data-mode] .study-space .planet-path{animation:none!important}
 }
+
+
+/* Space study — restore the approved Milky Way detail and clarify planet hierarchy. */
+body.site-live .design-studies[data-mode] .study-space .space-galaxy-image{
+  display:block!important;position:absolute;left:4%;top:49%;bottom:auto;width:23%;height:13%;
+  object-fit:contain;border:0;border-radius:0;opacity:.78;filter:saturate(.8) brightness(.95);z-index:3!important;
+}
+body.site-live .design-studies[data-mode] .study-space .space-focus{top:12%!important;width:33%}
+body.site-live .design-studies[data-mode] .study-space .space-focus h3{margin:0 0 3px!important}
+body.site-live .design-studies[data-mode] .study-space .space-focus small{
+  display:block;margin:0 0 5px!important;color:#abc5d8;font:500 clamp(7px,1.5cqw,10px)/1.2 "IBM Plex Mono",monospace;letter-spacing:.1em
+}
+body.site-live .design-studies[data-mode] .study-space .space-focus span{font-size:clamp(8px,1.65cqw,12px)}
+body.site-live .design-studies[data-mode] .study-space .space-focus .space-scale-note{margin-top:7px!important;font-size:clamp(7px,1.35cqw,10px)}
+body.site-live .design-studies[data-mode] .study-space .space-header{font-size:clamp(8px,1.7cqw,12px)}
+body.site-live .design-studies[data-mode] .study-space .space-map{left:35%;top:10%;width:64%;height:72%}
+body.site-live .design-studies[data-mode] .study-space .orbit-saturn{width:80%!important;height:102%!important}
+body.site-live .design-studies[data-mode] .study-space .orbit-uranus{width:96%!important;height:116%!important}
+body.site-live .design-studies[data-mode] .study-space .orbit-neptune{width:112%!important;height:130%!important}
+body.site-live .design-studies[data-mode] .study-space .orbit-saturn .planet-path{animation-delay:-14s}
+body.site-live .design-studies[data-mode] .study-space .orbit-uranus .planet-path{animation-delay:-20s}
+body.site-live .design-studies[data-mode] .study-space .orbit-neptune .planet-path{animation-delay:-25s}
+body.site-live .design-studies[data-mode] .study-space .space-rail{bottom:4%;height:17%;gap:clamp(3px,.7cqw,9px)}
+body.site-live .design-studies[data-mode] .study-space .space-rail .planet-scale{
+  font-size:clamp(7px,1.55cqw,10px);gap:clamp(3px,.6cqw,6px);border-radius:6px
+}
+body.site-live .design-studies[data-mode] .study-space .space-rail .planet-scale i{
+  width:clamp(9px,2.8cqw,17px);height:clamp(9px,2.8cqw,17px)
+}
+body.site-live .design-studies[data-mode] .study-space .space-rail .planet-scale::before{display:none!important}
+@media(max-width:720px){
+  body.site-live .design-studies[data-mode] .study-space .space-map{left:32%;width:66%;height:70%}
+  body.site-live .design-studies[data-mode] .study-space .space-galaxy-image{top:50%;width:21%;height:12%}
+  body.site-live .design-studies[data-mode] .study-space .space-focus{left:4%;width:29%}
+  body.site-live .design-studies[data-mode] .study-space .space-rail{left:2%;right:2%;width:96%;height:18%;gap:2px}
+}
