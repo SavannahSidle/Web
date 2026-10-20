@@ -3842,3 +3842,27 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
   .design-studies[data-mode] .study-spatial .room-controls{top:16%!important}
   .design-studies[data-mode] .study-spatial .room-stage{inset:35% 5% 22%!important}
 }
+
+/* Fine alignment for the approved mockups at the narrower showcase-card size. */
+.design-studies[data-mode] .study-diagonal .diagonal-screen{
+  background:#203041!important;
+}
+.design-studies[data-mode] .study-diagonal .diagonal-cut{
+  background:linear-gradient(100deg,#706a98 0%,#9b7b91 51%,#cf8271 100%)!important;
+}
+.design-studies[data-mode] .study-diagonal .diagonal-screen h3{
+  font-size:clamp(1.15rem,8cqi,3rem)!important;
+}
+.design-studies[data-mode] .study-space .space-focus h3{
+  font-size:clamp(1.1rem,4.4cqi,3.5rem)!important;
+}
+.design-studies[data-mode] .study-neural .neural-copy h3{
+  font-size:clamp(1rem,3.8cqi,3rem)!important;
+}
+.design-studies[data-mode] .study-spatial .room-back-wall{
+  top:16%!important;height:60%!important;
+}
+.design-studies[data-mode] .study-spatial .room-left-wall,
+.design-studies[data-mode] .study-spatial .room-side-wall{
+  top:58%!important;height:80%!important;
+}
