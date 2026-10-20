@@ -3959,3 +3959,36 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
     font-size:clamp(8px,1.1cqi,11px)!important;
   }
 }
+
+
+/* Final cleanup from live comparison: remove legacy title panel and selector rails. */
+.design-studies[data-mode="showcase"] .study-space .space-focus{
+  background:transparent!important;border:0!important;border-radius:0!important;
+  padding:0!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+.design-studies[data-mode="showcase"] .study-space .space-focus h3{
+  font-family:Georgia,"Times New Roman",serif!important;font-weight:400!important;
+}
+.design-studies[data-mode="showcase"] .study-space .space-rail[role="group"] .planet-scale{
+  position:relative!important;inset:auto!important;
+  display:flex!important;align-self:stretch!important;
+  width:100%!important;height:clamp(46px,12.5cqi,76px)!important;max-height:76px!important;
+  min-height:0!important;overflow:visible!important;
+  appearance:none!important;-webkit-appearance:none!important;
+}
+.design-studies[data-mode="showcase"] .study-space .space-rail .planet-scale::before{
+  content:none!important;display:none!important;
+}
+.design-studies[data-mode="showcase"] .study-space .space-rail .planet-scale i{
+  position:relative!important;inset:auto!important;display:block!important;
+  flex:0 0 auto!important;transform-origin:center!important;
+}
+.design-studies[data-mode="showcase"] .study-space .space-rail .planet-scale b{
+  position:static!important;display:block!important;inset:auto!important;transform:none!important;
+  width:auto!important;height:auto!important;white-space:nowrap!important;line-height:1.1!important;
+}
+@media(max-width:720px){
+  .design-studies[data-mode="showcase"] .study-space .space-rail[role="group"] .planet-scale{
+    height:clamp(40px,12.5cqi,58px)!important;max-height:58px!important;
+  }
+}
