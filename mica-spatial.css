@@ -4388,4 +4388,4 @@ html body .design-studies .study-space:hover .solar-system-preview {
 }
 
 /* Lift the Product Company supporting copy slightly so its last line clears the lower edge. */
-.design-studies[data-mode] .study-diagonal .diagonal-copy{bottom:11%!important}
+.design-studies[data-mode] .study-diagonal .diagonal-copy{bottom:16%!important}
