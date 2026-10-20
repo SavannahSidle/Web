@@ -4386,3 +4386,6 @@ html body .design-studies .study-space:hover .solar-system-preview {
     grid-column: auto;
   }
 }
+
+/* Keep the Creative Expression scrollbar visible even on touch platforms that auto-hide native scrollbars. */
+.design-studies[data-mode] .study-playful .play-scroll{display:block}
