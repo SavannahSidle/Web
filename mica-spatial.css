@@ -3961,3 +3961,61 @@ body.site-live .design-studies[data-mode] .study-space>.space-galaxy-image{
   body.site-live .design-studies[data-mode] .study-space .space-focus{width:34%!important}
   body.site-live .design-studies[data-mode] .study-space>.space-galaxy-image{left:4%;top:58%;width:21%;height:10%}
 }
+
+
+/* Final Space prototype composition: keep the approved solar-system interface legible in the showcase. */
+body.site-live .design-studies[data-mode] .study-space .space-screen{container-type:inline-size}
+body.site-live .design-studies[data-mode] .study-space .space-focus{
+  position:absolute!important;left:4%!important;top:16%!important;width:27%!important;
+  display:flex!important;flex-direction:column;align-items:flex-start;gap:0;z-index:4!important;
+}
+body.site-live .design-studies[data-mode] .study-space .space-focus h3{
+  display:block;margin:2px 0 4px!important;font-size:clamp(11px,4.4cqw,25px)!important;
+  line-height:1.05!important;white-space:nowrap
+}
+body.site-live .design-studies[data-mode] .study-space .space-focus small{
+  display:block;margin:0 0 4px!important;font-size:clamp(6px,1.45cqw,9px)!important;
+  line-height:1.25!important
+}
+body.site-live .design-studies[data-mode] .study-space .space-focus span{
+  display:block;position:static!important;margin:2px 0 0!important;
+  font-size:clamp(7px,1.65cqw,10px)!important;line-height:1.25!important
+}
+body.site-live .design-studies[data-mode] .study-space .space-focus .space-scale-note{
+  width:auto;max-width:100%;margin-top:5px!important;
+  font-size:clamp(6px,1.3cqw,8px)!important;line-height:1.25!important
+}
+body.site-live .design-studies[data-mode] .study-space .space-map{
+  left:34%!important;top:9%!important;width:64%!important;height:75%!important;transform:none!important;
+  overflow:visible
+}
+body.site-live .design-studies[data-mode] .study-space .orbit-saturn{width:82%!important;height:100%!important}
+body.site-live .design-studies[data-mode] .study-space .orbit-uranus{width:98%!important;height:118%!important}
+body.site-live .design-studies[data-mode] .study-space .orbit-neptune{width:114%!important;height:136%!important}
+body.site-live .design-studies[data-mode] .study-space .space-map::after,
+body.site-live .design-studies[data-mode] .study-space .space-shooting-star{display:none!important;animation:none!important}
+body.site-live .design-studies[data-mode] .study-space>.space-galaxy-image{
+  display:block!important;position:absolute!important;left:4%!important;top:57%!important;
+  width:24%!important;height:12%!important;object-fit:contain!important;object-position:left center;
+  border:0!important;border-radius:0!important;opacity:.82!important;filter:saturate(.85) brightness(1)!important;
+  z-index:2!important;pointer-events:none
+}
+body.site-live .design-studies[data-mode] .study-space .space-rail{
+  left:3%!important;right:3%!important;bottom:3%!important;width:94%!important;height:16%!important;
+  display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr));align-items:stretch;
+  gap:clamp(2px,.65cqw,7px)!important;padding:0!important;z-index:5!important
+}
+body.site-live .design-studies[data-mode] .study-space .space-rail .planet-scale{
+  min-width:0;padding:2px 1px!important;gap:2px!important;font-size:clamp(6px,1.55cqw,9px)!important;
+  line-height:1.15;border-radius:5px
+}
+body.site-live .design-studies[data-mode] .study-space .space-rail .planet-scale i{
+  width:clamp(8px,2.5cqw,15px)!important;height:clamp(8px,2.5cqw,15px)!important
+}
+@media(max-width:720px){
+  body.site-live .design-studies[data-mode] .study-space .space-focus{left:4%!important;top:15%!important;width:29%!important}
+  body.site-live .design-studies[data-mode] .study-space .space-map{left:32%!important;width:66%!important;height:72%!important}
+  body.site-live .design-studies[data-mode] .study-space>.space-galaxy-image{left:4%!important;top:56%!important;width:23%!important;height:11%!important}
+  body.site-live .design-studies[data-mode] .study-space .space-rail{left:2%!important;right:2%!important;width:96%!important;height:18%!important;gap:1px!important}
+  body.site-live .design-studies[data-mode] .study-space .space-rail .planet-scale{font-size:clamp(5px,1.45cqw,8px)!important}
+}
