@@ -4404,3 +4404,6 @@ html body .design-studies .study-space:hover .solar-system-preview {
 
 /* Nudge the collection label left within the Product Company header. */
 .design-studies[data-mode] .study-diagonal .diagonal-nav span{transform:translateX(-2cqi)}
+
+/* Place COLLECTION 04 below ARC / MATERIALS at the far left of the header. */
+.design-studies[data-mode] .study-diagonal .diagonal-nav span{position:absolute;left:0;top:calc(100% + .5em);width:max-content;transform:none}
