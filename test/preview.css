@@ -1,0 +1,325 @@
+/* Static solar-system mockup used only on /test. */
+html body .design-studies .study-space .solar-system-preview {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  margin: 0;
+  padding: 0 !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #dbe7f2;
+  font-family: "IBM Plex Sans", sans-serif;
+  transform: none !important;
+  transition: none !important;
+}
+
+html body .design-studies .study-space:hover .solar-system-preview {
+  transform: none !important;
+}
+
+.space-preview-context {
+  box-sizing: border-box;
+  display: flex;
+  min-height: 28px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 7px 5px;
+  color: #8fa3b7;
+  font: 500 clamp(8px, 1vw, 12px)/1.2 "IBM Plex Mono", monospace;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+.space-preview-stage {
+  position: relative;
+  box-sizing: border-box;
+  isolation: isolate;
+  width: 100%;
+  height: clamp(430px, 49.3vw, 592px);
+  overflow: hidden;
+  border: 2px solid #5b6d7d;
+  background-color: #04111e;
+  background-image:
+    radial-gradient(circle at 6% 16%, #d8e4ef 0 1px, transparent 1.7px),
+    radial-gradient(circle at 16% 72%, #a9c9e2 0 2px, transparent 2.8px),
+    radial-gradient(circle at 24% 28%, #e5edf7 0 1.3px, transparent 2px),
+    radial-gradient(circle at 36% 50%, #90b8d7 0 1.7px, transparent 2.5px),
+    radial-gradient(circle at 44% 14%, #d8e4ef 0 1px, transparent 1.8px),
+    radial-gradient(circle at 52% 78%, #a9c9e2 0 1.5px, transparent 2.2px),
+    radial-gradient(circle at 78% 18%, #e5edf7 0 1.5px, transparent 2.2px),
+    radial-gradient(circle at 92% 72%, #a9c9e2 0 2px, transparent 2.8px),
+    radial-gradient(ellipse at 69% 50%, rgba(32, 62, 94, .16), transparent 52%);
+  color: #dbe7f2;
+}
+
+.space-preview-header {
+  position: absolute;
+  z-index: 3;
+  top: 5.2%;
+  left: 3.6%;
+  right: 3.6%;
+  display: flex;
+  justify-content: space-between;
+  color: #c2d4e4;
+  font: 500 clamp(12px, 1.55vw, 18px)/1.3 "IBM Plex Mono", monospace;
+  letter-spacing: .015em;
+  text-transform: uppercase;
+}
+
+.space-preview-header span:last-child {
+  color: #65d5ec;
+}
+
+.space-preview-focus {
+  position: absolute;
+  z-index: 3;
+  top: 15%;
+  left: 3.7%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 29%;
+  margin: 0;
+  color: #dbe7f2;
+}
+
+.space-preview-kicker {
+  margin-bottom: 8px;
+  color: #9db5c9;
+  font: 500 clamp(10px, 1.25vw, 14px)/1.3 "IBM Plex Mono", monospace;
+  letter-spacing: .045em;
+}
+
+.space-preview-focus h3 {
+  margin: 0;
+  color: #f3f0ed;
+  font: 400 clamp(34px, 4vw, 48px)/1.04 "DM Serif Display", Georgia, serif;
+  letter-spacing: -.025em;
+}
+
+.space-preview-focus p {
+  margin: 2px 0 0;
+  color: #b7c8d5;
+  font: 500 clamp(14px, 1.6vw, 19px)/1.3 "IBM Plex Sans", sans-serif;
+}
+
+.space-preview-focus small {
+  margin-top: 8px;
+  color: #8fa7bb;
+  font: 400 clamp(9px, 1vw, 12px)/1.3 "IBM Plex Mono", monospace;
+}
+
+.space-preview-orbits {
+  position: absolute;
+  z-index: 1;
+  top: 52.5%;
+  left: 68%;
+  width: min(56%, 640px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.space-preview-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  box-sizing: border-box;
+  width: var(--orbit-w);
+  height: var(--orbit-h);
+  border: 1px solid rgba(111, 156, 190, .48);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(var(--orbit-angle));
+}
+
+.space-preview-planet {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(240, 244, 248, .7);
+  border-radius: 50%;
+  background: var(--planet-color);
+  box-shadow: 0 0 8px rgba(128, 173, 207, .15);
+}
+
+.space-preview-orbit > .space-preview-planet {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.planet-mercury { --planet-color: #a89b89; }
+.planet-venus { --planet-color: #d6a176; }
+.planet-earth { --planet-color: #59b4c8; }
+.planet-mars { --planet-color: #c96e56; }
+.planet-jupiter { --planet-color: #dc9d70; }
+.planet-saturn { --planet-color: #bda269; }
+.planet-uranus { --planet-color: #7db8bd; }
+.planet-neptune { --planet-color: #6e89dd; }
+
+.orbit-mercury { --orbit-w: 30%; --orbit-h: 26%; --orbit-angle: 105deg; }
+.orbit-venus { --orbit-w: 42%; --orbit-h: 36%; --orbit-angle: 250deg; }
+.orbit-earth { --orbit-w: 55%; --orbit-h: 46%; --orbit-angle: 6deg; }
+.orbit-mars { --orbit-w: 66%; --orbit-h: 56%; --orbit-angle: 33deg; }
+.orbit-jupiter { --orbit-w: 77%; --orbit-h: 68%; --orbit-angle: 150deg; }
+.orbit-saturn { --orbit-w: 88%; --orbit-h: 78%; --orbit-angle: 290deg; }
+.orbit-uranus { --orbit-w: 97%; --orbit-h: 85%; --orbit-angle: 42deg; }
+.orbit-neptune { --orbit-w: 100%; --orbit-h: 86%; --orbit-angle: 116deg; }
+
+.space-preview-orbit > .planet-jupiter { width: 36px; height: 36px; }
+.space-preview-orbit > .planet-saturn { width: 28px; height: 28px; }
+
+.space-preview-orbit > .planet-saturn::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 180%;
+  height: 58%;
+  border: 2px solid #ddc98f;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(-14deg);
+}
+
+.space-preview-sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(54px, 6.4vw, 78px);
+  height: clamp(54px, 6.4vw, 78px);
+  border: 2px solid #fff0d2;
+  border-radius: 50%;
+  background: #e9a869;
+  box-shadow: 0 0 0 10px rgba(235, 168, 105, .08), 0 0 36px 12px rgba(235, 168, 105, .28);
+  transform: translate(-50%, -50%);
+}
+
+.space-preview-rail {
+  position: absolute;
+  z-index: 4;
+  right: 1.2%;
+  bottom: 6.5%;
+  left: 2.8%;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.space-preview-rail li {
+  box-sizing: border-box;
+  display: flex;
+  min-width: 0;
+  height: 76px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1.5px solid #39566c;
+  border-radius: 10px;
+  background: #162c3c;
+  color: #cbd8e4;
+  font: 400 clamp(10px, 1.1vw, 13px)/1.2 "IBM Plex Mono", monospace;
+  letter-spacing: .02em;
+  text-align: center;
+}
+
+.space-preview-rail li.is-selected {
+  border-color: #79d6e8;
+  background: #214257;
+  box-shadow: inset 0 0 0 1px rgba(121, 214, 232, .24);
+}
+
+.space-preview-rail .space-preview-planet { width: 20px; height: 20px; }
+.space-preview-rail .planet-mercury { width: 20px; height: 20px; }
+.space-preview-rail .planet-venus { width: 21px; height: 21px; }
+.space-preview-rail .planet-earth { width: 21px; height: 21px; }
+.space-preview-rail .planet-mars { width: 20px; height: 20px; }
+.space-preview-rail .planet-jupiter { width: 28px; height: 28px; }
+.space-preview-rail .planet-saturn { position: relative; width: 22px; height: 22px; }
+.space-preview-rail .planet-uranus { width: 21px; height: 21px; }
+.space-preview-rail .planet-neptune { width: 21px; height: 21px; }
+
+.space-preview-rail .planet-saturn::after {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 11px;
+  border: 1.5px solid #e0cc8f;
+  border-radius: 50%;
+}
+
+.space-preview-stage *,
+.space-preview-stage *::before,
+.space-preview-stage *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+@media (max-width: 760px) {
+  .space-preview-context {
+    min-height: 26px;
+    padding: 0 4px 4px;
+    font-size: 8px;
+  }
+
+  .space-preview-stage { height: 560px; }
+
+  .space-preview-header {
+    top: 4.5%;
+    right: 5%;
+    left: 5%;
+    font-size: 12px;
+  }
+
+  .space-preview-focus {
+    top: 13%;
+    left: 5%;
+    max-width: 44%;
+    padding: 6px 12px 10px 0;
+    background: linear-gradient(90deg, rgba(4, 17, 30, .96), rgba(4, 17, 30, .7) 78%, transparent);
+  }
+
+  .space-preview-focus h3 { font-size: 32px; }
+  .space-preview-focus p { font-size: 14px; }
+  .space-preview-focus small { font-size: 9px; }
+
+  .space-preview-orbits {
+    top: 49%;
+    left: 68%;
+    width: min(78%, 340px);
+  }
+
+  .space-preview-rail {
+    right: 3%;
+    bottom: 14px;
+    left: 3%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .space-preview-rail li {
+    height: 54px;
+    gap: 4px;
+    border-radius: 8px;
+    font-size: 10px;
+  }
+
+  .space-preview-rail .space-preview-planet { width: 16px; height: 16px; }
+  .space-preview-rail .planet-jupiter { width: 20px; height: 20px; }
+  .space-preview-rail .planet-saturn::after { width: 27px; height: 9px; }
+}
