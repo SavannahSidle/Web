@@ -4409,7 +4409,7 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .design-studies[data-mode] .study-diagonal .diagonal-nav span{position:absolute;left:0;top:calc(100% + .5em);width:max-content;transform:none}
 
 /* Move the Accessible Information chat bubbles down from the top edge. */
-.site-live .design-studies[data-mode] .study-accessible .accessible-chat{top:22%!important}
+.site-live .design-studies[data-mode] .study-accessible .accessible-chat{top:16%!important}
 
 
 /* Lift only the LIVE CHAT timestamp above the conversation. */
