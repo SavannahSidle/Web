@@ -4394,4 +4394,4 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .design-studies[data-mode] .study-diagonal .diagonal-index small{text-align:center!important}
 
 /* Move the collection number and rule toward the center of the right-hand panel. */
-.design-studies[data-mode] .study-diagonal .diagonal-index small{transform:translateX(-4cqi)}
+.design-studies[data-mode] .study-diagonal .diagonal-index small{transform:translateX(-11cqi)}
