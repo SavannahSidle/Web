@@ -4407,3 +4407,9 @@ html body .design-studies .study-space:hover .solar-system-preview {
 
 /* Place COLLECTION 04 below ARC / MATERIALS at the far left of the header. */
 .design-studies[data-mode] .study-diagonal .diagonal-nav span{position:absolute;left:0;top:calc(100% + .5em);width:max-content;transform:none}
+
+/* Lower the Accessible Information prompt slightly. */
+.site-live .design-studies[data-mode] .study-accessible .study-screen>strong{top:35%!important}
+@media(max-width:560px){
+  .site-live .design-studies[data-mode] .study-accessible .study-screen>strong{top:37%!important}
+}
