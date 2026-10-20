@@ -4410,3 +4410,8 @@ html body .design-studies .study-space:hover .solar-system-preview {
 
 /* Move the Accessible Information chat bubbles down from the top edge. */
 .site-live .design-studies[data-mode] .study-accessible .accessible-chat{top:22%!important}
+
+
+/* Lift only the LIVE CHAT timestamp above the conversation. */
+.site-live .design-studies[data-mode] .study-accessible .accessible-chat-meta{position:relative;top:-12px}
+@media(max-width:560px){.site-live .design-studies[data-mode] .study-accessible .accessible-chat-meta{top:-8px}}
