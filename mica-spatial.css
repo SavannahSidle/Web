@@ -3941,3 +3941,23 @@ body.site-live .design-studies[data-mode] .study-space .space-rail .planet-scale
   body.site-live .design-studies[data-mode] .study-space .space-focus{left:4%;width:29%}
   body.site-live .design-studies[data-mode] .study-space .space-rail{left:2%;right:2%;width:96%;height:18%;gap:2px}
 }
+
+/* Keep the galaxy artwork in the scene; it must not share the text panel's containing block. */
+body.site-live .design-studies[data-mode] .study-space .space-focus{
+  display:flex;flex-direction:column;align-items:flex-start;gap:0;width:38%!important
+}
+body.site-live .design-studies[data-mode] .study-space .space-focus h3{display:block;line-height:1.08!important;margin:0 0 4px!important}
+body.site-live .design-studies[data-mode] .study-space .space-focus small{display:block;line-height:1.25;margin:0 0 5px!important}
+body.site-live .design-studies[data-mode] .study-space .space-focus span{
+  display:block;position:relative;max-width:100%;margin:3px 0 0;line-height:1.25;white-space:normal
+}
+body.site-live .design-studies[data-mode] .study-space .space-focus .space-scale-note{
+  width:100%;max-width:140px;margin-top:6px!important;line-height:1.3!important
+}
+body.site-live .design-studies[data-mode] .study-space>.space-galaxy-image{
+  left:4%;top:56%;width:23%;height:11%;z-index:3!important
+}
+@media(max-width:720px){
+  body.site-live .design-studies[data-mode] .study-space .space-focus{width:34%!important}
+  body.site-live .design-studies[data-mode] .study-space>.space-galaxy-image{left:4%;top:58%;width:21%;height:10%}
+}
