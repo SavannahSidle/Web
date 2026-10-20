@@ -1429,21 +1429,32 @@ if (!reducedMotion && orbitalScreens.length && 'IntersectionObserver' in window)
   });
 })();
 
-/* Open the larger, interactive specimen in a same-page dialog. */
+/* Show the current card model at full size in the specimen dialog. */
 document.querySelectorAll('[data-raptor-specimen-dialog]').forEach((dialog) => {
   const open = document.querySelector(`[aria-controls="${dialog.id}"][data-raptor-specimen-open]`);
   const close = dialog.querySelector('[data-raptor-specimen-close]');
-  const frame = dialog.querySelector('[data-raptor-specimen-frame]');
-  if (!open || !close || !frame || typeof dialog.showModal !== 'function') return;
+  const slot = dialog.querySelector('[data-raptor-specimen-stage]');
+  const stage = document.querySelector('[data-raptor-view]');
+  if (!open || !close || !slot || !stage || typeof dialog.showModal !== 'function') return;
+  const placeholder = document.createComment('Velociraptor canvas return position');
   open.addEventListener('click', () => {
-    frame.src = 'dinosaur-prototype.html?embed=1';
+    stage.parentNode.insertBefore(placeholder, stage);
+    slot.append(stage);
     dialog.showModal();
+    window.dispatchEvent(new Event('resize'));
   });
+  const restoreStage = () => {
+    if (placeholder.parentNode) {
+      placeholder.parentNode.insertBefore(stage, placeholder);
+      placeholder.remove();
+      window.dispatchEvent(new Event('resize'));
+    }
+  };
   close.addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
   });
-  dialog.addEventListener('close', () => { frame.src = 'about:blank'; });
+  dialog.addEventListener('close', restoreStage);
 });
 
 
