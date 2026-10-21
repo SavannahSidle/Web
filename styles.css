@@ -942,8 +942,6 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .test6-banner strong{letter-spacing:.08em}.test6-banner a{color:inherit;text-underline-offset:3px}.site-live{scroll-padding-top:1rem}
 @media(max-width:520px){}
 
-.brand-divider{display:block;width:136px;max-width:100%;height:auto;margin:3px 0 1px;flex:0 0 auto}
-@media(max-width:800px){.brand-divider{width:122px;margin:2px 0 0}}
 
 
 /* MICA Digital Projects section */

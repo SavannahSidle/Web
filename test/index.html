@@ -4,15 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#04111e">
-  <title>MICA Digital — Interface Studies Preview</title>
+  <meta name="theme-color" content="#14274c">
+  <title>MICA Digital — Logo Preview</title>
   <style>
-    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #04111e; }
-    #site-preview { display: block; width: 100%; height: 100vh; height: 100dvh; border: 0; background: #04111e; }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; margin: 0; }
+    body { min-height: 100vh; min-height: 100svh; display: grid; place-items: center; overflow: hidden; background: rgb(20, 39, 76); }
+    img { display: block; width: min(100vw, 150vh); width: min(100vw, 150svh); height: auto; max-height: 100vh; max-height: 100svh; object-fit: contain; }
   </style>
 </head>
 <body>
-  <iframe id="site-preview" title="MICA Digital website preview" src="../index.html?space-preview=test"></iframe>
-  <script src="preview.js" defer></script>
+  <img src="./mica-digital-logo.webp" width="1920" height="1280" alt="MICA Digital logo, shown exactly as supplied">
 </body>
 </html>
