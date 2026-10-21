@@ -944,3 +944,17 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 
 .brand-divider{display:block;width:136px;max-width:100%;height:auto;margin:3px 0 1px;flex:0 0 auto}
 @media(max-width:800px){.brand-divider{width:122px;margin:2px 0 0}}
+
+
+/* MICA Digital Projects section */
+.project-index{padding:clamp(76px,8vw,120px) max(28px,calc((100vw - var(--max))/2));background:#eef3f8;color:var(--ink)}
+.project-index-heading{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(220px,.75fr);gap:clamp(30px,7vw,90px);align-items:end;margin-bottom:clamp(32px,5vw,58px)}
+.project-index-heading h2{margin:0;font-family:"DM Serif Display",Georgia,serif;font-size:clamp(2.8rem,5.8vw,5.8rem);font-weight:400;line-height:.92;letter-spacing:-.04em}
+.project-index-heading>p{max-width:350px;margin:0 0 8px;color:#52657a}
+.project-card{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:clamp(28px,5vw,72px);padding:clamp(28px,4vw,54px);background:var(--ink);color:var(--white);border:1px solid rgba(255,255,255,.16);box-shadow:0 18px 48px rgba(7,24,39,.12)}
+.project-card-kicker{margin:0 0 16px;color:var(--sky);font:600 11px/1.5 "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
+.project-card h3{margin:0 0 12px;font-family:"DM Serif Display",Georgia,serif;font-size:clamp(2.2rem,4.5vw,4.3rem);font-weight:400;line-height:1}
+.project-card>div>p:last-child{max-width:620px;margin:0;color:#c3d1df;font-size:17px}
+.project-card .button{white-space:nowrap}
+.project-card .button:focus-visible{outline:3px solid var(--sky);outline-offset:4px}
+@media(max-width:640px){.project-index-heading{grid-template-columns:1fr;gap:16px}.project-card{grid-template-columns:1fr;gap:24px}.project-card .button{justify-self:start}}
