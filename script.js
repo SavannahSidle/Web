@@ -33,10 +33,10 @@ if (form) {
     const body = encodeURIComponent(`Name: ${fields.get('name')}\nBusiness: ${fields.get('business')}\nProject: ${fields.get('project')}\n\n${fields.get('message')}`);
     const notice = document.querySelector('.notice');
     if (notice) {
-      notice.textContent = 'Opening your email app. The message has not been sent. If it does not open, email projects@madeincanadadigital.ca.';
+      notice.textContent = 'Opening your email app. The message has not been sent. If it does not open, email projects@micadigital.ca.';
       notice.classList.add('show');
     }
-    window.location.href = `mailto:projects@madeincanadadigital.ca?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:projects@micadigital.ca?subject=${subject}&body=${body}`;
   });
 }
 
@@ -1673,24 +1673,90 @@ document.querySelectorAll('[data-raptor-specimen-dialog]').forEach((dialog) => {
 })();
 
 
-/* Community directory: each option opens useful information in place. */
+/* Community directory: each option opens its own full-page detail view. */
 (() => {
   const details = {
-    housing: ["Housing help", "Browse rent, utility, shelter, and housing-stability support."],
-    food: ["Food nearby", "Find meal programs, community fridges, markets, and food-access support."],
-    health: ["Health access", "Explore community clinics, primary-care access, and local health services."],
-    family: ["Family services", "Find childcare, parenting programs, and support for families."],
-    legal: ["Legal guidance", "Understand common legal questions and find community legal information or referrals."]
+    housing: {
+      title: "Housing help",
+      summary: "Explore Ottawa housing supports, shelter information, and help with urgent housing costs.",
+      sections: [
+        { heading: "Housing and shelter", body: "Look for emergency shelter information, homelessness-prevention supports, subsidized housing, and rent-geared-to-income options." },
+        { heading: "Financial support", body: "The City lists programs that may help with urgent housing and utility costs. Each program has its own application process and eligibility rules." },
+        { heading: "Getting started", points: ["Note your current housing situation and what kind of help you need.", "Ask about documents, wait times, and next steps before submitting an application."] }
+      ],
+      resources: [
+        { label: "City of Ottawa: Housing and homelessness", url: "https://ottawa.ca/en/housing" },
+        { label: "City of Ottawa: Emergency assistance", url: "https://ottawa.ca/en/family-and-social-services/financial-and-social-assistance/apply-financial-assistance/emergency-assistance" },
+        { label: "2-1-1: Community and social services", url: "https://ottawa.ca/en/family-and-social-services/financial-and-social-assistance/other-supports-and-community-resources/2-1-1-real-people-real-support" }
+      ]
+    },
+    food: {
+      title: "Food nearby",
+      summary: "Find community food programs, groceries, meals, and other food-access supports in Ottawa.",
+      sections: [
+        { heading: "Food programs", body: "Community food programs can include grocery support, prepared meals, school food programs, and seasonal or emergency help." },
+        { heading: "Finding a nearby option", body: "Use the Ottawa Food Bank’s current lookup information or contact its team to be connected with a food program in your area." },
+        { heading: "Before you go", points: ["Check the program’s current hours and service area.", "Ask what information to bring and whether an appointment is needed."] }
+      ],
+      resources: [
+        { label: "Ottawa Food Bank: Get help", url: "https://www.ottawafoodbank.ca/get-help/" },
+        { label: "City of Ottawa: Food programs", url: "https://ottawa.ca/en/family-and-social-services/financial-and-social-assistance/food-programs" }
+      ]
+    },
+    health: {
+      title: "Health access",
+      summary: "Explore primary-care connections, public-health information, and community health supports.",
+      sections: [
+        { heading: "Primary care", body: "Ontario’s Health Care Connect program helps people without a family doctor or nurse practitioner look for a primary-care provider accepting patients." },
+        { heading: "Community health", body: "Ottawa Public Health provides local public-health information, services, and referrals. Call 811 for Ontario health advice and service navigation." },
+        { heading: "Getting started", points: ["For Health Care Connect, have your Ontario health card information available.", "For urgent or emergency symptoms, use the appropriate urgent or emergency service rather than a directory."] }
+      ],
+      resources: [
+        { label: "Ontario Health Care Connect", url: "https://hcc3.hcc.moh.gov.on.ca/" },
+        { label: "Ottawa Public Health", url: "https://ottawa.ca/en/health-and-public-safety/public-health" },
+        { label: "Ontario Health811", url: "https://health811.ontario.ca/" }
+      ]
+    },
+    family: {
+      title: "Family services",
+      summary: "Find childcare and early-years programs, parenting resources, and supports for children and caregivers.",
+      sections: [
+        { heading: "Childcare and early years", body: "The City of Ottawa provides information about finding childcare, fee subsidies, and EarlyON Child and Family Centres." },
+        { heading: "Parent and caregiver supports", body: "Family resources can include prenatal and infant information, parenting programs, child development supports, and help navigating services for children with additional needs." },
+        { heading: "Getting started", points: ["Choose the child’s age range and the kind of support you are looking for.", "Ask each program about location, language, accessibility, cost, and registration requirements."] }
+      ],
+      resources: [
+        { label: "City of Ottawa: Resources for families", url: "https://ottawa.ca/en/family-and-social-services/childrens-services/families-and-caregivers/resources-families" },
+        { label: "City of Ottawa: EarlyON centres", url: "https://ottawa.ca/en/family-and-social-services/childrens-services/earlyon/earlyon-child-and-family-centres" },
+        { label: "City of Ottawa: Childcare and children’s services", url: "https://ottawa.ca/en/family-and-social-services/childrens-services" }
+      ]
+    },
+    legal: {
+      title: "Legal guidance",
+      summary: "Start with plain-language legal information and find out where to seek legal help in Ontario.",
+      sections: [
+        { heading: "Understand the issue", body: "Common topics include housing and tenant concerns, family matters, employment, debt, immigration, and navigating court processes." },
+        { heading: "Information and legal help", body: "Community Legal Education Ontario offers practical legal information. Legal Aid Ontario explains its services and how to apply; eligibility and covered issues vary." },
+        { heading: "Getting started", points: ["Write down the main question, any deadlines, and the documents you already have.", "Confirm whether a resource provides general information, legal advice, or representation."] }
+      ],
+      resources: [
+        { label: "Legal Aid Ontario: Apply for legal aid", url: "https://www.legalaid.on.ca/services/how-do-i-apply-for-legal-aid/" },
+        { label: "CLEO Steps to Justice", url: "https://stepstojustice.ca/" },
+        { label: "Legal Aid Ontario: Find a legal clinic", url: "https://www.legalaid.on.ca/legal-clinics/" }
+      ]
+    }
   };
 
   document.querySelectorAll(".study-information").forEach((study) => {
     const buttons = [...study.querySelectorAll("[data-info-service]")];
     const panel = study.querySelector("[data-info-detail]");
     const title = study.querySelector("[data-info-detail-title]");
-    const copy = study.querySelector("[data-info-detail-copy]");
+    const summary = study.querySelector("[data-info-detail-copy]");
+    const sections = study.querySelector("[data-info-detail-sections]");
+    const resources = study.querySelector("[data-info-detail-resources]");
     const close = study.querySelector("[data-info-close]");
     let trigger = null;
-    if (!buttons.length || !panel || !title || !copy) return;
+    if (!buttons.length || !panel || !title || !summary || !sections || !resources) return;
 
     const dismiss = (returnFocus = false) => {
       panel.hidden = true;
@@ -1698,20 +1764,50 @@ document.querySelectorAll('[data-raptor-specimen-dialog]').forEach((dialog) => {
       if (returnFocus) trigger?.focus();
     };
 
-    buttons.forEach((button) => button.addEventListener("click", () => {
-      const sameOption = trigger === button && !panel.hidden;
-      if (sameOption) {
-        dismiss();
-        trigger = null;
-        return;
+    const appendSection = (detail) => {
+      const section = document.createElement("section");
+      section.className = "info-detail-section";
+      const heading = document.createElement("h5");
+      heading.textContent = detail.heading;
+      section.append(heading);
+      if (detail.body) {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = detail.body;
+        section.append(paragraph);
       }
+      if (detail.points?.length) {
+        const list = document.createElement("ul");
+        detail.points.forEach((point) => {
+          const item = document.createElement("li");
+          item.textContent = point;
+          list.append(item);
+        });
+        section.append(list);
+      }
+      sections.append(section);
+    };
+
+    buttons.forEach((button) => button.addEventListener("click", () => {
+      const detail = details[button.dataset.infoService];
+      if (!detail) return;
       trigger = button;
-      const [label, description] = details[button.dataset.infoService] || [button.textContent.trim(), "More information will be added by local partners."];
-      title.textContent = label;
-      copy.textContent = description;
+      title.textContent = detail.title;
+      summary.textContent = detail.summary;
+      sections.replaceChildren();
+      detail.sections.forEach(appendSection);
+      resources.replaceChildren();
+      detail.resources.forEach((resource) => {
+        const link = document.createElement("a");
+        link.href = resource.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = resource.label;
+        resources.append(link);
+      });
       buttons.forEach((item) => item.setAttribute("aria-expanded", String(item === button)));
       panel.hidden = false;
-      close?.focus();
+      panel.scrollTop = 0;
+      title.focus();
     }));
 
     close?.addEventListener("click", () => dismiss(true));
