@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://madeincanadadigital.ca/sitemap.xml
+Sitemap: https://micadigital.ca/sitemap.xml
