@@ -240,6 +240,9 @@ canvas {
   cursor: pointer;
 }
 .hud-nav-button:hover,.hud-nav-button:focus-visible { border-color: var(--acid); color: var(--acid); }
+.objective-hint { width: max-content; max-width: 100%; margin: 8px auto 0; padding: 5px 10px; border: 1px solid rgba(210,255,127,.42); border-radius: 999px; background: rgba(7,21,15,.86); color: #d2ff7f; text-align: center; font-size: clamp(.58rem, 1.25vw, .7rem); font-weight: 900; letter-spacing: .045em; }
+.hud-restart-button { border-color: rgba(210,255,127,.72); }
+.browser-note { margin: 0 0 12px; color: var(--muted); text-align: center; font-size: .68rem; letter-spacing: .04em; }
 
 .controls-row {
   display: flex;
@@ -381,7 +384,9 @@ canvas {
 @media (max-height: 600px) and (orientation: landscape) {
   .game-shell { padding-block: 8px; gap: 7px; }
   .game-header { display: none; }
-  .stage-wrap { max-height: calc(100vh - 182px); max-height: calc(100dvh - 182px); width: auto; margin-inline: auto; }
+  /* Keep the playfield's 16:9 width tied to the viewport. An auto width in
+     this height-constrained grid can shrink the whole game when menus change. */
+  .stage-wrap { width: 100%; max-height: none; margin-inline: 0; }
   .touch-controls { min-height: 158px; padding-block: 4px; }
   .move-stick { width: 84px; height: 84px; }
   .move-stick-knob { width: 34px; height: 34px; }
