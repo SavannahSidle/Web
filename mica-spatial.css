@@ -4518,3 +4518,11 @@ html body .design-studies .study-space:hover .solar-system-preview {
   top:12%!important;height:36%!important;justify-content:flex-start!important;align-items:center!important;padding:5px!important;box-sizing:border-box;
 }
 .site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel .pangaea-map{height:28%!important;flex:0 0 28%;}
+
+
+/* Align the dinosaur map box with the specimen viewer; lift only its contents. */
+.site-live .design-studies .study-dinosaur .pangaea-panel{top:19%!important;height:66%!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;padding:6px!important;box-sizing:border-box;}
+.site-live .design-studies .study-dinosaur .pangaea-panel .pangaea-map{height:34%!important;flex:0 0 34%!important;margin:0 0 3px!important;}
+.site-live .design-studies .study-dinosaur .pangaea-panel>div{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:2px!important;text-align:center!important;width:100%!important;}
+.site-live .design-studies .study-dinosaur .pangaea-panel small,.site-live .design-studies .study-dinosaur .pangaea-panel strong{width:100%!important;text-align:center!important;line-height:1.2!important;}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel{top:18%!important;height:66%!important;}
