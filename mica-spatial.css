@@ -4488,3 +4488,14 @@ html body .design-studies .study-space:hover .solar-system-preview {
   justify-content:center!important;
   text-align:center!important;
 }
+
+
+/* Dinosaur study: lift and center the globe panel content; stack the centered location labels. */
+.site-live .design-studies .study-dinosaur .pangaea-panel{
+  top:12%!important;height:54%!important;justify-content:flex-start!important;padding-top:5px!important;box-sizing:border-box;
+}
+.site-live .design-studies .study-dinosaur .pangaea-panel .pangaea-map{height:36%!important;flex:0 0 36%;}
+.site-live .design-studies .study-dinosaur .pangaea-panel>div{justify-items:center!important;}
+.site-live .design-studies .study-dinosaur .dinosaur-focus small{
+  display:block;text-align:center!important;line-height:1.45;white-space:normal!important;
+}
