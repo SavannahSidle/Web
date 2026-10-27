@@ -4460,3 +4460,12 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .site-live .design-studies .study-dinosaur .pangaea-panel strong{
   max-width:100%;text-align:center;white-space:normal;overflow-wrap:anywhere;
 }
+}
+
+/* Keep the same four-button fit and aligned panel in grid view. */
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .raptor-controls{
+  grid-template-columns:repeat(4,22px);width:max-content;left:auto;right:6px;gap:2px;padding:3px;
+}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel{
+  top:19%;height:64%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+}
