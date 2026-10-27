@@ -4443,3 +4443,20 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .design-studies[data-mode] .study-information .info-detail-resources a:focus-visible,.design-studies[data-mode] .study-information .info-detail-back:focus-visible{outline:2px solid #2c6d5a;outline-offset:2px}
 .design-studies[data-mode] .study-information .info-detail-note{margin:10px 0 0;color:#62756b;font:400 clamp(7px,1.15cqi,9px)/1.35 "IBM Plex Sans",sans-serif}
 @media(prefers-reduced-motion:reduce){.design-studies .study-wayfinding .wayfinding-route-layer *{animation:none!important;transition:none!important}}
+.design-studies[data-mode] .study-information .info-detail-note{margin:10px 0 0;color:#62756b;font:400 clamp(7px,1.15cqi,9px)/1.35 "IBM Plex Sans",sans-serif}
+@media(prefers-reduced-motion:reduce){.design-studies .study-wayfinding .wayfinding-route-layer *{animation:none!important;transition:none!important}}
+
+/* Focused dinosaur study corrections: four right-aligned controls and aligned information panel. */
+.site-live .design-studies .study-dinosaur .raptor-controls{
+  display:grid;grid-template-columns:repeat(4,30px);width:max-content;right:6px;left:auto;gap:3px;padding:5px;
+}
+.site-live .design-studies .study-dinosaur .pangaea-panel{
+  top:19%;height:64%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+}
+.site-live .design-studies .study-dinosaur .pangaea-panel>div{
+  width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;
+}
+.site-live .design-studies .study-dinosaur .pangaea-panel small,
+.site-live .design-studies .study-dinosaur .pangaea-panel strong{
+  max-width:100%;text-align:center;white-space:normal;overflow-wrap:anywhere;
+}
