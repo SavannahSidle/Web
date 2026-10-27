@@ -4469,3 +4469,22 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel{
   top:19%;height:64%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
 }
+
+/* Grid-only Velociraptor corrections. */
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .raptor-controls{
+  grid-template-columns:repeat(4,22px)!important;
+  width:max-content!important;
+  left:auto!important;
+  right:6px!important;
+  gap:2px!important;
+  padding:3px!important;
+}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel{
+  top:19%!important;
+  height:64%!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
