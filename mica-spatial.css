@@ -4499,3 +4499,15 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .site-live .design-studies .study-dinosaur .dinosaur-focus small{
   display:block;text-align:center!important;line-height:1.45;white-space:normal!important;
 }
+
+
+/* Dinosaur map box clears the title area in both showcase and grid layouts. */
+.site-live .design-studies .study-dinosaur .pangaea-panel{
+  top:12%!important;height:44%!important;justify-content:flex-start!important;padding:5px!important;box-sizing:border-box;
+}
+.site-live .design-studies .study-dinosaur .pangaea-panel .pangaea-map{height:36%!important;flex:0 0 36%;}
+.site-live .design-studies .study-dinosaur .pangaea-panel>div{
+  display:flex!important;flex-direction:column;align-items:center!important;justify-content:center;gap:2px;text-align:center;width:100%;
+}
+.site-live .design-studies .study-dinosaur .pangaea-panel small,
+.site-live .design-studies .study-dinosaur .pangaea-panel strong{width:100%;text-align:center!important;}
