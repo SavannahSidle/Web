@@ -4511,3 +4511,10 @@ html body .design-studies .study-space:hover .solar-system-preview {
 }
 .site-live .design-studies .study-dinosaur .pangaea-panel small,
 .site-live .design-studies .study-dinosaur .pangaea-panel strong{width:100%;text-align:center!important;}
+
+
+/* Grid override: keep the raised map card clear of the Velociraptor title. */
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel{
+  top:12%!important;height:36%!important;justify-content:flex-start!important;align-items:center!important;padding:5px!important;box-sizing:border-box;
+}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel .pangaea-map{height:28%!important;flex:0 0 28%;}
