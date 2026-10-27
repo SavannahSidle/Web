@@ -4548,3 +4548,8 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .site-live .design-studies .study-dinosaur .dinosaur-focus span{
   width:100%!important;min-width:0!important;align-self:end!important;margin:0!important;font-size:clamp(6px,1.4cqw,8px)!important;line-height:1.2!important;text-align:center!important;white-space:nowrap!important;
 }
+
+
+/* Keep the full Velociraptor text cluster inside its existing map panel. */
+.site-live .design-studies .study-dinosaur .dinosaur-focus{top:61%!important;height:21%!important;}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus{top:61%!important;height:21%!important;}
