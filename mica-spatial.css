@@ -4594,3 +4594,8 @@ html body .design-studies .study-space:hover .solar-system-preview {
   position:static!important;inset:auto!important;order:3!important;align-self:center!important;
   width:100%!important;margin:0!important;transform:none!important;text-align:center!important;
 }
+
+/* Lower only the centered Fossil Region / Asia label beneath Mongolia. */
+.site-live .design-studies .study-dinosaur .pangaea-panel>div>small:first-child{
+  transform:translateY(18px)!important;
+}
