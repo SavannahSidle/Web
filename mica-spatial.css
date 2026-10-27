@@ -4533,3 +4533,18 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .site-live .design-studies .study-dinosaur .dinosaur-focus h3{width:100%!important;margin:0!important;text-align:center!important;}
 .site-live .design-studies .study-dinosaur .dinosaur-focus small{width:100%!important;margin:2px 0!important;text-align:center!important;line-height:1.35!important;}
 .site-live .design-studies .study-dinosaur .dinosaur-focus span{width:100%!important;margin-top:auto!important;text-align:center!important;}
+
+
+/* Compact, non-overlapping Velociraptor text cluster inside its existing area. */
+.site-live .design-studies .study-dinosaur .dinosaur-focus{
+  height:23%!important;box-sizing:border-box;display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto auto minmax(0,1fr)!important;align-content:start!important;justify-items:center!important;align-items:start!important;gap:2px!important;text-align:center!important;overflow:visible;
+}
+.site-live .design-studies .study-dinosaur .dinosaur-focus h3{
+  width:100%!important;min-width:0!important;margin:0!important;font-size:clamp(14px,5.5cqw,23px)!important;line-height:1!important;letter-spacing:-.045em!important;text-align:center!important;white-space:nowrap!important;
+}
+.site-live .design-studies .study-dinosaur .dinosaur-focus small{
+  width:100%!important;margin:0!important;font-size:clamp(6px,1.55cqw,8px)!important;line-height:1.25!important;text-align:center!important;white-space:normal!important;
+}
+.site-live .design-studies .study-dinosaur .dinosaur-focus span{
+  width:100%!important;min-width:0!important;align-self:end!important;margin:0!important;font-size:clamp(6px,1.4cqw,8px)!important;line-height:1.2!important;text-align:center!important;white-space:nowrap!important;
+}
