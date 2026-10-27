@@ -4599,3 +4599,6 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .site-live .design-studies .study-dinosaur .pangaea-panel>div>small:first-child{
   transform:translateY(72px)!important;
 }
+
+/* Put Fossil Region / Asia directly below Mongolia. */
+.site-live .design-studies .study-dinosaur .pangaea-panel>div>small:first-child{top:57%!important;transform:none!important;}
