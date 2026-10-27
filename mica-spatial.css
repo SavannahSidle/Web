@@ -4570,4 +4570,4 @@ html body .design-studies .study-space:hover .solar-system-preview {
 
 /* Lift only the three requested Velociraptor labels by approximately 1 mm. */
 .site-live .design-studies .study-dinosaur .dinosaur-focus h3,
-.site-live .design-studies .study-dinosaur .dinosaur-focus small{transform:translateY(-4px)!important;}
+.site-live .design-studies .study-dinosaur .dinosaur-focus small{transform:translateY(-8px)!important;}
