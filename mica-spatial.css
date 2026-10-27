@@ -4526,3 +4526,10 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .site-live .design-studies .study-dinosaur .pangaea-panel>div{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:2px!important;text-align:center!important;width:100%!important;}
 .site-live .design-studies .study-dinosaur .pangaea-panel small,.site-live .design-studies .study-dinosaur .pangaea-panel strong{width:100%!important;text-align:center!important;line-height:1.2!important;}
 .site-live .design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel{top:18%!important;height:66%!important;}
+
+
+/* Dinosaur text cluster only: title high, era/location centered, scientific name at the bottom. */
+.site-live .design-studies .study-dinosaur .dinosaur-focus{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:space-between!important;text-align:center!important;}
+.site-live .design-studies .study-dinosaur .dinosaur-focus h3{width:100%!important;margin:0!important;text-align:center!important;}
+.site-live .design-studies .study-dinosaur .dinosaur-focus small{width:100%!important;margin:2px 0!important;text-align:center!important;line-height:1.35!important;}
+.site-live .design-studies .study-dinosaur .dinosaur-focus span{width:100%!important;margin-top:auto!important;text-align:center!important;}
