@@ -959,7 +959,7 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 
 
 /* Homepage detail below the Canadian websites headline. */
-.canada-maple-divider{position:absolute;z-index:1;top:60%;left:50%;transform:translate(-50%,-50%);width:clamp(170px,30vw,310px);display:grid;grid-template-columns:1fr 16px 1fr;align-items:center;gap:9px;pointer-events:none}
+.canada-maple-divider{position:absolute;z-index:5;top:60%;left:50%;transform:translate(-50%,-50%);width:clamp(170px,30vw,310px);display:grid;grid-template-columns:1fr 16px 1fr;align-items:center;gap:9px;pointer-events:none}
 .canada-maple-divider span{height:1px;background:rgba(228,237,248,.78)}
 .canada-maple-divider svg{display:block;width:16px;height:18px;fill:#d52b1e}
 .project-card-coming-soon{grid-template-columns:1fr}
