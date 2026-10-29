@@ -956,3 +956,21 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .project-card .button{white-space:nowrap}
 .project-card .button:focus-visible{outline:3px solid var(--sky);outline-offset:4px}
 @media(max-width:640px){.project-index-heading{grid-template-columns:1fr;gap:16px}.project-card{grid-template-columns:1fr;gap:24px}.project-card .button{justify-self:start}}
+
+/* Homepage Canadian maple detail and pricing guide */
+.canada-maple-divider{position:absolute;z-index:5;top:60%;left:50%;transform:translate(-50%,-50%);width:clamp(170px,30vw,310px);display:grid;grid-template-columns:1fr 16px 1fr;align-items:center;gap:9px;pointer-events:none}
+.canada-maple-divider span{height:1px;background:rgba(228,237,248,.78)}
+.canada-maple-divider svg{display:block;width:16px;height:18px;fill:#d52b1e}
+.project-card-coming-soon{grid-template-columns:1fr}
+.pricing-guide{background:#fff;color:var(--ink)}
+.pricing-intro{max-width:760px;margin-bottom:34px}
+.pricing-intro h2{font-size:clamp(2.3rem,4.5vw,4.4rem);line-height:1.02;letter-spacing:-.05em;margin:0 0 16px}
+.pricing-intro p:last-child{color:#52657a;max-width:680px}
+.pricing-list{display:grid;border-top:1px solid var(--dark-line)}
+.pricing-item{display:grid;grid-template-columns:minmax(190px,.8fr) minmax(0,1.6fr);gap:36px;padding:25px 0;border-bottom:1px solid var(--dark-line)}
+.pricing-item h3{font-size:21px;margin:0 0 4px}
+.pricing-item .price{font-family:"IBM Plex Mono",monospace;font-weight:600;color:#315f96;margin:0}
+.pricing-item p:last-child{color:#52657a;margin:0}
+.pricing-note{margin:24px 0 0;color:#52657a;font-size:14px}
+@media(max-width:720px){.canada-maple-divider{top:61%;width:clamp(150px,54vw,220px);grid-template-columns:1fr 14px 1fr;gap:8px}.canada-maple-divider svg{width:14px;height:16px}}
+@media(max-width:640px){.pricing-item{grid-template-columns:1fr;gap:10px}}
