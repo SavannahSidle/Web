@@ -956,3 +956,11 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .project-card .button{white-space:nowrap}
 .project-card .button:focus-visible{outline:3px solid var(--sky);outline-offset:4px}
 @media(max-width:640px){.project-index-heading{grid-template-columns:1fr;gap:16px}.project-card{grid-template-columns:1fr;gap:24px}.project-card .button{justify-self:start}}
+
+
+/* Homepage detail below the Canadian websites headline. */
+.canada-maple-divider{position:absolute;z-index:1;top:60%;left:50%;transform:translate(-50%,-50%);width:clamp(170px,30vw,310px);display:grid;grid-template-columns:1fr 16px 1fr;align-items:center;gap:9px;pointer-events:none}
+.canada-maple-divider span{height:1px;background:rgba(228,237,248,.78)}
+.canada-maple-divider svg{display:block;width:16px;height:18px;fill:#d52b1e}
+.project-card-coming-soon{grid-template-columns:1fr}
+@media(max-width:720px){.canada-maple-divider{top:61%;width:clamp(150px,54vw,220px);grid-template-columns:1fr 14px 1fr;gap:8px}.canada-maple-divider svg{width:14px;height:16px}}
