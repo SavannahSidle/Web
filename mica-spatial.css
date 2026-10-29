@@ -4602,3 +4602,10 @@ html body .design-studies .study-space:hover .solar-system-preview {
 
 /* Put Fossil Region / Asia directly below Mongolia. */
 .site-live .design-studies .study-dinosaur .pangaea-panel>div>small:first-child{top:57%!important;transform:none!important;}
+
+/* Dinosaur selection, scoped to the specimen viewer. */
+.site-live .study-dinosaur .dinosaur-picker{position:absolute;z-index:8;top:5px;left:5px;display:block;max-width:38%}
+.site-live .study-dinosaur .dinosaur-picker-label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.site-live .study-dinosaur .dinosaur-picker select{width:100%;min-width:0;padding:4px 2px;color:#e9f0e6;background:#13292c;border:1px solid #b7cbc2;border-radius:3px;font:11px/1.2 sans-serif}
+.site-live .study-dinosaur .dinosaur-picker select:focus-visible{outline:2px solid #d7e89a;outline-offset:2px}
+.site-live .study-dinosaur .dino-webgl{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}

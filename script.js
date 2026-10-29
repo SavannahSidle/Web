@@ -229,8 +229,8 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   const canvas = stage.querySelector('.raptor-canvas');
   const ctx = canvas?.getContext('2d');
   if (!canvas || !ctx) return;
-  const vertices = [];
-  const faces = [];
+  let vertices = [];
+  let faces = [];
   const addTriangle = (a, b, c, color, feather = false) => faces.push({ a, b, c, color, feather });
   const addEllipsoid = (cx, cy, cz, rx, ry, rz, color, rings = 8, sides = 12) => {
     const start = vertices.length;
@@ -315,6 +315,8 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     const c0=[ankle[0]+.08,-.94,side*.23], c1=[ankle[0]+.15,-.85,side*.23], c2=[ankle[0]+.21,-.84,side*.23], c3=[ankle[0]+.25,-.91,side*.23];
     chain([c0,c1,c2,c3],[.034,.025,.017,.001],dark,12);
   }
+  const originalMesh = {vertices, faces};
+  let selectedDinosaur = "small";
   let yaw = -.3, pitch = .08, zoom = .8, drag = null, width = 0, height = 0;
   let feathersVisible = true;
   let gazeX = 0, gazeY = 0;
@@ -326,11 +328,12 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   };
   const draw = () => {
     if (!width || !height) return;
+    stage.dispatchEvent(new CustomEvent("dinosaur-view", {detail:{yaw,pitch,zoom,width,height}}));
     ctx.clearRect(0, 0, width, height);
     ctx.save();
     ctx.translate(-width * .07, 0);
     ctx.fillStyle = 'rgba(2, 8, 11, .3)'; ctx.beginPath(); ctx.ellipse(width * .52, height * .95, width * .3, height * .035, 0, 0, Math.PI * 2); ctx.fill();
-    const camera = 6, scale = Math.min(width / 3.8, height / 2.15) * zoom * .92;
+    const camera = 6, scale = Math.min(width / 3.8, height / 2.15) * zoom * (selectedDinosaur === "small" ? .92 : .76);
     const motionTime = reducedMotion ? 0 : performance.now() / 1000;
     const breath = Math.sin(motionTime * 1.35);
     const tailSway = Math.sin(motionTime * .82);
@@ -341,7 +344,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     const weightShift = reducedMotion ? 0 : Math.sin(motionTime * .67) * .006;
     const projected = vertices.map(([baseX, baseY, baseZ], vertexIndex) => {
       let x = baseX, y = baseY, z = baseZ;
-      if (!reducedMotion) {
+      if (!reducedMotion && selectedDinosaur === "small") {
         // 1. Subtle ribcage breathing.
         if (x > -1.12 && x < .58 && y > -.4 && y < .38) y += (y > 0 ? 1 : -1) * breath * .008;
         // 2. The tail countersways gently, with more movement at the tip.
@@ -382,7 +385,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       const rx = x * Math.cos(yaw) + z * Math.sin(yaw), rz = -x * Math.sin(yaw) + z * Math.cos(yaw);
       const ry = y * Math.cos(pitch) - rz * Math.sin(pitch), rz2 = y * Math.sin(pitch) + rz * Math.cos(pitch);
       const perspective = camera / (camera + rz2);
-      return { x: width * .49 + (rx + .8) * scale * perspective, y: height * .49 - ry * scale * perspective, z: rz2, mx: rx, my: ry };
+      return { x: width * .49 + (rx + .8) * scale * perspective, y: height * (selectedDinosaur === "small" ? .49 : .56) - ry * scale * perspective, z: rz2, mx: rx, my: ry };
     });
     const rendered = faces.filter(face => feathersVisible || !face.feather).map(face => {
       const a = projected[face.a], b = projected[face.b], c = projected[face.c];
@@ -435,7 +438,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     if (lastAutomaticFrame) {
       const elapsed = Math.min(50, time - lastAutomaticFrame);
       yaw += elapsed * (Math.PI * 2 / 120000);
-      if (time - lastPaint >= 1000 / 30) { draw(); lastPaint = time; }
+      if (time - lastPaint >= 1000 / (selectedDinosaur === "small" ? 30 : 12)) { draw(); lastPaint = time; }
     }
     lastAutomaticFrame = time;
     automaticFrame = requestAnimationFrame(turn);
@@ -473,7 +476,11 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       Math.round((((yaw % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2)) / (Math.PI / 2))];
     announce(`Model viewed from the ${direction} angle.`);
   };
+  stage.addEventListener('dinosaur-data', event => {
+    const data=event.detail || originalMesh; vertices=data.vertices; faces=data.faces; draw();
+  });
   syncControls();
+  stage.querySelector("[data-dinosaur-select]")?.addEventListener("change", event => { event.stopPropagation(); selectedDinosaur=event.target.value; stage.dispatchEvent(new CustomEvent("dinosaur-selected", {detail:event.target.value})); draw(); });
   featherToggle?.addEventListener('click', (event) => {
     event.preventDefault(); event.stopPropagation();
     feathersVisible = !feathersVisible;
@@ -484,7 +491,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     announce(`Interpretive body and tail feathers ${feathersVisible ? 'shown' : 'hidden'}. Forelimbs stay bare.`);
   });
   stage.addEventListener('pointerdown', event => {
-    if (event.target.closest('button, a, summary')) return;
+    if (event.target.closest('button, a, summary, select, label')) return;
     activePointerId = event.pointerId;
     drag = { x: event.clientX, y: event.clientY, started: false, type: event.pointerType };
     if (event.pointerType === 'mouse') { event.preventDefault(); stage.setPointerCapture?.(event.pointerId); }
@@ -525,17 +532,17 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
   stage.addEventListener('keydown', event => {
     if (event.target !== stage) return;
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-      event.preventDefault(); yaw += event.key === 'ArrowRight' ? .18 : -.18; draw(); describeOrientation();
+      event.preventDefault(); event.stopPropagation(); yaw += event.key === 'ArrowRight' ? .18 : -.18; draw(); describeOrientation();
     } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-      event.preventDefault(); pitch = Math.max(-.55, Math.min(.55, pitch + (event.key === 'ArrowUp' ? .12 : -.12))); draw(); announce('Model tilt adjusted.');
+      event.preventDefault(); event.stopPropagation(); pitch = Math.max(-.55, Math.min(.55, pitch + (event.key === 'ArrowUp' ? .12 : -.12))); draw(); announce('Model tilt adjusted.');
     } else if (event.key === '+' || event.key === '=') {
-      event.preventDefault(); setZoom(zoom + .12);
+      event.preventDefault(); event.stopPropagation(); setZoom(zoom + .12);
     } else if (event.key === '-' || event.key === '_') {
-      event.preventDefault(); setZoom(zoom - .12);
+      event.preventDefault(); event.stopPropagation(); setZoom(zoom - .12);
     } else if (event.key === 'Home') {
-      event.preventDefault(); resetView();
+      event.preventDefault(); event.stopPropagation(); resetView();
     } else if (event.key === ' ') {
-      event.preventDefault(); userPaused = !userPaused; syncControls();
+      event.preventDefault(); event.stopPropagation(); userPaused = !userPaused; syncControls();
       announce(userPaused ? 'Automatic rotation paused.' : 'Automatic rotation resumed.');
       if (userPaused) stopAutomaticTurn(); else startAutomaticTurn();
     }
