@@ -267,101 +267,54 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       addTriangle(a, b, c, color, isFeather); addTriangle(b, d, c, color, isFeather);
     }
   };
-  const body = '#65716d', flank = '#89939a', dark = '#3b4647', feather = '#aab2b3', bone = '#d6c7a8', blue = '#426b7d';
+  // Original procedural, three-dimensional mesh. Each limb and body section is
+  // built in model space and projected by the existing interactive viewer.
+  const body = '#747568', flank = '#858579', dark = '#52574e', bone = '#c5bba0', blue = '#555f59';
   const motionRanges = { tailFan: null, sickleClaws: [] };
-  addEllipsoid(-.22, -.015, 0, .53, .27, .26, body, 10, 14);
-  addEllipsoid(-.66, -.035, 0, .3, .24, .28, flank, 8, 12);
-  addEllipsoid(.08, .025, 0, .21, .18, .2, flank, 8, 12);
-  addTube([-.88, -.025, 0], [-3.7, -.3, 0], .22, .012, dark, 10);
-  addTube([-.42, .19, 0], [-3.38, -.11, 0], .028, .003, blue, 7);
-  addTube([-.57, .14, .02], [-.92, .12, .02], .035, .015, blue, 7);
-  const tailFanStart = vertices.length;
-  addTube([-.89, .055, 0], [-3.55, -.25, 0], .13, .008, feather, 9, true);
-  motionRanges.tailFan = [tailFanStart, vertices.length];
-  // A slim, gently arched neck and narrow, toothed skull follow the fossil profile.
-  addTube([.12, .12, 0], [.27, .39, 0], .15, .12, body, 10);
-  addTube([.27, .39, 0], [.25, .67, 0], .12, .09, flank, 10);
-  addTube([.15, .03, 0], [.23, .59, 0], .055, .035, blue, 7);
-  addEllipsoid(.23, .755, 0, .255, .145, .19, flank, 9, 14);
-  addTube([.39, .79, 0], [.91, .75, 0], .09, .042, body, 10);
-  addTube([.41, .68, 0], [.86, .68, 0], .042, .022, dark, 9);
-  addTube([.4, .735, 0], [.89, .72, 0], .018, .012, dark, 7);
-  for (let tooth = 0; tooth < 8; tooth++) {
-    const tx = .49 + tooth * .047;
-    const toothY = .733 - (tx - .4) * .03;
-    addTube([tx, toothY, .105], [tx + .012, toothY - .035, .105], .008, .001, bone, 5);
-    addTube([tx, toothY, -.105], [tx + .012, toothY - .035, -.105], .008, .001, bone, 5);
+  const chain = (points, radii, color, sides = 16) => {
+    for (let i=0; i<points.length-1; i++) addTube(points[i], points[i+1], radii[i], radii[i+1], color, sides);
+    for (let i=1; i<points.length-1; i++) addEllipsoid(...points[i], radii[i], radii[i], radii[i], color, 8, sides);
+  };
+  // Ribs and pelvis: overlapping volumes soften the joints and retain a low, forward-leaning profile.
+  addEllipsoid(-.28,.01,0,.62,.285,.245,body,14,24);
+  addEllipsoid(-.69,-.015,0,.31,.255,.25,body,12,20);
+  addEllipsoid(.08,.075,0,.25,.24,.21,body,12,20);
+  chain([[-.76,.01,0],[-1.05,-.035,0],[-1.42,-.075,0],[-1.85,-.11,0],[-2.24,-.13,0],[-2.57,-.12,0]],[.23,.18,.12,.07,.035,.003],body,18);
+  // Curved neck, brow, tapering skull, separate lower jaw and subtle teeth.
+  chain([[.12,.12,0],[.27,.25,0],[.35,.39,0],[.43,.49,0]],[.18,.145,.115,.105],body,18);
+  addEllipsoid(.52,.49,0,.22,.135,.145,body,12,20);
+  addEllipsoid(.70,.465,0,.23,.085,.105,body,12,20);
+  addEllipsoid(.87,.445,0,.12,.064,.078,body,10,18);
+  addEllipsoid(.72,.383,0,.29,.038,.09,dark,10,20);
+  for (let n=0;n<7;n++) for(const side of [-1,1]) {
+    const x=.57+n*.052; addTube([x,.405,side*.075],[x+.006,.38,side*.075],.006,.001,bone,5);
   }
-  [-1, 1].forEach(side => {
-    addEllipsoid(.27, .83, side * .17, .037, .031, .023, '#d7a65b', 6, 9);
-    addEllipsoid(.284, .83, side * .19, .014, .018, .01, '#17221f', 5, 7);
-  });
-  // Compact bare forelimbs tuck below the chest, hands angled inward.
-  [-.24, .24].forEach((z, i) => {
-    addEllipsoid(.14, .015, z, .105, .12, .1, i ? body : dark, 6, 9);
-    addTube([.2, -.035, z], [.38, -.21, z * 1.18], .06, .042, body, 7);
-    addTube([.38, -.21, z * 1.18], [.53, -.26, z * 1.27], .04, .025, flank, 7);
-    addTube([.53, -.26, z * 1.27], [.61, -.34, z * 1.3], .025, .004, bone, 6);
-  });
-  // Digitigrade hind limbs based on the documented V. mongoliensis proportions:
-  // femur and tibia are close in length; metatarsus is shorter; toes stay compact.
-  // The far leg is set slightly back and shaded to keep the side silhouette readable.
-  [
-    {
-      z: -.39, shade: dark,
-      hip: [-.63, -.19, -.39], knee: [-.31, -.55, -.39],
-      hock: [-.54, -.98, -.39], ankle: [-.37, -1.16, -.39],
-    },
-    {
-      z: .39, shade: flank,
-      hip: [-.68, -.22, .39], knee: [-.39, -.58, .39],
-      hock: [-.63, -.99, .39], ankle: [-.47, -1.16, .39],
+  for (const side of [-1,1]) {
+    addEllipsoid(.54,.545,side*.127,.035,.028,.016,'#c2a666',8,12);
+    addEllipsoid(.55,.546,side*.14,.012,.021,.008,'#20251f',8,10);
+    addEllipsoid(.855,.475,side*.064,.012,.008,.008,dark,6,8);
+    // Shoulders and three small inward-facing grasping digits.
+    const z=side*.19;
+    addEllipsoid(.09,.045,z,.105,.12,.095,body,10,16);
+    chain([[.10,.035,z],[.19,-.12,side*.25],[.32,-.19,side*.27]],[.085,.065,.043],body,14);
+    for(let f=-1;f<=1;f++) {
+      const dz=side*.27+f*.035;
+      chain([[.30,-.19,dz],[.39,-.24,dz],[.42,-.30,dz]],[.025,.018,.01],body,10);
+      addTube([.42,-.30,dz],[.40,-.34,dz],.012,.001,dark,8);
     }
-  ].forEach((leg, legIndex) => {
-    const { z, shade, hip, knee, hock, ankle } = leg;
-    // Femur: powerful but tapered from the pelvis to the forward knee.
-    addEllipsoid(hip[0], hip[1], z, .18, .21, .14, shade, 7, 10);
-    addTube(hip, knee, .135, .095, body, 8);
-    addEllipsoid(knee[0], knee[1], z, .095, .1, .09, flank, 6, 8);
-    // Tibia/fibula angle back toward the hock; the joint remains flexed.
-    addTube(knee, hock, .09, .06, shade, 8);
-    addEllipsoid(hock[0], hock[1], z, .065, .07, .07, dark, 6, 8);
-    // Short metatarsus angles forward to the ankle. No oversized foot mass.
-    addTube(hock, ankle, .06, .046, body, 7);
-    addEllipsoid(ankle[0], ankle[1], z, .054, .045, .058, flank, 6, 8);
-
-    // Three compact toes fan gently forward and plant at a shared ground line.
-    const toeSpecs = [
-      { endZ: z - .11, len: .17 },
-      { endZ: z, len: .22 },
-      { endZ: z + .11, len: .17 }
-    ];
-    toeSpecs.forEach((toe, toeIndex) => {
-      const base = [ankle[0] + .025, -1.17, z];
-      const knuckle = [ankle[0] + toe.len * .54, -1.195, z + (toe.endZ - z) * .56];
-      const tip = [ankle[0] + toe.len, -1.20, toe.endZ];
-      addTube(base, knuckle, .037, .027, shade, 6);
-      addTube(knuckle, tip, .027, .012, flank, 6);
-      // Small keratin tips; toe II carries the characteristic enlarged claw.
-      if (toeIndex === 1) {
-        const clawStart = vertices.length;
-        addTube(tip, [tip[0] - .025, -1.115, tip[2] + .018], .026, .002, bone, 7);
-        motionRanges.sickleClaws.push([clawStart, vertices.length]);
-      } else {
-        addTube(tip, [tip[0] + .035, -1.185, tip[2] + (toeIndex === 0 ? -.012 : .012)], .016, .001, bone, 5);
-      }
-    });
-    // Sparse thigh feathers follow the leg instead of masking its joints.
-    for (let f = 0; f < 3; f++) {
-      addTube(
-        [hip[0] + .02 + f * .085, hip[1] + .09 - f * .02, z + .095],
-        [hip[0] - .075 + f * .085, hip[1] - .015 - f * .025, z + .13],
-        .032, .003, feather, 5, true
-      );
+    // Muscular thigh, flexed shin, hock, metatarsus and grounded toes.
+    const shift=side<0?.13:0, hip=[-.60+shift,-.13,side*.22], knee=[-.33+shift,-.46,side*.28], hock=[-.55+shift,-.78,side*.28], ankle=[-.42+shift,-.96,side*.28];
+    addEllipsoid(hip[0]+.07,-.25,side*.24,.24,.27,.14,body,12,18);
+    chain([hip,knee,hock,ankle],[.16,.105,.065,.045],body,16);
+    for(let f=-1;f<=1;f++) {
+      const dz=side*.28+f*.07, start=[ankle[0],-.96,side*.28], mid=[ankle[0]+.13,-.99,dz], tip=[ankle[0]+.22,-.99,dz];
+      chain([start,mid,tip],[.042,.028,.015],body,10);
+      addTube(tip,[tip[0]+.045,-.975,dz],.014,.001,dark,8);
     }
-  });
-  addEllipsoid(.68, .87, .045, .022, .012, .014, '#53644e', 5, 6);
-  addEllipsoid(.68, .87, -.045, .022, .012, .014, '#53644e', 5, 6);
+    // Raised digit II: the recurved claw is distinct from planted toes.
+    const c0=[ankle[0]+.08,-.94,side*.23], c1=[ankle[0]+.15,-.85,side*.23], c2=[ankle[0]+.21,-.84,side*.23], c3=[ankle[0]+.25,-.91,side*.23];
+    chain([c0,c1,c2,c3],[.034,.025,.017,.001],dark,12);
+  }
   let yaw = -.3, pitch = .08, zoom = .8, drag = null, width = 0, height = 0;
   let feathersVisible = true;
   let gazeX = 0, gazeY = 0;
@@ -377,7 +330,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     ctx.save();
     ctx.translate(-width * .07, 0);
     ctx.fillStyle = 'rgba(2, 8, 11, .3)'; ctx.beginPath(); ctx.ellipse(width * .52, height * .95, width * .3, height * .035, 0, 0, Math.PI * 2); ctx.fill();
-    const camera = 6, scale = Math.min(width / 4.95, height / 2.45) * zoom * .76;
+    const camera = 6, scale = Math.min(width / 3.8, height / 2.15) * zoom * .92;
     const motionTime = reducedMotion ? 0 : performance.now() / 1000;
     const breath = Math.sin(motionTime * 1.35);
     const tailSway = Math.sin(motionTime * .82);
@@ -429,17 +382,17 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
       const rx = x * Math.cos(yaw) + z * Math.sin(yaw), rz = -x * Math.sin(yaw) + z * Math.cos(yaw);
       const ry = y * Math.cos(pitch) - rz * Math.sin(pitch), rz2 = y * Math.sin(pitch) + rz * Math.cos(pitch);
       const perspective = camera / (camera + rz2);
-      return { x: width * .49 + (rx + .4) * scale * perspective, y: height * .49 - ry * scale * perspective, z: rz2 };
+      return { x: width * .49 + (rx + .8) * scale * perspective, y: height * .49 - ry * scale * perspective, z: rz2, mx: rx, my: ry };
     });
     const rendered = faces.filter(face => feathersVisible || !face.feather).map(face => {
       const a = projected[face.a], b = projected[face.b], c = projected[face.c];
-      const ab = [b.x-a.x,b.y-a.y,b.z-a.z], ac = [c.x-a.x,c.y-a.y,c.z-a.z];
+      const ab = [b.mx-a.mx,b.my-a.my,b.z-a.z], ac = [c.mx-a.mx,c.my-a.my,c.z-a.z];
       const normal = [ab[1]*ac[2]-ab[2]*ac[1],ab[2]*ac[0]-ab[0]*ac[2],ab[0]*ac[1]-ab[1]*ac[0]];
       const norm = Math.hypot(...normal)||1, lit = Math.abs((normal[0]*-.35+normal[1]*.82+normal[2]*.46)/norm);
-      const shade = .5 + lit*.5, value = parseInt(face.color.slice(1),16), r = (value>>16)&255, g=(value>>8)&255, bl=value&255;
+      const shade = .45 + lit*.7, value = parseInt(face.color.slice(1),16), r = (value>>16)&255, g=(value>>8)&255, bl=value&255;
       return {a,b,c,z:(a.z+b.z+c.z)/3,color:`rgb(${Math.round(r*shade)},${Math.round(g*shade)},${Math.round(bl*shade)})`};
     }).sort((a,b)=>a.z-b.z);
-    rendered.forEach(face => {ctx.beginPath();ctx.moveTo(face.a.x,face.a.y);ctx.lineTo(face.b.x,face.b.y);ctx.lineTo(face.c.x,face.c.y);ctx.closePath();ctx.fillStyle=face.color;ctx.fill();ctx.strokeStyle='rgba(17,29,26,.12)';ctx.lineWidth=.45;ctx.stroke();});
+    rendered.forEach(face => {ctx.beginPath();ctx.moveTo(face.a.x,face.a.y);ctx.lineTo(face.b.x,face.b.y);ctx.lineTo(face.c.x,face.c.y);ctx.closePath();ctx.fillStyle=face.color;ctx.fill();ctx.strokeStyle=face.color;ctx.lineWidth=.3;ctx.stroke();});
     ctx.restore();
   };
   const observer = new ResizeObserver(resize); observer.observe(stage); resize();
