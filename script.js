@@ -316,7 +316,7 @@ document.querySelectorAll('[data-raptor-view]').forEach((stage) => {
     chain([c0,c1,c2,c3],[.034,.025,.017,.001],dark,12);
   }
   const originalMesh = {vertices, faces};
-  let selectedDinosaur = "small";
+  let selectedDinosaur = "raptor";
   let yaw = -.3, pitch = .08, zoom = .8, drag = null, width = 0, height = 0;
   let feathersVisible = true;
   let gazeX = 0, gazeY = 0;
