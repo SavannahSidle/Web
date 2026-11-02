@@ -9,3 +9,4 @@
 @media(prefers-reduced-motion:reduce){.t2-feature-card{transition:none}.t2-feature-card:hover{transform:none}}
 
 .t2-archive-card[hidden]{display:none!important}
+.t2-home-signals li::before{content:none}.t2-home-signals li svg{display:block;flex:0 0 11px;width:11px;height:13px;fill:#d52b1e}
