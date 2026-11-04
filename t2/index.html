@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="styles.css?v=20261021-maple-divider1">
   <link rel="stylesheet" href="mica-spatial.css?v=20261027-supercontinent4">
   <link rel="stylesheet" href="t2-enhancements.css?v=20261101">
-  <script src="script.js?v=t2-20261101" defer></script>
+  <script src="script.js?v=t2-20261104-featured-live2" defer></script>
   <script src="t2-enhancements.js?v=20261101" defer></script>
   <script type="application/ld+json">
   {
@@ -78,7 +78,11 @@
 .t2-feature-live{min-width:0;display:flex;flex-direction:column;cursor:default}
 .t2-feature-embed{width:100%;min-width:0;margin-top:12px;overflow:visible}
 .t2-feature-embed .study{display:block!important;position:relative!important;opacity:1!important;visibility:visible!important;transform:none!important;width:100%!important;max-width:100%!important;pointer-events:auto!important}
-.t2-feature-embed .study-screen{width:100%;max-width:100%;overflow:hidden}
+.t2-feature-embed .study-screen{width:100%;max-width:100%;overflow:hidden;aspect-ratio:auto;min-height:370px}
+.t2-feature-embed .featured-study-copy{margin:0;padding:0}
+.t2-feature-embed .study-information .info-results{max-height:260px;overflow-y:auto}
+.t2-feature-embed .study-care .care-response{max-width:100%}
+@media(max-width:680px){.t2-feature-embed .study-screen{min-height:320px}}
 .t2-feature-embed .study>p{display:none}
 .t2-feature-embed button,.t2-feature-embed a{pointer-events:auto}
 </style></head>
