@@ -14,7 +14,7 @@
     });
     copy.querySelectorAll('[aria-controls],[aria-labelledby],[for],[href]').forEach(function(node){
       for(const attr of ['aria-controls','aria-labelledby','for']){
-        if(node.hasAttribute(attr))node.setAttribute(attr,node.getAttribute(attr).split(/\\s+/).map(x=>idMap.get(x)||x).join(' '));
+        if(node.hasAttribute(attr))node.setAttribute(attr,node.getAttribute(attr).split(/\s+/).map(x=>idMap.get(x)||x).join(' '));
       }
       const href=node.getAttribute('href');
       if(href&&href.startsWith('#')&&idMap.has(href.slice(1)))node.setAttribute('href','#'+idMap.get(href.slice(1)));
