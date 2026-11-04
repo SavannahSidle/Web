@@ -1,3 +1,27 @@
+/* Duplicate the actual gallery studies into Featured Work before widget listeners initialize. */
+(function(){
+  document.querySelectorAll('[data-embed-study]').forEach(function(slot){
+    const source=document.getElementById(slot.dataset.embedStudy);
+    if(!source)return;
+    const copy=source.cloneNode(true);
+    copy.removeAttribute('id');
+    copy.removeAttribute('data-reveal');
+    copy.classList.add('featured-study-copy');
+    const idMap=new Map();
+    copy.querySelectorAll('[id]').forEach(function(node){
+      const old=node.id, next='featured-'+slot.dataset.embedStudy+'-'+old;
+      idMap.set(old,next);node.id=next;
+    });
+    copy.querySelectorAll('[aria-controls],[aria-labelledby],[for],[href]').forEach(function(node){
+      for(const attr of ['aria-controls','aria-labelledby','for']){
+        if(node.hasAttribute(attr))node.setAttribute(attr,node.getAttribute(attr).split(/\\s+/).map(x=>idMap.get(x)||x).join(' '));
+      }
+      const href=node.getAttribute('href');
+      if(href&&href.startsWith('#')&&idMap.has(href.slice(1)))node.setAttribute('href','#'+idMap.get(href.slice(1)));
+    });
+    slot.appendChild(copy);
+  });
+})();
 const menuButton = document.querySelector('.menu-button');
 const nav = document.querySelector('#site-nav');
 if (menuButton && nav) {
