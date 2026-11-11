@@ -975,6 +975,13 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 @media(max-width:720px){.canada-maple-divider{top:61%;width:clamp(150px,54vw,220px);grid-template-columns:1fr 14px 1fr;gap:8px}.canada-maple-divider svg{width:14px;height:16px}}
 @media(max-width:640px){.pricing-item{grid-template-columns:1fr;gap:10px}}
 
+
+/* Live featured-site previews: compact framing and real page content. */
+.t2-alien-preview--compact iframe{width:250%;height:250%;transform:scale(.4)}
+.t2-whisked-preview{position:relative;display:block;overflow:hidden;background:#f6eee4;isolation:isolate}
+.t2-whisked-preview iframe{position:absolute;top:0;left:0;width:200%;height:200%;border:0;transform:scale(.5);transform-origin:top left;pointer-events:none;z-index:2}
+.t2-preview-fallback--bakery{color:#4c2d27;background:radial-gradient(circle at 72% 28%,#f4c891,#f1e2cf 68%)}
+
 /* Curated Featured Work */
 .t2-featured{padding:clamp(80px,9vw,128px) max(28px,calc((100vw - var(--max))/2));background:#f4f6f7;color:#132638}
 .t2-featured>header{max-width:750px;margin-bottom:40px}
