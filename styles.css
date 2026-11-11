@@ -1009,3 +1009,6 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .t2-feature-card:focus-visible{outline:3px solid #cf3b3d;outline-offset:3px}
 @media(max-width:680px){.t2-feature-grid{grid-template-columns:1fr}.t2-feature-card{max-width:560px}.t2-eztv-screen{padding:.8rem}.t2-eztv-tiles b{font-size:.7rem;padding:.6rem .1rem}}
 @media(prefers-reduced-motion:reduce){.t2-feature-card{transition:none}.t2-feature-card:hover{transform:none}}
+
+/* Final override: keep the live Alien preview zoomed out after shared card rules. */
+.t2-feature-image.t2-alien-preview--compact iframe{width:300%;height:300%;transform:scale(.333333);transform-origin:top left}
