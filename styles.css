@@ -1012,3 +1012,8 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 
 /* Final override: keep the live Alien preview zoomed out after shared card rules. */
 .t2-feature-image.t2-alien-preview--compact iframe{width:300%;height:300%;transform:scale(.333333);transform-origin:top left}
+
+/* Keep the embedded Whisked page from leaking scroll or placeholder visuals. */
+.t2-whisked-preview{overflow:hidden;clip-path:inset(0);overscroll-behavior:contain;touch-action:pan-y}
+.t2-whisked-preview .t2-preview-fallback{display:none!important}
+.site-live{overflow-x:clip}
