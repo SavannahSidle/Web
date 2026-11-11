@@ -974,3 +974,22 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .pricing-note{margin:24px 0 0;color:#52657a;font-size:14px}
 @media(max-width:720px){.canada-maple-divider{top:61%;width:clamp(150px,54vw,220px);grid-template-columns:1fr 14px 1fr;gap:8px}.canada-maple-divider svg{width:14px;height:16px}}
 @media(max-width:640px){.pricing-item{grid-template-columns:1fr;gap:10px}}
+
+/* T3 integrated study notes and compact personal-project tiles. */
+.t3-continued-studies{padding-block:clamp(62px,7vw,96px)}
+.t3-continued-studies .continued-studies-heading{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(250px,.9fr);gap:clamp(24px,5vw,64px);align-items:end;margin-bottom:clamp(34px,5vw,58px)}
+.t3-continued-studies .continued-studies-heading h2{margin:.2em 0 0;font-size:clamp(2.5rem,5.4vw,5rem);line-height:.98;letter-spacing:-.055em}
+.t3-continued-studies .continued-studies-heading>p{max-width:620px;margin:0;color:#52687b;line-height:1.6}
+.t3-continued-studies .t2-archive-top h3{margin:0;font-size:clamp(1.65rem,3.2vw,2.7rem);line-height:1.05;letter-spacing:-.04em}
+.continued-studies-note{max-width:900px;margin:28px auto 0;padding:18px 22px;border-left:3px solid #cf3b3d;background:#fff;color:#52687b;line-height:1.55}
+.continued-studies-note p{margin:0}
+.continued-studies-note strong{color:#19354b}
+.project-index-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);align-items:stretch}
+.project-index-grid .project-card{display:block;min-width:0;padding:clamp(22px,3vw,34px);border:1px solid rgba(255,255,255,.16)}
+.project-index-grid .project-card h3{font-size:clamp(1.7rem,2.6vw,2.6rem);line-height:1.02}
+.project-index-grid .project-card>div>p:last-child{font-size:15px;line-height:1.5}
+@media(max-width:760px){
+ .t3-continued-studies .continued-studies-heading{grid-template-columns:1fr;gap:14px}
+ .project-index-grid{grid-template-columns:1fr}
+ .project-index-grid .project-card{max-width:none;padding:22px}
+}
