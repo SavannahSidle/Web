@@ -1017,3 +1017,6 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .t2-whisked-preview{overflow:hidden;clip-path:inset(0);overscroll-behavior:contain;touch-action:pan-y}
 .t2-whisked-preview .t2-preview-fallback{display:none!important}
 .site-live{overflow-x:clip}
+
+/* Live site previews use the page itself, without their old placeholder layers. */
+.t2-alien-preview .t2-preview-fallback{display:none!important}
