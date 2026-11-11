@@ -1020,3 +1020,6 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 
 /* Live site previews use the page itself, without their old placeholder layers. */
 .t2-alien-preview .t2-preview-fallback{display:none!important}
+
+/* Whisked Away stays vertically scrollable inside its clipped preview. */
+.t2-whisked-preview iframe{pointer-events:auto;overscroll-behavior-x:contain}
