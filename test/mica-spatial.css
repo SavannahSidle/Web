@@ -4718,3 +4718,21 @@ html body .design-studies .study-space:hover .solar-system-preview {
 }
 .design-studies[data-mode="category"] .study-categories { margin-top:0; }
 .design-studies[data-mode="category"] .study-category-status { margin:0; }
+
+
+/* Keep the Category filter row directly below the view controls. */
+.design-studies[data-mode="category"] .studies-tools {
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+}
+.design-studies[data-mode="category"] .study-categories {
+  align-self:flex-start;
+  width:max-content;
+  max-width:100%;
+  margin:0!important;
+}
+.design-studies[data-mode="category"] .study-category-status {
+  align-self:flex-start;
+}
