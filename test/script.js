@@ -74,17 +74,17 @@ if (studiesSection) {
   const slideProgress = studiesSection.querySelector('[data-slide-progress]');
   const categoryToggle = studiesSection.querySelector('[data-category-toggle]');
   const categoryMenu = studiesSection.querySelector('#study-categories');
-  categoryToggle?.addEventListener('click', () => {
-    const open = categoryToggle.getAttribute('aria-expanded') !== 'true';
-    categoryToggle.setAttribute('aria-expanded', String(open));
-    categoryToggle.classList.toggle('is-active', open);
-    categoryMenu.hidden = !open;
-  });
-  modeButtons.forEach((button) => button.addEventListener('click', () => {
-    categoryToggle?.setAttribute('aria-expanded', 'false');
-    categoryToggle?.classList.remove('is-active');
-    if (categoryMenu) categoryMenu.hidden = true;
-  }));
+  const setStudyMode = (mode) => {
+    studiesSection.dataset.mode = mode;
+    modeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.viewMode === mode)));
+    const categoryMode = mode === 'category';
+    categoryToggle?.classList.toggle('is-active', categoryMode);
+    categoryToggle?.setAttribute('aria-pressed', String(categoryMode));
+    categoryToggle?.setAttribute('aria-expanded', String(categoryMode));
+    if (categoryMenu) categoryMenu.hidden = !categoryMode;
+    slideButtons.forEach((button) => { button.closest('.studies-controls').hidden = mode !== 'showcase'; });
+  };
+  categoryToggle?.addEventListener('click', () => setStudyMode('category'));
   categoryMenu?.querySelectorAll('button').forEach((button) => button.addEventListener('click', () => {
     categoryMenu.querySelectorAll('button').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
   }));
@@ -168,13 +168,11 @@ if (studiesSection) {
       showStudy(activeIndex + (event.key === 'ArrowRight' ? 1 : -1));
     });
     modeButtons.forEach((button) => button.addEventListener('click', () => {
-      const mode = button.dataset.viewMode;
-      studiesSection.dataset.mode = mode;
-      modeButtons.forEach((control) => control.setAttribute('aria-pressed', String(control === button)));
-      slideButtons.forEach((control) => { control.closest('.studies-controls').hidden = mode !== 'showcase'; });
+      setStudyMode(button.dataset.viewMode);
       paintShowcase();
     }));
 
+    setStudyMode('showcase');
     paintShowcase();
   }
 }
