@@ -74,6 +74,72 @@ if (studiesSection) {
   const slideProgress = studiesSection.querySelector('[data-slide-progress]');
   const categoryToggle = studiesSection.querySelector('[data-category-toggle]');
   const categoryMenu = studiesSection.querySelector('#study-categories');
+  const categoryStatus = studiesSection.querySelector('[data-category-status]');
+  const categoryButtons = Array.from(categoryMenu?.querySelectorAll('[data-study-filter]') || []);
+  const categoryNames = { local: 'local business', editorial: 'editorial', commerce: 'commerce', product: 'product interface' };
+  const categoryStudies = {
+    'study-dinosaur': { category:'product', audience:'People exploring prehistoric animals and their environments.', task:'Inspect a specimen, change the selected animal, and understand its time and place.', response:'An interactive 3D field guide combines a rotatable model with concise specimen context.' },
+    'study-system': { category:'product', audience:'Teams reviewing how a digital service is organized.', task:'Understand the relationships between system components.', response:'A compact node map makes the structure explorable through zoom and node controls.' },
+    'study-calm': { category:'product', audience:'People who want a calmer way to plan a day.', task:'Choose one manageable action and review a simple day plan.', response:'A quiet planner presents one next step with day, week, and notes views.' },
+    'study-editorial': { category:'editorial', audience:'Readers exploring visual essays and cultural work.', task:'Recognize a publication’s point of view and find a piece to read.', response:'Strong typography and a restrained image field keep attention on the story.' },
+    'study-pets': { category:'editorial', audience:'Pet owners looking for practical care information and companion stories.', task:'Move between profiles, care guidance, and field notes.', response:'A lifestyle editorial layout separates recurring content into clear topics.' },
+    'study-food': { category:'local', audience:'People deciding where to eat and what to order.', task:'Scan a seasonal menu and understand the restaurant’s evening offer.', response:'A menu-first layout makes dishes, prices, and service context easy to compare.' },
+    'study-local': { category:'local', audience:'A nearby customer who needs to understand whether a provider can help.', task:'Confirm the service area and request an estimate.', response:'Service, coverage, and the next action sit in a clear hierarchy with contact details easy to find.' },
+    'study-architecture': { category:'editorial', audience:'People exploring an architecture studio’s work in Ottawa.', task:'Browse projects and understand the studio’s approach to adaptive reuse.', response:'A restrained project archive gives each building and project context room to lead.' },
+    'study-learning': { category:'product', audience:'Children practising early word-building skills.', task:'Choose letters, place them into a word, and correct a choice when needed.', response:'A playful learning interface combines clear progress, large letter choices, and direct feedback.' },
+    'study-professional': { category:'local', audience:'People seeking independent advice about property, practice, or agreements.', task:'Understand available advisory services and choose a next step.', response:'A trust-focused service page organizes complex advice into clear areas of help.' },
+    'study-culture': { category:'editorial', audience:'Artists and neighbours looking for community arts events.', task:'Explore a gathering and find venue, transit, access, and event details.', response:'Program, visit, and about sections make event information easier to navigate; sample details are marked for confirmation.' },
+    'study-information': { category:'product', audience:'People looking for a clear route to community support information.', task:'Choose a need and see practical next steps.', response:'Plain labels, limited choices, and expandable answers make a service directory easier to scan.' },
+    'study-luxury-mini': { category:'editorial', audience:'Readers exploring a material-led design studio concept.', task:'Take in the relationship between form, object, and space.', response:'Quiet typography and a restrained composition keep attention on the material direction.' },
+    'study-minimal': { category:'local', audience:'People considering independent professional advice.', task:'Understand the offer and decide whether to begin a conversation.', response:'A concise advisory layout uses measured language and a clear action.' },
+    'study-playful': { category:'editorial', audience:'People who want to experiment with visual composition.', task:'Move shapes, pair colours, and keep a preferred arrangement.', response:'A playful, high-contrast canvas invites exploration without a fixed outcome.' },
+    'study-product': { category:'product', audience:'Teams monitoring the health of a digital service.', task:'Review current telemetry, performance indicators, and traffic patterns.', response:'A technical dashboard groups key signals and comparisons into a scannable hierarchy.' },
+    'study-accessible': { category:'product', audience:'People who need clear, step-by-step support information.', task:'Choose a useful next step and understand how to ask for help.', response:'Large actions, plain language, and a visible support pathway reduce the amount of information shown at once.' },
+    'study-bakery': { category:'commerce', audience:'People browsing a small home bakery’s seasonal offer.', task:'Understand what is available and how to follow up.', response:'Products and bakery character lead; this concept does not represent a working ordering or payment system.' },
+    'study-future': { category:'product', audience:'People exploring a speculative adaptive technology system.', task:'Understand how sensing, modelling, and action fit into one process.', response:'A field-systems interface presents the system as a sequence of observable stages.' },
+    'study-build': { category:'local', audience:'Homeowners in the Ottawa region considering construction work.', task:'Explore services, review projects, and request a quote.', response:'A local construction layout connects service information to project examples and a clear quote action.' },
+    'study-diagonal': { category:'commerce', audience:'People browsing a catalogue of useful studio goods.', task:'Explore a collection and understand the product range.', response:'A diagonal editorial system gives product imagery and catalogue navigation a strong visual rhythm.' },
+    'study-wayfinding': { category:'product', audience:'Visitors navigating an unfamiliar venue or service network.', task:'Find a route, a place, or a service without interpreting everything at once.', response:'Selectable information layers provide visible selection state and an uncluttered map.' },
+    'study-bedding': { category:'commerce', audience:'A shopper comparing a small set of bedding options.', task:'Explore fabric, size, and an illustrative price.', response:'Choices and price stay together. The sample bag is a visual demo, not a checkout or order system.' },
+    'study-pub': { category:'local', audience:'People deciding where to meet or eat.', task:'Get the atmosphere and practical visit details at a glance.', response:'A distinctive mood leads while kitchen hours and venue context remain visible.' },
+    'study-local-mini': { category:'local', audience:'Local homeowners comparing energy upgrades and support.', task:'Understand practical next steps and request a quote.', response:'Bold, direct service information organizes upgrades, local programs, and the next action.' },
+    'study-care': { category:'product', audience:'People in Canada seeking mental health or community support.', task:'Choose an appropriate next step and reach a verified support resource.', response:'A calm support interface separates immediate help, local services, and ongoing care, with emergency guidance kept visible.' }
+  };
+  let selectedCategory = 'all';
+
+  studyCards.forEach((card) => {
+    const key = Array.from(card.classList).find((name) => categoryStudies[name]);
+    const details = key && categoryStudies[key];
+    if (!details) return;
+    card.dataset.studyCategory = details.category;
+    const context = document.createElement('div');
+    context.className = 'study-context';
+    for (const [label, value] of [['Audience', details.audience], ['Task', details.task], ['Design response', details.response]]) {
+      const line = document.createElement('p');
+      const heading = document.createElement('strong');
+      heading.textContent = label + ': ';
+      line.append(heading, document.createTextNode(value));
+      context.append(line);
+    }
+    card.append(context);
+  });
+
+  const applyCategoryFilter = (filter) => {
+    selectedCategory = filter;
+    let visible = 0;
+    studyCards.forEach((card) => {
+      const show = filter === 'all' || card.dataset.studyCategory === filter;
+      card.hidden = !show;
+      if (show) visible += 1;
+    });
+    categoryButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.studyFilter === filter)));
+    if (categoryStatus) {
+      categoryStatus.textContent = filter === 'all'
+        ? `Showing all ${visible} studies.`
+        : `Showing ${visible} ${categoryNames[filter] || 'matching'} studies.`;
+    }
+  };
+
   const setStudyMode = (mode) => {
     studiesSection.dataset.mode = mode;
     modeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.viewMode === mode)));
@@ -82,12 +148,13 @@ if (studiesSection) {
     categoryToggle?.setAttribute('aria-pressed', String(categoryMode));
     categoryToggle?.setAttribute('aria-expanded', String(categoryMode));
     if (categoryMenu) categoryMenu.hidden = !categoryMode;
+    if (categoryStatus) categoryStatus.hidden = !categoryMode;
     slideButtons.forEach((button) => { button.closest('.studies-controls').hidden = mode !== 'showcase'; });
+    if (categoryMode) applyCategoryFilter(selectedCategory);
+    else studyCards.forEach((card) => { card.hidden = false; });
   };
-  categoryToggle?.addEventListener('click', () => setStudyMode('category'));
-  categoryMenu?.querySelectorAll('button').forEach((button) => button.addEventListener('click', () => {
-    categoryMenu.querySelectorAll('button').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-  }));
+
+  categoryButtons.forEach((button) => button.addEventListener('click', () => applyCategoryFilter(button.dataset.studyFilter)));
   const reducedMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   if (studyTrack && studyCards.length) {
