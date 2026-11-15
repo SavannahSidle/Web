@@ -4626,3 +4626,83 @@ html body .design-studies .study-space:hover .solar-system-preview {
   border-color: transparent;
   box-shadow: 0 3px 16px rgba(140,195,243,.2);
 }
+
+
+/* Category view reuses the exact study cards with the same stable layout as Grid. */
+.design-studies[data-mode="category"] .studies-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(18px,2.1vw,30px);
+  position:static;
+  height:auto;
+  min-height:0;
+  margin:22px 0 12px;
+  padding:0;
+  overflow:visible;
+  perspective:none;
+  touch-action:auto;
+  mask-image:none;
+}
+.design-studies[data-mode="category"] .studies-grid::before,
+.design-studies[data-mode="category"] .studies-grid::after { display:none; }
+.design-studies[data-mode="category"] .study {
+  position:relative;
+  left:auto;
+  top:auto;
+  width:auto;
+  min-width:0;
+  flex:none;
+  visibility:visible;
+  opacity:1;
+  pointer-events:auto;
+  padding:0;
+  transform:none;
+}
+.design-studies[data-mode="category"] .study-screen { aspect-ratio:16/10; }
+.design-studies[data-mode="category"] .study[hidden],
+.study-categories[hidden],
+.study-category-status[hidden] { display:none!important; }
+.study-categories { align-items:center; }
+.study-categories button {
+  min-height:38px;
+  padding:8px 14px;
+  border:1px solid rgba(190,216,235,.32);
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  color:#e4edf6;
+  font:600 12px/1.2 "IBM Plex Sans",sans-serif;
+  cursor:pointer;
+}
+.study-categories button[aria-pressed="true"] {
+  color:#102719;
+  background:#d9e89b;
+  border-color:#d9e89b;
+}
+.study-category-status {
+  margin:10px 0 20px;
+  color:#c6d3df;
+  font-size:13px;
+}
+.study-context { display:none; }
+.design-studies[data-mode="category"] .study-context {
+  display:grid;
+  gap:6px;
+  margin-top:14px;
+  padding:14px 0 0;
+  border-top:1px solid rgba(190,216,235,.2);
+  color:#d0dce7;
+}
+.design-studies[data-mode="category"] .study-context p {
+  margin:0;
+  font-size:.88rem;
+  line-height:1.55;
+}
+.design-studies[data-mode="category"] .study-context strong {
+  color:#f4f7fa;
+}
+@media(max-width:900px) {
+  .design-studies[data-mode="category"] .studies-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:560px) {
+  .design-studies[data-mode="category"] .studies-grid { grid-template-columns:1fr; gap:20px; }
+}
