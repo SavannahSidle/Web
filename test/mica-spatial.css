@@ -4706,3 +4706,15 @@ html body .design-studies .study-space:hover .solar-system-preview {
 @media(max-width:560px) {
   .design-studies[data-mode="category"] .studies-grid { grid-template-columns:1fr; gap:20px; }
 }
+
+
+/* In Category mode, place its filters and count below the three view choices. */
+.design-studies[data-mode="category"] .studies-tools {
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  justify-items:start;
+  align-items:start;
+  gap:12px;
+}
+.design-studies[data-mode="category"] .study-categories { margin-top:0; }
+.design-studies[data-mode="category"] .study-category-status { margin:0; }
