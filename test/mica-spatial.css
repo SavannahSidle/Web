@@ -4778,3 +4778,11 @@ html body .design-studies .study-space:hover .solar-system-preview {
   font-size:clamp(9px,.85vw,12px)!important;
   line-height:1.45!important;
 }
+
+
+/* Prevent each study's display headline styles from leaking into its category notes. */
+.design-studies[data-mode="category"] :is(.study-editorial,.study-local,.study-minimal,.study-playful,.study-accessible) .study-context strong {
+  display:inline!important;position:static!important;inset:auto!important;margin:0!important;
+  font:700 clamp(9px,.85vw,12px)/1.45 "IBM Plex Sans",sans-serif!important;
+  letter-spacing:normal!important;text-transform:none!important;transform:none!important;
+}
