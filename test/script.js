@@ -77,8 +77,14 @@ if (studiesSection) {
   categoryToggle?.addEventListener('click', () => {
     const open = categoryToggle.getAttribute('aria-expanded') !== 'true';
     categoryToggle.setAttribute('aria-expanded', String(open));
+    categoryToggle.classList.toggle('is-active', open);
     categoryMenu.hidden = !open;
   });
+  modeButtons.forEach((button) => button.addEventListener('click', () => {
+    categoryToggle?.setAttribute('aria-expanded', 'false');
+    categoryToggle?.classList.remove('is-active');
+    if (categoryMenu) categoryMenu.hidden = true;
+  }));
   categoryMenu?.querySelectorAll('button').forEach((button) => button.addEventListener('click', () => {
     categoryMenu.querySelectorAll('button').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
   }));
