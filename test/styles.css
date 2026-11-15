@@ -1026,7 +1026,8 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 
 /* Category controls are only visible while the category view is open. */
 .study-categories[hidden] { display: none !important; }
-.studies-view-toggle [data-category-toggle].is-active {
+.studies-view-toggle [data-category-toggle].is-active,
+.studies-view-toggle [data-category-toggle][aria-pressed="true"] {
   color: #04111e;
   background: #d9e89b;
   border-color: #d9e89b;
