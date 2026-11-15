@@ -4736,3 +4736,45 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .design-studies[data-mode="category"] .study-category-status {
   align-self:flex-start;
 }
+
+
+/* In Grid and By Category, render the dinosaur card with Showcase's proportions. */
+.design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel,
+.design-studies[data-mode="category"] .study-dinosaur .pangaea-panel {
+  left:7%!important;top:19%!important;width:27%!important;height:66%!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;
+  justify-content:flex-start!important;padding:6px!important;box-sizing:border-box!important;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel .pangaea-map,
+.design-studies[data-mode="category"] .study-dinosaur .pangaea-panel .pangaea-map {
+  height:34%!important;flex:0 0 34%!important;margin:0 0 3px!important;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus,
+.design-studies[data-mode="category"] .study-dinosaur .dinosaur-focus {
+  left:3%!important;top:61%!important;width:27%!important;height:21%!important;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .raptor-viewport,
+.design-studies[data-mode="category"] .study-dinosaur .raptor-viewport {
+  right:3%!important;top:19%!important;width:62%!important;height:64%!important;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .raptor-controls,
+.design-studies[data-mode="category"] .study-dinosaur .raptor-controls {
+  grid-template-columns:repeat(4,30px)!important;width:max-content!important;
+  left:auto!important;right:6px!important;top:6px!important;gap:3px!important;padding:5px!important;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .raptor-controls button,
+.design-studies[data-mode="category"] .study-dinosaur .raptor-controls button {
+  width:30px!important;height:30px!important;font-size:16px!important;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-periods,
+.design-studies[data-mode="category"] .study-dinosaur .dinosaur-periods {
+  left:43%!important;right:5%!important;bottom:6%!important;display:grid!important;
+  grid-template-columns:auto 1fr auto 1fr auto!important;align-items:center!important;
+  gap:5px!important;padding:0!important;border:0!important;font-size:clamp(6px,1.3cqw,8px)!important;
+}
+
+/* Keep only the five requested study-note blocks compact in By Category. */
+.design-studies[data-mode="category"] :is(.study-editorial,.study-local,.study-minimal,.study-playful,.study-accessible) .study-context p {
+  font-size:clamp(9px,.85vw,12px)!important;
+  line-height:1.45!important;
+}
