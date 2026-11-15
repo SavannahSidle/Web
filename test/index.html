@@ -27,8 +27,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20261115-category-view">
-  <link rel="stylesheet" href="mica-spatial.css?v=20261115-category-controls">
-  <script src="script.js?v=20261115-category-view" defer></script>
+  <link rel="stylesheet" href="mica-spatial.css?v=20261115-category-archive">
+  <script src="script.js?v=20261115-category-archive" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -145,12 +145,13 @@
           <button type="button" data-view-mode="category" data-category-toggle aria-pressed="false" aria-expanded="false" aria-controls="study-categories">By Category</button>
         </div>
         <div class="study-categories" id="study-categories" role="group" aria-label="Choose an interface study category" hidden>
-          <button type="button" aria-pressed="true">All studies</button>
-          <button type="button" aria-pressed="false">Local businesses</button>
-          <button type="button" aria-pressed="false">Editorial</button>
-          <button type="button" aria-pressed="false">Commerce</button>
-          <button type="button" aria-pressed="false">Product interfaces</button>
+          <button type="button" data-study-filter="all" aria-pressed="true">All studies</button>
+          <button type="button" data-study-filter="local" aria-pressed="false">Local business</button>
+          <button type="button" data-study-filter="editorial" aria-pressed="false">Editorial</button>
+          <button type="button" data-study-filter="commerce" aria-pressed="false">Commerce</button>
+          <button type="button" data-study-filter="product" aria-pressed="false">Product interfaces</button>
         </div>
+        <p class="study-category-status" data-category-status aria-live="polite" hidden></p>
         <div class="studies-controls" aria-label="Showcase controls">
           <button type="button" data-slide="previous">Previous</button>
           <span data-slide-status aria-live="polite">01 / 28</span>
