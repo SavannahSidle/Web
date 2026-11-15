@@ -4609,3 +4609,20 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .site-live .study-dinosaur .dinosaur-picker select{width:100%;min-width:0;padding:4px 2px;color:#e9f0e6;background:#13292c;border:1px solid #b7cbc2;border-radius:3px;font:11px/1.2 sans-serif}
 .site-live .study-dinosaur .dinosaur-picker select:focus-visible{outline:2px solid #d7e89a;outline-offset:2px}
 .site-live .study-dinosaur .dino-webgl{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+
+
+/* Give Grid and By Category the same pill controls as Showcase. */
+.design-studies[data-mode="grid"] .studies-view-toggle,
+.design-studies[data-mode="category"] .studies-view-toggle {
+  border-radius: 999px;
+}
+.design-studies[data-mode="grid"] .studies-view-toggle button,
+.design-studies[data-mode="category"] .studies-view-toggle button {
+  border-radius: 999px;
+}
+.design-studies[data-mode="category"] .studies-view-toggle [data-category-toggle][aria-pressed="true"] {
+  color: #071725;
+  background: #dceeff;
+  border-color: transparent;
+  box-shadow: 0 3px 16px rgba(140,195,243,.2);
+}
