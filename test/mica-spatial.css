@@ -4739,35 +4739,35 @@ html body .design-studies .study-space:hover .solar-system-preview {
 
 
 /* In Grid and By Category, render the dinosaur card with Showcase's proportions. */
-.design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel,
-.design-studies[data-mode="category"] .study-dinosaur .pangaea-panel {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .pangaea-panel,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .pangaea-panel {
   left:7%!important;top:19%!important;width:27%!important;height:66%!important;
   display:flex!important;flex-direction:column!important;align-items:center!important;
   justify-content:flex-start!important;padding:6px!important;box-sizing:border-box!important;
 }
-.design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel .pangaea-map,
-.design-studies[data-mode="category"] .study-dinosaur .pangaea-panel .pangaea-map {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .pangaea-panel .pangaea-map,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .pangaea-panel .pangaea-map {
   height:34%!important;flex:0 0 34%!important;margin:0 0 3px!important;
 }
-.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus,
-.design-studies[data-mode="category"] .study-dinosaur .dinosaur-focus {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .dinosaur-focus,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .dinosaur-focus {
   left:3%!important;top:61%!important;width:27%!important;height:21%!important;
 }
-.design-studies[data-mode="grid"] .study-dinosaur .raptor-viewport,
-.design-studies[data-mode="category"] .study-dinosaur .raptor-viewport {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .raptor-viewport,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .raptor-viewport {
   right:3%!important;top:19%!important;width:62%!important;height:64%!important;
 }
-.design-studies[data-mode="grid"] .study-dinosaur .raptor-controls,
-.design-studies[data-mode="category"] .study-dinosaur .raptor-controls {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .raptor-controls,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .raptor-controls {
   grid-template-columns:repeat(4,30px)!important;width:max-content!important;
   left:auto!important;right:6px!important;top:6px!important;gap:3px!important;padding:5px!important;
 }
-.design-studies[data-mode="grid"] .study-dinosaur .raptor-controls button,
-.design-studies[data-mode="category"] .study-dinosaur .raptor-controls button {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .raptor-controls button,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .raptor-controls button {
   width:30px!important;height:30px!important;font-size:16px!important;
 }
-.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-periods,
-.design-studies[data-mode="category"] .study-dinosaur .dinosaur-periods {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .dinosaur-periods,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .dinosaur-periods {
   left:43%!important;right:5%!important;bottom:6%!important;display:grid!important;
   grid-template-columns:auto 1fr auto 1fr auto!important;align-items:center!important;
   gap:5px!important;padding:0!important;border:0!important;font-size:clamp(6px,1.3cqw,8px)!important;
@@ -4789,7 +4789,7 @@ html body .design-studies .study-space:hover .solar-system-preview {
 
 
 /* Test preview: keep the Velociraptor interface composed inside its Grid and Category cards. */
-.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel {
+.design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .pangaea-panel {
   overflow:hidden!important;
   display:flex!important;
   flex-direction:column!important;
@@ -4798,7 +4798,7 @@ html body .design-studies .study-space:hover .solar-system-preview {
   text-align:center!important;
   padding:6px!important;
 }
-.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel>div {
+.design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .pangaea-panel>div {
   position:static!important;
   display:flex!important;
   flex-direction:column!important;
@@ -4808,18 +4808,18 @@ html body .design-studies .study-space:hover .solar-system-preview {
   min-width:0!important;
   text-align:center!important;
 }
-.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel>div>* {
+.design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .pangaea-panel>div>* {
   position:static!important;
   inset:auto!important;
   transform:none!important;
   max-width:100%!important;
   text-align:center!important;
 }
-.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel .pangaea-map {
+.design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .pangaea-panel .pangaea-map {
   flex:0 0 34%!important;
   height:34%!important;
 }
-.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus {
+.design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .dinosaur-focus {
   overflow:hidden!important;
   display:flex!important;
   flex-direction:column!important;
@@ -4827,30 +4827,30 @@ html body .design-studies .study-space:hover .solar-system-preview {
   justify-content:space-between!important;
   text-align:center!important;
 }
-.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus h3 {
+.design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .dinosaur-focus h3 {
   margin:0!important;
   font-size:clamp(10px,3.1cqw,16px)!important;
   line-height:1.05!important;
 }
-.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus small,
-.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus i {
+.design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .dinosaur-focus small,
+.design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .dinosaur-focus i {
   font-size:clamp(6px,1.65cqw,9px)!important;
   line-height:1.2!important;
 }
-.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .raptor-viewport {
+.design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .raptor-viewport {
   overflow:hidden!important;
   min-width:0!important;
 }
 
 /* Velociraptor card only: keep the grid/category composition aligned to the approved showcase layout. */
-.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-screen,
-.design-studies[data-mode="category"] .study-dinosaur .dinosaur-screen {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .dinosaur-screen,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .dinosaur-screen {
   container-type:inline-size!important;
   aspect-ratio:16/10!important;
   overflow:hidden!important;
 }
-.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-header,
-.design-studies[data-mode="category"] .study-dinosaur .dinosaur-header {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .dinosaur-header,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .dinosaur-header {
   position:absolute!important;
   top:7%!important;
   left:7%!important;
@@ -4862,38 +4862,38 @@ html body .design-studies .study-space:hover .solar-system-preview {
   font-size:clamp(6px,2cqw,10px)!important;
   line-height:1.2!important;
 }
-.design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel,
-.design-studies[data-mode="category"] .study-dinosaur .pangaea-panel {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .pangaea-panel,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .pangaea-panel {
   left:7%!important;right:auto!important;top:19%!important;
   width:27%!important;height:66%!important;
 }
-.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus,
-.design-studies[data-mode="category"] .study-dinosaur .dinosaur-focus {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .dinosaur-focus,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .dinosaur-focus {
   left:8%!important;top:60%!important;width:25%!important;height:23%!important;
   z-index:2!important;
 }
-.design-studies[data-mode="grid"] .study-dinosaur .raptor-viewport,
-.design-studies[data-mode="category"] .study-dinosaur .raptor-viewport {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .raptor-viewport,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .raptor-viewport {
   left:39%!important;right:3%!important;top:19%!important;
   width:auto!important;height:64%!important;
 }
-.design-studies[data-mode="grid"] .study-dinosaur .raptor-hint,
-.design-studies[data-mode="category"] .study-dinosaur .raptor-hint {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .raptor-hint,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .raptor-hint {
   font-size:clamp(5px,1.45cqw,8px)!important;
 }
-.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-periods,
-.design-studies[data-mode="category"] .study-dinosaur .dinosaur-periods {
+.design-studies[data-mode="grid-retired-dinosaur"] .study-dinosaur .dinosaur-periods,
+.design-studies[data-mode="category-retired-dinosaur"] .study-dinosaur .dinosaur-periods {
   left:39%!important;right:5%!important;bottom:6%!important;
 }
 
 
 /* /test only: scale the approved Velociraptor showcase composition to the
    narrower Grid / By Category card without modifying any other study. */
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-screen {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .dinosaur-screen {
   container-type:inline-size!important;
   aspect-ratio:16/10!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .pangaea-panel {
   left:7%!important;
   top:19%!important;
   width:27%!important;
@@ -4901,25 +4901,25 @@ html body .design-studies .study-space:hover .solar-system-preview {
   padding:clamp(2px,1cqw,6px)!important;
   overflow:hidden!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel .pangaea-map {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .pangaea-panel .pangaea-map {
   flex:0 0 34%!important;
   height:34%!important;
   min-height:0!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel>div {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .pangaea-panel>div {
   min-height:0!important;
   gap:clamp(0px,.3cqw,2px)!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel strong {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .pangaea-panel strong {
   font-size:clamp(6px,2.2cqw,14px)!important;
   line-height:1.1!important;
   overflow-wrap:anywhere!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel small {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .pangaea-panel small {
   font-size:clamp(5px,1.25cqw,8px)!important;
   line-height:1.1!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .dinosaur-focus {
   left:3%!important;
   top:61%!important;
   width:27%!important;
@@ -4927,30 +4927,30 @@ html body .design-studies .study-space:hover .solar-system-preview {
   min-width:0!important;
   overflow:hidden!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus h3 {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .dinosaur-focus h3 {
   font-size:clamp(9px,3.5cqw,18px)!important;
   white-space:normal!important;
   overflow-wrap:anywhere!important;
   transform:none!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus small {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .dinosaur-focus small {
   font-size:clamp(5px,1.3cqw,8px)!important;
   line-height:1.15!important;
   transform:none!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus span {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .dinosaur-focus span {
   font-size:clamp(5px,1.25cqw,8px)!important;
   white-space:normal!important;
   overflow-wrap:anywhere!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .raptor-viewport {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .raptor-viewport {
   left:39%!important;
   right:3%!important;
   top:19%!important;
   width:auto!important;
   height:64%!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .raptor-controls {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .raptor-controls {
   display:grid!important;
   grid-template-columns:repeat(4,clamp(13px,5cqw,30px))!important;
   gap:clamp(1px,.4cqw,3px)!important;
@@ -4961,22 +4961,52 @@ html body .design-studies .study-space:hover .solar-system-preview {
   right:4px!important;
   top:4px!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .raptor-controls button {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .raptor-controls button {
   width:clamp(13px,5cqw,30px)!important;
   height:clamp(13px,5cqw,30px)!important;
   min-width:0!important;
   padding:0!important;
   font-size:clamp(9px,3cqw,16px)!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-picker {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .dinosaur-picker {
   max-width:48%!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-picker select {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .dinosaur-picker select {
   font-size:clamp(7px,1.8cqw,11px)!important;
   padding:clamp(2px,.5cqw,4px)!important;
 }
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-periods {
+.site-live .design-studies:is([data-mode="grid-retired-dinosaur"],[data-mode="category-retired-dinosaur"]) .study-dinosaur .dinosaur-periods {
   left:39%!important;
   right:5%!important;
   font-size:clamp(5px,1.3cqw,8px)!important;
+}
+
+
+/* /test: present the exact same 700px-wide dinosaur composition as Showcase,
+   uniformly scaled to each Grid/By Category tile. No internal adjustments. */
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur {
+  position:relative!important;
+  min-width:0!important;
+}
+.site-live .design-studies .study-dinosaur .dinosaur-preview-space {display:none;}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-preview-space {
+  display:block;
+  width:100%;
+  aspect-ratio:16/10;
+  pointer-events:none;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur > .dinosaur-screen {
+  position:absolute!important;
+  left:0!important;
+  top:0!important;
+  width:700px!important;
+  height:437.5px!important;
+  max-width:none!important;
+  min-width:0!important;
+  aspect-ratio:16/10!important;
+  box-sizing:border-box!important;
+  transform:scale(var(--dinosaur-card-scale, .5))!important;
+  transform-origin:top left!important;
+  container-type:inline-size;
+  margin:0!important;
 }
