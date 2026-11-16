@@ -26,9 +26,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261111-whisked-scroll-final">
-  <link rel="stylesheet" href="mica-spatial.css?v=20261027-supercontinent4">
-  <script src="script.js?v=dinosaur-models-1" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261115-category-view">
+  <link rel="stylesheet" href="mica-spatial.css?v=20261116-grid-category-baseline-1">
+  <style id="test-category-note-typography">
+    .design-studies[data-mode="category"] :is(.study-editorial,.study-local,.study-minimal,.study-playful,.study-accessible) .study-context p,
+    .design-studies[data-mode="category"] :is(.study-editorial,.study-local,.study-minimal,.study-playful,.study-accessible) .study-context strong {
+      font-family:"IBM Plex Sans",sans-serif!important;
+      font-size:clamp(9px,.85vw,12px)!important;
+      line-height:1.45!important;
+      letter-spacing:normal!important;
+      text-transform:none!important;
+      transform:none!important;
+    }
+    .design-studies[data-mode="category"] :is(.study-editorial,.study-local,.study-minimal,.study-playful,.study-accessible) .study-context strong {
+      display:inline!important;position:static!important;inset:auto!important;margin:0!important;font-weight:700!important;
+    }
+  </style>
+  <script src="script.js?v=20261115-dinosaur-native-card-8" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -70,7 +84,7 @@
     ]
   }
   </script>
-<script type="module" src="assets/dinosaur/dinosaur-models.js?v=20261030-trex-raptor-only"></script>
+<script type="module" src="assets/dinosaur/dinosaur-models.js?v=20261115-raptor-fallback"></script>
 </head>
 <body class="home site-live">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -142,7 +156,16 @@
         <div class="studies-view-toggle" role="group" aria-label="Choose how to view interface studies">
           <button type="button" data-view-mode="showcase" aria-pressed="true">Showcase</button>
           <button type="button" data-view-mode="grid" aria-pressed="false">Grid</button>
+          <button type="button" data-view-mode="category" data-category-toggle aria-pressed="false" aria-expanded="false" aria-controls="study-categories">By Category</button>
         </div>
+        <div class="study-categories" id="study-categories" role="group" aria-label="Choose an interface study category" hidden>
+          <button type="button" data-study-filter="all" aria-pressed="true">All studies</button>
+          <button type="button" data-study-filter="local" aria-pressed="false">Local business</button>
+          <button type="button" data-study-filter="editorial" aria-pressed="false">Editorial</button>
+          <button type="button" data-study-filter="commerce" aria-pressed="false">Commerce</button>
+          <button type="button" data-study-filter="product" aria-pressed="false">Product interfaces</button>
+        </div>
+        <p class="study-category-status" data-category-status aria-live="polite" hidden></p>
         <div class="studies-controls" aria-label="Showcase controls">
           <button type="button" data-slide="previous">Previous</button>
           <span data-slide-status aria-live="polite">01 / 28</span>
