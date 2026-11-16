@@ -4982,31 +4982,25 @@ html body .design-studies .study-space:hover .solar-system-preview {
 }
 
 
-/* /test: present the exact same 700px-wide dinosaur composition as Showcase,
-   uniformly scaled to each Grid/By Category tile. No internal adjustments. */
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur {
-  position:relative!important;
-  min-width:0!important;
-}
-.site-live .design-studies .study-dinosaur .dinosaur-preview-space {display:none;}
-.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-preview-space {
-  display:block;
-  width:100%;
-  aspect-ratio:16/10;
-  pointer-events:none;
+/* /test: restore Showcase's native dinosaur composition in Grid and Category.
+   Give this one study sufficient room instead of shrinking its content and controls. */
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .studies-grid > .study-dinosaur {
+  grid-column:span 2;
+  width:min(100%,700px);
+  min-width:0;
+  justify-self:center;
 }
 .site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur > .dinosaur-screen {
-  position:absolute!important;
-  left:0!important;
-  top:0!important;
-  width:700px!important;
-  height:437.5px!important;
-  max-width:none!important;
-  min-width:0!important;
-  aspect-ratio:16/10!important;
-  box-sizing:border-box!important;
-  transform:scale(var(--dinosaur-card-scale, .5))!important;
-  transform-origin:top left!important;
+  position:relative;
+  width:100%;
+  max-width:100%;
+  aspect-ratio:16/10;
+  transform:none;
   container-type:inline-size;
-  margin:0!important;
+}
+@media(max-width:560px) {
+  .site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .studies-grid > .study-dinosaur {
+    grid-column:span 1;
+    width:100%;
+  }
 }
