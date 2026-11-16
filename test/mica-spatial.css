@@ -4980,3 +4980,21 @@ html body .design-studies .study-space:hover .solar-system-preview {
   right:5%!important;
   font-size:clamp(5px,1.3cqw,8px)!important;
 }
+
+
+/* Grid-only Velociraptor: match Category's min-width:0 grid-item sizing.
+   Without this, the dinosaur's interactive contents can enforce a wider
+   intrinsic card than the grid column, distorting the layout. */
+.site-live .design-studies[data-mode="grid"] .studies-grid > .study-dinosaur {
+  min-width:0!important;
+  max-width:100%!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+.site-live .design-studies[data-mode="grid"] .study-dinosaur > .dinosaur-screen {
+  display:block!important;
+  min-width:0!important;
+  max-width:100%!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+}
