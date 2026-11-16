@@ -1114,6 +1114,41 @@ body{background:#edf2f6;color:#0b1b28}
   background:linear-gradient(90deg,rgba(245,244,235,.18),transparent 64%),linear-gradient(0deg,rgba(247,246,238,.3),transparent 48%);
 }
 
+.design-studies[data-mode="grid-legacy"] .study-dinosaur .pangaea-panel{
+  left:5%;
+  top:24%;
+  width:29%;
+  height:37%;
+}
+.design-studies[data-mode="grid-legacy"] .study-dinosaur .dinosaur-focus{
+  left:5%;
+  top:65%;
+  width:29%;
+}
+.design-studies[data-mode="grid-legacy"] .study-dinosaur .dinosaur-focus h3{
+  font-size:clamp(1rem,5cqw,1.35rem);
+  line-height:.96;
+}
+.design-studies[data-mode="grid-legacy"] .study-dinosaur .dinosaur-focus span{
+  display:block;
+  overflow-wrap:anywhere;
+  font-size:clamp(5px,1.55cqw,6px);
+  line-height:1.2;
+}
+.design-studies[data-mode="grid-legacy"] .study-dinosaur .raptor-viewport{
+  right:4%;
+  top:20%;
+  width:58%;
+  height:61%;
+}
+.design-studies[data-mode="grid-legacy"] .study-dinosaur .dinosaur-periods{
+  left:39%;
+  right:4%;
+  bottom:6%;
+  gap:3px;
+  font-size:clamp(4.5px,1.3cqw,5.5px);
+}
+
 .design-studies[data-mode="grid"] .study-neural .neural-copy{
   left:6%;
   top:27%;
@@ -2365,6 +2400,26 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .site-live .study-dinosaur .raptor-notes{left:5%;bottom:5%;width:38%;font-size:clamp(7px,1.5cqw,9px)}
 .site-live .study-dinosaur .raptor-notes summary{padding:5px 7px}
 .site-live .study-dinosaur .raptor-notes[open]{width:min(62%,280px);max-height:68%;overflow:auto}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .pangaea-panel{
+  left:5%;top:23%;width:25%;height:31%;padding:5px;gap:2px;
+}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .pangaea-map{height:58%}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .dinosaur-focus{left:5%;top:63%;width:35%}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .dinosaur-focus h3{
+  margin:5px 0 2px;font-size:clamp(1rem,5.2cqw,1.4rem);line-height:1;
+}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .dinosaur-focus span{
+  font-size:clamp(6px,1.65cqw,8px);overflow-wrap:normal;
+}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .raptor-viewport{right:3%;top:18%;width:63%;height:66%}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .raptor-controls{
+  grid-template-columns:repeat(6,25px);gap:2px;padding:4px;right:4px;top:4px;
+}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .raptor-controls button{width:25px;height:25px;font-size:15px}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .raptor-hint{
+  font-size:clamp(6px,1.45cqw,8px);line-height:1.15;
+}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .raptor-notes{bottom:5%;font-size:clamp(6px,1.4cqw,8px)}
 @media(max-width:620px){
   .site-live .design-studies .study-dinosaur .raptor-controls{grid-template-columns:repeat(6,25px);gap:2px;padding:4px}
   .site-live .design-studies .study-dinosaur .raptor-controls button{width:25px;height:25px}
@@ -2376,6 +2431,9 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 
 .site-live .design-studies .study-dinosaur .dinosaur-periods{
   font-size:clamp(6px,1.3cqw,8px);letter-spacing:.045em;
+}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .dinosaur-periods{
+  left:39%;right:4%;bottom:6%;font-size:clamp(5px,1.25cqw,7px);gap:3px;
 }
 @media(max-width:620px){
   .site-live .design-studies .study-dinosaur .dinosaur-periods{font-size:6px}
@@ -3462,6 +3520,7 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 .design-studies .study-dinosaur .pangaea-panel>div{width:100%;display:grid;justify-items:start;gap:1px}
 .design-studies .study-dinosaur .pangaea-panel .pangaea-supercontinent,.design-studies .study-dinosaur .pangaea-panel .pangaea-name{width:100%;text-align:center}
 .design-studies .study-dinosaur .pangaea-panel .pangaea-name{margin-top:-3px;color:#f0eddb;font-size:clamp(9px,1vw,12px)}
+.design-studies[data-mode="grid-legacy"] .study-dinosaur .pangaea-panel .pangaea-map{height:37%}
 .design-studies .study-dinosaur .dinosaur-focus h3{margin:3px 0 2px}
 .design-studies .study-dinosaur .dinosaur-focus small{margin:0 0 2px;white-space:nowrap}
 .design-studies[data-mode="showcase"] .study-neural:not([data-active]) .neural-links,
@@ -3590,8 +3649,10 @@ body.home main .capabilities .service-ledger .service-row>span{color:#63798d!imp
 @media(max-width:560px){
   .design-studies[data-mode] .study-space .space-focus{top:19%!important}
   .site-live .design-studies[data-mode] .study-dinosaur .pangaea-panel{left:3%;top:13%;width:28%;height:32%}
+  .site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .pangaea-panel{left:3%;top:13%}
   .site-live .study-dinosaur .raptor-specimen-open{bottom:15%;min-height:28px;padding:5px 6px}
 }
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .pangaea-panel{left:3%;top:13%}
 @media(prefers-reduced-motion:reduce){
   .design-studies[data-mode] .study-playful .shape-a,.design-studies[data-mode] .study-playful .shape-b{animation:none!important;translate:none!important}
   .home .poster-hero .shooting-star{animation:none!important}
@@ -4401,6 +4462,33 @@ html body .design-studies .study-space:hover .solar-system-preview {
 }
 }
 
+/* Keep the same four-button fit and aligned panel in grid view. */
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .raptor-controls{
+  grid-template-columns:repeat(4,22px);width:max-content;left:auto;right:6px;gap:2px;padding:3px;
+}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .pangaea-panel{
+  top:19%;height:64%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+}
+
+/* Grid-only Velociraptor corrections. */
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .raptor-controls{
+  grid-template-columns:repeat(4,22px)!important;
+  width:max-content!important;
+  left:auto!important;
+  right:6px!important;
+  gap:2px!important;
+  padding:3px!important;
+}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .pangaea-panel{
+  top:19%!important;
+  height:64%!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+
 
 /* Dinosaur study: lift and center the globe panel content; stack the centered location labels. */
 .site-live .design-studies .study-dinosaur .pangaea-panel{
@@ -4425,11 +4513,19 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .site-live .design-studies .study-dinosaur .pangaea-panel strong{width:100%;text-align:center!important;}
 
 
+/* Grid override: keep the raised map card clear of the Velociraptor title. */
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .pangaea-panel{
+  top:12%!important;height:36%!important;justify-content:flex-start!important;align-items:center!important;padding:5px!important;box-sizing:border-box;
+}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .pangaea-panel .pangaea-map{height:28%!important;flex:0 0 28%;}
+
+
 /* Align the dinosaur map box with the specimen viewer; lift only its contents. */
 .site-live .design-studies .study-dinosaur .pangaea-panel{top:19%!important;height:66%!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;padding:6px!important;box-sizing:border-box;}
 .site-live .design-studies .study-dinosaur .pangaea-panel .pangaea-map{height:34%!important;flex:0 0 34%!important;margin:0 0 3px!important;}
 .site-live .design-studies .study-dinosaur .pangaea-panel>div{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:2px!important;text-align:center!important;width:100%!important;}
 .site-live .design-studies .study-dinosaur .pangaea-panel small,.site-live .design-studies .study-dinosaur .pangaea-panel strong{width:100%!important;text-align:center!important;line-height:1.2!important;}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .pangaea-panel{top:18%!important;height:66%!important;}
 
 
 /* Dinosaur text cluster only: title high, era/location centered, scientific name at the bottom. */
@@ -4456,14 +4552,20 @@ html body .design-studies .study-space:hover .solar-system-preview {
 
 /* Keep the full Velociraptor text cluster inside its existing map panel. */
 .site-live .design-studies .study-dinosaur .dinosaur-focus{top:61%!important;height:21%!important;}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .dinosaur-focus{top:61%!important;height:21%!important;}
 
 
 /* Keep the dinosaur text cluster within the existing left map box. */
 .site-live .design-studies[data-mode="showcase"] .study-dinosaur .dinosaur-focus{left:3%!important;width:27%!important;}
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .dinosaur-focus{left:5%!important;width:25%!important;}
 .site-live .design-studies .study-dinosaur .dinosaur-focus h3{font-size:clamp(11px,4cqw,18px)!important;}
 @media(max-width:560px){
  .site-live .design-studies .study-dinosaur .dinosaur-focus{left:3%!important;width:28%!important;}
 }
+
+
+/* Match the Grid text cluster to the exact left edge of its existing map box. */
+.site-live .design-studies[data-mode="grid-legacy"] .study-dinosaur .dinosaur-focus{left:3%!important;width:25%!important;}
 
 
 /* Lift only the three requested Velociraptor labels by approximately 1 mm. */
