@@ -4998,8 +4998,14 @@ html body .design-studies .study-space:hover .solar-system-preview {
   transform:none;
   container-type:inline-size;
 }
+@media(max-width:760px) {
+  .site-live .design-studies[data-mode="grid"] .studies-grid > .study-dinosaur {
+    grid-column:span 1;
+    width:100%;
+  }
+}
 @media(max-width:560px) {
-  .site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .studies-grid > .study-dinosaur {
+  .site-live .design-studies[data-mode="category"] .studies-grid > .study-dinosaur {
     grid-column:span 1;
     width:100%;
   }
