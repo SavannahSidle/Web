@@ -4841,3 +4841,47 @@ html body .design-studies .study-space:hover .solar-system-preview {
   overflow:hidden!important;
   min-width:0!important;
 }
+
+/* Velociraptor card only: keep the grid/category composition aligned to the approved showcase layout. */
+.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-screen,
+.design-studies[data-mode="category"] .study-dinosaur .dinosaur-screen {
+  container-type:inline-size!important;
+  aspect-ratio:16/10!important;
+  overflow:hidden!important;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-header,
+.design-studies[data-mode="category"] .study-dinosaur .dinosaur-header {
+  position:absolute!important;
+  top:7%!important;
+  left:7%!important;
+  right:7%!important;
+  display:flex!important;
+  justify-content:space-between!important;
+  align-items:center!important;
+  z-index:2!important;
+  font-size:clamp(6px,2cqw,10px)!important;
+  line-height:1.2!important;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .pangaea-panel,
+.design-studies[data-mode="category"] .study-dinosaur .pangaea-panel {
+  left:7%!important;right:auto!important;top:19%!important;
+  width:27%!important;height:66%!important;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-focus,
+.design-studies[data-mode="category"] .study-dinosaur .dinosaur-focus {
+  left:8%!important;top:60%!important;width:25%!important;height:23%!important;
+  z-index:2!important;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .raptor-viewport,
+.design-studies[data-mode="category"] .study-dinosaur .raptor-viewport {
+  left:39%!important;right:3%!important;top:19%!important;
+  width:auto!important;height:64%!important;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .raptor-hint,
+.design-studies[data-mode="category"] .study-dinosaur .raptor-hint {
+  font-size:clamp(5px,1.45cqw,8px)!important;
+}
+.design-studies[data-mode="grid"] .study-dinosaur .dinosaur-periods,
+.design-studies[data-mode="category"] .study-dinosaur .dinosaur-periods {
+  left:39%!important;right:5%!important;bottom:6%!important;
+}
