@@ -4885,3 +4885,98 @@ html body .design-studies .study-space:hover .solar-system-preview {
 .design-studies[data-mode="category"] .study-dinosaur .dinosaur-periods {
   left:39%!important;right:5%!important;bottom:6%!important;
 }
+
+
+/* /test only: scale the approved Velociraptor showcase composition to the
+   narrower Grid / By Category card without modifying any other study. */
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-screen {
+  container-type:inline-size!important;
+  aspect-ratio:16/10!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel {
+  left:7%!important;
+  top:19%!important;
+  width:27%!important;
+  height:66%!important;
+  padding:clamp(2px,1cqw,6px)!important;
+  overflow:hidden!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel .pangaea-map {
+  flex:0 0 34%!important;
+  height:34%!important;
+  min-height:0!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel>div {
+  min-height:0!important;
+  gap:clamp(0px,.3cqw,2px)!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel strong {
+  font-size:clamp(6px,2.2cqw,14px)!important;
+  line-height:1.1!important;
+  overflow-wrap:anywhere!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel small {
+  font-size:clamp(5px,1.25cqw,8px)!important;
+  line-height:1.1!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus {
+  left:3%!important;
+  top:61%!important;
+  width:27%!important;
+  height:21%!important;
+  min-width:0!important;
+  overflow:hidden!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus h3 {
+  font-size:clamp(9px,3.5cqw,18px)!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  transform:none!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus small {
+  font-size:clamp(5px,1.3cqw,8px)!important;
+  line-height:1.15!important;
+  transform:none!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus span {
+  font-size:clamp(5px,1.25cqw,8px)!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .raptor-viewport {
+  left:39%!important;
+  right:3%!important;
+  top:19%!important;
+  width:auto!important;
+  height:64%!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .raptor-controls {
+  display:grid!important;
+  grid-template-columns:repeat(4,clamp(13px,5cqw,30px))!important;
+  gap:clamp(1px,.4cqw,3px)!important;
+  padding:clamp(2px,.7cqw,5px)!important;
+  width:max-content!important;
+  max-width:calc(100% - 8px)!important;
+  left:auto!important;
+  right:4px!important;
+  top:4px!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .raptor-controls button {
+  width:clamp(13px,5cqw,30px)!important;
+  height:clamp(13px,5cqw,30px)!important;
+  min-width:0!important;
+  padding:0!important;
+  font-size:clamp(9px,3cqw,16px)!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-picker {
+  max-width:48%!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-picker select {
+  font-size:clamp(7px,1.8cqw,11px)!important;
+  padding:clamp(2px,.5cqw,4px)!important;
+}
+.site-live .design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-periods {
+  left:39%!important;
+  right:5%!important;
+  font-size:clamp(5px,1.3cqw,8px)!important;
+}
