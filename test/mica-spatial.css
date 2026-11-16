@@ -4786,3 +4786,58 @@ html body .design-studies .study-space:hover .solar-system-preview {
   font:700 clamp(9px,.85vw,12px)/1.45 "IBM Plex Sans",sans-serif!important;
   letter-spacing:normal!important;text-transform:none!important;transform:none!important;
 }
+
+
+/* Test preview: keep the Velociraptor interface composed inside its Grid and Category cards. */
+.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel {
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  text-align:center!important;
+  padding:6px!important;
+}
+.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel>div {
+  position:static!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  width:100%!important;
+  min-width:0!important;
+  text-align:center!important;
+}
+.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel>div>* {
+  position:static!important;
+  inset:auto!important;
+  transform:none!important;
+  max-width:100%!important;
+  text-align:center!important;
+}
+.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .pangaea-panel .pangaea-map {
+  flex:0 0 34%!important;
+  height:34%!important;
+}
+.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus {
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  text-align:center!important;
+}
+.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus h3 {
+  margin:0!important;
+  font-size:clamp(10px,3.1cqw,16px)!important;
+  line-height:1.05!important;
+}
+.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus small,
+.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .dinosaur-focus i {
+  font-size:clamp(6px,1.65cqw,9px)!important;
+  line-height:1.2!important;
+}
+.design-studies:is([data-mode="grid"],[data-mode="category"]) .study-dinosaur .raptor-viewport {
+  overflow:hidden!important;
+  min-width:0!important;
+}
