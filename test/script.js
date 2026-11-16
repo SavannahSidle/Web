@@ -1860,23 +1860,3 @@ document.querySelectorAll('[data-raptor-specimen-dialog]').forEach((dialog) => {
     });
   });
 })();
-
-
-/* /test only: keep Showcase's dinosaur geometry and scale the whole interface
-   as one unit in Grid/By Category, including its canvas and controls. */
-(() => {
-  const article = document.querySelector('.design-studies .study-dinosaur');
-  const screen = article?.querySelector(':scope > .dinosaur-screen');
-  if (!article || !screen || article.querySelector('.dinosaur-preview-space')) return;
-  const space = document.createElement('div');
-  space.className = 'dinosaur-preview-space';
-  space.setAttribute('aria-hidden', 'true');
-  article.insertBefore(space, screen);
-  const updateScale = () => {
-    const width = article.getBoundingClientRect().width;
-    if (width > 0) article.style.setProperty('--dinosaur-card-scale', String(width / 700));
-  };
-  const observer = new ResizeObserver(updateScale);
-  observer.observe(article);
-  updateScale();
-})();
