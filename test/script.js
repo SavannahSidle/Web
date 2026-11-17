@@ -25,18 +25,28 @@ document.querySelectorAll('[data-year]').forEach((element) => { element.textCont
 
 const form = document.querySelector('[data-contact-form]');
 if (form) {
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!form.reportValidity()) return;
-    const fields = new FormData(form);
-    const subject = encodeURIComponent('New website project inquiry');
-    const body = encodeURIComponent(`Name: ${fields.get('name')}\nBusiness: ${fields.get('business')}\nProject: ${fields.get('project')}\n\n${fields.get('message')}`);
-    const notice = document.querySelector('.notice');
-    if (notice) {
-      notice.textContent = 'Opening your email app. The message has not been sent. If it does not open, email projects@micadigital.ca.';
-      notice.classList.add('show');
+    const button = form.querySelector('[type="submit"]');
+    const notice = form.querySelector('.notice');
+    if (button) button.disabled = true;
+    if (notice) { notice.textContent = 'Sending your enquiry…'; notice.classList.add('show'); }
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+      const result = await response.json();
+      if (!response.ok || result.success === 'false' || result.success === false) throw new Error('Submission not accepted');
+      form.reset();
+      if (notice) notice.textContent = 'Your enquiry was submitted. Thank you.';
+    } catch (error) {
+      if (notice) notice.textContent = 'Your enquiry could not be confirmed. Please email projects@micadigital.ca directly.';
+    } finally {
+      if (button) button.disabled = false;
     }
-    window.location.href = `mailto:projects@micadigital.ca?subject=${subject}&body=${body}`;
   });
 }
 
