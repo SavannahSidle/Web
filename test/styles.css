@@ -1037,3 +1037,11 @@ footer>div a:hover{color:#fff;border-color:rgba(216,233,255,.45)}
 .study-categories button[aria-pressed="true"] {
   color:#04111e; background:#d9e89b; border-color:#d9e89b;
 }
+
+/* /test audit improvements: accessibility without changing default visuals. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
+.design-studies button, .design-studies [role="button"] { min-height: 44px; min-width: 44px; }
