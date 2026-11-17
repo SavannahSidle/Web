@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Contact MICA Digital in Ottawa, to discuss custom web design, website redesign, accessible UX, or web development anywhere in Canada.">
   <meta name="theme-color" content="#04111e">
   <title>Contact MICA Digital | Start a Website Project</title>
@@ -35,13 +36,15 @@
             <a href="mailto:info@micadigital.ca"><span>Everything else</span><strong>info@micadigital.ca</strong></a>
           </div>
         </div>
-        <form class="contact-form" data-contact-form method="post">
+        <form class="contact-form" data-contact-form method="post" action="https://formsubmit.co/ajax/projects@micadigital.ca">
           <label>Your name<input name="name" autocomplete="name" required></label>
-          <label>Business name<input name="business" autocomplete="organization" required></label>
+          <label>Business name<input name="business" autocomplete="organization"></label>
+          <label>Your email<input type="email" name="email" autocomplete="email" required></label>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
           <label>What do you need?<select name="project"><option>Websites</option><option>Digital Experiences</option><option>UX &amp; HCI</option><option>Custom Development</option><option>I am not sure yet</option></select></label>
           <label>Tell us about it<textarea name="message" required placeholder="What does the business do? What should the new website help people do?"></textarea></label>
-          <button class="button primary" type="submit">Email your project details</button>
-          <p class="notice" role="status">After you submit, your email app should open with a draft. Nothing is sent until you send it.</p>
+          <button class="button primary" type="submit">Send project enquiry</button>
+          <p class="notice" role="status">Your enquiry will be submitted directly. You will see a confirmation when it is received.</p>
         </form>
       </div>
     </section>
